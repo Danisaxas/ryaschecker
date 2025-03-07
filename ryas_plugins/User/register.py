@@ -1,4 +1,6 @@
 from configs.def_main import *
+from db.database import connect_db
+import mysql.connector
 @ryas('register')
 def register_user(client, message):
     user_id = message.from_user.id

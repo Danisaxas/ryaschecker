@@ -1,8 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram import *
 import time
-from db.database import connect_db
-import mysql.connector
 from ryas_templates.chattext import *
 
 def ryas(bit):
