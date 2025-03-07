@@ -20,3 +20,5 @@ Role: {rango} | Credits: {creditos}
 Antispam: {antispam}
 Expiracion: 0
 </b>'''
+
+register_not = '''<b> No estas registrado en la base de datos usa /register</b>'''

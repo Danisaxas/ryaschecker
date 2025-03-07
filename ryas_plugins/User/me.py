@@ -1,6 +1,7 @@
-from configs.def_main import *
-@ryas('me, info')
-def me_command(client, message):
+from configs.def_main import *# Importa register_not desde chattext.py
+
+@ryas('me')  # Ahora solo acepta 'me'
+async def me_command(client, message):
     user_id = message.from_user.id  # Obtén el ID del usuario que ejecuta el comando
     conn, cursor = connect_db()  # Conectamos a la base de datos
 
@@ -25,9 +26,8 @@ def me_command(client, message):
             antispam=antispam,
             expiracion=expiracion or 'No expiration'
         )
+        # Enviar la respuesta al chat
+        await message.reply(formatted_metext)
     else:
-        # Si el usuario no está en la base de datos
-        formatted_metext = "<b>No se ha encontrado información para este usuario.</b>"
-
-    # Enviar la respuesta al chat
-    client.send_message(message.chat.id, formatted_metext)
+        # Si el usuario no está en la base de datos, usamos el mensaje de error de registro desde chattext.py
+        await message.reply(register_not)  # Enviar mensaje de error de registro
