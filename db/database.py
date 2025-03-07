@@ -16,11 +16,11 @@ def connect_db():
     cursor = conn.cursor()
     return conn, cursor
 
-def create_users_table():
-    """Crea la tabla Users si no existe."""
+def create_user_table():
+    """Crea la tabla user si no existe."""
     conn, cursor = connect_db()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Users (
+        CREATE TABLE IF NOT EXISTS user (
             user_id BIGINT PRIMARY KEY,
             rango VARCHAR(50) DEFAULT 'Free User',
             creditos INT DEFAULT 0,
@@ -36,7 +36,7 @@ def create_users_table():
     cursor.close()
     conn.close()
 
-@ryas('registe')
+@ryas('register')
 def register_user(message):
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
@@ -44,7 +44,7 @@ def register_user(message):
     conn, cursor = connect_db()
     
     try:
-        cursor.execute("INSERT INTO Users (user_id, rango, creditos, antispam, expiracion, dias, bin_lasted, ban, fecha_registro) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())", 
+        cursor.execute("INSERT INTO user (user_id, rango, creditos, antispam, expiracion, dias, bin_lasted, ban, fecha_registro) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())", 
                        (user_id, 'Free User', 0, False, None, 0, None, 'No'))  # Se incluye la columna ban
         conn.commit()
         message.reply_text("✅ Registro exitoso.")
@@ -55,4 +55,4 @@ def register_user(message):
         conn.close()
 
 # Crear la tabla al iniciar el script
-create_users_table()
+create_user_table()
