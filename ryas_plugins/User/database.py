@@ -16,11 +16,11 @@ def connect_db():
     cursor = conn.cursor()
     return conn, cursor
 
-def create_user_table():
+def create_users_table():
     """Crea la tabla user si no existe."""
     conn, cursor = connect_db()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user (
+        CREATE TABLE IF NOT EXISTS users (
             user_id BIGINT PRIMARY KEY,
             rango VARCHAR(50) DEFAULT 'Free User',
             creditos INT DEFAULT 0,
