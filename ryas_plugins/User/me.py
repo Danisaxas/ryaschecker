@@ -1,22 +1,19 @@
-from configs.def_main import *# Importa register_not desde chattext.py
+from configs.def_main import *
 
-@ryas('me')  # Ahora solo acepta 'me'
+@ryas('me')
 async def me_command(client, message):
-    user_id = message.from_user.id  # Obtén el ID del usuario que ejecuta el comando
-    conn, cursor = connect_db()  # Conectamos a la base de datos
+    user_id = message.from_user.id
+    conn, cursor = connect_db()
 
-    # Consulta para obtener la información del usuario
     cursor.execute("""
         SELECT rango, creditos, antispam, expiracion
         FROM Users
         WHERE user_id = %s
     """, (user_id,))
-    user_data = cursor.fetchone()  # Obtener los datos del usuario
+    user_data = cursor.fetchone()
 
-    # Si el usuario está registrado
     if user_data:
         rango, creditos, antispam, expiracion = user_data
-        # Formatear el texto usando los valores obtenidos
         formatted_metext = metext.format(
             username=message.from_user.username,
             user_id=user_id,
@@ -26,8 +23,6 @@ async def me_command(client, message):
             antispam=antispam,
             expiracion=expiracion or 'No expiration'
         )
-        # Enviar la respuesta al chat
-        await message.reply(formatted_metext)
+        await message.reply(formatted_metext, reply_to_message_id=message.message_id)
     else:
-        # Si el usuario no está en la base de datos, usamos el mensaje de error de registro desde chattext.py
-        await message.reply(register_not)  # Enviar mensaje de error de registro
+        await message.reply(register_not, reply_to_message_id=message.message_id)
