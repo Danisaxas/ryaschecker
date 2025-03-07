@@ -1,5 +1,4 @@
 from configs.def_main import *
-
 @ryas('me')
 async def me_command(client, message):
     user_id = message.from_user.id
@@ -23,6 +22,6 @@ async def me_command(client, message):
             antispam=antispam,
             expiracion=expiracion or 'No expiration'
         )
-        await message.reply(formatted_metext, reply_to_message_id=message.message_id)
+        await message.reply(formatted_metext, reply_to_message_id=message.id)
     else:
-        await message.reply(register_not, reply_to_message_id=message.message_id)
+        await message.reply(register_not, reply_to_message_id=message.id)
