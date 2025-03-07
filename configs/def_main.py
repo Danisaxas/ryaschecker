@@ -1,0 +1,13 @@
+from pyrogram import Client, filters
+from pyrogram import *
+import time
+from ryas_templates.chattext import *
+
+def ryas(bit):
+    nix = Client.on_message(filters.command(bit, ["/", "+", "(", ")", "!", "?", "¿", "`", "~", "*", "#", "$", "_", "^", "°", "=", ".", ",", "-", "%", "@", "&", ":", ";", "<", ">", "[", "]", "{", "}", "|", "€", "£", "¢","¥", "™", "½", "¼", "§", "±", "!", "¿", "«", "»", "•", "†", "‡", "⁂", "∗", "√", "∞", "≈", "≠", "≡", "∩", "∪", "⊕", "⊗", "→", "←", "↑", "↓","⇐", "⇒", "⇔", "⇕", "✦", "✧", "✩", "✪"]))
+    return nix
+    
+API_ID = "27533879"
+API_HASH = "80029e88381fe5c63e364687906458a0"
+BOT_TOKEN = "7801858915:AAHyn1g1p7S9oMi8TPXV3yKGIDMNriXdXAQ"
+PLUGIN_ROOT = "ryas_plugins"
