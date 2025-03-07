@@ -1,6 +1,5 @@
 from configs.def_main import *
 import mysql.connector
-from ryas import ryas  # Importar ryas para definir el comando
 
 # Datos de conexión a la base de datos
 DB_CONFIG = {
