@@ -6,7 +6,7 @@ async def me_command(client, message):
 
     cursor.execute("""
         SELECT rango, creditos, antispam, expiracion
-        FROM Users
+        FROM users
         WHERE user_id = %s
     """, (user_id,))
     user_data = cursor.fetchone()
