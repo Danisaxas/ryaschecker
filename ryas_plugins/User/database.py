@@ -55,4 +55,4 @@ def register_user(message):
         conn.close()
 
 # Crear la tabla al iniciar el script
-create_user_table()
+create_users_table()
