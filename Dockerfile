@@ -1,16 +1,23 @@
-FROM python:3.9-slim
+# Usar una imagen base de Python
+FROM python:3.9
 
-# Instalar las dependencias del sistema si es necesario
-RUN apt-get update && apt-get install -y python3-pip
-
-# Copiar el código al contenedor
-COPY . /app/
-
-# Establecer el directorio de trabajo
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Instalar las dependencias de Python
+# Copiar el archivo requirements.txt al contenedor
+COPY requirements.txt /app/
+
+# Actualizar pip antes de instalar las dependencias
+RUN pip install --upgrade pip
+
+# Instalar las dependencias de Python desde requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Comando para ejecutar la aplicación (ajustar según tu caso)
+# Copiar el resto de los archivos de la aplicación al contenedor
+COPY . /app/
+
+# Establecer la variable de entorno para el path de Nixpacks (si es necesario)
+# ENV NIXPACKS_PATH=/opt/venv/bin:$NIXPACKS_PATH
+
+# Comando para ejecutar la aplicación (ajústalo según sea necesario)
 CMD ["python", "app.py"]
