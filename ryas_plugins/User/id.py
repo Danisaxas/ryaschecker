@@ -1,5 +1,4 @@
 from configs.def_main import *
-/// xd
 @ryas('id')
 def obtener_id(client, message):
     user_id = message.from_user.id
