@@ -36,7 +36,7 @@ def create_users_table():
     conn.close()
 
 @ryas('register')
-def register_user(message):
+def register_user(client, message):
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
     
@@ -52,6 +52,3 @@ def register_user(message):
     finally:
         cursor.close()
         conn.close()
-
-# Crear la tabla al iniciar el script
-create_users_table()
