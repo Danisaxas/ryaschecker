@@ -11,5 +11,6 @@ async def start(client, msg):
 
     await msg.reply_text(
         response,
-        reply_to_message_id=msg.id
+        reply_to_message_id=msg.id,
+        reply_markup=mainstart
     )
