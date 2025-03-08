@@ -12,7 +12,7 @@ def register_user(client, message):
         cursor.execute("""
             INSERT INTO users (user_id, rango, privilegio, creditos, antispam, expiracion, dias, bin_lasted, fecha_registro, lang)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s)
-        """, (user_id, 'Free User', 0, 0, 60, 0, None, None, lang))
+        """, (user_id, 'Free User', 0, 0, 60, None, 0, None, lang))
         conn.commit()
         
         registro_msg = """
