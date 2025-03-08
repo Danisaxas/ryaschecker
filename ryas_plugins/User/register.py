@@ -5,14 +5,18 @@ def register_user(client, message):
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
     lang = message.from_user.language_code or "es"  # Detecta el idioma del usuario
+    lang = lang if lang else "es"  # Si `lang` es None, se establece como "es"
 
     conn, cursor = connect_db()
     
     try:
         cursor.execute("""
-            INSERT INTO users (user_id, rango, privilegio, creditos, antispam, expiracion, dias, bin_lasted, fecha_registro, lang)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s)
-        """, (user_id, 'Free User', 0, 0, 60, None, 0, None, lang))
+            INSERT INTO users (
+                user_id, rango, privilegio, creditos, antispam, expiracion, dias,
+                bin_lasted, ban, fecha_registro, lang
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s)
+        """, (user_id, 'Free User', 0, 0, True, None, 0, None, 'No', lang))
         conn.commit()
         
         registro_msg = """
@@ -24,6 +28,7 @@ def register_user(client, message):
 💰 <b>Créditos:</b> 0
 ⏳ <b>Antispam:</b> 60 segundos
 📅 <b>Expiración:</b> No aplica
+🔒 <b>Ban:</b> No
 🌍 <b>Idioma:</b> {lang.upper()}
 ━━━━━━━━━━━━━
 🎯 <b>¡Bienvenido a RyasChk!</b> Usa /cmds para ver los comandos disponibles.
