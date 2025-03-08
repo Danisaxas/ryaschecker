@@ -4,8 +4,8 @@ from configs.def_main import *
 def register_user(client, message):
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
-    lang = message.from_user.language_code or "es"  # Detecta el idioma del usuario
-    lang = lang if isinstance(lang, str) else "es"  # Garantiza que `lang` sea siempre una cadena
+    lang = message.from_user.language_code or "es"
+    lang = lang if isinstance(lang, str) else "es"
 
     conn, cursor = connect_db()
     
@@ -22,7 +22,7 @@ def register_user(client, message):
         registro_msg = """
 <b>✅ ¡Registro exitoso!</b>
 ━━━━━━━━━━━━━
-👤 <b>Usuario:</b> @{username}  
+👤 <b>Usuario:</b> @{username}
 🆔 <b>ID:</b> {user_id}
 🔰 <b>Rango:</b> Free User
 💰 <b>Créditos:</b> 0
@@ -34,7 +34,19 @@ def register_user(client, message):
 🎯 <b>¡Bienvenido a RyasChk!</b> Usa /cmds para ver los comandos disponibles.
 """.format(username=username, user_id=user_id, lang=lang.upper())
 
+        log_msg = """
+✅ ¡Nuevo Registro¡
+━━━━━━━━━━━━━
+👤 Usuario: @{username}
+🆔 ID: {user_id}
+⺢ Fecha: {fecha}
+🌍 Idioma: {lang}
+━━━━━━━━━━━━━
+🎯 ¡Bienvenido a RyasChk!
+""".format(username=username, user_id=user_id, fecha=datetime.now().strftime('%Y-%m-%d'), lang=lang.upper())
+
         message.reply_text(registro_msg)
+        client.send_message(LOGS_CHANNEL, log_msg)
 
     except mysql.connector.IntegrityError:
         message.reply_text("<b>⚠️ Ya estás registrado en el sistema.</b>")
