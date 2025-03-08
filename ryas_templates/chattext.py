@@ -80,3 +80,9 @@ Update: coming soon p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Report problems to: @Exzzex
 </b>'''
+
+close_text = '''<b>
+Good bye! 🌩
+━━━━━━━━━━━━━━━━━
+Enjoy my use.
+</b>'''
