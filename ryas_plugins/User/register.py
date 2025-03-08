@@ -5,7 +5,7 @@ def register_user(client, message):
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
     lang = message.from_user.language_code or "es"  # Detecta el idioma del usuario
-    lang = lang if lang else "es"  # Si `lang` es None, se establece como "es"
+    lang = lang if isinstance(lang, str) else "es"  # Garantiza que `lang` sea siempre una cadena
 
     conn, cursor = connect_db()
     
@@ -29,10 +29,10 @@ def register_user(client, message):
 ⏳ <b>Antispam:</b> 60 segundos
 📅 <b>Expiración:</b> No aplica
 🔒 <b>Ban:</b> No
-🌍 <b>Idioma:</b> {lang.upper()}
+🌍 <b>Idioma:</b> {lang}
 ━━━━━━━━━━━━━
 🎯 <b>¡Bienvenido a RyasChk!</b> Usa /cmds para ver los comandos disponibles.
-""".format(username=username, user_id=user_id, lang=lang)
+""".format(username=username, user_id=user_id, lang=lang.upper())
 
         message.reply_text(registro_msg)
 
