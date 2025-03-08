@@ -18,3 +18,9 @@ atras = InlineKeyboardMarkup([
         InlineKeyboardButton("Next", callback_data="next")
     ]
 ])
+
+back = InlineKeyboardMarkup([
+    [
+        InlineKeyboardButton("back", callback_data="home")
+        ]
+])

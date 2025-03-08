@@ -17,15 +17,7 @@ async def start(client, message):
 
     username = message.from_user.username or "Usuario"
     caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
-    
-    user_language = message.from_user.language_code
-
-    if user_language == "es":
-        response = startx_es.format(username=username, caracas_time=caracas_time)
-    elif user_language == "en":
-        response = startx_en.format(username=username, caracas_time=caracas_time)
-    else:
-        response = startx_es.format(username=username, caracas_time=caracas_time)  # Default to Spanish
+    response = startx.format(username=username, caracas_time=caracas_time)
 
     await message.reply_text(
         response,

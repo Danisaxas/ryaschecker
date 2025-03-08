@@ -23,7 +23,7 @@ Expiracion: 0
 
 register_not = '''<b> No estas registrado en la base de datos usa /register</b>'''
 
-startx_es = '''<b>
+startx = '''<b>
 ¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
 ━━━━━━━━━━━━━
 Hoy es: 
@@ -32,17 +32,6 @@ Hoy es:
 [🇪🇸] @{username}, ¡listo para usar ryas? Soy tu bot personal para checkear tarjetas. Usa /cmds para ver qué puedo hacer.
 ━━━━━━━━━━━━━
 </b>'''
-
-startx_en = '''<b>
-Hello! {username} 🍄, Welcome to RyasChk. Relax and recharge your energies!
-━━━━━━━━━━━━━
-Today is: 
-{caracas_time} 💤
-━━━━━━━━━━━━━
-[🇺🇸] @{username}, ready to use Ryas? I'm your personal bot to check cards. Use /cmds to see what I can do.
-━━━━━━━━━━━━━
-</b>'''
-
 
 tools = '''<b>
 RyasChk Tools / Page 1
@@ -67,4 +56,27 @@ IP Fraud Check:
 Format: $ip 1.1.1.1 
 Condition: Online! ✅
 ━━━━━━━━━━━━
+</b>'''
+
+description_text = '''<b>
+Ryas Description ! 🌩
+━━━━━━━━━━━━
+Channels:
+Onyx Updates: @coming soon
+Onyx References channel: @coming soon
+Onyx Free Users: @coming soon
+━━━━━━━━━━━━━━━━━
+Ryas Information:
+━━━━━
+Dev: @Exzzex ✅ | [Buy]
+Dev Note: Hi guys, this is the new version of onyx, made with speed and good checking experience in mind!
+━━━━━
+Sellers:
+@coming soon | coming soon ✅ | [Buy]
+━━━━━━━━━━━━━━━━━
+Onyx Updates:
+Version: 1.3.0 [✅]
+Update: coming soon p.m (GMT-5) [✅]
+━━━━━━━━━━━━━━━━━
+Report problems to: @Exzzex
 </b>'''
