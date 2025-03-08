@@ -3,8 +3,6 @@ from pyrogram import *
 import time
 import pytz
 from datetime import datetime
-from db.database import connect_db
-import mysql.connector
 from pyrogram.types import CallbackQuery
 from ryas_templates.chattext import *
 from ryas_templates.botones import *
