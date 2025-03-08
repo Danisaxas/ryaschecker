@@ -23,7 +23,7 @@ Expiracion: 0
 
 register_not = '''<b> No estas registrado en la base de datos usa /register</b>'''
 
-startx = '''<b>
+startx_es = '''<b>
 ¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
 ━━━━━━━━━━━━━
 Hoy es: 
@@ -32,6 +32,17 @@ Hoy es:
 [🇪🇸] @{username}, ¡listo para usar ryas? Soy tu bot personal para checkear tarjetas. Usa /cmds para ver qué puedo hacer.
 ━━━━━━━━━━━━━
 </b>'''
+
+startx_en = '''<b>
+Hello! {username} 🍄, Welcome to RyasChk. Relax and recharge your energies!
+━━━━━━━━━━━━━
+Today is: 
+{caracas_time} 💤
+━━━━━━━━━━━━━
+[🇺🇸] @{username}, ready to use Ryas? I'm your personal bot to check cards. Use /cmds to see what I can do.
+━━━━━━━━━━━━━
+</b>'''
+
 
 tools = '''<b>
 RyasChk Tools / Page 1
