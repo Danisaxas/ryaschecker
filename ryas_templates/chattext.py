@@ -22,3 +22,13 @@ Expiracion: 0
 </b>'''
 
 register_not = '''<b> No estas registrado en la base de datos usa /register</b>'''
+
+startx = '''<b>
+¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
+━━━━━━━━━━━━━
+Hoy es: 
+{caracas_time} 💤
+━━━━━━━━━━━━━
+[🇪🇸] @{username}, ¡listo para usar ryas? Soy tu bot personal para checkear tarjetas. Usa /cmds para ver qué puedo hacer.
+━━━━━━━━━━━━━
+</b>'''
