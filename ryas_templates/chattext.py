@@ -32,3 +32,28 @@ Hoy es:
 [🇪🇸] @{username}, ¡listo para usar ryas? Soy tu bot personal para checkear tarjetas. Usa /cmds para ver qué puedo hacer.
 ━━━━━━━━━━━━━
 </b>'''
+
+tools = '''<b>
+RyasChk Tools / Page 1
+━━━━━━━━━━━━
+Bin Generator:
+Format: $gen 601120  
+Condition: Online! ✅
+━━━━━━━━━━━━
+Sk Ckeck:
+Format: $sk sk_live 
+Condition: Online! ✅
+━━━━━━━━━━━━
+BIN Lookup:
+Format: $bin 601120 
+Condition: Online! ✅
+━━━━━━━━━━━━
+Gen Address:
+Format: $dir Country_code 
+Condition: Online! ✅
+━━━━━━━━━━━━
+IP Fraud Check:
+Format: $ip 1.1.1.1 
+Condition: Online! ✅
+━━━━━━━━━━━━
+</b>'''
