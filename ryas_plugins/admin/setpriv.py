@@ -1,9 +1,9 @@
 from configs.def_main import *
 
 @ryas("setpriv")
-def set_priv(client, message):
+async def set_priv(client, message):
     if message.from_user.id != int(OWNER_ID):
-        message.reply(Not_permission)
+        await message.reply(not_privilegios, reply_to_message_id=message.id)
         return
 
     try:
@@ -11,7 +11,7 @@ def set_priv(client, message):
         user_id = int(user_id.strip())
         privilegio = int(privilegio.strip())
     except ValueError:
-        message.reply("Uso correcto: /setpriv <ID> <Privilegio>")
+        await message.reply("Uso correcto: /setpriv <ID> <Privilegio>", reply_to_message_id=message.id)
         return
 
     conn, cursor = connect_db()
@@ -22,9 +22,9 @@ def set_priv(client, message):
     if result:
         cursor.execute("UPDATE users SET privilegio = %s WHERE user_id = %s", (privilegio, user_id))
         conn.commit()
-        message.reply(f"✅ Privilegio actualizado correctamente para el ID {user_id}.")
+        await message.reply(f"✅ Privilegio actualizado correctamente para el ID {user_id}.", reply_to_message_id=message.id)
     else:
-        message.reply("⚠️ Ese ID no se encuentra en la base de datos.")
+        await message.reply("⚠️ Ese ID no se encuentra en la base de datos.", reply_to_message_id=message.id)
 
     cursor.close()
     conn.close()
