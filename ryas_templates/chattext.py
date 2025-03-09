@@ -87,7 +87,8 @@ Good bye! 🌩
 Enjoy my use.
 </b>'''
 
-Not_permission = '''<b>no tienes permiso para usar este comando</b>'''
+Not_permission = '''<b> No cuentas con los privilegios suficientes para usar este comando </b>'''
+
 
 
 
