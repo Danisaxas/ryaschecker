@@ -12,38 +12,34 @@ async def send_message(client, message):
         await message.reply(not_privilegios, reply_to_message_id=message.id)
         return
 
+    args = message.text.split(" ", 2)
+
+    if len(args) < 2:
+        await message.reply("Admin panel = /msg id or (message)", reply_to_message_id=message.id)
+        return
+
     if message.reply_to_message:
         msg_to_forward = message.reply_to_message
     else:
-        args = message.text.split(" ", 2)
-        if len(args) < 2:
-            await message.reply("Admin panel = /msg id or (message)", reply_to_message_id=message.id)
-            return
-
         msg_to_forward = None
         msg_text = args[1] if len(args) == 2 else args[2]
 
-        if args[1].startswith("-") or args[1].isdigit():
-            target_id = int(args[1])
-            cursor.execute("SELECT user_id FROM users WHERE user_id = %s", (target_id,))
-            if cursor.fetchone():
+    if args[1].startswith("-") or args[1].isdigit():
+        target_id = int(args[1])
+        cursor.execute("SELECT user_id FROM users WHERE user_id = %s", (target_id,))
+        if cursor.fetchone():
+            if msg_to_forward:
+                await client.forward_messages(target_id, message.chat.id, msg_to_forward.id)
+            else:
                 await client.send_message(target_id, msg_text)
-            cursor.close()
-            conn.close()
-            return
-        else:
-            msg_to_forward = None
-
-    if msg_to_forward:
-        cursor.execute("SELECT user_id FROM users")
-        users = cursor.fetchall()
-        for user in users:
-            await client.forward_messages(user[0], message.chat.id, msg_to_forward.id)
     else:
         cursor.execute("SELECT user_id FROM users")
         users = cursor.fetchall()
         for user in users:
-            await client.send_message(user[0], msg_text)
+            if msg_to_forward:
+                await client.forward_messages(user[0], message.chat.id, msg_to_forward.id)
+            else:
+                await client.send_message(user[0], msg_text)
 
     cursor.close()
     conn.close()
