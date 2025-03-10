@@ -15,7 +15,7 @@ async def send_message(client, message):
     args = message.text.split(" ", 2)
 
     if len(args) < 2:
-        await message.reply("Admin panel = /msg id or all (message)", reply_to_message_id=message.id)
+        await message.reply(msgformat, reply_to_message_id=message.id)
         return
 
     msg_to_forward = None
