@@ -15,15 +15,18 @@ async def send_message(client, message):
     args = message.text.split(" ", 2)
 
     if len(args) < 2:
-        await message.reply("Admin panel = /msg id or (message)", reply_to_message_id=message.id)
+        await message.reply("Admin panel = /msg id or all (message)", reply_to_message_id=message.id)
         return
+
+    msg_to_forward = None
+    msg_text = None
 
     if message.reply_to_message:
         msg_to_forward = message.reply_to_message
     else:
-        msg_to_forward = None
         msg_text = args[1] if len(args) == 2 else args[2]
 
+    # Comprobamos si se especifica un ID
     if args[1].startswith("-") or args[1].isdigit():
         target_id = int(args[1])
         cursor.execute("SELECT user_id FROM users WHERE user_id = %s", (target_id,))
@@ -32,7 +35,9 @@ async def send_message(client, message):
                 await client.forward_messages(target_id, message.chat.id, msg_to_forward.id)
             else:
                 await client.send_message(target_id, msg_text)
-    else:
+
+    # Si se usa "all", enviar a todos los usuarios
+    elif args[1].lower() == "all":
         cursor.execute("SELECT user_id FROM users")
         users = cursor.fetchall()
         for user in users:
