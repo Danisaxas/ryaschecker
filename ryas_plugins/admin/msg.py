@@ -12,19 +12,16 @@ async def send_message(client, message):
         await message.reply(not_privilegios, reply_to_message_id=message.id)
         return
 
-    if not message.reply_to_message and len(message.text.split()) < 2:
-        await message.reply("Admin panel = /msg id or (message)", reply_to_message_id=message.id)
-        return
-
     if message.reply_to_message:
         msg_text = message.reply_to_message.text
     else:
         args = message.text.split(" ", 2)
         if len(args) < 2:
+            await message.reply("Admin panel = /msg id or (message)", reply_to_message_id=message.id)
             return
         msg_text = args[1] if len(args) == 2 else args[2]
 
-    if args[1].startswith("-") or args[1].isdigit():
+    if not message.reply_to_message and (args[1].startswith("-") or args[1].isdigit()):
         target_id = int(args[1])
         cursor.execute("SELECT user_id FROM users WHERE user_id = %s", (target_id,))
         if cursor.fetchone():
