@@ -89,7 +89,7 @@ Enjoy my use.
 
 not_privilegios = '''<b> No cuentas con los privilegios suficientes para usar este comando</b>'''
 
-msgformat = '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all <texto></b>'''
+msgformat = '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>'''
 
 
 
