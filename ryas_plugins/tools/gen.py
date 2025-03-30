@@ -4,7 +4,7 @@ import requests  # Para hacer la solicitud a la API de BINS
 from configs.def_main import * # Importando configuraciones
 
 # Función para generar una tarjeta de crédito válida
-def generar_tarjeta(bin_prefix, mes=None, anio=None):
+def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     """
     Genera un número de tarjeta de crédito válido usando el algoritmo de Luhn.
 
@@ -12,13 +12,17 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None):
         bin_prefix: Los primeros dígitos de la tarjeta (BIN).
         mes: Mes de expiración (opcional).
         anio: Año de expiración (opcional).
+        cvv_longitud: Longitud del CVV (3 o 4 dígitos).
 
     Retorna:
-        Una tupla con el número de tarjeta, mes y año de expiración.
-        Si no se proporciona mes o año, se generan aleatoriamente.
+        Una tupla con el número de tarjeta, mes, año de expiración y CVV.
     """
-    while len(bin_prefix) < 15:
-        bin_prefix += str(random.randint(0, 9))
+    while len(bin_prefix) < 16:
+        if 'x' in bin_prefix.lower():
+            pos_x = bin_prefix.lower().find('x')
+            bin_prefix = bin_prefix[:pos_x] + str(random.randint(0, 9)) + bin_prefix[pos_x+1:]
+        else:
+            bin_prefix += str(random.randint(0, 9))
 
     suma = 0
     reversa_num = bin_prefix[::-1]
@@ -37,8 +41,14 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None):
         mes = random.randint(1, 12)
     if not anio:
         anio = random.randint(2024, 2030)  # Años de expiración razonables
+    if cvv_longitud == 3:
+        cvv = str(random.randint(100, 999))
+    elif cvv_longitud == 4:
+        cvv = str(random.randint(1000, 9999))
+    else:
+        cvv = str(random.randint(100, 999))
 
-    return numero_tarjeta, f"{mes:02d}", str(anio)
+    return numero_tarjeta, f"{mes:02d}", str(anio), cvv
 
 
 # Función para obtener información del BIN usando una API
@@ -101,20 +111,19 @@ async def gen_command(client, message):
         rango = user_data[0]
         username = message.from_user.username  # Obtén el nombre de usuario del objeto message
 
-        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx  সম্ভাব্য)
+        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
 
         if not parametros:
-            await message.reply("Uso: .gen bin|mm|aa", reply_to_message_id=message.id)
+            await message.reply("Uso: .gen bin|mm|aa|rnd", reply_to_message_id=message.id)
             return
 
         bin_prefix = parametros[0]
         mes = None
         anio = None
+        cvv_longitud = 3  # Valor por defecto
 
         if len(parametros) > 1:
-            fecha_parts = parametros[1].split(
-                ':'
-            )  # Usa split para separar por :, / o |
+            fecha_parts = parametros[1].split(':')  # Usa split para separar por :, / o |
             if len(fecha_parts) == 2:
                 mes, anio = fecha_parts
             elif len(fecha_parts) == 1:
@@ -122,6 +131,10 @@ async def gen_command(client, message):
 
         if len(parametros) > 2:
             anio = parametros[2]
+        
+        if len(parametros) > 3:
+            if parametros[3].lower() == 'rnd':
+                cvv_longitud = random.choice([3, 4])
 
         if len(bin_prefix) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
@@ -140,8 +153,8 @@ async def gen_command(client, message):
         respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
 
         for _ in range(10):
-            numero_tarjeta, gen_mes, gen_anio = generar_tarjeta(bin_prefix, mes, anio)
-            respuesta += f"{numero_tarjeta}|{gen_mes}|{gen_anio}|{random.randint(100, 999)}\n"  # Agregado CVV
+            numero_tarjeta, gen_mes, gen_anio, cvv = generar_tarjeta(bin_prefix, mes, anio, cvv_longitud)
+            respuesta += f"{numero_tarjeta}|{gen_mes}|{gen_anio}|{cvv}\n"  # Agregado CVV
 
         respuesta += f"\nReq By: @{username}[{rango}]"  # Información del solicitante
 
