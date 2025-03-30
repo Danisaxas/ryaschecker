@@ -153,8 +153,12 @@ async def gen_command(client, message):
         respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
 
         for _ in range(10):
-            numero_tarjeta, gen_mes, gen_anio, cvv = generar_tarjeta(bin_prefix, mes, anio, cvv_longitud)
-            respuesta += f"{numero_tarjeta}|{gen_mes}|{gen_anio}|{cvv}\n"  # Agregado CVV
+            try:
+                numero_tarjeta, gen_mes, gen_anio, cvv = generar_tarjeta(bin_prefix, mes, anio, cvv_longitud)
+                respuesta += f"{numero_tarjeta}|{gen_mes}|{gen_anio}|{cvv}\n"  # Agregado CVV
+            except ValueError as e:
+                await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
+                return
 
         respuesta += f"\nReq By: @{username}[{rango}]"  # Información del solicitante
 
