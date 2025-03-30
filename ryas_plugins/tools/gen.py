@@ -122,10 +122,12 @@ async def gen_command(client, message):
 
         if len(parametros) > 1:
             fecha_parts = parametros[1].split(':')  # Usa split para separar por :, / o |
+            if len(fecha_parts) != 2:
+                fecha_parts = parametros[1].split('/')
+            if len(fecha_parts) != 2:
+                fecha_parts = parametros[1].split('-')
             if len(fecha_parts) == 2:
                 mes, anio = fecha_parts
-            elif len(fecha_parts) == 1:
-                mes = fecha_parts[0]
 
         if len(parametros) > 2:
             anio = parametros[2]
