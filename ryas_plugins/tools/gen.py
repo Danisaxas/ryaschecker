@@ -88,7 +88,7 @@ async def gen_command(client, message):
         connection, cursor = connect_db()
 
         cursor.execute("""
-            SELECT rango, username
+            SELECT rango
             FROM users
             WHERE user_id = %s
         """, (user_id,))
@@ -98,8 +98,10 @@ async def gen_command(client, message):
             await message.reply("Usuario no encontrado en la base de datos.", reply_to_message_id=message.id)
             return
 
-        rango, username = user_data
-        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx yyyy)
+        rango = user_data[0]
+        username = message.from_user.username  # Obtén el nombre de usuario del objeto message
+
+        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx  সম্ভাব্য)
 
         if not parametros:
             await message.reply("Uso: .gen bin|mm|aa", reply_to_message_id=message.id)
