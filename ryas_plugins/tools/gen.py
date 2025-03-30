@@ -17,12 +17,9 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     Retorna:
         Una tupla con el número de tarjeta, mes, año de expiración y CVV.
     """
+    bin_prefix = bin_prefix.replace('x', '')  # Elimina todas las 'x'
     while len(bin_prefix) < 16:
-        if 'x' in bin_prefix.lower():
-            pos_x = bin_prefix.lower().find('x')
-            bin_prefix = bin_prefix[:pos_x] + str(random.randint(0, 9)) + bin_prefix[pos_x+1:]
-        else:
-            bin_prefix += str(random.randint(0, 9))
+        bin_prefix += str(random.randint(0, 9))
 
     suma = 0
     reversa_num = bin_prefix[::-1]
@@ -36,6 +33,7 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
 
     ultimo_digito = (10 - (suma % 10)) % 10
     numero_tarjeta = bin_prefix + str(ultimo_digito)
+
 
     if not mes:
         mes = random.randint(1, 12)
