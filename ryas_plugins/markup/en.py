@@ -1,11 +1,13 @@
 # markup/en.py
-from configs.def_main import * # Importa todo desde configs.def_main
+from configs.def_main import *
+from pyrogram import Client, types
 
 @ryasbt("^en$")
 async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
     """
-    Actualiza el idioma del usuario a inglés ("en") en la base de datos.
+    Actualiza el idioma del usuario a inglés ("en") en la base de datos y muestra un mensaje de confirmación.
     """
+    connection = None
     try:
         # Conecta a la base de datos usando la función connect_db()
         connection, cursor = connect_db()
@@ -16,20 +18,14 @@ async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
         cursor.execute(update_query, (user_id,))
         connection.commit()
 
-        # Responde al usuario
+        # Responde al usuario con un mensaje de confirmación y el teclado 'back'
         await callback_query.message.edit_text(
-            "Your language has been set to English.",  # Mensaje en inglés
-            reply_markup=None  # Elimina el teclado anterior
+            "Your language has been set to English 🇺🇸",
+            reply_markup=back  # Elimina el teclado anterior y muestra el teclado 'back'
         )
 
-    except mysql.connector.Error as e:
-        # Maneja errores de la base de datos
-        await callback_query.message.edit_text(
-            f"Database error: {e}",
-            reply_markup=None
-        )
     except Exception as e:
-        # Maneja otros errores
+        # Maneja errores
         await callback_query.message.edit_text(
             f"An error occurred: {e}",
             reply_markup=None
