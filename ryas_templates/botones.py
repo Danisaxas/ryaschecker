@@ -27,8 +27,10 @@ back = InlineKeyboardMarkup([
 
 vryasx = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton("Informacion", callback_data="informacion")],
-        [InlineKeyboardButton("Lenguaje", callback_data="lenguaje")],
-        [InlineKeyboardButton("Back", callback_data="home")]
+        [
+            InlineKeyboardButton("Informacion", callback_data="informacion"),
+            InlineKeyboardButton("Lenguaje", callback_data="lenguaje"),
+            InlineKeyboardButton("Home", callback_data="home")
+        ]
     ]
 )
