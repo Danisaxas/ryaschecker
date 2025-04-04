@@ -1,26 +1,67 @@
+# ryas_plugins/inicio/start.py
 from configs.def_main import *
+import pytz
+from datetime import datetime
+from pyrogram import Client, types
+
 @ryas("start")
-async def start(client, message):
+async def start(client: Client, message: types.Message):
+    """
+    Muestra el mensaje de inicio en el idioma del usuario.
+    """
     user_id = message.from_user.id
-    conn, cursor = connect_db()
+    connection = None
+    try:
+        connection, cursor = connect_db()
 
-    cursor.execute("""
-        SELECT rango, creditos, antispam, expiracion
-        FROM users
-        WHERE user_id = %s
-    """, (user_id,))
-    user_data = cursor.fetchone()
+        cursor.execute("""
+            SELECT rango, creditos, antispam, expiracion, lang
+            FROM users
+            WHERE user_id = %s
+        """, (user_id,))
+        user_data = cursor.fetchone()
 
-    if not user_data:
-        await message.reply(register_not, reply_to_message_id=message.id)
-        return
+        if not user_data:
+            # Obtener el idioma del usuario del mensaje
+            user_lang = message.from_user.language_code or 'es'  # por defecto español
+            if user_lang.startswith('en'):
+                user_lang = 'en'
+            else:
+                user_lang = 'es'
+            if user_lang == 'en':
+                from ryas_templates.chattext import en as text_dict
+            else:
+                from ryas_templates.chattext import es as text_dict
+            await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
+            return
 
-    username = message.from_user.username or "Usuario"
-    caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
-    response = startx.format(username=username, caracas_time=caracas_time)
+        rango, creditos, antispam, expiracion, lang = user_data
+        username = message.from_user.username or "Usuario"
+        caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
 
-    await message.reply_text(
-        response,
-        reply_to_message_id=message.id,
-        reply_markup=mainstart
-    )
+        # Cargar el texto en el idioma correspondiente
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict  # por defecto español
+
+        response = text_dict['startx'].format(username=username, caracas_time=caracas_time)
+
+        await message.reply_text(
+            response,
+            reply_to_message_id=message.id,
+            reply_markup=mainstart
+        )
+
+    except Exception as e:
+        print(f"Error en start: {e}")
+        await message.reply_text(
+            "Ocurrió un error al procesar el comando start.",
+            reply_to_message_id=message.id
+        )
+    finally:
+        if connection:
+            cursor.close()
+            connection.close()
