@@ -1,4 +1,111 @@
-idtext = '''<b>
+# ryas_templates/chattext.py
+
+# Español
+es = {
+    'idtext': '''<b>
+Ryas Chk </> ID de Usuario [🌹]
+- - - - - - - - - - - - - - - - - - - - - - - - - - 
+Nombre de Usuario: @{username}
+ID: <code>{user_id}</code>
+Chat_ID: <code>{chat_id}</code>
+- - - - - - - - - - - - - - - - - - - - - - - - - - 
+<code>Bot por: @Exzzex 🌸</code>
+</b>''',
+
+    'metext': '''<b>
+Ryas Chk ⺢ => Info de Usuario
+- - - - - - - - - - - - - - - - - - - - - - - - - - 
+⺢ Usuario:
+Nombre de Usuario: @{username} [<code>{user_id}</code>]
+Nombre: {firts_name} | Baneo: No
+- - - - - - - - - - - - - - - - - - - - - - - - - - 
+⺢ Membresía:
+Rol: {rango} | Créditos: {creditos}
+Antispam: {antispam}
+Expiración: 0
+</b>''',
+
+    'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
+
+    'startx': '''<b>
+¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
+━━━━━━━━━━━━━━━
+Hoy es: 
+{caracas_time} 💤
+━━━━━━━━━━━━━━━
+[🇪🇸] @{username}, ¿listo para usar Ryas? Soy tu bot personal para chequear tarjetas. Usa /cmds para ver qué puedo hacer.
+━━━━━━━━━━━━━━━
+</b>''',
+
+    'tools': '''<b>
+Herramientas de RyasChk / Página 1
+━━━━━━━━━━━━
+Generador de Bines:
+Formato: $gen 601120  
+Condición: ¡Desconectado! ❌
+━━━━━━━━━━━━
+Sk Ckeck:
+Formato: $sk sk_live 
+Condición: ¡Desconectado! ❌
+━━━━━━━━━━━━
+Buscador de BINs:
+Formato: $bin 601120 
+Condición: ¡Desconectado! ❌
+━━━━━━━━━━━━
+Generador de Direcciones:
+Formato: $dir Código_de_País 
+Condición: ¡Desconectado! ❌
+━━━━━━━━━━━━
+Verificación de Fraude de IP:
+Formato: $ip 1.1.1.1 
+Condición: ¡Desconectado! ❌
+━━━━━━━━━━━━
+</b>''',
+
+    'description_text': '''<b>
+Descripción de Ryas ! 🌩
+━━━━━━━━━━━━
+Canales:
+Actualizaciones de Onyx: @próximamente
+Canal de Referencias de Onyx: @próximamente
+Usuarios Gratis de Onyx: @próximamente
+━━━━━━━━━━━━━━━━━
+Información de Ryas:
+━━━━━━━
+Desarrollador: @Exzzex ✅ | [Comprar]
+Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+━━━━━━━
+Vendedores:
+@próximamente | próximamente ✅ | [Comprar]
+━━━━━━━━━━━━━━━━━
+Actualizaciones de Onyx:
+Versión: 1.3.0 [✅]
+Actualización: próximamente p.m (GMT-5) [✅]
+━━━━━━━━━━━━━━━━━
+Reporta problemas a: @Exzzex
+</b>''',
+
+    'close_text': '''<b>
+¡Adiós! 🌩
+━━━━━━━━━━━━━━━━━
+Disfruta mi uso.
+</b>''',
+
+    'not_privilegios': '''<b> No cuentas con los privilegios suficientes para usar este comando</b>''',
+
+    'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id o all !texto</b>''',
+
+    'vryas': '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Acá podrás seleccionar tu lenguaje y ver más info del bot
+━━━━━━━━━━━━━━━
+Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la versión 1.0.1
+━━━━━━━━━━━━━━━
+Última Actualización:
+04/04/25 > 05:30 (🇻🇪)</b>'''
+}
+
+# Inglés
+en = {
+    'idtext': '''<b>
 Ryas Chk </> User ID [🌹]
 - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Username: @{username}
@@ -6,9 +113,9 @@ ID: <code>{user_id}</code>
 Chat_ID: <code>{chat_id}</code>
 - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <code>Bot by: @Exzzex 🌸</code>
-</b>'''
+</b>''',
 
-metext = '''<b>
+    'metext': '''<b>
 Ryas Chk ⺢ => User Info
 - - - - - - - - - - - - - - - - - - - - - - - - - - 
 ⺢ User:
@@ -18,26 +125,26 @@ First Name: {firts_name} | Ban: No
 ⺢ Membership:
 Role: {rango} | Credits: {creditos}
 Antispam: {antispam}
-Expiracion: 0
-</b>'''
+Expiration: 0
+</b>''',
 
-register_not = '''<b> No estas registrado en la base de datos usa /register</b>'''
+    'register_not': '''<b> You are not registered in the database, use /register</b>''',
 
-startx = '''<b>
-¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
+    'startx': '''<b>
+Hello! {username} 🍄, Welcome to RyasChk. Relax and recharge your energy!
 ━━━━━━━━━━━━━━━
-Hoy es: 
+Today is: 
 {caracas_time} 💤
 ━━━━━━━━━━━━━━━
-[🇪🇸] @{username}, ¡listo para usar ryas? Soy tu bot personal para checkear tarjetas. Usa /cmds para ver qué puedo hacer.
+[🇺🇸] @{username}, ready to use Ryas? I'm your personal bot for checking cards. Use /cmds to see what I can do.
 ━━━━━━━━━━━━━━━
-</b>'''
+</b>''',
 
-tools = '''<b>
+    'tools': '''<b>
 RyasChk Tools / Page 1
 ━━━━━━━━━━━━
 Bin Generator:
-Format: $gen 601120  
+Format: $gen 601120  
 Condition: Offline! ❌
 ━━━━━━━━━━━━
 Sk Ckeck:
@@ -56,9 +163,9 @@ IP Fraud Check:
 Format: $ip 1.1.1.1 
 Condition: Offline! ❌
 ━━━━━━━━━━━━
-</b>'''
+</b>''',
 
-description_text = '''<b>
+    'description_text': '''<b>
 Ryas Description ! 🌩
 ━━━━━━━━━━━━
 Channels:
@@ -79,24 +186,22 @@ Version: 1.3.0 [✅]
 Update: coming soon p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Report problems to: @Exzzex
-</b>'''
+</b>''',
 
-close_text = '''<b>
+    'close_text': '''<b>
 Good bye! 🌩
 ━━━━━━━━━━━━━━━━━
 Enjoy my use.
-</b>'''
+</b>''',
 
-not_privilegios = '''<b> No cuentas con los privilegios suficientes para usar este comando</b>'''
+    'not_privilegios': '''<b> You do not have sufficient privileges to use this command</b>''',
 
-msgformat = '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>'''
+    'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
-vryas = '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Aca podras seleccionar tu lenguaje y ver mas info del bot
+    'vryas': '''<b>Hello! {name} 🍄, Welcome to the Vryas System Here you can select your language and see more info of the bot
 ━━━━━━━━━━━━━━━
-Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la version 1.0.1
+Currently RyasChk is ONN✅ Giving the best of the bot is in version 1.0.1
 ━━━━━━━━━━━━━━━
-Ultima Actualizacion:
+Last Update:
 04/04/25 > 05:30 (🇻🇪)</b>'''
-
-
-
+}
