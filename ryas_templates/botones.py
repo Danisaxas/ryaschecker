@@ -24,3 +24,11 @@ back = InlineKeyboardMarkup([
         InlineKeyboardButton("back", callback_data="home")
         ]
 ])
+
+vryasx = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton("Informacion", callback_data="informacion")],
+        [InlineKeyboardButton("Lenguaje", callback_data="lenguaje")],
+        [InlineKeyboardButton("Back", callback_data="home")]
+    ]
+)
