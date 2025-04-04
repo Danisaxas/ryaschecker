@@ -91,7 +91,12 @@ not_privilegios = '''<b> No cuentas con los privilegios suficientes para usar es
 
 msgformat = '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>'''
 
-
+vryas = '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Aca podras seleccionar tu lenguaje y ver mas info del bot
+━━━━━━━━━━━━━━━
+Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la version 1.0.1
+━━━━━━━━━━━━━━━
+Ultima Actualizacion:
+04/04/25 > 05:30 (🇻🇪)</b>'''
 
 
 
