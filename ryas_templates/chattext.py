@@ -100,7 +100,12 @@ Disfruta mi uso.
 Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la versión 1.0.1
 ━━━━━━━━━━━━━━━
 Última Actualización:
-04/04/25 > 05:30 (🇻🇪)</b>'''
+04/04/25 > 05:30 (🇻🇪)</b>''',
+    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos. 
+
+↯ » Precios: /pricings
+↯ » Más información: /data</b>''',
+    'already_registered': '<b>⚠️ Ya estás registrado en el sistema.</b>' # Añadido mensaje de registro existente
 }
 
 # Inglés
@@ -203,5 +208,10 @@ Enjoy my use.
 Currently RyasChk is ONN✅ Giving the best of the bot is in version 1.0.1
 ━━━━━━━━━━━━━━━
 Last Update:
-04/04/25 > 05:30 (🇻🇪)</b>'''
+04/04/25 > 05:30 (🇻🇪)</b>''',
+    'registerx': '''<b>あ » Interact with the bot without any problems, if you want more information, use the following commands.
+
+↯ » Prices: /pricings
+↯ » More information: /data</b>''',
+    'already_registered': '<b>⚠️ You are already registered in the system.</b>' # Added existing registration message
 }

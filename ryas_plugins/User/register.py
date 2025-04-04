@@ -1,15 +1,23 @@
 from configs.def_main import *
+from pyrogram import Client, types
+import mysql.connector
+from datetime import datetime
 
 @ryas('register')
-def register_user(client, message):
+async def register_user(client: Client, message: types.Message):
+    """
+    Registra a un usuario en la base de datos y muestra un mensaje de bienvenida en su idioma.
+    """
     user_id = message.from_user.id
     username = message.from_user.username or "Desconocido"
     lang = message.from_user.language_code or "es"
     lang = lang if isinstance(lang, str) else "es"
 
-    conn, cursor = connect_db()
-    
+    connection = None
     try:
+        connection, cursor = connect_db()
+        
+        # Insertar usuario en la base de datos
         cursor.execute("""
             INSERT INTO users (
                 user_id, rango, privilegio, creditos, antispam, expiracion, dias,
@@ -17,39 +25,37 @@ def register_user(client, message):
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s)
         """, (user_id, 'Free User', 0, 0, True, None, 0, None, 'No', lang))
-        conn.commit()
+        connection.commit()
         
-        registro_msg = """
-<b>✅ ¡Registro exitoso!</b>
-━━━━━━━━━━━━━
-👤 <b>Usuario:</b> @{username}
-🆔 <b>ID:</b> {user_id}
-🔰 <b>Rango:</b> Free User
-💰 <b>Créditos:</b> 0
-⏳ <b>Antispam:</b> 60 segundos
-📅 <b>Expiración:</b> No aplica
-🔒 <b>Ban:</b> No
-🌍 <b>Idioma:</b> {lang}
-━━━━━━━━━━━━━
-🎯 <b>¡Bienvenido a RyasChk!</b> Usa /cmds para ver los comandos disponibles.
-""".format(username=username, user_id=user_id, lang=lang.upper())
+        # Cargar el texto en el idioma correspondiente
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict #por defecto español
 
-        log_msg = """
-✅ ¡Nuevo Registro¡
+        registro_msg = text_dict['registerx'].format(username=username, user_id=user_id, lang=lang.upper())
+        log_msg = f"""
+✅ ¡Nuevo Registro!
 ━━━━━━━━━━━━━
 👤 Usuario: @{username}
 🆔 ID: {user_id}
-⺢ Fecha: {fecha}
+⺢ Fecha: {datetime.now().strftime('%Y-%m-%d')}
 🌍 Idioma: {lang}
 ━━━━━━━━━━━━━
 🎯 ¡Bienvenido a RyasChk!
-""".format(username=username, user_id=user_id, fecha=datetime.now().strftime('%Y-%m-%d'), lang=lang.upper())
+"""
 
-        message.reply_text(registro_msg)
-        client.send_message(LOGS_CHANNEL, log_msg)
+        await message.reply_text(registro_msg)
+        await client.send_message(LOGS_CHANNEL, log_msg)
 
     except mysql.connector.IntegrityError:
-        message.reply_text("<b>⚠️ Ya estás registrado en el sistema.</b>")
+        await message.reply_text(text_dict['already_registered'])
+    except Exception as e:
+        print(f"Error en register_user: {e}")
+        await message.reply_text(f"Ocurrió un error durante el registro: {e}")
     finally:
-        cursor.close()
-        conn.close()
+        if connection:
+            cursor.close()
+            connection.close()
