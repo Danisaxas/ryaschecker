@@ -1,13 +1,11 @@
 # markup/es.py
 from configs.def_main import *
 from pyrogram import Client, types
-import pytz
-from datetime import datetime
 
 @ryasbt("^es$")
 async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
     """
-    Actualiza el idioma del usuario a español ("es") en la base de datos y muestra el menú de inicio.
+    Actualiza el idioma del usuario a español ("es") en la base de datos y muestra un mensaje de confirmación.
     """
     connection = None
     try:
@@ -20,16 +18,10 @@ async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
         cursor.execute(update_query, (user_id,))
         connection.commit()
 
-        # Cargar el texto en el idioma correspondiente
-        from ryas_templates.chattext import es as text_dict
-
-        username = callback_query.from_user.username or "Usuario"
-        caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
-
-        # Muestra el menú de inicio
+        # Responde al usuario con un mensaje de confirmación y el teclado 'back'
         await callback_query.message.edit_text(
-            text_dict['startx'].format(username=username, caracas_time=caracas_time),
-            reply_markup=mainstart
+            "Se ha puesto el idioma Español 🇪🇸",
+            reply_markup=back
         )
 
     except Exception as e:
