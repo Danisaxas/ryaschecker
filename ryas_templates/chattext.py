@@ -62,25 +62,33 @@ Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 </b>''',
 
+    'informacion_text': '''<b>
+Información de RyasChk ! 🌩
+━━━━━━━━━━━━
+Última Actualización: 04/04/25
+Idiomas Disponibles: Español, Inglés
+Desarrollador: @Exzzex
+Fecha de Creación del Bot: 10/10/2024
+</b>''',
     'description_text': '''<b>
 Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
 Onyx Updates: @próximamente
-Canal de Referencias de Onyx: @próximamente
-Usuarios Gratis de Onyx: @próximamente
+Canal de Referencias de Onyx: @coming soon
+Usuarios Gratis de Onyx: @coming soon
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Dev Note: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
-@coming soon | coming soon ✅ | [Buy]
+@coming soon | coming soon ✅ | [Comprar]
 ━━━━━━━━━━━━━━━━━
 Onyx Updates:
 Versión: 1.3.0 [✅]
-Update: coming soon p.m (GMT-5) [✅]
+Update: próximamente p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Reporta problemas a: @Exzzex
 </b>''',
@@ -93,7 +101,7 @@ Disfruta mi uso.
 
     'not_privilegios': '''<b> No cuentas con los privilegios suficientes para usar este comando</b>''',
 
-    'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id o all !texto</b>''',
+    'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
     'vryas': '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Acá podrás seleccionar tu lenguaje y ver más info del bot
 ━━━━━━━━━━━━━━━
@@ -124,12 +132,14 @@ País: {pais} ({pais_codigo})
 
 Req By: @{username} [{rango}]
 ''',
-    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
-Razon: {ban_reason}
-Admin: @{admin_username} [{admin_id}]'''
+Razón: {ban_reason}
+Administrador: @{admin_username} [{admin_id}]''',
+    'ban_usage': "Uso correcto: /ban <ID> <razón>",
+    'ban_validation': "El ID de usuario debe ser un número entero."
 }
 
 # Inglés
@@ -270,5 +280,7 @@ Req By: @{username} [{rango}]
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
 Reason: {ban_reason}
-Admin: @{admin_username} [{admin_id}]'''
+Admin: @{admin_username} [{admin_id}]''',
+    'ban_usage': "Correct usage: /ban <ID> <reason>",
+    'ban_validation': "User ID must be an integer."
 }

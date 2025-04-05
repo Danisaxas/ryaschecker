@@ -33,7 +33,12 @@ async def ban_user(client: Client, message: types.Message):
         # Obtener los argumentos del comando
         args = message.text.split(" ", 2)  # Dividir el mensaje en máximo 3 partes
         if len(args) < 2:
-            await message.reply_text("Uso: /ban <ID> <razón>", reply_to_message_id=message.id)
+            admin_lang = admin_data[1] if admin_data else 'es'
+            if admin_lang == 'es':
+                from ryas_templates.chattext import es as text_dict
+            else:
+                from ryas_templates.chattext import en as text_dict
+            await message.reply_text(text_dict['ban_usage'], reply_to_message_id=message.id)
             return
 
         target_user_id = args[1]
@@ -43,14 +48,19 @@ async def ban_user(client: Client, message: types.Message):
         try:
             target_user_id = int(target_user_id)
         except ValueError:
-            await message.reply_text("El ID de usuario debe ser un número entero.", reply_to_message_id=message.id)
+            admin_lang = admin_data[1] if admin_data else 'es'
+            if admin_lang == 'es':
+                from ryas_templates.chattext import es as text_dict
+            else:
+                from ryas_templates.chattext import en as text_dict
+            await message.reply_text(text_dict['ban_validation'], reply_to_message_id=message.id)
             return
 
         # Actualizar el estado del usuario en la base de datos
         cursor.execute("UPDATE users SET ban = 'Yes', razon = %s WHERE user_id = %s", (ban_reason, target_user_id))
         connection.commit()
 
-        # Obtener el idioma del usuario baneado (aunque no se use directamente aquí, podría ser útil en el futuro)
+        # Obtener el nombre de usuario del usuario baneado
         cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,))
         target_user_data = cursor.fetchone()
         target_username = target_user_data[0] if target_user_data else "Desconocido"
