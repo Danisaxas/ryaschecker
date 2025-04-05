@@ -62,25 +62,33 @@ Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 </b>''',
 
+    'informacion_text': '''<b>
+Información de RyasChk ! 🌩
+━━━━━━━━━━━━
+Última Actualización: 04/04/25
+Idiomas Disponibles: Español, Inglés
+Desarrollador: @Exzzex
+Fecha de Creación del Bot: 10/10/2024
+</b>''',
     'description_text': '''<b>
 Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
-Actualizaciones de Onyx: @próximamente
+Onyx Updates: @próximamente
 Canal de Referencias de Onyx: @próximamente
 Usuarios Gratis de Onyx: @próximamente
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
-@próximamente | próximamente ✅ | [Comprar]
+@coming soon | coming soon ✅ | [Buy]
 ━━━━━━━━━━━━━━━━━
-Actualizaciones de Onyx:
+Onyx Updates:
 Versión: 1.3.0 [✅]
-Actualización: próximamente p.m (GMT-5) [✅]
+Update: coming soon p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Reporta problemas a: @Exzzex
 </b>''',
@@ -97,7 +105,7 @@ Disfruta mi uso.
 
     'vryas': '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Acá podrás seleccionar tu lenguaje y ver más info del bot
 ━━━━━━━━━━━━━━━
-Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la versión 1.0.1
+Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la version 1.0.1
 ━━━━━━━━━━━━━━━
 Última Actualización:
 04/04/25 > 05:30 (🇻🇪)</b>''',
@@ -174,6 +182,15 @@ Condition: Offline! ❌
 ━━━━━━━━━━━━
 </b>''',
 
+    'informacion_text': '''<b>
+Ryas Description ! 🌩
+━━━━━━━━━━━━
+Bot Information:
+Last Update: 04/04/25
+Available Languages: English, Spanish
+Developer: @Exzzex
+Bot Creation Date: 10/10/2024
+</b>''',
     'description_text': '''<b>
 Ryas Description ! 🌩
 ━━━━━━━━━━━━
