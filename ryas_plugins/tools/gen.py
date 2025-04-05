@@ -1,7 +1,7 @@
 import random
 import datetime
 import requests  # Para hacer la solicitud a la API de BINS
-from configs.def_main import * # Importando configuraciones
+from configs.def_main import *
 from pyrogram import Client, types
 import re
 
@@ -62,28 +62,30 @@ def obtener_info_bin(bin_prefix):
         Un diccionario con la información del BIN, o None si no se encuentra.
     """
     try:
-        # Usar una API de BINS pública (¡Cambiar por una confiable!)
-        url = f"https://lookup.binlist.net/{bin_prefix}"  # Ejemplo de API
+        # Usar una API de BINS pública
+        url = f"https://bins.antipublic.cc/bins/{bin_prefix}"
         response = requests.get(url)
-        response.raise_for_status()  # Lanza una excepción para códigos de error HTTP
+        response.raise_for_status()
         data = response.json()
         # Extraer la información relevante
         info_bin = {
-            "banco": data.get("bank", {}).get("name", "Desconocido"),
-            "marca": data.get("scheme", "Desconocido"),
+            "banco": data.get("bank", "Desconocido"),
+            "marca": data.get("brand", "Desconocido"),
             "tipo": data.get("type", "Desconocido"),
-            "pais": data.get("country", {}).get("name", "Desconocido"),
-            "pais_codigo": data.get("country", {}).get("alpha2", "XX"),  # Obtener el código del país
+            "pais": data.get("country", "Desconocido"),
+            "pais_codigo": data.get("country_code", "XX"),
         }
         return info_bin
     except requests.exceptions.RequestException as e:
         print(f"Error al consultar la API de BINS: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX"}  # Retorna valores por defecto en caso de error
+                "pais_codigo": "XX"}
     except (ValueError, KeyError, TypeError) as e:
         print(f"Error al procesar la respuesta de la API: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
                 "pais_codigo": "XX"}
+
+
 
 @ryas("gen")
 async def gen_command(client: Client, message: types.Message):
@@ -107,7 +109,7 @@ async def gen_command(client: Client, message: types.Message):
         user_data = cursor.fetchone()
 
         if not user_data:
-            await message.reply("Usuario no encontrado en la base de datos.", reply_to_message_id=message.id)
+            await message.reply("No estás registrado en la base de datos. Usa /register para registrarte.", reply_to_message_id=message.id)
             return
 
         rango = user_data[0]
@@ -137,10 +139,10 @@ async def gen_command(client: Client, message: types.Message):
                     try:
                         cvv_longitud = int(cvv_longitud)
                         if cvv_longitud not in [3, 4]:
-                            await message.reply("CVV length must be 3, 4 or 'rnd'", reply_to_message_id=message.id)
+                            await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
                             return
                     except ValueError:
-                        await message.reply("CVV must be 3, 4 or 'rnd'", reply_to_message_id=message.id)
+                        await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
                         return
             elif len(fecha_parts) > 3:
                 await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
