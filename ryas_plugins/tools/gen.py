@@ -134,17 +134,6 @@ async def gen_command(client: Client, message: types.Message):
                 mes, anio = fecha_parts
             if len(fecha_parts) == 3:
                 cvv_str = fecha_parts[2]  # Extract CVV string
-                if cvv_str.lower() == 'rnd':
-                    cvv_longitud = random.choice([3, 4])
-                else:
-                    try:
-                        cvv_longitud = int(cvv_str)
-                        if cvv_longitud not in [3, 4]:
-                            await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
-                            return
-                    except ValueError:
-                        await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
-                        return
             elif len(fecha_parts) > 3:
                 await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
                 return
@@ -171,8 +160,14 @@ async def gen_command(client: Client, message: types.Message):
             try:
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
-                if cvv_str.lower() != 'rnd': #asignar el valor de la cadena cvv si no es rnd
-                    cvv_longitud = int(cvv_str) if cvv_str else 3
+                if cvv_str.lower() == 'rnd':
+                  cvv_longitud = random.choice([3, 4])
+                else:
+                    try:
+                        cvv_longitud = int(cvv_str)
+                    except ValueError:
+                        await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
+                        return
                 numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
                 tarjetas.append(f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}")
             except ValueError as e:
