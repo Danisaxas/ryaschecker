@@ -1,6 +1,6 @@
 import random
 import datetime
-import requests  # Para hacer la solicitud a la API de BINS
+import requests
 from configs.def_main import *
 from pyrogram import Client, types
 import re
@@ -19,7 +19,7 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     Retorna:
         Una tupla con el número de tarjeta, mes, año de expiración y CVV.
     """
-    bin_prefix = bin_prefix.replace('x', '')  # Elimina todas las 'x'
+    bin_prefix = bin_prefix.replace('x', '')
     while len(bin_prefix) < 16:
         bin_prefix += str(random.randint(0, 9))
 
@@ -39,7 +39,7 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     if not mes:
         mes = random.randint(1, 12)
     if not anio:
-        anio = random.randint(2024, 2030)  # Años de expiración razonables
+        anio = random.randint(2024, 2030)
     if cvv_longitud == 3:
         cvv = str(random.randint(100, 999))
     elif cvv_longitud == 4:
@@ -62,12 +62,10 @@ def obtener_info_bin(bin_prefix):
         Un diccionario con la información del BIN, o None si no se encuentra.
     """
     try:
-        # Usar una API de BINS pública
         url = f"https://bins.antipublic.cc/bins/{bin_prefix}"
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
-        # Extraer la información relevante
         info_bin = {
             "banco": data.get("bank", "Desconocido"),
             "marca": data.get("brand", "Desconocido"),
@@ -113,9 +111,9 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         rango = user_data[0]
-        username = message.from_user.username  # Obtén el nombre de usuario del objeto message
+        username = message.from_user.username
 
-        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
+        parametros = message.text.split()[1:]
 
         if not parametros:
             await message.reply("Uso: .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
@@ -124,10 +122,10 @@ async def gen_command(client: Client, message: types.Message):
         bin_prefix = parametros[0]
         mes = None
         anio = None
-        cvv_longitud = 3  # Valor por defecto
+        cvv_longitud = 3
 
         if len(parametros) > 1:
-            fecha_parts = parametros[1].split('|')  # Usa split para separar
+            fecha_parts = parametros[1].split('|')
             if len(fecha_parts) >= 2:
                 mes = fecha_parts[0]
                 anio = fecha_parts[1]
@@ -152,30 +150,29 @@ async def gen_command(client: Client, message: types.Message):
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
             return
 
-        info_bin = obtener_info_bin(bin_prefix[:6])  # Obtener info del BIN de los primeros 6 dígitos
+        info_bin = obtener_info_bin(bin_prefix[:6])
 
         respuesta = "💳 Tus Tarjetas Generadas 💳\n"
         respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
         respuesta += f"BIN: {bin_prefix}\n"
         respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
         respuesta += f"Banco: {info_bin['banco']}\n"
-        respuesta += f"Marca: {info_bin['marca']}\n"  # Agregado Marca
+        respuesta += f"Marca: {info_bin['marca']}\n"
         respuesta += f"Tipo: {info_bin['tipo']}\n"
         respuesta += f"País: {info_bin['pais']} ({info_bin['pais_codigo']})\n"
         respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
 
         for _ in range(10):
             try:
-                # Intenta convertir mes y anio a enteros, maneja el error si no son válidos
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
                 numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
-                respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"  # Agregado CVV
+                respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"
             except ValueError as e:
                 await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
                 return
 
-        respuesta += f"\nReq By: @{username}[{rango}]"  # Información del solicitante
+        respuesta += f"\nReq By: @{username}[{rango}]"
 
         await message.reply(respuesta, reply_to_message_id=message.id)
 
