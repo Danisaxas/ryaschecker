@@ -81,10 +81,10 @@ Usuarios Gratis de Onyx: @próximamente
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Dev Note: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Dev Note: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
-@coming soon | coming soon ✅ | [Buy]
+@coming soon | coming soon ✅ | [Comprar]
 ━━━━━━━━━━━━━━━━━
 Onyx Updates:
 Versión: 1.3.0 [✅]
@@ -147,7 +147,8 @@ Usuario: @{username} [{target_user_id}]
 Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
-    'unban_validation': "El ID de usuario debe ser un número entero."
+    'unban_validation': "El ID de usuario debe ser un número entero.",
+    'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}"
 }
 
 # Inglés
@@ -296,7 +297,8 @@ Admin: @{admin_username} [{admin_id}]''',
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
 Date:  {fecha}
-Admin: @{admin_username} [{admin_id}]''' ,
+Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
-    'unban_validation': "User ID must be an integer."
+    'unban_validation': "User ID must be an integer.",
+    'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}"
 }
