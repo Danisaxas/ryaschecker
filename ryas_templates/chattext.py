@@ -73,7 +73,7 @@ Usuarios Gratis de Onyx: @próximamente
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
 @próximamente | próximamente ✅ | [Comprar]
@@ -105,7 +105,7 @@ Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encu
 
 ↯ » Precios: /pricings
 ↯ » Más información: /data</b>''',
-    'already_registered': '<b>⚠️ Ya estás registrado en el sistema.</b>' # Añadido mensaje de registro existente
+    'already_registered': '<b>あ » User {user} se encuentra registrado en la Base de Datos.</b>' # Mensaje de registro existente
 }
 
 # Inglés
@@ -213,5 +213,5 @@ Last Update:
 
 ↯ » Prices: /pricings
 ↯ » More information: /data</b>''',
-    'already_registered': '<b>⚠️ You are already registered in the system.</b>' # Added existing registration message
+    'already_registered': '<b>あ » User {user} is already registered in the Database.</b>' # Added existing registration message
 }

@@ -51,7 +51,17 @@ async def register_user(client: Client, message: types.Message):
         await client.send_message(LOGS_CHANNEL, log_msg)
 
     except mysql.connector.IntegrityError:
-        await message.reply_text(text_dict['already_registered'])
+        # Obtener el idioma del usuario del mensaje
+        user_lang = message.from_user.language_code or 'es' #por defecto español
+        if user_lang.startswith('en'):
+            user_lang = 'en'
+        else:
+            user_lang = 'es'
+        if user_lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict
+        await message.reply_text(en['already_registered'] if user_lang == 'en' else es['already_registered'])
     except Exception as e:
         print(f"Error en register_user: {e}")
         await message.reply_text(f"Ocurrió un error durante el registro: {e}")
