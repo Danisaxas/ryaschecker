@@ -125,9 +125,9 @@ async def gen_command(client: Client, message: types.Message):
         mes = None
         anio = None
         cvv_longitud = 3  # Valor por defecto
-        
+
         if len(parametros) > 1:
-            fecha_parts = parametros[1].split('|')
+            fecha_parts = parametros[1].split('|')  # Usa split para separar
             if len(fecha_parts) == 2:
                 mes, anio = fecha_parts
             elif len(fecha_parts) == 3:
@@ -146,7 +146,11 @@ async def gen_command(client: Client, message: types.Message):
             elif len(fecha_parts) > 3:
                 await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
                 return
-
+        elif len(parametros) == 1:
+            pass # No hacer nada si solo se proporciona el BIN
+        else:
+            await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
+            return
 
 
         if len(bin_prefix) < 6:
