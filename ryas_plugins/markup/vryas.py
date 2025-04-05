@@ -18,17 +18,20 @@ async def handle_vryas_button(client: Client, callback_query: types.CallbackQuer
         result = cursor.fetchone()
         lang = result[0] if result else 'es'  # Default to 'es' if not found
 
-        # Cargar el texto en el idioma correspondiente
+        # Cargar el texto y los botones en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
-            from ryas_templates.chattext import es as text_dict #por defecto español
-        
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
+            from ryas_templates.botones import es as botones_dict
+
         await callback_query.message.edit(
             text=text_dict['vryas'].format(name=name),
-            reply_markup=vryasx
+            reply_markup=botones_dict['vryasx']  # Usa el teclado del idioma correspondiente
         )
     except Exception as e:
         print(f"Error en handle_vryas_button: {e}")
