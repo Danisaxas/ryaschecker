@@ -31,13 +31,13 @@ async def set_priv(client: Client, message: types.Message):
             if admin_lang == 'es':
                 from ryas_templates.chattext import es as text_dict
                 await message.reply_text(
-                    "Uso correcto: /setpriv <ID> <Privilegio>",
+                    text_dict['setpriv_usage'],
                     reply_to_message_id=message.id
                 )
             else:
                 from ryas_templates.chattext import en as text_dict
                 await message.reply_text(
-                    "Correct usage: /setpriv <ID> <Privilege>",
+                    text_dict['setpriv_usage'],
                     reply_to_message_id=message.id
                 )
             return
@@ -51,13 +51,13 @@ async def set_priv(client: Client, message: types.Message):
             if admin_lang == 'es':
                 from ryas_templates.chattext import es as text_dict
                 await message.reply_text(
-                    "El ID y el privilegio deben ser números.",
+                    text_dict['setpriv_value_error'],
                     reply_to_message_id=message.id
                 )
             else:
                 from ryas_templates.chattext import en as text_dict
                 await message.reply_text(
-                    "ID and privilege must be numbers.",
+                    text_dict['setpriv_value_error'],
                     reply_to_message_id=message.id
                 )
             return
