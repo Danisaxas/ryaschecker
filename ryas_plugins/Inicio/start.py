@@ -15,7 +15,7 @@ async def start(client: Client, message: types.Message):
         connection, cursor = connect_db()
 
         cursor.execute("""
-            SELECT rango, creditos, antispam, expiracion, lang
+            SELECT rango, creditos, antispam, expiracion, lang, ban, razon
             FROM users
             WHERE user_id = %s
         """, (user_id,))
@@ -28,15 +28,16 @@ async def start(client: Client, message: types.Message):
                 user_lang = 'en'
             else:
                 user_lang = 'es'
-            from ryas_templates.chattext import en as text_dict
             if user_lang == 'en':
+                from ryas_templates.chattext import en as text_dict
                 from ryas_templates.botones import en as botones_dict
             else:
+                from ryas_templates.chattext import es as text_dict
                 from ryas_templates.botones import es as botones_dict
-            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
+            await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
             return
 
-        rango, creditos, antispam, expiracion, lang = user_data
+        rango, creditos, antispam, expiracion, lang, ban, razon = user_data
         username = message.from_user.username or "Usuario"
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
 
@@ -50,6 +51,13 @@ async def start(client: Client, message: types.Message):
         else:
             from ryas_templates.chattext import es as text_dict  # por defecto español
             from ryas_templates.botones import es as botones_dict
+        
+        if ban == 'Yes': #verificar si el usuario esta baneado
+            await message.reply_text(
+                text_dict['block_message'].format(user_id=user_id, razon=razon),
+                reply_to_message_id=message.id
+            )
+            return
 
         response = text_dict['startx'].format(username=username, caracas_time=caracas_time)
 
