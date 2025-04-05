@@ -28,31 +28,35 @@ async def start(client: Client, message: types.Message):
                 user_lang = 'en'
             else:
                 user_lang = 'es'
+            from ryas_templates.chattext import en as text_dict
             if user_lang == 'en':
-                from ryas_templates.chattext import en as text_dict
+                from ryas_templates.botones import en as botones_dict
             else:
-                from ryas_templates.chattext import es as text_dict
-            await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
+                from ryas_templates.botones import es as botones_dict
+            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
 
         rango, creditos, antispam, expiracion, lang = user_data
         username = message.from_user.username or "Usuario"
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
 
-        # Cargar el texto en el idioma correspondiente
+        # Cargar el texto y los botones en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
             from ryas_templates.chattext import es as text_dict  # por defecto español
+            from ryas_templates.botones import es as botones_dict
 
         response = text_dict['startx'].format(username=username, caracas_time=caracas_time)
 
         await message.reply_text(
             response,
             reply_to_message_id=message.id,
-            reply_markup=mainstart
+            reply_markup=botones_dict['mainstart']  # Usa el teclado del idioma correspondiente
         )
 
     except Exception as e:
