@@ -33,7 +33,7 @@ async def register_user(client: Client, message: types.Message):
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
         else:
-            from ryas_templates.chattext import es as text_dict #por defecto español
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
 
         registro_msg = text_dict['registerx'].format(username=username, user_id=user_id, lang=lang.upper())
         log_msg = f"""
@@ -51,17 +51,17 @@ async def register_user(client: Client, message: types.Message):
         await client.send_message(LOGS_CHANNEL, log_msg)
 
     except mysql.connector.IntegrityError:
-        # Obtener el idioma del usuario del mensaje
-        user_lang = message.from_user.language_code or 'es' #por defecto español
-        if user_lang.startswith('en'):
-            user_lang = 'en'
-        else:
-            user_lang = 'es'
-        if user_lang == 'en':
+        # Obtener el idioma del usuario de la base de datos
+        connection, cursor_lang = connect_db()  # Nuevo cursor para el idioma
+        cursor_lang.execute("SELECT lang FROM users WHERE user_id = %s", (user_id,))
+        result = cursor_lang.fetchone()
+        db_lang = result[0] if result else 'es'  # Si no lo encuentra, por defecto español
+
+        if db_lang == 'en':
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(en['already_registered'].format(user=username) if user_lang == 'en' else es['already_registered'].format(user=username))
+        await message.reply_text(text_dict['already_registered'].format(user=username))
     except Exception as e:
         print(f"Error en register_user: {e}")
         await message.reply_text(f"Ocurrió un error durante el registro: {e}")
@@ -69,3 +69,5 @@ async def register_user(client: Client, message: types.Message):
         if connection:
             cursor.close()
             connection.close()
+        if 'cursor_lang' in locals():  # Cerrar el nuevo cursor si existe
+            cursor_lang.close()
