@@ -42,7 +42,7 @@ en = {
             [
                 InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
                 InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es"),
-                InlineKeyboardButton("Return ↺", callback_data="home")
+                InlineKeyboardButton("Return ↺", callback_data="homevR")
             ]
         ]
     )
@@ -90,7 +90,7 @@ es = {
             [
                 InlineKeyboardButton("Inglés [🇺🇸]", callback_data="en"),
                 InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
-                InlineKeyboardButton("Volver ↺", callback_data="home")
+                InlineKeyboardButton("Volver ↺", callback_data="homevR")
             ]
         ]
     )
