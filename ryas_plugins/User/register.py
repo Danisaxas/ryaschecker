@@ -1,7 +1,4 @@
 from configs.def_main import *
-from pyrogram import Client, types
-import mysql.connector
-from datetime import datetime
 
 @ryas('register')
 async def register_user(client: Client, message: types.Message):
@@ -24,7 +21,7 @@ async def register_user(client: Client, message: types.Message):
                 bin_lasted, ban, fecha_registro, lang
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s)
-        """, (user_id, 'Free User', 0, 0, True, None, 0, None, 'No', lang))
+        """, (user_id, 'Free User', 0, 0, 60, None, 0, None, 'No', lang)) #cambiar True a 60
         connection.commit()
         
         # Cargar el texto en el idioma correspondiente
@@ -33,7 +30,7 @@ async def register_user(client: Client, message: types.Message):
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
         else:
-            from ryas_templates.chattext import es as text_dict  # Por defecto español
+            from ryas_templates.chattext import es as text_dict #por defecto español
 
         registro_msg = text_dict['registerx'].format(username=username, user_id=user_id, lang=lang.upper())
         log_msg = f"""
