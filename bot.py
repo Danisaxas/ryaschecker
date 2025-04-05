@@ -5,7 +5,7 @@ from configs.def_main import *
 import asyncio
 from datetime import datetime
 import pytz  # Importa pytz
-from pyrogram.errors import KeyError  # Importa KeyError
+from pyrogram.errors import RPCError # Importa la clase base de las excepciones de Pyrogram
 
 logging.basicConfig(level=logging.INFO)
 
@@ -17,7 +17,7 @@ Ryas = Client(
     plugins=dict(root=PLUGIN_ROOT)
 )
 
-OWNER_ID_INT = 8150119370 #definir directamente el id
+OWNER_ID_INT = 8150119370 # definir directamente el id
 
 @Ryas.on_callback_query()
 async def callpri(client, callback_query):
@@ -43,17 +43,20 @@ async def main():
                 text=f"RyasChk ha encendido.\nEl estado del bot es ONN ✅\nHora de encendido: {now}"
             )
             logging.info("Bot started and notification sent to owner.")
-        except KeyError:
-            # Si da KeyError, obtener la información del usuario y reintentar
-            try:
-                owner_user = await Ryas.get_users(OWNER_ID_INT)
-                await Ryas.send_message(
-                    chat_id=owner_user.id,  # Use the user ID from get_users
-                    text=f"RyasChk ha encendido.\nEl estado del bot es ONN ✅\nHora de encendido: {now}"
-                )
-                logging.info("Bot started, user info fetched, and notification sent to owner.")
-            except Exception as e:
-                # Manejar cualquier otro error al obtener el usuario o enviar el mensaje
+        except RPCError as e:
+            # Si da un error de RPC, obtener la información del usuario y reintentar
+            if "PEER_ID_INVALID" in str(e) or "USER_ID_INVALID" in str(e) or "KEY_ERROR" in str(e): # incluir KEY_ERROR
+                try:
+                    owner_user = await Ryas.get_users(OWNER_ID_INT)
+                    await Ryas.send_message(
+                        chat_id=owner_user.id,  # Usa el ID de usuario de get_users
+                        text=f"RyasChk ha encendido.\nEl estado del bot es ONN ✅\nHora de encendido: {now}"
+                    )
+                    logging.info("Bot started, user info fetched, and notification sent to owner.")
+                except Exception as e2:
+                    # Manejar cualquier otro error al obtener el usuario o enviar el mensaje
+                    logging.error(f"Error sending startup message: {e2}")
+            else:
                 logging.error(f"Error sending startup message: {e}")
 
     
