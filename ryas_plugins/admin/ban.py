@@ -61,10 +61,10 @@ async def ban_user(client: Client, message: types.Message):
         connection.commit()
 
         # Obtener el nombre de usuario del usuario baneado
-        cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,)) #cambiado
-        target_user_data = cursor.fetchone()
-        target_username = target_user_data[0] if target_user_data else "Desconocido" #agregado
-        target_lang = target_user_data[1] if target_user_data else 'es'
+        #cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,)) #eliminado
+        #target_user_data = cursor.fetchone()
+        target_username = message.from_user.username or "Desconocido"  #agregado
+        target_lang = message.from_user.language_code or 'es' #agregado
 
         # Cargar el idioma para el mensaje de confirmación
         if target_lang == 'es':
