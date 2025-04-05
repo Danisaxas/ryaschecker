@@ -15,7 +15,7 @@ async def set_priv(client: Client, message: types.Message):
         cursor.execute("SELECT privilegio, lang FROM users WHERE user_id = %s", (user_id,))
         result = cursor.fetchone()
 
-        if not result or result[0] != owner_id:
+        if not result or user_id != owner_id: # Comparar user_id con owner_id
             # Cargar el idioma del admin
             admin_lang = result[1] if result else 'es'
             if admin_lang == 'es':
@@ -30,10 +30,14 @@ async def set_priv(client: Client, message: types.Message):
             admin_lang = result[1] if result else 'es'
             if admin_lang == 'es':
                 from ryas_templates.chattext import es as text_dict
+                await message.reply_text(
+                    "Uso correcto: /setpriv <ID> <Privilegio>",
+                    reply_to_message_id=message.id
+                )
             else:
                 from ryas_templates.chattext import en as text_dict
-            await message.reply_text(
-                    text_dict['setpriv_usage'],
+                await message.reply_text(
+                    "Correct usage: /setpriv <ID> <Privilege>",
                     reply_to_message_id=message.id
                 )
             return
@@ -47,13 +51,13 @@ async def set_priv(client: Client, message: types.Message):
             if admin_lang == 'es':
                 from ryas_templates.chattext import es as text_dict
                 await message.reply_text(
-                    text_dict['setpriv_value_error'],
+                    "El ID y el privilegio deben ser números.",
                     reply_to_message_id=message.id
                 )
             else:
                 from ryas_templates.chattext import en as text_dict
                 await message.reply_text(
-                    text_dict['setpriv_value_error'],
+                    "ID and privilege must be numbers.",
                     reply_to_message_id=message.id
                 )
             return
