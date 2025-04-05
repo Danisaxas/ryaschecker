@@ -61,7 +61,7 @@ async def register_user(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(en['already_registered'] if user_lang == 'en' else es['already_registered'])
+        await message.reply_text(en['already_registered'].format(user=username) if user_lang == 'en' else es['already_registered'].format(user=username))
     except Exception as e:
         print(f"Error en register_user: {e}")
         await message.reply_text(f"Ocurrió un error durante el registro: {e}")
