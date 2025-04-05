@@ -26,6 +26,12 @@ en = {
             InlineKeyboardButton("back", callback_data="home")
         ]
     ]),
+    
+    'backvR': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("back", callback_data="homevR")
+        ]
+    ]),
 
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
@@ -72,6 +78,12 @@ es = {
     'back': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Atrás", callback_data="home")
+        ]
+    ]),
+    
+    'backvR': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("Volver ↺", callback_data="homevR")
         ]
     ]),
 
