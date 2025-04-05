@@ -16,17 +16,20 @@ async def tools_callback(client: Client, callback_query: types.CallbackQuery):
         result = cursor.fetchone()
         lang = result[0] if result else 'es'
 
-        # Cargar el texto en el idioma correspondiente
+        # Cargar el texto y los botones en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
-            from ryas_templates.chattext import es as text_dict #por defecto español
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
+            from ryas_templates.botones import es as botones_dict
 
         await callback_query.message.edit_text(
             text_dict['tools'],
-            reply_markup=atras
+            reply_markup=botones_dict['atras']  # Usa el teclado del idioma correspondiente
         )
     except Exception as e:
         print(f"Error en tools_callback: {e}")
@@ -52,20 +55,23 @@ async def home_callback(client: Client, callback_query: types.CallbackQuery):
         result = cursor.fetchone()
         lang = result[0] if result else 'es'
 
-        # Cargar el texto en el idioma correspondiente
+        # Cargar el texto y los botones en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
-            from ryas_templates.chattext import es as text_dict #por defecto español
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
+            from ryas_templates.botones import es as botones_dict
         
         username = callback_query.from_user.username or "Usuario"
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
 
         await callback_query.message.edit_text(
             text_dict['startx'].format(username=username, caracas_time=caracas_time),
-            reply_markup=mainstart
+            reply_markup=botones_dict['mainstart'] # Usa el teclado del idioma correspondiente
         )
     except Exception as e:
         print(f"Error en home_callback: {e}")
@@ -77,4 +83,3 @@ async def home_callback(client: Client, callback_query: types.CallbackQuery):
         if connection:
             cursor.close()
             connection.close()
-
