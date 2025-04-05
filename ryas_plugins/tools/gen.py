@@ -62,10 +62,12 @@ def obtener_info_bin(bin_prefix):
         Un diccionario con la información del BIN, o None si no se encuentra.
     """
     try:
+        # Usar una API de BINS pública
         url = f"https://bins.antipublic.cc/bins/{bin_prefix}"
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
+        # Extraer la información relevante
         info_bin = {
             "banco": data.get("bank", "Desconocido"),
             "marca": data.get("brand", "Desconocido"),
@@ -111,9 +113,9 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         rango = user_data[0]
-        username = message.from_user.username
+        username = message.from_user.username  # Obtén el nombre de usuario del objeto message
 
-        parametros = message.text.split()[1:]
+        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
 
         if not parametros:
             await message.reply("Uso: .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
@@ -122,20 +124,19 @@ async def gen_command(client: Client, message: types.Message):
         bin_prefix = parametros[0]
         mes = None
         anio = None
-        cvv_longitud = 3
-
+        cvv_longitud = 3  # Valor por defecto
+        
         if len(parametros) > 1:
             fecha_parts = parametros[1].split('|')
-            if len(fecha_parts) >= 2:
-                mes = fecha_parts[0]
-                anio = fecha_parts[1]
-            if len(fecha_parts) == 3:
-                cvv_longitud = fecha_parts[2]
-                if cvv_longitud.lower() == 'rnd':
+            if len(fecha_parts) == 2:
+                mes, anio = fecha_parts
+            elif len(fecha_parts) == 3:
+                mes, anio, cvv_str = fecha_parts  # Extract cvv_str
+                if cvv_str.lower() == 'rnd':
                     cvv_longitud = random.choice([3, 4])
                 else:
                     try:
-                        cvv_longitud = int(cvv_longitud)
+                        cvv_longitud = int(cvv_str)
                         if cvv_longitud not in [3, 4]:
                             await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
                             return
@@ -145,6 +146,8 @@ async def gen_command(client: Client, message: types.Message):
             elif len(fecha_parts) > 3:
                 await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
                 return
+
+
 
         if len(bin_prefix) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
