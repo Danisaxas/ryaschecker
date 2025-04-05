@@ -2,6 +2,8 @@ import random
 import datetime
 import requests  # Para hacer la solicitud a la API de BINS
 from configs.def_main import * # Importando configuraciones
+from pyrogram import Client, types
+import re
 
 # Función para generar una tarjeta de crédito válida
 def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
@@ -83,10 +85,8 @@ def obtener_info_bin(bin_prefix):
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
                 "pais_codigo": "XX"}
 
-
-
 @ryas("gen")
-async def gen_command(client, message):
+async def gen_command(client: Client, message: types.Message):
     """
     Genera tarjetas de crédito falsas y muestra la información del BIN.
 
@@ -94,7 +94,7 @@ async def gen_command(client, message):
         client: El cliente del bot (por ejemplo, Telegram Bot API).
         message: El mensaje que activó el comando.
     """
-    connection = None # Initialize connection
+    connection = None
     try:
         user_id = message.from_user.id
         connection, cursor = connect_db()
@@ -116,7 +116,7 @@ async def gen_command(client, message):
         parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
 
         if not parametros:
-            await message.reply("Uso: .gen bin|mm|aa|rnd", reply_to_message_id=message.id)
+            await message.reply("Uso: .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
             return
 
         bin_prefix = parametros[0]
@@ -125,32 +125,26 @@ async def gen_command(client, message):
         cvv_longitud = 3  # Valor por defecto
 
         if len(parametros) > 1:
-            fecha_parts = parametros[1].split('|')  # Usa split para separar por |
-            if len(fecha_parts) == 2:
-                mes, anio = fecha_parts
-            elif len(fecha_parts) == 3:  # añadido
-                mes, anio, cvv_longitud_str = fecha_parts
-                try:
-                    cvv_longitud = int(cvv_longitud_str)
-                except ValueError:
-                    await message.reply("El CVV debe ser 3, 4 o 'rnd'.", reply_to_message_id=message.id)
-                    return
-            else:
-                await message.reply("Formato de fecha incorrecto. Use mm|aa o mm|aa|cvv.", reply_to_message_id=message.id)
+            fecha_parts = parametros[1].split('|')  # Usa split para separar
+            if len(fecha_parts) >= 2:
+                mes = fecha_parts[0]
+                anio = fecha_parts[1]
+            if len(fecha_parts) == 3:
+                cvv_longitud = fecha_parts[2]
+                if cvv_longitud.lower() == 'rnd':
+                    cvv_longitud = random.choice([3, 4])
+                else:
+                    try:
+                        cvv_longitud = int(cvv_longitud)
+                        if cvv_longitud not in [3, 4]:
+                            await message.reply("CVV length must be 3, 4 or 'rnd'", reply_to_message_id=message.id)
+                            return
+                    except ValueError:
+                        await message.reply("CVV must be 3, 4 or 'rnd'", reply_to_message_id=message.id)
+                        return
+            elif len(fecha_parts) > 3:
+                await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
                 return
-
-        if len(parametros) > 2:
-            anio = parametros[2]
-        
-        if len(parametros) > 3:
-            if parametros[3].lower() == 'rnd':
-                cvv_longitud = random.choice([3, 4])
-            else:
-                try:
-                    cvv_longitud = int(parametros[3])
-                except ValueError:
-                    await message.reply("El CVV debe ser 3, 4 o 'rnd'.", reply_to_message_id=message.id)
-                    return
 
         if len(bin_prefix) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
