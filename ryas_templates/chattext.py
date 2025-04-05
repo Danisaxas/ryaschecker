@@ -62,33 +62,25 @@ Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 </b>''',
 
-    'informacion_text': '''<b>
-Información de RyasChk ! 🌩
-━━━━━━━━━━━━
-Última Actualización: 04/04/25
-Idiomas Disponibles: Español, Inglés
-Desarrollador: @Exzzex
-Fecha de Creación del Bot: 10/10/2024
-</b>''',
     'description_text': '''<b>
 Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
 Onyx Updates: @próximamente
-Canal de Referencias de Onyx: @próximamente
+Onyx References channel: @próximamente
 Usuarios Gratis de Onyx: @próximamente
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
 @coming soon | coming soon ✅ | [Buy]
 ━━━━━━━━━━━━━━━━━
-Onyx Updates:
+Actualizaciones de Onyx:
 Versión: 1.3.0 [✅]
-Update: coming soon p.m (GMT-5) [✅]
+Update: próximamente p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Reporta problemas a: @Exzzex
 </b>''',
@@ -117,7 +109,21 @@ Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encu
     'setpriv_usage': "Uso correcto: /setpriv <ID> <Privilegio>",
     'setpriv_value_error': "El ID y el privilegio deben ser números.",
     'setpriv_success': "Privilegio actualizado correctamente para el ID {user_id}.",
-    'setpriv_not_found': "Ese ID no se encuentra en la base de datos."
+    'setpriv_not_found': "Ese ID no se encuentra en la base de datos.",
+    'gen_response': '''💳 Tus Tarjetas Generadas 💳
+- - - - - - - - - - - - - - - - - - - - - - -
+BIN: {bin_prefix}
+- - - - - - - - - - - - - - - - - - - - - - -
+Banco: {banco}
+Marca: {marca}
+Tipo: {tipo}
+País: {pais} ({pais_codigo})
+- - - - - - - - - - - - - - - - - - - - - - -
+
+{tarjetas}
+
+Req By: @{username} [{rango}]
+'''
 }
 
 # Inglés
@@ -182,15 +188,6 @@ Condition: Offline! ❌
 ━━━━━━━━━━━━
 </b>''',
 
-    'informacion_text': '''<b>
-Ryas Description ! 🌩
-━━━━━━━━━━━━
-Bot Information:
-Last Update: 04/04/25
-Available Languages: English, Spanish
-Developer: @Exzzex
-Bot Creation Date: 10/10/2024
-</b>''',
     'description_text': '''<b>
 Ryas Description ! 🌩
 ━━━━━━━━━━━━
@@ -238,5 +235,19 @@ Last Update:
     'setpriv_usage': "Correct usage: /setpriv <ID> <Privilege>",
     'setpriv_value_error': "ID and privilege must be numbers.",
     'setpriv_success': "Privilege updated correctly for ID {user_id}.",
-    'setpriv_not_found': "That ID is not found in the database."
+    'setpriv_not_found': "That ID is not found in the database.",
+    'gen_response': '''💳 Your Generated Cards 💳
+- - - - - - - - - - - - - - - - - - - - - - -
+BIN: {bin_prefix}
+- - - - - - - - - - - - - - - - - - - - - - -
+Bank: {banco}
+Brand: {marca}
+Type: {tipo}
+Country: {pais} ({pais_codigo})
+- - - - - - - - - - - - - - - - - - - - - - -
+
+{tarjetas}
+
+Req By: @{username} [{rango}]
+'''
 }

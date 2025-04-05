@@ -102,7 +102,7 @@ async def gen_command(client: Client, message: types.Message):
         connection, cursor = connect_db()
 
         cursor.execute("""
-            SELECT rango
+            SELECT rango, lang
             FROM users
             WHERE user_id = %s
         """, (user_id,))
@@ -113,72 +113,88 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         rango = user_data[0]
+        lang = user_data[1]
         username = message.from_user.username  # Obtén el nombre de usuario del objeto message
-        
-        input_text = message.text.split(None, 1)[1] if len(message.text.split()) > 1 else ""
 
-        input_parts = input_text.split('|')
-        cc_input = input_parts[0]
+        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
+
+        if not parametros:
+            await message.reply("Uso: .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
+            return
+
+        bin_prefix = parametros[0]
         mes = None
         anio = None
         cvv_longitud = 3  # Valor por defecto
+        cvv = 'rnd'
 
-        if len(input_parts) > 1:
-            mes = input_parts[1]
-        if len(input_parts) > 2:
-            anio = input_parts[2]
-        if len(input_parts) > 3:
-            cvv_longitud = input_parts[2]
-            if cvv_longitud.lower() == 'rnd':
-                cvv_longitud = random.choice([3, 4])
-            else:
-                try:
-                    cvv_longitud = int(cvv_longitud)
-                    if cvv_longitud not in [3, 4]:
+        if len(parametros) > 1:
+            fecha_parts = parametros[1].split('|')  # Usa split para separar
+            if len(fecha_parts) >= 2:
+                mes = fecha_parts[0]
+                anio = fecha_parts[1]
+            if len(fecha_parts) == 3:
+                cvv = fecha_parts[2]  # Extract CVV
+                if cvv.lower() == 'rnd':
+                    cvv_longitud = random.choice([3, 4])
+                else:
+                    try:
+                        cvv_longitud = int(cvv)
+                        if cvv_longitud not in [3, 4]:
+                            await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
+                            return
+                    except ValueError:
                         await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
                         return
-                except ValueError:
-                    await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
-                    return
-        elif len(input_parts) == 1:
+            elif len(fecha_parts) > 3:
+                await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
+                return
+        elif len(parametros) == 1:
             pass  # No hacer nada si solo se proporciona el BIN
-        elif len(input_parts) == 2:
-            mes, anio = input_parts[1].split('|')
-        
+        else:
+            await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
+            return
 
-        if len(cc_input) < 6:
+
+        if len(bin_prefix) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
             return
 
-        info_bin = obtener_info_bin(cc_input[:6])
+        info_bin = obtener_info_bin(bin_prefix[:6])  # Obtener info del BIN de los primeros 6 dígitos
+        
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        else:
+            from ryas_templates.chattext import en as text_dict
 
-        respuesta = "💳 Tus Tarjetas Generadas 💳\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
-        respuesta += f"BIN: {cc_input[:6]}\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
-        respuesta += f"Banco: {info_bin['banco']}\n"
-        respuesta += f"Marca: {info_bin['marca']}\n"
-        respuesta += f"Tipo: {info_bin['tipo']}\n"
-        respuesta += f"País: {info_bin['pais']} ({info_bin['pais_codigo']})\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
-
+        tarjetas = []
         for _ in range(10):
             try:
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
-                numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(cc_input, gen_mes, gen_anio, cvv_longitud)
-                respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"
+                numero_tarjeta, gen_mes_str, gen_anio_str, cvv_gen = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
+                tarjetas.append(f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv_gen}")
             except ValueError as e:
                 await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
                 return
+        
+        respuesta = text_dict['gen_response'].format(
+            bin_prefix=bin_prefix[:6],
+            banco=info_bin['banco'],
+            marca=info_bin['marca'],
+            tipo=info_bin['tipo'],
+            pais=info_bin['pais'],
+            pais_codigo=info_bin['pais_codigo'],
+            tarjetas="\n".join(tarjetas),
+            username=username,
+            rango=rango
+        )
 
-        respuesta += f"\nReq By: @{username}[{rango}]"
-
-        await message.reply(respuesta, reply_to_message_id=message.id)
+        await message.reply_text(respuesta, reply_to_message_id=message.id)
 
     except Exception as e:
         print(f"Ocurrió un error: {e}")
-        await message.reply(f"Ocurrió un error al procesar el comando: {e}", reply_to_message_id=message.id)
+        await message.reply_text(f"Ocurrió un error al procesar el comando: {e}", reply_to_message_id=message.id)
     finally:
         if connection:
             cursor.close()
