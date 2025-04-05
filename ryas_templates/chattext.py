@@ -73,7 +73,7 @@ Usuarios Gratis de Onyx: @próximamente
 Información de Ryas:
 ━━━━━━━
 Desarrollador: @Exzzex ✅ | [Comprar]
-Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
+Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
 @próximamente | próximamente ✅ | [Comprar]
@@ -105,7 +105,11 @@ Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encu
 
 ↯ » Precios: /pricings
 ↯ » Más información: /data</b>''',
-    'already_registered': '<b>あ » User {user} se encuentra registrado en la Base de Datos.</b>' # Mensaje de registro existente
+    'already_registered': '<b>あ » User {user} se encuentra registrado en la Base de Datos.</b>', # Mensaje de registro existente
+    'setpriv_usage': "Uso correcto: /setpriv <ID> <Privilegio>",
+    'setpriv_value_error': "El ID y el privilegio deben ser números.",
+    'setpriv_success': "Privilegio actualizado correctamente para el ID {user_id}.",
+    'setpriv_not_found': "Ese ID no se encuentra en la base de datos."
 }
 
 # Inglés
@@ -213,5 +217,9 @@ Last Update:
 
 ↯ » Prices: /pricings
 ↯ » More information: /data</b>''',
-    'already_registered': '<b>あ » User {user} is already registered in the Database.</b>' # Added existing registration message
+    'already_registered': '<b>あ » User {user} is already registered in the Database.</b>', # Added existing registration message
+    'setpriv_usage': "Correct usage: /setpriv <ID> <Privilege>",
+    'setpriv_value_error': "ID and privilege must be numbers.",
+    'setpriv_success': "Privilege updated correctly for ID {user_id}.",
+    'setpriv_not_found': "That ID is not found in the database."
 }
