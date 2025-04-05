@@ -8,8 +8,8 @@ async def me_command(client: Client, message: types.Message):
     Muestra la información del usuario que usa el comando, en su idioma.
 
     Parámetros:
-        client: El cliente del bot (ej., Telegram Bot API).
-        message: El mensaje que activó el comando.
+        client: El objeto Client de Pyrogram.
+        message: El objeto Message que activó el comando.
     """
     user_id = message.from_user.id
     connection = None
@@ -18,7 +18,7 @@ async def me_command(client: Client, message: types.Message):
 
         # Obteniendo el idioma del usuario de la base de datos
         cursor.execute("""
-            SELECT rango, creditos, antispam, expiracion, lang
+            SELECT rango, creditos, antispam, expiracion, lang, ban, razon
             FROM users
             WHERE user_id = %s
         """, (user_id,))
@@ -26,7 +26,7 @@ async def me_command(client: Client, message: types.Message):
 
         if not user_data:
             # Si el usuario no está registrado, obtener el idioma del mensaje
-            user_lang = message.from_user.language_code or 'es' #por defecto español
+            user_lang = message.from_user.language_code or 'es'  # por defecto español
             if user_lang.startswith('en'):
                 user_lang = 'en'
             else:
@@ -38,7 +38,7 @@ async def me_command(client: Client, message: types.Message):
             await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
             return
 
-        rango, creditos, antispam, expiration, lang = user_data
+        rango, creditos, antispam, expiration, lang, ban, razon = user_data
         username = message.from_user.username or "Usuario"
 
         # Cargar el texto en el idioma correspondiente
@@ -47,7 +47,14 @@ async def me_command(client: Client, message: types.Message):
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
         else:
-            from ryas_templates.chattext import es as text_dict #por defecto español
+            from ryas_templates.chattext import es as text_dict  # por defecto español
+        
+        if ban == 'Yes': #verificar si el usuario esta baneado
+            await message.reply_text(
+                text_dict['block_message'].format(user_id=user_id, razon=razon),
+                reply_to_message_id=message.id
+            )
+            return
 
         # Formatear el mensaje de respuesta con la información del usuario
         formatted_text = text_dict['metext'].format(
