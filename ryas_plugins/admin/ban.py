@@ -61,16 +61,10 @@ async def ban_user(client: Client, message: types.Message):
         connection.commit()
 
         # Obtener el nombre de usuario del usuario baneado
-        cursor.execute("SELECT user_id, lang FROM users WHERE user_id = %s", (target_user_id,)) #cambiado
+        cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,)) #cambiado
         target_user_data = cursor.fetchone()
-
-        if target_user_data:
-            target_username = target_user_data[0] #agregado
-            target_lang = target_user_data[1] if target_user_data[1] else 'es'
-        else:
-            target_username = "Desconocido"
-            target_lang =  'es'
-
+        target_username = target_user_data[0] if target_user_data else "Desconocido" #agregado
+        target_lang = target_user_data[1] if target_user_data else 'es'
 
         # Cargar el idioma para el mensaje de confirmación
         if target_lang == 'es':
@@ -79,7 +73,7 @@ async def ban_user(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
             
         ban_message = text_dict['ban_message'].format(
-            username=target_username,
+            username=target_username, # Usar target_username
             target_user_id=target_user_id,
             ban_reason=ban_reason,
             admin_username=admin_username,
