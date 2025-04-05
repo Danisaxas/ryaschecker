@@ -60,10 +60,10 @@ async def unban_user(client: Client, message: types.Message):
         connection.commit()
 
         # Obtener el nombre de usuario del usuario desbaneado
-        cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,))
-        target_user_data = cursor.fetchone()
-        target_username = target_user_data[0] if target_user_data else "Desconocido"
-        target_lang = target_user_data[1] if target_user_data else 'es'
+        # cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,))
+        # target_user_data = cursor.fetchone()
+        target_username = message.from_user.username or "Desconocido" #agregado
+        target_lang = admin_data[1] if admin_data else 'es' #agregado
 
         # Cargar el idioma para el mensaje de confirmación
         if target_lang == 'es':
@@ -72,11 +72,11 @@ async def unban_user(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
             
         unban_message = text_dict['unban_message'].format(
-            username=target_username,
+            username=target_username, # Usar target_username
             target_user_id=target_user_id,
+            fecha=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             admin_username=admin_username,
-            admin_id=admin_id,
-            fecha=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            admin_id=admin_id
         )
 
         await message.reply_text(unban_message, reply_to_message_id=message.id)
