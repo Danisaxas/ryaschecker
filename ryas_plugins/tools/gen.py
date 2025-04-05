@@ -1,54 +1,17 @@
 import random
 import datetime
 import requests
-from configs.def_main import *
+import time
 from pyrogram import Client, types
-import re
 
-# Función para generar una tarjeta de crédito válida
-def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
+# Función para generar números de tarjeta
+def cc_gen(cc, mes, ano, cvv):
     """
-    Genera un número de tarjeta de crédito válido usando el algoritmo de Luhn.
-
-    Parámetros:
-        bin_prefix: Los primeros dígitos de la tarjeta (BIN).
-        mes: Mes de expiración (opcional).
-        anio: Año de expiración (opcional).
-        cvv_longitud: Longitud del CVV (3 o 4 dígitos).
-
-    Retorna:
-        Una tupla con el número de tarjeta, mes, año de expiración y CVV.
+    Genera las partes de la tarjeta de ejemplo. Aquí puedes incluir tu lógica de generación.
     """
-    bin_prefix = bin_prefix.replace('x', '')
-    while len(bin_prefix) < 16:
-        bin_prefix += str(random.randint(0, 9))
-
-    suma = 0
-    reversa_num = bin_prefix[::-1]
-    for i, digito in enumerate(reversa_num):
-        digito = int(digito)
-        if i % 2 != 0:
-            digito *= 2
-            if digito > 9:
-                digito -= 9
-        suma += digito
-
-    ultimo_digito = (10 - (suma % 10)) % 10
-    numero_tarjeta = bin_prefix + str(ultimo_digito)
-
-    if not mes:
-        mes = random.randint(1, 12)
-    if not anio:
-        anio = random.randint(2024, 2030)
-    if cvv_longitud == 3:
-        cvv = str(random.randint(100, 999))
-    elif cvv_longitud == 4:
-        cvv = str(random.randint(1000, 9999))
-    else:
-        cvv = str(random.randint(100, 999))
-
-    return numero_tarjeta, f"{mes:02d}", str(anio), cvv
-
+    return (f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX", f"{cc[8:12]} XXXX XXXX XXXX", f"{cc[12:16]} XXXX XXXX XXXX",
+            f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX", f"{cc[8:12]} XXXX XXXX XXXX", f"{cc[12:16]} XXXX XXXX XXXX",
+            f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX")
 
 # Función para obtener información del BIN usando una API
 def obtener_info_bin(bin_prefix):
@@ -65,7 +28,7 @@ def obtener_info_bin(bin_prefix):
         # Usar una API de BINS pública
         url = f"https://bins.antipublic.cc/bins/{bin_prefix}"
         response = requests.get(url)
-        response.raise_for_status()
+        response.raise_for_status()  # Lanza una excepción para códigos de error HTTP
         data = response.json()
         # Extraer la información relevante
         info_bin = {
@@ -79,22 +42,16 @@ def obtener_info_bin(bin_prefix):
     except requests.exceptions.RequestException as e:
         print(f"Error al consultar la API de BINS: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX"}
+                "pais_codigo": "XX"}  # Retorna valores por defecto en caso de error
     except (ValueError, KeyError, TypeError) as e:
         print(f"Error al procesar la respuesta de la API: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
                 "pais_codigo": "XX"}
 
-
-
 @ryas("gen")
 async def gen_command(client: Client, message: types.Message):
     """
     Genera tarjetas de crédito falsas y muestra la información del BIN.
-
-    Parámetros:
-        client: El cliente del bot (por ejemplo, Telegram Bot API).
-        message: El mensaje que activó el comando.
     """
     connection = None
     try:
@@ -114,74 +71,64 @@ async def gen_command(client: Client, message: types.Message):
 
         rango = user_data[0]
         username = message.from_user.username  # Obtén el nombre de usuario del objeto message
+        
+        input_text = message.text.split(None, 1)[1] if len(message.text.split()) > 1 else ""
 
-        parametros = message.text.split()[1:]  # Obtiene los parámetros del comando (.gen xxxx সম্ভাব্য)
+        input_parts = input_text.split('|')
+        cc = input_parts[0]
+        mes = 'x'
+        ano = 'x'
+        cvv = 'x'
 
-        if not parametros:
-            await message.reply("Uso: .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
-            return
-
-        bin_prefix = parametros[0]
-        mes = None
-        anio = None
-        cvv_longitud = 3  # Valor por defecto
-
-        if len(parametros) > 1:
-            fecha_parts = parametros[1].split('|')  # Usa split para separar
-            if len(fecha_parts) >= 2:
-                mes, anio = fecha_parts
-            if len(fecha_parts) == 3:
-                mes, anio, cvv_str = fecha_parts  # Extract cvv_str
-                if cvv_str.lower() == 'rnd':
-                    cvv_longitud = random.choice([3, 4])
-                else:
-                    try:
-                        cvv_longitud = int(cvv_str)
-                        if cvv_longitud not in [3, 4]:
-                            await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
-                            return
-                    except ValueError:
-                        await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
-                        return
-            elif len(fecha_parts) > 3:
-                await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv", reply_to_message_id=message.id)
-                return
-        elif len(parametros) == 1:
-            pass  # No hacer nada si solo se proporciona el BIN
-        else:
-            await message.reply("Formato incorrecto. Use .gen bin|mm|aa|cvv o .gen bin|mm|aa o .gen bin", reply_to_message_id=message.id)
-            return
-
-
-        if len(bin_prefix) < 6:
+        if len(input_parts) > 1:
+            mes = input_parts[1]
+        if len(input_parts) > 2:
+            ano = input_parts[2]
+        if len(input_parts) > 3:
+            cvv = input_parts[3]
+            
+        if len(cc) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
             return
 
-        info_bin = obtener_info_bin(bin_prefix[:6])
+        bin_info = obtener_info_bin(cc[:6])
+        
+        tiempoinicio = time.perf_counter()
+        cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = cc_gen(cc, mes, ano, cvv)
+        tiempofinal = time.perf_counter()
 
-        respuesta = "💳 Tus Tarjetas Generadas 💳\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
-        respuesta += f"BIN: {bin_prefix}\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
-        respuesta += f"Banco: {info_bin['banco']}\n"
-        respuesta += f"Marca: {info_bin['marca']}\n"
-        respuesta += f"Tipo: {info_bin['tipo']}\n"
-        respuesta += f"País: {info_bin['pais']} ({info_bin['pais_codigo']})\n"
-        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
+        text = f"""
+𝑳𝒖𝒙𝑪𝒉𝒆𝒌𝒆𝒓 𝑪𝑪 𝑮𝒆𝒏
+━━━━━━━━
+<code>{cc1}</code>
+<code>{cc2}</code>
+<code>{cc3}</code>
+<code>{cc4}</code>
+<code>{cc5}</code>
+<code>{cc6}</code>
+<code>{cc7}</code>
+<code>{cc8}</code>
+<code>{cc9}</code>
+<code>{cc10}</code>
+━━━━━━━━
+𝘽𝙞𝙣: <code>{cc[:6]}</code>
+𝙄𝙣𝙛𝙤: {bin_info.get("marca", "Desconocido")} - {bin_info.get("tipo", "Desconocido")} - {bin_info.get("level", "Desconocido")}
+𝘽𝙖𝙣𝙠: <code>{bin_info.get("banco", "Desconocido")} {bin_info.get("pais_codigo", "XX")}</code>
+𝙂𝙚𝙣 𝙗𝙮: <code>@{message.from_user.username} [{rango}]</code>
+"""
 
-        for _ in range(10):
-            try:
-                gen_mes = int(mes) if mes else None
-                gen_anio = int(anio) if anio else None
-                numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
-                respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"
-            except ValueError as e:
-                await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
-                return
-
-        respuesta += f"\nReq By: @{username}[{rango}]"
-
-        await message.reply(respuesta, reply_to_message_id=message.id)
+        await client.send_message(
+            message.chat.id,
+            text,
+            reply_markup=types.InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        types.InlineKeyboardButton("𝗥𝗘-𝗚𝗘𝗡", callback_data="gen_pro")
+                    ]
+                ]
+            ),
+            disable_web_page_preview=True
+        )
 
     except Exception as e:
         print(f"Ocurrió un error: {e}")
