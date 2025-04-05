@@ -38,8 +38,8 @@ vryasx = InlineKeyboardMarkup(
 lang = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("Inglés", callback_data="en"),
-            InlineKeyboardButton("Español", callback_data="es")
+            InlineKeyboardButton("Inglés 🇺🇸", callback_data="en"),
+            InlineKeyboardButton("Español 🇪🇸", callback_data="es")
         ]
     ]
 )
