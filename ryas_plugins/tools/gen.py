@@ -34,7 +34,6 @@ def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     ultimo_digito = (10 - (suma % 10)) % 10
     numero_tarjeta = bin_prefix + str(ultimo_digito)
 
-
     if not mes:
         mes = random.randint(1, 12)
     if not anio:
@@ -77,10 +76,14 @@ def obtener_info_bin(bin_prefix):
         return info_bin
     except requests.exceptions.RequestException as e:
         print(f"Error al consultar la API de BINS: {e}")
-        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido", "pais_codigo": "XX"}  # Retorna valores por defecto en caso de error
+        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
+                "pais_codigo": "XX"}  # Retorna valores por defecto en caso de error
     except (ValueError, KeyError, TypeError) as e:
         print(f"Error al procesar la respuesta de la API: {e}")
-        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido", "pais_codigo": "XX"}
+        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
+                "pais_codigo": "XX"}
+
+
 
 @ryas("gen")
 async def gen_command(client, message):
@@ -91,6 +94,7 @@ async def gen_command(client, message):
         client: El cliente del bot (por ejemplo, Telegram Bot API).
         message: El mensaje que activó el comando.
     """
+    connection = None # Initialize connection
     try:
         user_id = message.from_user.id
         connection, cursor = connect_db()
@@ -121,13 +125,13 @@ async def gen_command(client, message):
         cvv_longitud = 3  # Valor por defecto
 
         if len(parametros) > 1:
-            fecha_parts = parametros[1].split(':')  # Usa split para separar por :, / o |
-            if len(fecha_parts) != 2:
-                fecha_parts = parametros[1].split('/')
-            if len(fecha_parts) != 2:
-                fecha_parts = parametros[1].split('-')
+            fecha_parts = parametros[1].split('|')  # Usa split para separar por |
             if len(fecha_parts) == 2:
                 mes, anio = fecha_parts
+            elif len(fecha_parts) == 3: #añadido
+                mes, anio, cvv_longitud = fecha_parts
+                cvv_longitud = int(cvv_longitud)
+            
 
         if len(parametros) > 2:
             anio = parametros[2]
@@ -135,6 +139,12 @@ async def gen_command(client, message):
         if len(parametros) > 3:
             if parametros[3].lower() == 'rnd':
                 cvv_longitud = random.choice([3, 4])
+            else:
+                try:
+                  cvv_longitud = int(parametros[3])
+                except ValueError:
+                    await message.reply("El CVV debe ser 3 o 4 o 'rnd'.", reply_to_message_id=message.id)
+                    return
 
         if len(bin_prefix) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
@@ -155,10 +165,8 @@ async def gen_command(client, message):
         for _ in range(10):
             try:
                 # Intenta convertir mes y anio a enteros, maneja el error si no son válidos
-                print(f"Valores de mes y anio antes de la conversión: mes={mes}, anio={anio}") # NUEVO LOG
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
-                print(f"Valores de gen_mes y gen_anio después de la conversión: gen_mes={gen_mes}, gen_anio={gen_anio}") # NUEVO LOG
                 numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
                 respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"  # Agregado CVV
             except ValueError as e:
@@ -172,3 +180,7 @@ async def gen_command(client, message):
     except Exception as e:
         print(f"Ocurrió un error: {e}")
         await message.reply(f"Ocurrió un error al procesar el comando: {e}", reply_to_message_id=message.id)
+    finally:
+        if connection:
+            cursor.close()
+            connection.close()
