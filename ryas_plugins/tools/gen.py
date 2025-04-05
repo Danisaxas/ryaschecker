@@ -1,17 +1,54 @@
 import random
 import datetime
 import requests
-import time
 from configs.def_main import *
+from pyrogram import Client, types
+import re
 
-# Función para generar números de tarjeta
-def cc_gen(cc, mes, ano, cvv):
+# Función para generar números de tarjeta de crédito válida
+def generar_tarjeta(bin_prefix, mes=None, anio=None, cvv_longitud=3):
     """
-    Genera las partes de la tarjeta de ejemplo. Aquí puedes incluir tu lógica de generación.
+    Genera un número de tarjeta de crédito válido usando el algoritmo de Luhn.
+
+    Parámetros:
+        bin_prefix: Los primeros dígitos de la tarjeta (BIN).
+        mes: Mes de expiración (opcional).
+        anio: Año de expiración (opcional).
+        cvv_longitud: Longitud del CVV (3 o 4 dígitos).
+
+    Retorna:
+        Una tupla con el número de tarjeta, mes, año de expiración y CVV.
     """
-    return (f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX", f"{cc[8:12]} XXXX XXXX XXXX", f"{cc[12:16]} XXXX XXXX XXXX",
-            f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX", f"{cc[8:12]} XXXX XXXX XXXX", f"{cc[12:16]} XXXX XXXX XXXX",
-            f"{cc[:4]} XXXX XXXX XXXX", f"{cc[4:8]} XXXX XXXX XXXX")
+    bin_prefix = bin_prefix.replace('x', '')
+    while len(bin_prefix) < 16:
+        bin_prefix += str(random.randint(0, 9))
+
+    suma = 0
+    reversa_num = bin_prefix[::-1]
+    for i, digito in enumerate(reversa_num):
+        digito = int(digito)
+        if i % 2 != 0:
+            digito *= 2
+            if digito > 9:
+                digito -= 9
+        suma += digito
+
+    ultimo_digito = (10 - (suma % 10)) % 10
+    numero_tarjeta = bin_prefix + str(ultimo_digito)
+
+    if not mes:
+        mes = random.randint(1, 12)
+    if not anio:
+        anio = random.randint(2024, 2030)
+    if cvv_longitud == 3:
+        cvv = str(random.randint(100, 999))
+    elif cvv_longitud == 4:
+        cvv = str(random.randint(1000, 9999))
+    else:
+        cvv = str(random.randint(100, 999))
+
+    return numero_tarjeta, f"{mes:02d}", str(anio), cvv
+
 
 # Función para obtener información del BIN usando una API
 def obtener_info_bin(bin_prefix):
@@ -48,10 +85,16 @@ def obtener_info_bin(bin_prefix):
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
                 "pais_codigo": "XX"}
 
+
+
 @ryas("gen")
 async def gen_command(client: Client, message: types.Message):
     """
     Genera tarjetas de crédito falsas y muestra la información del BIN.
+
+    Parámetros:
+        client: El cliente del bot (por ejemplo, Telegram Bot API).
+        message: El mensaje que activó el comando.
     """
     connection = None
     try:
@@ -75,60 +118,63 @@ async def gen_command(client: Client, message: types.Message):
         input_text = message.text.split(None, 1)[1] if len(message.text.split()) > 1 else ""
 
         input_parts = input_text.split('|')
-        cc = input_parts[0]
-        mes = 'x'
-        ano = 'x'
-        cvv = 'x'
+        cc_input = input_parts[0]
+        mes = None
+        anio = None
+        cvv_longitud = 3  # Valor por defecto
 
         if len(input_parts) > 1:
             mes = input_parts[1]
         if len(input_parts) > 2:
-            ano = input_parts[2]
+            anio = input_parts[2]
         if len(input_parts) > 3:
-            cvv = input_parts[3]
-            
-        if len(cc) < 6:
+            cvv_longitud = input_parts[2]
+            if cvv_longitud.lower() == 'rnd':
+                cvv_longitud = random.choice([3, 4])
+            else:
+                try:
+                    cvv_longitud = int(cvv_longitud)
+                    if cvv_longitud not in [3, 4]:
+                        await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
+                        return
+                except ValueError:
+                    await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
+                    return
+        elif len(input_parts) == 1:
+            pass  # No hacer nada si solo se proporciona el BIN
+        elif len(input_parts) == 2:
+            mes, anio = input_parts[1].split('|')
+        
+
+        if len(cc_input) < 6:
             await message.reply("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
             return
 
-        bin_info = obtener_info_bin(cc[:6])
-        
-        tiempoinicio = time.perf_counter()
-        cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = cc_gen(cc, mes, ano, cvv)
-        tiempofinal = time.perf_counter()
+        info_bin = obtener_info_bin(cc_input[:6])
 
-        text = f"""
-𝑳𝒖𝒙𝑪𝒉𝒆𝒌𝒆𝒓 𝑪𝑪 𝑮𝒆𝒏
-━━━━━━━━
-<code>{cc1}</code>
-<code>{cc2}</code>
-<code>{cc3}</code>
-<code>{cc4}</code>
-<code>{cc5}</code>
-<code>{cc6}</code>
-<code>{cc7}</code>
-<code>{cc8}</code>
-<code>{cc9}</code>
-<code>{cc10}</code>
-━━━━━━━━
-𝘽𝙞𝙣: <code>{cc[:6]}</code>
-𝙄𝙣𝙛𝙤: {bin_info.get("marca", "Desconocido")} - {bin_info.get("tipo", "Desconocido")} - {bin_info.get("level", "Desconocido")}
-𝘽𝙖𝙣𝙠: <code>{bin_info.get("banco", "Desconocido")} {bin_info.get("pais_codigo", "XX")}</code>
-𝙂𝙚𝙣 𝙗𝙮: <code>@{message.from_user.username} [{rango}]</code>
-"""
+        respuesta = "💳 Tus Tarjetas Generadas 💳\n"
+        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
+        respuesta += f"BIN: {cc_input[:6]}\n"
+        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n"
+        respuesta += f"Banco: {info_bin['banco']}\n"
+        respuesta += f"Marca: {info_bin['marca']}\n"
+        respuesta += f"Tipo: {info_bin['tipo']}\n"
+        respuesta += f"País: {info_bin['pais']} ({info_bin['pais_codigo']})\n"
+        respuesta += "- - - - - - - - - - - - - - - - - - - - - - -\n\n"
 
-        await client.send_message(
-            message.chat.id,
-            text,
-            reply_markup=types.InlineKeyboardMarkup(
-                inline_keyboard=[
-                    [
-                        types.InlineKeyboardButton("𝗥𝗘-𝗚𝗘𝗡", callback_data="gen_pro")
-                    ]
-                ]
-            ),
-            disable_web_page_preview=True
-        )
+        for _ in range(10):
+            try:
+                gen_mes = int(mes) if mes else None
+                gen_anio = int(anio) if anio else None
+                numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(cc_input, gen_mes, gen_anio, cvv_longitud)
+                respuesta += f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}\n"
+            except ValueError as e:
+                await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
+                return
+
+        respuesta += f"\nReq By: @{username}[{rango}]"
+
+        await message.reply(respuesta, reply_to_message_id=message.id)
 
     except Exception as e:
         print(f"Ocurrió un error: {e}")
