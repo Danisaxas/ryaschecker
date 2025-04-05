@@ -30,13 +30,9 @@ async def set_priv(client: Client, message: types.Message):
             admin_lang = result[1] if result else 'es'
             if admin_lang == 'es':
                 from ryas_templates.chattext import es as text_dict
-                await message.reply_text(
-                    text_dict['setpriv_usage'],
-                    reply_to_message_id=message.id
-                )
             else:
                 from ryas_templates.chattext import en as text_dict
-                await message.reply_text(
+            await message.reply_text(
                     text_dict['setpriv_usage'],
                     reply_to_message_id=message.id
                 )
