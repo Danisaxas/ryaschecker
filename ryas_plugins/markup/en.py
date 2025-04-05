@@ -18,10 +18,13 @@ async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
         cursor.execute(update_query, (user_id,))
         connection.commit()
 
+        # Cargar los botones en el idioma correspondiente
+        from ryas_templates.botones import en as botones_dict
+
         # Responde al usuario con un mensaje de confirmación y el teclado 'back'
         await callback_query.message.edit_text(
             "Your language has been set to English 🇺🇸",
-            reply_markup=back  # Elimina el teclado anterior y muestra el teclado 'back'
+            reply_markup=botones_dict['back']  # Usa el teclado del idioma correspondiente
         )
 
     except Exception as e:
