@@ -29,7 +29,7 @@ en = {
     
     'backvR': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("back", callback_data="homevR")
+            InlineKeyboardButton("Return ↺", callback_data="homevR")
         ]
     ]),
 

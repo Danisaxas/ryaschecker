@@ -29,7 +29,7 @@ async def handle_information_button(client: Client, callback_query: types.Callba
 
         await callback_query.message.edit_text(
             text_dict['informacion_text'],  # Usa la clave correcta del diccionario
-            reply_markup=botones_dict['back']  # Usa el teclado 'back' del idioma correspondiente
+            reply_markup=botones_dict['backvR']  # Usa el teclado 'back' del idioma correspondiente
         )
     except Exception as e:
         print(f"Error en handle_information_button: {e}")
