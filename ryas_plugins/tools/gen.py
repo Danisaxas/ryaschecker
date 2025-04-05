@@ -128,10 +128,16 @@ async def gen_command(client, message):
             fecha_parts = parametros[1].split('|')  # Usa split para separar por |
             if len(fecha_parts) == 2:
                 mes, anio = fecha_parts
-            elif len(fecha_parts) == 3: #añadido
-                mes, anio, cvv_longitud = fecha_parts
-                cvv_longitud = int(cvv_longitud)
-            
+            elif len(fecha_parts) == 3:  # añadido
+                mes, anio, cvv_longitud_str = fecha_parts
+                try:
+                    cvv_longitud = int(cvv_longitud_str)
+                except ValueError:
+                    await message.reply("El CVV debe ser 3, 4 o 'rnd'.", reply_to_message_id=message.id)
+                    return
+            else:
+                await message.reply("Formato de fecha incorrecto. Use mm|aa o mm|aa|cvv.", reply_to_message_id=message.id)
+                return
 
         if len(parametros) > 2:
             anio = parametros[2]
@@ -141,9 +147,9 @@ async def gen_command(client, message):
                 cvv_longitud = random.choice([3, 4])
             else:
                 try:
-                  cvv_longitud = int(parametros[3])
+                    cvv_longitud = int(parametros[3])
                 except ValueError:
-                    await message.reply("El CVV debe ser 3 o 4 o 'rnd'.", reply_to_message_id=message.id)
+                    await message.reply("El CVV debe ser 3, 4 o 'rnd'.", reply_to_message_id=message.id)
                     return
 
         if len(bin_prefix) < 6:
