@@ -5,7 +5,6 @@ from configs.def_main import *
 import asyncio
 from datetime import datetime
 import pytz  # Importa pytz
-from pyrogram.errors import KeyError  # Importa KeyError
 
 logging.basicConfig(level=logging.INFO)
 
