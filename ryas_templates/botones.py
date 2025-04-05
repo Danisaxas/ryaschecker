@@ -41,7 +41,8 @@ en = {
         inline_keyboard=[
             [
                 InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es")
+                InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es"),
+                InlineKeyboardButton("Return ↺", callback_data="home")
             ]
         ]
     )
@@ -88,7 +89,8 @@ es = {
         inline_keyboard=[
             [
                 InlineKeyboardButton("Inglés [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
+                InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
+                InlineKeyboardButton("Volver ↺", callback_data="home")
             ]
         ]
     )
