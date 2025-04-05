@@ -125,21 +125,20 @@ async def gen_command(client: Client, message: types.Message):
         bin_prefix = parametros[0]
         mes = None
         anio = None
+        cvv_str = 'rnd'
         cvv_longitud = 3  # Valor por defecto
-        cvv = 'rnd'
 
         if len(parametros) > 1:
             fecha_parts = parametros[1].split('|')  # Usa split para separar
             if len(fecha_parts) >= 2:
-                mes = fecha_parts[0]
-                anio = fecha_parts[1]
+                mes, anio = fecha_parts
             if len(fecha_parts) == 3:
-                cvv = fecha_parts[2]  # Extract CVV
-                if cvv.lower() == 'rnd':
+                cvv_str = fecha_parts[2]  # Extract CVV string
+                if cvv_str.lower() == 'rnd':
                     cvv_longitud = random.choice([3, 4])
                 else:
                     try:
-                        cvv_longitud = int(cvv)
+                        cvv_longitud = int(cvv_str)
                         if cvv_longitud not in [3, 4]:
                             await message.reply("CVV debe ser 3, 4 o 'rnd'", reply_to_message_id=message.id)
                             return
@@ -172,12 +171,12 @@ async def gen_command(client: Client, message: types.Message):
             try:
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
-                numero_tarjeta, gen_mes_str, gen_anio_str, cvv_gen = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
-                tarjetas.append(f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv_gen}")
+                numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
+                tarjetas.append(f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}")
             except ValueError as e:
                 await message.reply(f"Error al generar tarjeta: {e}", reply_to_message_id=message.id)
                 return
-        
+
         respuesta = text_dict['gen_response'].format(
             bin_prefix=bin_prefix[:6],
             banco=info_bin['banco'],
