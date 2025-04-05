@@ -2,7 +2,7 @@ import random
 import datetime
 import requests
 import time
-from pyrogram import Client, types
+from configs.def_main import *
 
 # Función para generar números de tarjeta
 def cc_gen(cc, mes, ano, cvv):
