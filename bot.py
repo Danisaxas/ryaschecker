@@ -26,4 +26,8 @@ async def callpri(client, callback_query):
 
 logging.basicConfig(level=logging.INFO)
 
+<<<<<<< HEAD
 Ryas.run()
+=======
+Ryas.run()
+>>>>>>> 0efeb16b840bb4ad197e63324870f2a48462d4d7
