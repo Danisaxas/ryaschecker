@@ -171,6 +171,8 @@ async def gen_command(client: Client, message: types.Message):
             try:
                 gen_mes = int(mes) if mes else None
                 gen_anio = int(anio) if anio else None
+                if cvv_str.lower() != 'rnd': #asignar el valor de la cadena cvv si no es rnd
+                    cvv_longitud = int(cvv_str) if cvv_str else 3
                 numero_tarjeta, gen_mes_str, gen_anio_str, cvv = generar_tarjeta(bin_prefix, gen_mes, gen_anio, cvv_longitud)
                 tarjetas.append(f"{numero_tarjeta}|{gen_mes_str}|{gen_anio_str}|{cvv}")
             except ValueError as e:
