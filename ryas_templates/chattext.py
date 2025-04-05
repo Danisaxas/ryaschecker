@@ -67,7 +67,7 @@ Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
 Onyx Updates: @próximamente
-Onyx References channel: @próximamente
+Canal de Referencias de Onyx: @próximamente
 Usuarios Gratis de Onyx: @próximamente
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
@@ -78,9 +78,9 @@ Nota del Desarrollador: ¡Hola chicos, esta es la nueva versión de Onyx, hecha 
 Vendedores:
 @coming soon | coming soon ✅ | [Buy]
 ━━━━━━━━━━━━━━━━━
-Actualizaciones de Onyx:
+Onyx Updates:
 Versión: 1.3.0 [✅]
-Update: próximamente p.m (GMT-5) [✅]
+Update: coming soon p.m (GMT-5) [✅]
 ━━━━━━━━━━━━━━━━━
 Reporta problemas a: @Exzzex
 </b>''',
@@ -123,7 +123,13 @@ País: {pais} ({pais_codigo})
 {tarjetas}
 
 Req By: @{username} [{rango}]
-'''
+''',
+    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+- - - - - - - - - - - - - - -
+<b>Usuario Baneado</b>
+Usuario: @{username} [{target_user_id}]
+Razon: {ban_reason}
+Admin: @{admin_username} [{admin_id}]'''
 }
 
 # Inglés
@@ -188,6 +194,15 @@ Condition: Offline! ❌
 ━━━━━━━━━━━━
 </b>''',
 
+    'informacion_text': '''<b>
+Ryas Description ! 🌩
+━━━━━━━━━━━━
+Bot Information:
+Last Update: 04/04/25
+Available Languages: English, Spanish
+Developer: @Exzzex
+Bot Creation Date: 10/10/2024
+</b>''',
     'description_text': '''<b>
 Ryas Description ! 🌩
 ━━━━━━━━━━━━
@@ -249,5 +264,11 @@ Country: {pais} ({pais_codigo})
 {tarjetas}
 
 Req By: @{username} [{rango}]
-'''
+''',
+    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+- - - - - - - - - - - - - - -
+<b>User Banned</b>
+User: @{username} [{target_user_id}]
+Reason: {ban_reason}
+Admin: @{admin_username} [{admin_id}]'''
 }
