@@ -150,6 +150,7 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
+    'bin_usage': "por favor coloque uno o más contenedores para verificar.",
     'bin_message': '''🇺🇸 - Data For {bin_prefix} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin_prefix}
@@ -310,7 +311,8 @@ Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
-    'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
+    'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual",
+    'bin_usage': "Please place one or more containers for verification.",
     'bin_message': '''🇺🇸 - Data For {bin_prefix} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin_prefix}
