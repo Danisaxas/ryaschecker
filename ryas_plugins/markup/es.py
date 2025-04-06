@@ -1,5 +1,6 @@
 from configs.def_main import *
 from pyrogram import Client, types
+from ryas_templates.botones import es as botones_dict
 
 @ryasbt("^es$")
 async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
@@ -13,15 +14,16 @@ async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
 
         # Verifica el idioma actual del usuario
         cursor.execute("SELECT lang FROM users WHERE user_id = %s", (callback_query.from_user.id,))
-        current_lang = cursor.fetchone()[0] if cursor.fetchone() else 'es'
+        result = cursor.fetchone()
+        current_lang = result[0] if result else 'es'
 
         if current_lang == 'es':
             await callback_query.message.edit_text(
-                "Ya tienes puesto el idiooma Español 🇪🇸",
-                reply_markup=back
+                "El idioma ya está configurado en Español 🇪🇸",
+                reply_markup=botones_dict['back']
             )
         else:
-        # Actualiza el idioma del usuario en la tabla 'users'
+            # Actualiza el idioma del usuario en la tabla 'users'
             update_query = "UPDATE users SET lang = 'es' WHERE user_id = %s"
             cursor.execute(update_query, (callback_query.from_user.id,))
             connection.commit()
@@ -29,7 +31,7 @@ async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
             # Responde al usuario con un mensaje de confirmación y el teclado 'back'
             await callback_query.message.edit_text(
                 "Se ha puesto el idioma Español 🇪🇸",
-                reply_markup=back
+                reply_markup=botones_dict['back']  # Usa el teclado del idioma correspondiente
             )
 
     except Exception as e:
