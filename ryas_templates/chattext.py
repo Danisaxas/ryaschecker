@@ -29,12 +29,12 @@ Expiración: 0
 
     'startx': '''<b>
 ¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 Hoy es: 
 {caracas_time} 💤
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 [🇪🇸] @{username}, ¿listo para usar Ryas? Soy tu bot personal para chequear tarjetas. Usa /cmds para ver qué puedo hacer.
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 </b>''',
 
     'tools': '''<b>
@@ -181,12 +181,12 @@ Expiration: 0
 
     'startx': '''<b>
 Hello! {username} 🍄, Welcome to RyasChk. Relax and recharge your energy!
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 Today is: 
 {caracas_time} 💤
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 [🇺🇸] @{username}, ready to use Ryas? I'm your personal bot for checking cards. Use /cmds to see what I can do.
-- - - - - - - -
+- - - - - - - - - - - - - - - - - - - -
 </b>''',
 
     'tools': '''<b>
