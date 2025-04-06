@@ -100,9 +100,9 @@ es = {
     'lang': InlineKeyboardMarkup(
         inline_keyboard=[
             [
+                InlineKeyboardButton("Volver ↺", callback_data="homevR"),
                 InlineKeyboardButton("Inglés [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
-                InlineKeyboardButton("Volver ↺", callback_data="homevR")
+                InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
             ]
         ]
     )
