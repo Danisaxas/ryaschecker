@@ -84,7 +84,7 @@ Desarrollador: @Exzzex ✅ | [Comprar]
 Dev Note: ¡Hola chicos, esta es la nueva versión de onyx, hecha con velocidad y buena experiencia de chequeo en mente!
 ━━━━━━━
 Vendedores:
-@coming soon | coming soon ✅ | [Comprar]
+@coming soon | coming soon ✅ | [Buy]
 ━━━━━━━━━━━━━━━━━
 Onyx Updates:
 Versión: 1.3.0 [✅]
@@ -148,7 +148,8 @@ Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "El ID de usuario debe ser un número entero.",
-    'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}"
+    'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
+    'lang_message': "Estos son Los lenguajes disponible en Ryas Chk \nTu Idioma Actual es: {idioma_actual}"
 }
 
 # Inglés
@@ -292,7 +293,7 @@ Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
-    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
+        'unban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
@@ -300,5 +301,6 @@ Date:  {fecha}
 Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
-    'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}"
+    'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
+    'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}"
 }
