@@ -75,7 +75,7 @@ Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
 Onyx Updates: @próximamente
-Canal de Referencias de Onyx: @próximamente
+Canal de Referencias de Onyx: @coming soon
 Usuarios Gratis de Onyx: @próximamente
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
@@ -147,9 +147,9 @@ Usuario: @{username} [{target_user_id}]
 Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
-    'unban_validation': "El ID de usuario debe ser un número entero.",
+    'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
-    'lang_message': "Estos son Los lenguajes disponible en Ryas Chk \nTu Idioma Actual es: {idioma_actual}"
+    'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}"
 }
 
 # Inglés
@@ -293,7 +293,7 @@ Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
-        'unban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
