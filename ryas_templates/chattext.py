@@ -40,7 +40,7 @@ Hoy es:
     'tools': '''<b>
 Herramientas de RyasChk / Página 1
 ━━━━━━━━━━━━
-Generador de Bines:
+Generador de Bin:
 Formato: $gen 601120  
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
