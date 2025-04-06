@@ -150,12 +150,13 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
+    'bin_usage': "por favor coloque uno o más contenedores para verificar.",
     'bin_message': '''🇺🇸 - Data For {bin_prefix} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin_prefix}
-• Bank: {banco}
-- Info:  {marca} -   -  {tipo}
-- Country: {pais} ({pais_codigo})
+• Banco: {banco}
+- Informacion:  {marca} -   -  {tipo}
+- Pais: {pais} ({pais_codigo})
 - - - - - - - - - - - - - - - - - - - - - - - - -
 Req By: @{username} [{rango}]'''
 }
