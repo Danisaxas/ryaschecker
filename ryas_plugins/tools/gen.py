@@ -1,7 +1,7 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-from func_gen import cc_gen
+from func_gen import cc_gen  # Importa la función cc_gen desde func_gen.py
 import sqlite3
 
 @ryas("gen")
@@ -95,7 +95,7 @@ async def gen_command(client: Client, message: types.Message):
             pais_codigo = "Desconocido"
 
         # Formatear el mensaje de respuesta
-        tarjetas_formateadas = "\n".join(generated_cards)  # Unir las tarjetas generadas en un solo string
+        tarjetas_formateadas = "\n".join(f"-{card.strip()}-" for card in generated_cards)  # Unir las tarjetas generadas en un solo string
         respuesta = text_dict['gen_response'].format(  # Usar el mensaje predefinido
             bin_prefix=bin_number,
             banco=banco,

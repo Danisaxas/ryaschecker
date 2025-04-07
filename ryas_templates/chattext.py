@@ -47,7 +47,7 @@ Formato: $sk sk_live
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Buscador de BINs:
-Formato: $bin 601120 
+Formato: $bin 601120  
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Generador de Direcciones:
@@ -116,20 +116,15 @@ Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encu
     'setpriv_value_error': "El ID y el privilegio deben ser números.",
     'setpriv_success': "Privilegio actualizado correctamente para el ID {user_id}.",
     'setpriv_not_found': "Ese ID no se encuentra en la base de datos.",
-    'gen_response': '''💳 Tus Tarjetas Generadas 💳
-- - - - - - - - - - - - - - - - - - - - - - -
-BIN: {bin_prefix}
-- - - - - - - - - - - - - - - - - - - - - - -
-Banco: {banco}
-Marca: {marca}
-Tipo: {tipo}
-País: {pais} ({pais_codigo})
-- - - - - - - - - - - - - - - - - - - - - - -
-
+    'gen_response':  """[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
 {tarjetas}
-
-Req By: @{username} [{rango}]
-''',
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:
+{banco} | {marca} | {tipo} | {pais} ({pais_codigo})
+━━━━━━━━━━━━━━
+bot by : @Astrozdev 🌤
+""",
     'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
@@ -146,8 +141,11 @@ Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
-    'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
-    'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
+    'block_message': "Usuario bloqueado ⚠️\nID: {user_id} \nRazón: {razon}",
+    'lang_message': '''
+Bienvenido @{username} - Cloud DB | LANG [{idioma_actual}] 
+
+Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccione un nuevo idioma en los botones a continuación:''',
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
@@ -287,20 +285,15 @@ Last Update:
     'setpriv_value_error': "ID and privilege must be numbers.",
     'setpriv_success': "Privilege updated correctly for ID {user_id}.",
     'setpriv_not_found': "That ID is not found in the database.",
-    'gen_response': '''💳 Your Generated Cards 💳
-- - - - - - - - - - - - - - - - - - - - - - -
-BIN: {bin_prefix}
-- - - - - - - - - - - - - - - - - - - - - - -
-Bank: {banco}
-Brand: {marca}
-Type: {tipo}
-Country: {pais} ({pais_codigo})
-- - - - - - - - - - - - - - - - - - - - - - -
-
+    'gen_response':  """[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
 {tarjetas}
-
-Req By: @{username} [{rango}]
-''',
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:
+{banco} | {marca} | {tipo} | {pais} ({pais_codigo})
+━━━━━━━━━━━━━━
+bot by : @Astrozdev 🌤
+""",
     'ban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
