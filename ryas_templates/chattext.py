@@ -150,12 +150,12 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
-    'bin_message': "{bandera} - Data For {bin_number} Found - \n"
+    'bin_message': "{bandera} - Datos para {bin_number} encontró - \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "#Bin{bin_number}\n"
-                   "• Bank: {bank_name}\n"
-                   "• Info: {vendor} - {type} - {level}\n"
-                   "• Country: {pais} ({pais_codigo})\n"
+                   "• Banco: {bank_name}\n"
+                   "• Informacion: {vendor} - {type} - {level}\n"
+                   "• Pais: {pais} ({bandera})\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "Req By: @{username} [{rango}]",
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
@@ -319,7 +319,7 @@ Admin: @{admin_username} [{admin_id}]''',
                    "#Bin{bin_number}\n"
                    "• Bank: {bank_name}\n"
                    "• Info: {vendor} - {type} - {level}\n"
-                   "• Country: {pais} ({pais_codigo})\n"
+                   "• Country: {pais} ({bandera})\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "Req By: @{username} [{rango}]",
     'bin_not_found': "No information found for BIN {bin_number}.",

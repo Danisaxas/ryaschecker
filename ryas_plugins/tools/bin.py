@@ -95,7 +95,6 @@ async def bin_command(client: Client, message: types.Message):
             type=bin_info['type'],
             level=bin_info['level'],
             pais=bin_info['country'],
-            pais_codigo=bin_info['iso'],  # Asegúrate de que 'iso' sea el código del país
             username=message.from_user.username or message.from_user.first_name or 'Unknown',
             rango=rango_usuario
         )
