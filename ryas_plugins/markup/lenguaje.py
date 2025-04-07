@@ -9,6 +9,7 @@ async def handle_lenguaje_button(client: Client, callback_query: types.CallbackQ
     connection = None
     try:
         user_id = callback_query.from_user.id
+        username = callback_query.from_user.username or "Usuario"  # Obtener el nombre de usuario
 
         # Obtener el idioma del usuario desde la base de datos
         connection, cursor = connect_db()
@@ -20,19 +21,19 @@ async def handle_lenguaje_button(client: Client, callback_query: types.CallbackQ
         if lang == 'es':
             from ryas_templates.botones import es as botones_dict
             from ryas_templates.chattext import es as text_dict
-            idioma_actual = "Español [🇪🇸]"
+            idioma_actual = "🇪🇸"
         elif lang == 'en':
             from ryas_templates.botones import en as botones_dict
             from ryas_templates.chattext import en as text_dict
-            idioma_actual = "English [🇺🇸]"
+            idioma_actual = "🇺🇸"
         else:
             from ryas_templates.botones import es as botones_dict  # Por defecto español
             from ryas_templates.chattext import es as text_dict
-            idioma_actual = "Español [🇪🇸]"
+            idioma_actual = "🇪🇸"
 
         await callback_query.message.edit_text(
-            text=text_dict['lang_message'].format(idioma_actual=idioma_actual),
-            reply_markup=botones_dict['lang']  # Usa el teclado del idioma correspondiente
+            text=text_dict['lang_message'].format(username=username, idioma_actual=idioma_actual),
+            reply_markup=botones_dict['lang']  
         )
     except Exception as e:
         print(f"Error en handle_lenguaje_button: {e}")

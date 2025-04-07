@@ -149,7 +149,10 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
-    'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
+    'lang_message': '''
+Bienvenido @{username} - Cloud DB | LANG [{idioma}] 
+
+Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccione un nuevo idioma en los botones a continuación:''',
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
@@ -314,7 +317,10 @@ Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
-    'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
+    'lang_message': '''
+Welcome @{username} - Cloud DB | LANG [{idioma}] 
+
+EThese are the data about your language saved in the DB, do you want to change? Select a new language from the buttons below::''',
     'bin_not_found': "No information found for BIN {bin_number}.",
     'bin_usage': "Please provide a valid BIN number after the .bin command",
     'bin_error': "Invalid BIN number. It must contain only digits.",
