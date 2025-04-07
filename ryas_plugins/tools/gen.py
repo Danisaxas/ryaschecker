@@ -36,15 +36,15 @@ async def gen(client: Client, message: types.Message):
 
         if len(input_args) > 1:
             fecha_arg = input_args[1]
-            # Intentar dividir la fecha por diferentes separadores
+            # Dividir la fecha por diferentes separadores, probar con varios.
             if '/' in fecha_arg:
-                mes, ano = fecha_arg.split('/')[:2]  # Toma solo los primeros 2 elementos
+                mes, ano = fecha_arg.split('/')[:2]
             elif '|' in fecha_arg:
-                mes, ano = fecha_arg.split('|')[:2]  # Toma solo los primeros 2 elementos
+                mes, ano = fecha_arg.split('|')[:2]
             elif ' ' in fecha_arg:
-                mes, ano = fecha_arg.split(' ')[:2]  # Toma solo los primeros 2 elementos
+                mes, ano = fecha_arg.split(' ')[:2]
             else:
-                mes = input_args[1] #si no hay separador asume que es el mes
+                mes = input_args[1]
                 if (len(input_args) > 2):
                     ano = input_args[2]
         if len(input_args) > 3:
