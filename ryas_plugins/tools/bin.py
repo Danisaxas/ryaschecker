@@ -2,7 +2,6 @@ from pyrogram import Client, types
 import requests
 from configs.def_main import *
 
-# Función para obtener información del BIN usando una API
 def obtener_info_bin(bin_prefix):
     """
     Obtiene información sobre el BIN (banco, marca, país) usando una API externa.
@@ -25,17 +24,18 @@ def obtener_info_bin(bin_prefix):
             "marca": data.get("brand", "Desconocido"),
             "tipo": data.get("type", "Desconocido"),
             "pais": data.get("country", "Desconocido"),
-            "pais_codigo": data.get("country_code", "XX"),
+            "pais_codigo": data.get("country", {}).get("alpha2", "XX"),
+            "pais_nombre": data.get("country", {}).get("name", "Desconocido") #agregado
         }
         return info_bin
     except requests.exceptions.RequestException as e:
         print(f"Error al consultar la API de BINS: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX"}  # Retorna valores por defecto en caso de error
+                "pais_codigo": "XX", "pais_nombre": "Desconocido"}  # Retorna valores por defecto en caso de error
     except (ValueError, KeyError, TypeError) as e:
         print(f"Error al procesar la respuesta de la API: {e}")
         return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX"}
+                "pais_codigo": "XX", "pais_nombre": "Desconocido"}
 
 
 
@@ -82,7 +82,8 @@ async def bin_command(client: Client, message: types.Message):
             bin_prefix = bin_prefix[:6]
 
         bin_info = obtener_info_bin(bin_prefix)  # Llama a la función obtener_info_bin
-        
+
+        # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         else:
@@ -93,10 +94,11 @@ async def bin_command(client: Client, message: types.Message):
             banco=bin_info['banco'],
             marca=bin_info['marca'],
             tipo=bin_info['tipo'],
-            pais=bin_info['pais'],
+            pais_nombre=bin_info['pais'], # Usar pais_nombre
             pais_codigo=bin_info['pais_codigo'],
             username=username,
-            rango=rango
+            rango=rango,
+            pais_emoji=bin_info['pais_codigo']
         )
         await message.reply_text(respuesta, reply_to_message_id=message.id)
 

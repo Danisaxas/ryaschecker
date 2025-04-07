@@ -74,9 +74,9 @@ Fecha de Creación del Bot: 10/10/2024
 Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
-Onyx Updates: @próximamente
-Canal de Referencias de Onyx: @próximamente
-Usuarios Gratis de Onyx: @próximamente
+Onyx Updates: @coming soon
+Canal de Referencias de Onyx: @coming soon
+Usuarios Gratis de Onyx: @coming soon
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
 ━━━━━━━
@@ -150,13 +150,13 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
-    'bin_usage': "por favor coloque uno o más contenedores para verificar.",
-    'bin_message': '''🇺🇸 - Data For {bin_prefix} Found -
+    'bin_usage': "Por favor, ingrese uno o más BINs para la verificación.",
+    'bin_message': '''{pais_emoji} - Datos para {bin_prefix} encontrados -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin_prefix}
 • Banco: {banco}
-- Informacion:  {marca} -   -  {tipo}
-- Pais: {pais} ({pais_codigo})
+- Info:  {marca} -   -  {tipo}
+- País: {pais_nombre} ({pais_codigo})
 - - - - - - - - - - - - - - - - - - - - - - - - -
 Req By: @{username} [{rango}]'''
 }
@@ -210,7 +210,7 @@ Format: $sk sk_live
 Condition: Offline! ❌
 ━━━━━━━━━━━━
 BIN Lookup:
-Format: $bin 601120 
+Format: $bin 601120  
 Condition: Offline! ❌
 ━━━━━━━━━━━━
 Gen Address:
@@ -312,13 +312,13 @@ Admin: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
     'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
-    'bin_usage': "Please place one or more containers for verification.",
-    'bin_message': '''🇺🇸 - Data For {bin_prefix} Found -
+    'bin_usage': "Please place one or more BINs for verification.",
+    'bin_message': '''{pais_emoji} - Data For {bin_prefix} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin_prefix}
 • Bank: {banco}
 - Info:  {marca} -   -  {tipo}
-- Country: {pais} ({pais_codigo})
+- Country: {pais_nombre} ({pais_codigo})
 - - - - - - - - - - - - - - - - - - - - - - - - -
 Req By: @{username} [{rango}]'''
 }
