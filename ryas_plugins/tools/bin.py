@@ -49,22 +49,22 @@ async def bin_command(client: Client, message: types.Message):
         if len(bin_prefix) > 6:
             bin_prefix = bin_prefix[:6]
 
-        bin_info = get_bin_info(bin_prefix)  # Llama a la función get_bin_info
+        bin_info = get_bin_info(bin_prefix[:6])  # Llama a la función get_bin_info
 
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
-        elif lang == 'en':
+        else:
             from ryas_templates.chattext import en as text_dict
 
         respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
+            flag=bin_info.get('pais_codigo', 'XX'), # Obtiene la bandera del país
             bin=bin_prefix,
             bank=bin_info.get('banco', "Desconocido"),  
-            level=bin_info.get('type', "Desconocido"),
+            level=bin_info.get('level', "Desconocido"),
             vendor=bin_info.get('marca', "Desconocido"),
             type=bin_info.get('tipo', "Desconocido"),
-            country=bin_info.get('pais_nombre', "Desconocido"),  
-            flag=bin_info.get('pais_codigo', 'XX'),
+            country=bin_info.get('pais_nombre', "Desconocido"),  # Usa pais_nombre
             username=username,
             rango=rango
         )

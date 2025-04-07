@@ -74,9 +74,9 @@ Fecha de Creación del Bot: 10/10/2024
 Descripción de Ryas ! 🌩
 ━━━━━━━━━━━━
 Canales:
-Onyx Updates: @coming soon
-Canal de Referencias de Onyx: @coming soon
-Usuarios Gratis de Onyx: @coming soon
+Onyx Updates: @próximamente
+Canal de Referencias de Onyx: @próximamente
+Usuarios Gratis de Onyx: @próximamente
 ━━━━━━━━━━━━━━━━━
 Información de Ryas:
 ━━━━━━━
@@ -150,7 +150,6 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
-    'bin_usage': "Por favor, ingrese uno o más BINs para la verificación.",
     'bin_message': '''{flag} - Datos para {bin} encontrados -
 - - - - - - - - - - - - - - - - - - - - - - - - -
 #Bin{bin}
@@ -315,7 +314,7 @@ Admin: @{admin_username} [{admin_id}]''',
     'bin_usage': "Please place one or more BINs for verification.",
     'bin_message': '''{flag} - Data For {bin} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin}
+#Bin{bin_prefix}
 • Bank: {bank}
 - Info:  {level} - {vendor}  -  {type}
 - Country: {country} ({flag})
