@@ -28,8 +28,8 @@ Expiración: 0
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
 
     'startx': '''<b>
-Bienvenido Ryas dev Bot  |  <code>{caracas_time}</code>
-                                                                                                 
+Bienvenido Ryas dev Bot  |  <code>{caracas_time}</code>
+                                                                             
 [{idioma_actual}] Hola @{username} Bienvenido a Ryas Telegram Bot, las puertas de enlace, las herramientas y las funciones se agregan constantemente, para saber que mis diferentes comandos usan los botones que se muestran aquí:
 ━━━━━━━━━━━━━
 <code>Api Bot El estado es: Online ✅ | Ryas Api ¡Está en línea!!</code>
@@ -101,13 +101,13 @@ Disfruta mi uso.
 
     'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
-    'vryas': '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Acá podrás seleccionar tu lenguaje y ver más info del bot
-━━━━━━━━━━━━━━━
-Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la version 1.0.1
-━━━━━━━━━━━━━━━
-Última Actualización:
-04/04/25 > 05:30 (🇻🇪)</b>''',
-    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos.  
+    'ryas_cloud': '''<b>
+>_ $Comenzar_ Ryas Cloud | Bienvenido @{username} - Cloud DB 
+
+[🇪🇸] Bienvenido a la nueva suscripción de Ryas Cloud, sus datos compartidos en la nube con Ryas se almacenarán aquí, navegue a través de los botones para descubrir qué es lo nuevo que tenemos para usted:      
+
+<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code></b>''',
+    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos. 
 
 ↯ » Precios: /pricings
 ↯ » Más información: /data</b>''',
@@ -130,7 +130,7 @@ País: {pais} ({pais_codigo})
 
 Req By: @{username} [{rango}]
 ''',
-    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
@@ -138,11 +138,11 @@ Razón: {ban_reason}
 Administrador: @{admin_username} [{admin_id}]''',
     'ban_usage': "Uso correcto: /ban <ID> <razón>",
     'ban_validation': "El ID de usuario debe ser un número entero.",
-    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Desbaneado</b>
 Usuario: @{username} [{target_user_id}]
-Fecha:  {fecha}
+Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
@@ -156,20 +156,12 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
     'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "<b>#Bin<code>{bin_number}</code></b>\n"
-                   "<b>• Banco: <code>{bank_name}</code></b>\n"
-                   "<b>• Informacion: <code>{vendor} - {type} - {level}</code></b>\n"
-                   "<b>• Pais: <code>{pais} ({bandera})</code></b>\n"
+                   "<b>#Bin<code>{bin_number}</b></code>\n"
+                   "<b>• Banco: <code>{bank_name}</b></code>\n"
+                   "<b>• Informacion: <code>{vendor} - {type} - {level}</b></code>\n"
+                   "<b>• Pais: <code>{pais} ({bandera})</b></code>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
-    'gatesx_message': "Bienvenido a Ryas / Pasarelas de Ryas En línea \n"
-                     "━━━━━━━━━━━━\n"
-                     "Gates CMDS: 0 Api Gates! ✅\n"
-                     "━━━━━━━━━━━━\n"
-                     "Gates auth: 0 | Gates Charge: 0 \n"
-                     "Gates CCN (Auth & Charge): 0 | Gates Mass Checking: 0 \n"
-                     "━━━━━━━━━━━━\n"
-                     "¡Seleccione el tipo de Gate de enlace que desea utilizar!",
 }
 
 # Inglés
@@ -200,8 +192,8 @@ Expiration: 0
     'register_not': '''<b> You are not registered in the database, use /register</b>''',
 
     'startx': '''<b>
-Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
-                                                                                                 
+Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
+                                                                             
 [{idioma_actual}] Hello @{username} welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
 ━━━━━━━━━━━━━
 <code>Api Bot Status is: Online ✅ | Ryas Api is Online!!</code>
@@ -274,12 +266,13 @@ Enjoy my use.
 
     'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
-    'vryas': '''<b>Hello! {name} 🍄, Welcome to the Vryas System Here you can select your language and see more info of the bot
-━━━━━━━━━━━━━━━
-Currently RyasChk is ONN✅ Giving the best of the bot is in version 1.0.1
-━━━━━━━━━━━━━━━
-Last Update:
-04/04/25 > 05:30 (🇻🇪)</b>''',
+    'ryas_cloud': '''<b>
+>_ $Start_ Ryas Cloud | Welcome @{username} - Cloud DB
+
+[🇺🇸] Welcome to the new Ryas Cloud subscription, your details shared in the cloud with Ryas will be stored here, navigate through the buttons to discover what's new we have for you:      
+
+<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code>
+</b>''',
     'registerx': '''<b>あ » Interact with the bot without any problems, if you want more information, use the following commands.
 
 ↯ » Prices: /pricings
@@ -303,7 +296,7 @@ Country: {pais} ({pais_codigo})
 
 Req By: @{username} [{rango}]
 ''',
-    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
@@ -311,11 +304,11 @@ Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
-    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
-Date:  {fecha}
+Date:  {fecha}
 Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
@@ -335,12 +328,4 @@ These are the data about your language saved in the DB, do you want to change? S
                    "<b>• Country: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
-    'gatesx_message': "Welcome to Ryas / Ryas gateways Online \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Gates CMDS:  0 Api Gates! ✅ \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Gates auth: 0    |   Gates Charge: 0 \n"
-                     "Gates CCN (Auth & Charge): 0  |   Gates Mass Checking: 0 \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Select the type of gate you want for your use! ",
 }

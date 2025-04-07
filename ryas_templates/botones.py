@@ -32,7 +32,7 @@ en = {
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
             InlineKeyboardButton("Languages", callback_data="lenguaje"),
         ]
-          ]),
+        ]),
     
     'backvR': InlineKeyboardMarkup([
         [
@@ -58,7 +58,23 @@ en = {
                 InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
             ]
         ]
-    )
+    ),
+    'gatewaysx': InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton("Auth", callback_data="Auth"),
+                InlineKeyboardButton("Charge", callback_data="Charge"),
+            ],
+            [
+                InlineKeyboardButton("CCN", callback_data="CCN"),
+                InlineKeyboardButton("Mass Check", callback_data="Mass_Check"),
+            ],
+            [
+                InlineKeyboardButton("Back", callback_data="home")
+            ]
+        ]
+    ),
+
 }
 
 # Spanish Language Buttons
@@ -93,7 +109,7 @@ es = {
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
             InlineKeyboardButton("Idiomas", callback_data="lenguaje"),
         ]
-          ]),
+        ]),
     
     'backvR': InlineKeyboardMarkup([
         [
@@ -119,5 +135,20 @@ es = {
                 InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
             ]
         ]
-    )
+    ),
+    'gatewaysx': InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+               InlineKeyboardButton("Auth", callback_data="Auth"),
+                InlineKeyboardButton("Charge", callback_data="Charge"),
+            ],
+            [
+                InlineKeyboardButton("CCN", callback_data="CCN"),
+                InlineKeyboardButton("Mass Check", callback_data="Mass_Check"),
+            ],
+            [
+                 InlineKeyboardButton("Atrás", callback_data="home")
+            ]
+        ]
+    ),
 }
