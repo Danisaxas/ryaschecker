@@ -19,6 +19,7 @@ async def bin_command(client: Client, message: types.Message):
         lang = result[0] if result else 'es'
         ban_status = result[1] if result else 'No' #obtener el estado de baneo
         razon = result[2] if result else ""
+        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
@@ -30,8 +31,11 @@ async def bin_command(client: Client, message: types.Message):
         if ban_status == 'Yes': #verificar si el usuario esta baneado
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
-                
+                reply_to_message_id=reply_msg_id
             )
+            return
+                
+            
             return
         parts = message.text.split()
         if len(parts) < 2:
