@@ -120,7 +120,7 @@ es = {
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Descripcionn", callback_data="informacion"),
+                InlineKeyboardButton("Descripcion", callback_data="informacion"),
                 InlineKeyboardButton("Idioma", callback_data="lenguaje"),
                 InlineKeyboardButton("Atras", callback_data="home")
             ]
