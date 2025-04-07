@@ -194,7 +194,7 @@ Expiration: 0
     'startx': '''<b>
 Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
                                                                              
-[{idioma_actual}] Hello @Username welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
+[{idioma_actual}] Hello @{username} welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
 ━━━━━━━━━━━━━
 <code>Api Bot Status is: Online ✅ | Ryas Api is Online!!</code>
 </b>''',
