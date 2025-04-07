@@ -64,12 +64,10 @@ en = {
             [
                 InlineKeyboardButton("Auth", callback_data="Auth"),
                 InlineKeyboardButton("Charge", callback_data="Charge"),
+                InlineKeyboardButton("CCN Gates", callback_data="CCN"),
             ],
             [
-                InlineKeyboardButton("CCN", callback_data="CCN"),
-                InlineKeyboardButton("Mass Check", callback_data="Mass_Check"),
-            ],
-            [
+                InlineKeyboardButton("Mass Checking", callback_data="Mass_Check"),
                 InlineKeyboardButton("Back", callback_data="home")
             ]
         ]
@@ -139,15 +137,13 @@ es = {
     'gatewaysx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-               InlineKeyboardButton("Auth", callback_data="Auth"),
+                InlineKeyboardButton("Auth", callback_data="Auth"),
                 InlineKeyboardButton("Charge", callback_data="Charge"),
+                InlineKeyboardButton("CCN Gates", callback_data="CCN"),
             ],
             [
-                InlineKeyboardButton("CCN", callback_data="CCN"),
-                InlineKeyboardButton("Mass Check", callback_data="Mass_Check"),
-            ],
-            [
-                 InlineKeyboardButton("Atrás", callback_data="home")
+                InlineKeyboardButton("Mass Checking", callback_data="Mass_Check"),
+                InlineKeyboardButton("Atrás", callback_data="home")
             ]
         ]
     ),
