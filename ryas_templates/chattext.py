@@ -28,13 +28,11 @@ Expiración: 0
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
 
     'startx': '''<b>
-¡Hola! {username} 🍄, Bienvenido a RyasChk. ¡Relájate y recarga energías!
-━━━━━━━━━━━━━━━
-Hoy es: 
-{caracas_time} 💤
-━━━━━━━━━━━━━━━
-[🇪🇸] @{username}, ¿listo para usar Ryas? Soy tu bot personal para chequear tarjetas. Usa /cmds para ver qué puedo hacer.
-━━━━━━━━━━━━━━━
+Bienvenido Ryas dev Bot  |  Time information is Unavailable. 
+                                                                             
+[{idioma_actual}] Hola @{username} Bienvenido a Ryas Telegram Bot, las puertas de enlace, las herramientas y las funciones se agregan constantemente, para saber que mis diferentes comandos usan los botones que se muestran aquí:
+━━━━━━━━━━━━━
+Api Bot El estado es: Online ✅ | Ryas Api ¡Está en línea!!
 </b>''',
 
     'tools': '''<b>
@@ -194,13 +192,11 @@ Expiration: 0
     'register_not': '''<b> You are not registered in the database, use /register</b>''',
 
     'startx': '''<b>
-Hello! {username} 🍄, Welcome to RyasChk. Relax and recharge your energy!
-━━━━━━━━━━━━━━━
-Today is: 
-{caracas_time} 💤
-━━━━━━━━━━━━━━━
-[🇺🇸] @{username}, ready to use Ryas? I'm your personal bot for checking cards. Use /cmds to see what I can do.
-━━━━━━━━━━━━━━━
+Welcome to Ryas dev Bot  |  Time information is Unavailable. 
+                                                                             
+[{idioma_actual}] Hello @Username welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
+━━━━━━━━━━━━━
+Api Bot Status is: Online ✅ | Ryas Api is Online!!
 </b>''',
 
     'tools': '''<b>

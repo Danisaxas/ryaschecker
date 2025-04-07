@@ -28,11 +28,10 @@ async def start(client: Client, message: types.Message):
                 user_lang = 'en'
             else:
                 user_lang = 'es'
+            from ryas_templates.chattext import en as text_dict
             if user_lang == 'en':
-                from ryas_templates.chattext import en as text_dict
                 from ryas_templates.botones import en as botones_dict
             else:
-                from ryas_templates.chattext import es as text_dict
                 from ryas_templates.botones import es as botones_dict
             await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
             return
@@ -45,21 +44,17 @@ async def start(client: Client, message: types.Message):
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
+            idioma_actual = "🇪🇸"
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
             from ryas_templates.botones import en as botones_dict
+            idioma_actual = "🇺🇸"
         else:
             from ryas_templates.chattext import es as text_dict  # por defecto español
             from ryas_templates.botones import es as botones_dict
-        
-        if ban == 'Yes': #verificar si el usuario esta baneado
-            await message.reply_text(
-                text_dict['block_message'].format(user_id=user_id, razon=razon),
-                reply_to_message_id=message.id
-            )
-            return
+            idioma_actual = "🇪🇸"
 
-        response = text_dict['startx'].format(username=username, caracas_time=caracas_time)
+        response = text_dict['startx'].format(username=username, idioma_actual=idioma_actual, caracas_time=caracas_time) #agregado idioma_actual
 
         await message.reply_text(
             response,
