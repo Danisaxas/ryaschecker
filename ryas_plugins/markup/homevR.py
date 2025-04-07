@@ -19,17 +19,20 @@ async def handle_homevr_button(client: Client, callback_query: types.CallbackQue
 
         # Cargar el texto y los botones en el idioma correspondiente
         if lang == 'es':
+            from ryas_templates.botones import es as botones_dict
             from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
+            idioma_actual = "🇪🇸"
         elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict
             from ryas_templates.botones import en as botones_dict
+            from ryas_templates.chattext import en as text_dict
+            idioma_actual = "🇺🇸"
         else:
-            from ryas_templates.chattext import es as text_dict  # Por defecto español
-            from ryas_templates.botones import es as botones_dict
+            from ryas_templates.botones import es as botones_dict  # Por defecto español
+            from ryas_templates.chattext import es as text_dict
+            idioma_actual = "🇪🇸"
 
         await callback_query.message.edit_text(
-            text=text_dict['vryas'].format(name=name),
+            text=text_dict['ryas_cloud'].format(name=name),
             reply_markup=botones_dict['vryasx']  # Usa el teclado del idioma correspondiente
         )
 
