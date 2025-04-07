@@ -21,7 +21,7 @@ ID: <code>{user_id}</code>
 ━━━━━━━━━
 [⌥] DB Informacion:
 [•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>
-[•] Expiracion Plan: <code>{expiration}/<code>
+[•] Expiracion Plan: <code>{expiration}</code>
 [•] Bans: [<code>{ban}</code>] | [•] Creditos: <code>{creditos}</code>
 </b>''',
 
