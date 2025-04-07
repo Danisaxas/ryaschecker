@@ -101,12 +101,12 @@ Disfruta mi uso.
 
     'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
-    'ryas_cloud': '''<b>
->_ $Comenzar_ Ryas Cloud | Bienvenido @{username} - Cloud DB 
-
-[🇪🇸] Bienvenido a la nueva suscripción de Ryas Cloud, sus datos compartidos en la nube con Ryas se almacenarán aquí, navegue a través de los botones para descubrir qué es lo nuevo que tenemos para usted:      
-
-<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code></b>''',
+    'vryas': '''<b>¡Hola! {name} 🍄, Bienvenido al Sistema Vryas Acá podrás seleccionar tu lenguaje y ver más info del bot
+━━━━━━━━━━━━━━━
+Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encuentra en la version 1.0.1
+━━━━━━━━━━━━━━━
+Última Actualización:
+04/04/25 > 05:30 (🇻🇪)</b>''',
     'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos.  
 
 ↯ » Precios: /pricings
@@ -147,10 +147,7 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
-    'lang_message': '''
-Bienvenido @{username} - Cloud DB | LANG [{idioma_actual}] 
-
-Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccione un nuevo idioma en los botones a continuación:''',
+    'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
@@ -163,14 +160,14 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
     'gatesx_message': """
-<b>Bienvenido a Ryas / Pasarelas de Ryas En línea
+<b>Welcome to Onyx / Onyx gateways Online
 ━━━━━━━━━━━━
-Gates CMDS: <code>0 Api Gates!</code> ✅
+Gates CMDS:  <code>0 Api Gates!</code> ✅ 
 ━━━━━━━━━━━━
-Gates auth: <code>0</code> | Gates Charge: <code>0</code>
-Gates CCN (Auth & Charge): <code>0</code> | Gates Mass Checking: <code>0</code>
+Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
 ━━━━━━━━━━━━
-¡Seleccione el tipo de Gate de enlace que desea utilizar!</b>""",
+Select the type of gate you want for your use!</b>""",
 }
 
 # Inglés
@@ -275,13 +272,12 @@ Enjoy my use.
 
     'msgformat': '''<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id or all !texto</b>''',
 
-    'ryas_cloud': '''<b>
->_ $Start_ Ryas Cloud | Welcome @{username} - Cloud DB
-
-[🇺🇸] Welcome to the new Ryas Cloud subscription, your details shared in the cloud with Ryas will be stored here, navigate through the buttons to discover what's new we have for you:      
-
-<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code>
-</b>''',
+    'vryas': '''<b>Hello! {name} 🍄, Welcome to the Vryas System Here you can select your language and see more info of the bot
+━━━━━━━━━━━━━━━
+Currently RyasChk is ONN✅ Giving the best of the bot is in version 1.0.1
+━━━━━━━━━━━━━━━
+Last Update:
+04/04/25 > 05:30 (🇻🇪)</b>''',
     'registerx': '''<b>あ » Interact with the bot without any problems, if you want more information, use the following commands.
 
 ↯ » Prices: /pricings
@@ -338,12 +334,12 @@ These are the data about your language saved in the DB, do you want to change? S
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
     'gatesx_message': """
-<b>Welcome to Ryas / Ryas gateways Online
+<b>Welcome to Onyx / Onyx gateways Online
 ━━━━━━━━━━━━
-Gates CMDS:  <code>0 Api Gates!</code> ✅ 
+Gates CMDS:  <code>0 Api Gates!</code> ✅ 
 ━━━━━━━━━━━━
-Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
-Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
+Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 }
