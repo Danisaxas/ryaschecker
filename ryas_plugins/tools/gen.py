@@ -14,6 +14,9 @@ async def gen(client: Client, message: types.Message):
         .gen 426807
         .gen 426807 12 2025
         .gen 426807 12 2025 123
+        .gen 463846003763xxxx 03 2028
+        .gen 463846003763xxxx/03/2028
+        .gen 463846003763xxxx|03|2028
     """
     try:
         input_args = message.text.split()[1:]
@@ -27,11 +30,27 @@ async def gen(client: Client, message: types.Message):
             return
 
         cc = input_args[0]
-        mes = 'x' if len(input_args) < 2 else input_args[1][0:2]
-        ano = 'x' if len(input_args) < 3 else input_args[2]
-        cvv = 'x' if len(input_args) < 4 else input_args[3]
+        mes = 'x'
+        ano = 'x'
+        cvv = 'x'
 
-        if len(cc) < 6: #cambio input_args[0] a cc
+        if len(input_args) > 1:
+            fecha_arg = input_args[1]
+            # Intentar dividir la fecha por diferentes separadores
+            if '/' in fecha_arg:
+                mes, ano = fecha_arg.split('/')[:2]  # Toma solo los primeros 2 elementos
+            elif '|' in fecha_arg:
+                mes, ano = fecha_arg.split('|')[:2]  # Toma solo los primeros 2 elementos
+            elif ' ' in fecha_arg:
+                mes, ano = fecha_arg.split(' ')[:2]  # Toma solo los primeros 2 elementos
+            else:
+                mes = input_args[1] #si no hay separador asume que es el mes
+                if (len(input_args) > 2):
+                    ano = input_args[2]
+        if len(input_args) > 3:
+            cvv = input_args[3]
+
+        if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
