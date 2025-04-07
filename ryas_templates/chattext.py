@@ -13,16 +13,16 @@ Chat_ID: <code>{chat_id}</code>
 </b>''',
 
     'metext': '''<b>
-Ryas Chk ⺢ => Info de Usuario
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Usuario:
-Nombre de Usuario: @{username} [<code>{user_id}</code>]
-Nombre: {firts_name} | Baneo: No
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Membresía:
-Rol: {rango} | Créditos: {creditos}
-Antispam: {antispam}
-Expiración: 0
+Ryas bot / Obtener información. [☁️]
+━━━━━━━━━
+[⌥] Información de usuario:
+Nombre de usuario: @{username} 
+ID: <code>{user_id}</code>
+━━━━━━━━━
+[⌥] DB Informacion:
+[•] Plan: [{rango}] | [•] Spam: {antispam}
+[•] Expiracion Plan: Ningún plan contratado
+[•] Bans: [No BAN] | [•] Creditos: {creditos}
 </b>''',
 
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
@@ -186,16 +186,16 @@ Chat_ID: <code>{chat_id}</code>
 </b>''',
 
     'metext': '''<b>
-Ryas Chk ⺢ => User Info
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ User:
-Username: @{username} [<code>{user_id}</code>]
-First Name: {firts_name} | Ban: No
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Membership:
-Role: {rango} | Credits: {creditos}
-Antispam: {antispam}
-Expiration: 0
+Ryas bot / Get info. [☁️]
+━━━━━━━━━
+[⌥] User Info:
+Username: @{username} 
+ID: <code>{user_id}</code>
+━━━━━━━━━
+[⌥] DB Info:
+[•] Plan: [{rango}] | [•] Spam: {antispam}
+[•] Expiration {expiration}
+[•] Bans: [{ban}] | [•] Credits: {creditos}
 </b>''',
 
     'register_not': '''<b> You are not registered in the database, use /register</b>''',

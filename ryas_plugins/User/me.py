@@ -13,6 +13,7 @@ async def me_command(client: Client, message: types.Message):
     """
     user_id = message.from_user.id
     connection = None
+    cursor = None
     try:
         connection, cursor = connect_db()
 
@@ -35,7 +36,7 @@ async def me_command(client: Client, message: types.Message):
                 from ryas_templates.chattext import en as text_dict
             else:
                 from ryas_templates.chattext import es as text_dict
-            await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
+            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
 
         rango, creditos, antispam, expiration, lang, ban, razon = user_data
@@ -60,11 +61,11 @@ async def me_command(client: Client, message: types.Message):
         formatted_text = text_dict['metext'].format(
             username=username,
             user_id=user_id,
-            firts_name=message.from_user.first_name,  # Corrección: first_name
             rango=rango,
             creditos=creditos,
             antispam=antispam,
-            expiration=expiration or 'No expiration'
+            expiration=expiration or 'No plan contrated',
+            ban=ban
         )
         await message.reply_text(formatted_text, reply_to_message_id=message.id)
 
@@ -76,5 +77,4 @@ async def me_command(client: Client, message: types.Message):
         )
     finally:
         if connection:
-            cursor.close()
             connection.close()
