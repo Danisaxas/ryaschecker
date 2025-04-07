@@ -1,7 +1,8 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-from func_bin import get_bin_info, cc_gen
+from func_bin import get_bin_info
+from func_gen import cc_gen
 import sqlite3
 
 @ryas("gen")
