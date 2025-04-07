@@ -1,134 +1,67 @@
-from pyrogram import Client, types
-from configs.def_main import *
-from func_bin import get_bin_info
-from func_gen import cc_gen
-import sqlite3
+from configs.def_main import * # Import the main configuration
+from func_bin import get_bin_info  # Import the function to get BIN information
+from func_gen import cc_gen  # Import the function to generate credit card numbers
+from pyrogram import Client, filters, types  # Import necessary Pyrogram modules
 import random
 
-def luhn_verification(num):
+@ryas("gen") # Changed Decorator
+async def gen(client: Client, message: types.Message):
     """
-    Verifica si un número de tarjeta de crédito es válido según el algoritmo de Luhn.
-    """
-    num = [int(d) for d in str(num)]
-    check_digit = num.pop()
-    num.reverse()
-    total = 0
-    for i, digit in enumerate(num):
-        if i % 2 == 0:
-            digit = digit * 2
-        if digit > 9:
-            digit = digit - 9
-        total += digit
-    total = total * 9
-    return (total % 10) == check_digit
+    Generates fake credit card numbers based on the provided BIN.
 
-@ryas("gen")
-async def gen_command(client: Client, message: types.Message):
+    Usage: .gen <BIN> [MM] [YYYY] [CVV]
+    Examples:
+        .gen 426807
+        .gen 426807 12 2025
+        .gen 426807 12 2025 123
     """
-    Genera tarjetas de crédito falsas basadas en un BIN proporcionado.
-
-    Args:
-        client: El objeto Client de Pyrogram para interactuar con Telegram.
-        message: El objeto Message de Pyrogram que contiene el comando y el BIN.
-    """
-    connection = None
-    cursor = None
     try:
-        connection, cursor = connect_db()
-        user_id = message.from_user.id
+        input_args = message.text.split()[1:]  # Get arguments after the command
 
-        # Obtener información del usuario (rango, idioma) desde la base de datos
-        cursor.execute("""
-            SELECT rango, lang
-            FROM users
-            WHERE user_id = %s
-        """, (user_id,))
-        user_data = cursor.fetchone()
-        if user_data:
-            rango_usuario, lang_usuario = user_data
-        else:
-            rango_usuario = "Free"  # Valor por defecto si no se encuentra el usuario
-            lang_usuario = "es"  # Valor por defecto
-
-        # Cargar el texto en el idioma correspondiente
-        if lang_usuario == 'es':
-            from ryas_templates.chattext import es as text_dict
-        elif lang_usuario == 'en':
-            from ryas_templates.chattext import en as text_dict
-        else:
-            from ryas_templates.chattext import es as text_dict  # Por defecto español
-
-        # Extraer los argumentos del comando
-        parts = message.text.split()
-        if len(parts) < 2:
-            await message.reply_text("Por favor, proporciona un BIN válido después del comando .gen", reply_to_message_id=message.id)
+        if not input_args:
+            await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
             return
 
-        bin_arg = parts[1]
-        fecha_arg = "rnd"
-        cvv_arg = "rnd"
-
-        if len(parts) > 2:
-            fecha_arg = parts[2]
-        if len(parts) > 3:
-            cvv_arg = parts[3]
-
-        bin_number = bin_arg.replace("x", "")[:6]  # Obtener los primeros 6 dígitos del BIN
-
-        # Validar que el BIN tenga al menos 6 dígitos
-        if len(bin_number) < 6:
-            await message.reply_text("El BIN debe tener al menos 6 dígitos.", reply_to_message_id=message.id)
+        if len(input_args) < 1:
+            await message.reply_text("Debes proporcionar al menos el BIN.", quote=True)
             return
 
-        # Generar las tarjetas de crédito
-        generated_cards = [cc_gen(bin_arg, mes=fecha_arg, ano=fecha_arg, cvv=cvv_arg) for _ in range(10)]
-        generated_cards = [card for card in generated_cards if card is not None] #quita Nones
+        cc = input_args[0]
+        mes = 'x' if len(input_args) < 2 else input_args[1][0:2]
+        ano = 'x' if len(input_args) < 3 else input_args[2]
+        cvv = 'x' if len(input_args) < 4 else input_args[3]
 
-        if not generated_cards:
-            await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", reply_to_message_id=message.id)
+        if len(input_args[0]) < 6:
+            await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
-        # Obtener información del BIN para mostrar en el mensaje
-        bin_info = get_bin_info(bin_number)  # Obtiene la info del BIN del diccionario cargado desde el CSV
+        ccs = cc_gen(cc, mes, ano, cvv)  # Generate the credit card numbers
+        if not ccs:
+            await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
+            return
+
+        cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = ccs
+
+        bin_info = get_bin_info(cc[:6])  # Get BIN information
         if bin_info:
-            banco = bin_info['bank_name']
-            marca = bin_info['vendor']
-            tipo = bin_info['type']
-            pais = bin_info['country']
-            pais_codigo = bin_info['iso']
-            bandera = bin_info['flag']
+            bin_text = f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | {bin_info.get('type')} | {bin_info.get('level')} | {bin_info.get('country')} ({bin_info.get('flag')})"
         else:
-            banco = "Desconocido"
-            marca = "Desconocido"
-            tipo = "Desconocido"
-            pais = "Desconocido"
-            pais_codigo = "Desconocido"
-            bandera = ""
+            bin_text = "Información no disponible"
 
-        # Formatear el mensaje de respuesta
-        tarjetas_formateadas = "\n".join(f"-{card.strip()}-" for card in generated_cards)  # Unir las tarjetas generadas en un solo string
-
-        respuesta = text_dict['gen_response'].format(  # Usar el mensaje predefinido
-            bin_prefix=bin_number,
-            banco=banco,
-            marca=marca,
-            tipo=tipo,
-            pais=pais,
-            pais_codigo=pais_codigo,
-            tarjetas=tarjetas_formateadas,
-            username=message.from_user.username or message.from_user.first_name or "Usuario",
-            rango=rango_usuario,
-            bandera=bandera
-        )
-
-        await message.reply_text(respuesta, reply_to_message_id=message.id)
+        output_message = f"""
+[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
+-{cc[:6]}|{mes if mes != 'x' else 'xx'}|{ano if ano != 'x' else 'xx'}|{cvv if cvv != 'x' else 'rnd'}-
+━━━━━━━━━━━━━━
+{cc1}{cc2}{cc3}{cc4}{cc5}{cc6}{cc7}{cc8}{cc9}{cc10}
+━━━━━━━━━━━━━━
+[ϟ] Bin : {cc[:6]}  |  [ϟ] Info:
+{bin_text}
+━━━━━━━━━━━━━━
+bot by : @astrozdev🌤
+"""
+        await message.reply_text(output_message, quote=True)
 
     except Exception as e:
-        print(f"Error en gen_command: {e}")
-        await message.reply_text(
-            "Ocurrió un error al procesar el comando gen.",
-            reply_to_message_id=message.id
-        )
-    finally:
-        if connection:
-            connection.close()
+        await message.reply_text(f"Ocurrió un error: {e}", quote=True)
+        return
