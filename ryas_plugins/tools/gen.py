@@ -1,7 +1,7 @@
 from pyrogram import Client, types
 import requests
-from configs.def_main import * # Asegúrate de que esto funcione con Pyrogram
-from func_gen import cc_gen  # Importa la función cc_gen desde func_gen.py
+from configs.def_main import *
+from func_gen import cc_gen
 import sqlite3
 
 @ryas("gen")
@@ -114,7 +114,6 @@ async def gen_command(client: Client, message: types.Message):
         print(f"Error en gen_command: {e}")
         await message.reply_text(
             "Ocurrió un error al procesar el comando gen.",
-            reply_to_message_id=message.id,
             reply_to_message_id=message.id
         )
     finally:
