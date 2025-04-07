@@ -62,6 +62,7 @@ async def bin_command(client: Client, message: types.Message):
             bank=bin_info.get('banco', "Desconocido"),  
             level=bin_info.get('type', "Desconocido"),
             vendor=bin_info.get('marca', "Desconocido"),
+            type=bin_info.get('tipo', "Desconocido"),
             country=bin_info.get('pais_nombre', "Desconocido"),  
             flag=bin_info.get('pais_codigo', 'XX'),
             username=username,
