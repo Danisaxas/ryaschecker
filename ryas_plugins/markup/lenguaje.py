@@ -32,8 +32,8 @@ async def handle_lenguaje_button(client: Client, callback_query: types.CallbackQ
             idioma_actual = "🇪🇸"
 
         await callback_query.message.edit_text(
-            text=text_dict['lang_message'].format(username=username, idioma_actual=idioma_actual),
-            reply_markup=botones_dict['lang']  
+            text=text_dict['lang_message'].format(username=username, idioma_actual=idioma_actual),  # Usar idioma_actual
+            reply_markup=botones_dict['lang']  # Usa el teclado del idioma correspondiente
         )
     except Exception as e:
         print(f"Error en handle_lenguaje_button: {e}")
