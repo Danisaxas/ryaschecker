@@ -150,7 +150,7 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': '''
-Bienvenido @{username} - Cloud DB | LANG [{idioma}] 
+Bienvenido @{username} - Cloud DB | LANG [{idioma_actual}] 
 
 Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccione un nuevo idioma en los botones a continuación:''',
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
@@ -318,7 +318,7 @@ Admin: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
     'lang_message': '''
-Welcome @{username} - Cloud DB | LANG [{idioma}] 
+Welcome @{username} - Cloud DB | LANG [{idioma_actual}] 
 
 EThese are the data about your language saved in the DB, do you want to change? Select a new language from the buttons below::''',
     'bin_not_found': "No information found for BIN {bin_number}.",
