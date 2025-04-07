@@ -46,9 +46,9 @@ en = {
     'lang': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
                 InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
+                InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
+                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
             ]
         ]
     )
@@ -100,9 +100,9 @@ es = {
     'lang': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
                 InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
+                InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
+                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
             ]
         ]
     )

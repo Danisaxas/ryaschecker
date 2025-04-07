@@ -108,7 +108,7 @@ Disfruta mi uso.
 
 [🇪🇸] Bienvenido a la nueva suscripción de Ryas Cloud, sus datos compartidos en la nube con Ryas se almacenarán aquí, navegue a través de los botones para descubrir qué es lo nuevo que tenemos para usted:      
 
-Ryas Cloud Version:  0.0.1  | Ryas Cloud Plan:  Premium Cloud</b>''',
+<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code></b>''',
     'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos. 
 
 ↯ » Precios: /pricings
@@ -272,7 +272,7 @@ Enjoy my use.
 
 [🇺🇸] Welcome to the new Ryas Cloud subscription, your details shared in the cloud with Ryas will be stored here, navigate through the buttons to discover what's new we have for you:      
 
-Ryas Cloud Version:  0.0.1  | Ryas Cloud Plan:  Premium Cloud
+<code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code>
 </b>''',
     'registerx': '''<b>あ » Interact with the bot without any problems, if you want more information, use the following commands.
 
