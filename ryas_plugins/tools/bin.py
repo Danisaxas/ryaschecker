@@ -45,7 +45,8 @@ async def bin_command(client: Client, message: types.Message):
                 from ryas_templates.chattext import en as text_dict
             else:
                 from ryas_templates.chattext import es as text_dict
-            await message.reply_text(text_dict['bin_usage'])
+            await message.reply_text(text_dict['bin_usage']),
+            reply_to_message_id=reply_msg_id
             return
         bin_number = parts[1][:6]
     except IndexError:
@@ -62,7 +63,8 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(text_dict['bin_usage'])
+        await message.reply_text(text_dict['bin_usage']),
+        reply_to_message_id=reply_msg_id
         return
     except ValueError:
         lang = "es"
@@ -78,7 +80,8 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(text_dict['bin_error'])
+        await message.reply_text(text_dict['bin_error']),
+        reply_to_message_id=reply_msg_id
         return
 
     # Busca el BIN en el diccionario.
@@ -125,4 +128,5 @@ async def bin_command(client: Client, message: types.Message):
         )
         await message.reply_text(respuesta)
     else:
-        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number))
+        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number)),
+        reply_to_message_id=reply_msg_id
