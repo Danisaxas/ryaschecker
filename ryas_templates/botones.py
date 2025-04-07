@@ -36,7 +36,8 @@ en = {
     
     'backvR': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Return", callback_data="homevR")
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+            InlineKeyboardButton("Back", callback_data="home")
         ]
     ]),
 
@@ -111,7 +112,8 @@ es = {
     
     'backvR': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Volver", callback_data="homevR")
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+            InlineKeyboardButton("Atras", callback_data="home")
         ]
     ]),
 
