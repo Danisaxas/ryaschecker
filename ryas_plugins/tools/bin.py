@@ -51,7 +51,7 @@ async def bin_command(client: Client, message: types.Message):
         # Formatea la respuesta.
         if lang_usuario == "es":
             respuesta = (
-                f" 🇺🇸 - Data For {bin_number} Found - \n"
+                f" {bin_info['flag']} - Data For {bin_number} Found - \n"
                 "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                 f"#Bin{bin_number}\n"
                 f"• Bank: {bin_info['bank_name']}\n"
@@ -62,7 +62,7 @@ async def bin_command(client: Client, message: types.Message):
             )
         else:
             respuesta = (
-                f" 🇺🇸 - Data For {bin_number} Found - \n"
+                f" {bin_info['flag']} - Data For {bin_number} Found - \n"
                 "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                 f"#Bin{bin_number}\n"
                 f"• Bank: {bin_info['bank_name']}\n"
