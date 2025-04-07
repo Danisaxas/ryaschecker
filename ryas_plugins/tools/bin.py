@@ -3,8 +3,8 @@ import requests
 from configs.def_main import *
 from func_bin import *
 from pyrogram import filters
+import sqlite3
 
-@ryas("bin")
 async def bin_command(client: Client, message: types.Message):
     """
     Busca información sobre un BIN y devuelve una respuesta formateada.
@@ -13,12 +13,18 @@ async def bin_command(client: Client, message: types.Message):
         client: El objeto Client de Pyrogram para interactuar con Telegram.
         message: El objeto Message de Pyrogram que contiene el mensaje del usuario.
     """
+    connection = None
+    cursor = None
     try:
+        connection, cursor = connect_db() # Establecer la conexión a la base de datos
+        user_id = message.from_user.id
+        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,)) # Obtener lang y ban
+        result = cursor.fetchone()
+        lang = result[0] if result else 'es'  # Default to 'es' if not found
         # Extrae el número de BIN del mensaje.
         parts = message.text.split()
         if len(parts) < 2:
             # Cargar el texto en el idioma correspondiente
-            lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
             if lang == 'es':
                 from ryas_templates.chattext import es as text_dict
             elif lang == 'en':
@@ -29,7 +35,12 @@ async def bin_command(client: Client, message: types.Message):
             return
         bin_number = parts[1][:6]
     except IndexError:
-        lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+        lang = "es"  # Idioma por defecto
+        if connection and cursor: # Obtener el idioma del usuario de la base de datos
+            cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,)) # Obtener lang y ban
+            result = cursor.fetchone()
+            lang = result[0] if result else 'es'  # Default to 'es' if not found
+            
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         elif lang == 'en':
@@ -39,7 +50,11 @@ async def bin_command(client: Client, message: types.Message):
         await message.reply_text(text_dict['bin_usage'])
         return
     except ValueError:
-        lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+        lang = "es"  # Idioma por defecto
+        if connection and cursor: # Obtener el idioma del usuario de la base de datos
+            cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,)) # Obtener lang y ban
+            result = cursor.fetchone()
+            lang = result[0] if result else 'es'  # Default to 'es' if not found
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         elif lang == 'en':
@@ -51,7 +66,12 @@ async def bin_command(client: Client, message: types.Message):
 
     # Busca el BIN en el diccionario.
     bin_info = get_bin_info(bin_number)
-    lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+
+    if connection and cursor: # Obtener el idioma del usuario de la base de datos
+        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,)) # Obtener lang y ban
+        result = cursor.fetchone()
+        lang = result[0] if result else 'es'  # Default to 'es' if not found
+    
     if lang == 'es':
         from ryas_templates.chattext import es as text_dict
     elif lang == 'en':
@@ -62,7 +82,6 @@ async def bin_command(client: Client, message: types.Message):
     if bin_info:
         # Si se encuentra el BIN, formatea la respuesta.
         user_id = message.from_user.id
-        connection, cursor = connect_db()
         if connection and cursor:
             cursor.execute("""
                 SELECT rango, lang
@@ -92,3 +111,4 @@ async def bin_command(client: Client, message: types.Message):
         await message.reply_text(respuesta)
     else:
         await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number))
+
