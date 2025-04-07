@@ -1,7 +1,7 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-from func_gen import cc_gen  # Importa la función cc_gen desde func_gen.py
+from func_bin import get_bin_info, cc_gen
 import sqlite3
 
 @ryas("gen")
@@ -70,32 +70,25 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         # Obtener información del BIN para mostrar en el mensaje
-        try:
-            # Reemplazar la URL con la URL de la API que proporcionaste
-            response = requests.get(f"https://bins.antipublic.cc/bins/{bin_number}")
-            if response.status_code == 200:
-                bin_data = response.json()
-                banco = bin_data.get('bank', 'Desconocido')
-                marca = bin_data.get('scheme', 'Desconocido')
-                tipo = bin_data.get('type', 'Desconocido')
-                pais = bin_data.get('country', {}).get('name', 'Desconocido')
-                pais_codigo = bin_data.get('country', {}).get('alpha2', 'Desconocido')
-            else:
-                banco = "Desconocido"
-                marca = "Desconocido"
-                tipo = "Desconocido"
-                pais = "Desconocido"
-                pais_codigo = "Desconocido"
-        except Exception as e:
-            print(f"Error al obtener información del BIN: {e}")
+        bin_info = get_bin_info(bin_number) # Obtiene la info del BIN del diccionario cargado desde el CSV
+        if bin_info:
+            banco = bin_info['bank_name']
+            marca = bin_info['vendor']
+            tipo = bin_info['type']
+            pais = bin_info['country']
+            pais_codigo = bin_info['iso']
+            bandera = bin_info['flag']
+        else:
             banco = "Desconocido"
             marca = "Desconocido"
             tipo = "Desconocido"
             pais = "Desconocido"
             pais_codigo = "Desconocido"
+            bandera = ""
 
         # Formatear el mensaje de respuesta
         tarjetas_formateadas = "\n".join(f"-{card.strip()}-" for card in generated_cards)  # Unir las tarjetas generadas en un solo string
+
         respuesta = text_dict['gen_response'].format(  # Usar el mensaje predefinido
             bin_prefix=bin_number,
             banco=banco,
@@ -105,7 +98,8 @@ async def gen_command(client: Client, message: types.Message):
             pais_codigo=pais_codigo,
             tarjetas=tarjetas_formateadas,
             username=message.from_user.username or message.from_user.first_name or "Usuario",
-            rango=rango_usuario
+            rango=rango_usuario,
+            bandera=bandera
         )
 
         await message.reply_text(respuesta, reply_to_message_id=message.id)
