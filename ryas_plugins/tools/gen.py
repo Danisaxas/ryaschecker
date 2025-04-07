@@ -1,9 +1,69 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-from func_bin import get_bin_info
-from func_gen import cc_gen
+from func_bin import get_bin_info # Importa la función get_bin_info desde func_bin.py
 import sqlite3
+import random
+
+def luhn_verification(num):
+    """
+    Verifica si un número de tarjeta de crédito es válido según el algoritmo de Luhn.
+    """
+    num = [int(d) for d in str(num)]
+    check_digit = num.pop()
+    num.reverse()
+    total = 0
+    for i, digit in enumerate(num):
+        if i % 2 == 0:
+            digit = digit * 2
+        if digit > 9:
+            digit = digit - 9
+        total += digit
+    total = total * 9
+    return (total % 10) == check_digit
+
+def cc_gen(bin_prefix, mes='rnd', ano='rnd', cvv='rnd'):
+    """
+    Genera una tarjeta de crédito válida usando el algoritmo de Luhn.
+
+    Args:
+        bin_prefix (str): Los primeros dígitos del BIN (6 o 12).
+        mes (str, opcional): El mes de expiración (MM) o 'rnd' para aleatorio.
+        ano (str, opcional): El año de expiración (AAAA) o 'rnd' para aleatorio.
+        cvv (str, opcional): El CVV (3 o 4 dígitos) o 'rnd' para aleatorio.
+
+    Returns:
+        str: La tarjeta de crédito generada con el formato CC|MM|AAAA|CVV, o None si falla.
+    """
+    card_length = 16 if bin_prefix[0] != '3' else 15
+    remaining_digits = card_length - len(bin_prefix)
+    
+    for _ in range(100): # Intentar generar una tarjeta válida hasta 100 veces
+        card_number = bin_prefix + "".join(random.choice("0123456789") for _ in range(remaining_digits))
+        if luhn_verification(card_number):
+            break
+    else:
+        return None  # No se pudo generar una tarjeta válida
+
+    if mes == 'rnd':
+        mes_gen = random.randint(1, 12)
+        mes_gen_str = f"{mes_gen:02d}"  # Asegura que el mes tenga dos dígitos
+    else:
+        mes_gen_str = mes
+    
+    if ano == 'rnd':
+        ano_gen = random.randint(2023, 2031)
+    else:
+        ano_gen = int(ano)
+    ano_gen_str = str(ano_gen)
+
+    if cvv == 'rnd':
+        cvv_len = 4 if card_number[0] == '3' else 3
+        cvv_gen_str = "".join(random.choice("0123456789") for _ in range(cvv_len))
+    else:
+        cvv_gen_str = cvv
+    
+    return f"{card_number}|{mes_gen_str}|{ano_gen_str}|{cvv_gen_str}"
 
 @ryas("gen")
 async def gen_command(client: Client, message: types.Message):
@@ -48,8 +108,8 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         bin_arg = parts[1]
-        fecha_arg = ""
-        cvv_arg = ""
+        fecha_arg = "rnd"
+        cvv_arg = "rnd"
 
         if len(parts) > 2:
             fecha_arg = parts[2]
@@ -64,8 +124,9 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         # Generar las tarjetas de crédito
-        generated_cards = cc_gen(bin_arg, mes=fecha_arg, ano=fecha_arg, cvv=cvv_arg)
-        
+        generated_cards = [cc_gen(bin_arg, mes=fecha_arg, ano=fecha_arg, cvv=cvv_arg) for _ in range(10)]
+        generated_cards = [card for card in generated_cards if card is not None] #quita Nones
+
         if not generated_cards:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", reply_to_message_id=message.id)
             return
