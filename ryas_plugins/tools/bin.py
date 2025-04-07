@@ -54,25 +54,19 @@ async def bin_command(client: Client, message: types.Message):
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
-        else:
+        elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
-        
-        # Verificar si la información del BIN se obtuvo correctamente
-        if bin_info:
-            respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
-                bin_prefix=bin_prefix,
-                banco=bin_info.get('banco'),  # Usa .get() para evitar errores si la clave no existe
-                marca=bin_info.get('marca'),
-                tipo=bin_info.get('tipo'),
-                pais_nombre=bin_info.get('pais_nombre'),  # Usa pais_nombre
-                pais_codigo=bin_info['pais_codigo'],
-                username=username,
-                rango=rango,
-                pais_emoji=bin_info.get('pais_codigo', '')
-            )
-        else:
-            respuesta = f"No se pudo obtener información del BIN {bin_prefix}."
 
+        respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
+            bin=bin_prefix,
+            bank=bin_info.get('banco', "Desconocido"),  
+            level=bin_info.get('type', "Desconocido"),
+            vendor=bin_info.get('marca', "Desconocido"),
+            country=bin_info.get('pais_nombre', "Desconocido"),  
+            flag=bin_info.get('pais_codigo', 'XX'),
+            username=username,
+            rango=rango
+        )
         await message.reply_text(respuesta, reply_to_message_id=message.id)
 
     except Exception as e:

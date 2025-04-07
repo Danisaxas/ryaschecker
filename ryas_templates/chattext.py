@@ -151,12 +151,12 @@ Administrador: @{admin_username} [{admin_id}]''',
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
     'bin_usage': "Por favor, ingrese uno o más BINs para la verificación.",
-    'bin_message': '''{pais_emoji} - Datos para {bin_prefix} encontrados -
+    'bin_message': '''{flag} - Datos para {bin} encontrados -
 - - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin_prefix}
-• Banco: {banco}
-- Info:  {marca} -   -  {tipo}
-- País: {pais_nombre} ({pais_codigo})
+#Bin{bin}
+• Banco: {bank}
+- Info:  {level} - {vendor}  -  {type}
+- País: {country} ({flag})
 - - - - - - - - - - - - - - - - - - - - - - - - -
 Req By: @{username} [{rango}]'''
 }
@@ -313,12 +313,12 @@ Admin: @{admin_username} [{admin_id}]''',
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
     'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
     'bin_usage': "Please place one or more BINs for verification.",
-    'bin_message': '''{pais_emoji} - Data For {bin_prefix} Found -
+    'bin_message': '''{flag} - Data For {bin} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin_prefix}
-• Bank: {banco}
-- Info:  {marca} -   -  {tipo}
-- Country: {pais_nombre} ({pais_codigo})
+#Bin{bin}
+• Bank: {bank}
+- Info:  {level} - {vendor}  -  {type}
+- Country: {country} ({flag})
 - - - - - - - - - - - - - - - - - - - - - - - - -
 Req By: @{username} [{rango}]'''
 }
