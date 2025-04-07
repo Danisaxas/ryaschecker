@@ -150,14 +150,14 @@ Administrador: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
-    'bin_message': "{bandera} - Datos para {bin_number} encontró - \n"
+    'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "#Bin{bin_number}\n"
-                   "• Banco: {bank_name}\n"
-                   "• Informacion: {vendor} - {type} - {level}\n"
-                   "• Pais: {pais} ({bandera})\n"
+                   "<b>#Bin<code>{bin_number}</b></code>\n"
+                   "<b>• Banco: <code>{bank_name}</b></code>\n"
+                   "<b>• Informacion: <code>{vendor} - {type} - {level}</b></code>\n"
+                   "<b>• Pais: <code>{pais} ({bandera})</b></code>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "Req By: @{username} [{rango}]",
+                   "<b>Req By: @{username} [{rango}]</b>",
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
@@ -314,14 +314,14 @@ Admin: @{admin_username} [{admin_id}]''',
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
     'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
-    'bin_message': "{bandera} - Data For {bin_number} Found - \n"
+    'bin_message': "<b>({bandera}) - Data For <code>{bin_number}</code> Found -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "#Bin{bin_number}\n"
-                   "• Bank: {bank_name}\n"
-                   "• Info: {vendor} - {type} - {level}\n"
-                   "• Country: {pais} ({bandera})\n"
+                   "<b>#Bin<code>{bin_number}</code></b>\n"
+                   "<b>• Bank: <code>{bank_name}</code></b>\n"
+                   "<b>• Info: <code>{vendor} - {type} - {level}</code></b>\n"
+                   "<b>• Country: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "Req By: @{username} [{rango}]",
+                   "<b>Req By: @{username} [{rango}]</b>",
     'bin_not_found': "No information found for BIN {bin_number}.",
     'bin_usage': "Please provide a valid BIN number after the .bin command",
     'bin_error': "Invalid BIN number. It must contain only digits.",
