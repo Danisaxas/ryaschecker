@@ -19,7 +19,6 @@ async def bin_command(client: Client, message: types.Message):
         lang = result[0] if result else 'es'
         ban_status = result[1] if result else 'No' #obtener el estado de baneo
         razon = result[2] if result else ""
-        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
@@ -31,11 +30,8 @@ async def bin_command(client: Client, message: types.Message):
         if ban_status == 'Yes': #verificar si el usuario esta baneado
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
-                reply_to_message_id=reply_msg_id
+                reply_to_message_id=message.message_id
             )
-            return
-                
-            
             return
         parts = message.text.split()
         if len(parts) < 2:
@@ -45,10 +41,7 @@ async def bin_command(client: Client, message: types.Message):
                 from ryas_templates.chattext import en as text_dict
             else:
                 from ryas_templates.chattext import es as text_dict
-            await message.reply_text(
-                text_dict['bin_usage'],
-                reply_to_message_id=reply_msg_id
-            )
+            await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.message_id)
             return
         bin_number = parts[1][:6]
     except IndexError:
@@ -65,10 +58,7 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(
-            text_dict['bin_usage'],
-            reply_to_message_id=reply_msg_id
-        )
+        await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.message_id)
         return
     except ValueError:
         lang = "es"
@@ -84,10 +74,7 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(
-            text_dict['bin_error'],
-            reply_to_message_id=reply_msg_id
-        )
+        await message.reply_text(text_dict['bin_error'], reply_to_message_id=message.message_id)
         return
 
     # Busca el BIN en el diccionario.
@@ -122,7 +109,6 @@ async def bin_command(client: Client, message: types.Message):
         lang_usuario = user_data[1] if user_data else "es"
 
         respuesta = text_dict['bin_message'].format(
-            reply_to_message_id=reply_msg_id,
             bandera=bin_info['flag'],
             bin_number=bin_number,
             bank_name=bin_info['bank_name'],
@@ -130,12 +116,10 @@ async def bin_command(client: Client, message: types.Message):
             type=bin_info['type'],
             level=bin_info['level'],
             pais=bin_info['country'],
+            pais_codigo=bin_info['iso'],  # Asegúrate de que 'iso' sea el código del país
             username=message.from_user.username or message.from_user.first_name or 'Unknown',
             rango=rango_usuario
         )
-        await message.reply_text(respuesta)
+        await message.reply_text(respuesta, reply_to_message_id=message.message_id)
     else:
-        await message.reply_text(
-            text_dict['bin_not_found'].format(bin_number=bin_number),
-            reply_to_message_id=reply_msg_id
-        )
+        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number), reply_to_message_id=message.message_id)
