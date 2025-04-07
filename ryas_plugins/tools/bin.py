@@ -1,8 +1,8 @@
-from pyrogram import Client, types  # Importa Client y types de Pyrogram
-import requests  # Importa el módulo requests, aunque no se use directamente aquí
+from pyrogram import Client, types
+import requests
 from configs.def_main import *
 from func_bin import *
-from pyrogram import filters # Importa los filtros
+from pyrogram import filters
 
 @ryas("bin")
 async def bin_command(client: Client, message: types.Message):
@@ -17,18 +17,47 @@ async def bin_command(client: Client, message: types.Message):
         # Extrae el número de BIN del mensaje.
         parts = message.text.split()
         if len(parts) < 2:
-            await message.reply_text("Por favor, proporciona un número de BIN válido después del comando .bin")
+            # Cargar el texto en el idioma correspondiente
+            lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+            if lang == 'es':
+                from ryas_templates.chattext import es as text_dict
+            elif lang == 'en':
+                from ryas_templates.chattext import en as text_dict
+            else:
+                from ryas_templates.chattext import es as text_dict  # Por defecto español
+            await message.reply_text(text_dict['bin_usage'])
             return
         bin_number = parts[1][:6]
     except IndexError:
-        await message.reply_text("Por favor, proporciona un número de BIN después del comando .bin")
+        lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
+        await message.reply_text(text_dict['bin_usage'])
         return
     except ValueError:
-        await message.reply_text("Número de BIN inválido. Debe contener solo dígitos.")
+        lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict  # Por defecto español
+        await message.reply_text(text_dict['bin_error'])
         return
 
     # Busca el BIN en el diccionario.
     bin_info = get_bin_info(bin_number)
+    lang = "es"  # Reemplazar con la lógica para obtener el idioma del usuario
+    if lang == 'es':
+        from ryas_templates.chattext import es as text_dict
+    elif lang == 'en':
+        from ryas_templates.chattext import en as text_dict
+    else:
+        from ryas_templates.chattext import es as text_dict  # Por defecto español
 
     if bin_info:
         # Si se encuentra el BIN, formatea la respuesta.
@@ -48,32 +77,18 @@ async def bin_command(client: Client, message: types.Message):
         rango_usuario = user_data[0] if user_data else "Free"
         lang_usuario = user_data[1] if user_data else "es"
 
-        # Formatea la respuesta.
-        if lang_usuario == "es":
-            respuesta = (
-                f" {bin_info['flag']} - Data For {bin_number} Found - \n"
-                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                f"#Bin{bin_number}\n"
-                f"• Bank: {bin_info['bank_name']}\n"
-                f"- Info: {bin_info['vendor']} - {bin_info['type']} - {bin_info['level']}\n"
-                f"- Country: {bin_info['country']} ({bin_info['flag']})\n"
-                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                f"Req By: {message.from_user.username or message.from_user.first_name or 'Unknown'}[{rango_usuario}]"
-            )
-        else:
-            respuesta = (
-                f" {bin_info['flag']} - Data For {bin_number} Found - \n"
-                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                f"#Bin{bin_number}\n"
-                f"• Bank: {bin_info['bank_name']}\n"
-                f"- Info: {bin_info['vendor']} - {bin_info['type']} - {bin_info['level']}\n"
-                f"- Country: {bin_info['country']} ({bin_info['flag']})\n"
-                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                f"Req By: {message.from_user.username or message.from_user.first_name or 'Unknown'}[{rango_usuario}]"
-            )
+        respuesta = text_dict['bin_message'].format(
+            bandera=bin_info['flag'],
+            bin_number=bin_number,
+            bank_name=bin_info['bank_name'],
+            vendor=bin_info['vendor'],
+            type=bin_info['type'],
+            level=bin_info['level'],
+            pais=bin_info['country'],
+            pais_codigo=bin_info['iso'],  # Asegúrate de que 'iso' sea el código del país
+            username=message.from_user.username or message.from_user.first_name or 'Unknown',
+            rango=rango_usuario
+        )
         await message.reply_text(respuesta)
     else:
-        if lang_usuario == "es":
-            await message.reply_text(f"No se encontró información para el BIN {bin_number}.")
-        else:
-            await message.reply_text(f"No information found for BIN {bin_number}.")
+        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number))

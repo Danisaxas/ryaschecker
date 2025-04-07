@@ -49,7 +49,7 @@ Formato: $sk sk_live
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Buscador de BINs:
-Formato: $bin 601120 
+Formato: $bin 601120  
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Generador de Direcciones:
@@ -109,7 +109,7 @@ Actualmente RyasChk se encuentra en estado ONN✅ Dando lo mejor del bot se encu
 ━━━━━━━━━━━━━━━
 Última Actualización:
 04/04/25 > 05:30 (🇻🇪)</b>''',
-    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos. 
+    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos.  
 
 ↯ » Precios: /pricings
 ↯ » Más información: /data</b>''',
@@ -132,7 +132,7 @@ País: {pais} ({pais_codigo})
 
 Req By: @{username} [{rango}]
 ''',
-    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
@@ -140,24 +140,27 @@ Razón: {ban_reason}
 Administrador: @{admin_username} [{admin_id}]''',
     'ban_usage': "Uso correcto: /ban <ID> <razón>",
     'ban_validation': "El ID de usuario debe ser un número entero.",
-    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Desbaneado</b>
 Usuario: @{username} [{target_user_id}]
-Fecha:  {fecha}
+Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': "Idiomas disponibles en Ryas Chk \nTu idioma actual es: {idioma_actual}",
-    'bin_message': '''{flag} - Datos para {bin} encontrados -
-- - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin}
-• Banco: {bank}
-- Info:  {level} - {vendor}  -  {type}
-- País: {country} ({flag})
-- - - - - - - - - - - - - - - - - - - - - - - - -
-Req By: @{username} [{rango}]'''
+    'bin_message': "{bandera} - Data For {bin_number} Found - \n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "#Bin{bin_number}\n"
+                   "• Bank: {bank_name}\n"
+                   "• Info: {vendor} - {type} - {level}\n"
+                   "• Country: {pais} ({pais_codigo})\n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "Req By: @{username} [{rango}]",
+    'bin_not_found': "No se encontró información para el BIN {bin_number}.",
+    'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
+    'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
 }
 
 # Inglés
@@ -293,7 +296,7 @@ Country: {pais} ({pais_codigo})
 
 Req By: @{username} [{rango}]
 ''',
-    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
@@ -301,23 +304,25 @@ Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
-    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
-Date:  {fecha}
+Date:  {fecha}
 Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
     'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
     'lang_message': "Available languages in Ryas Chk \nYour current language is: {idioma_actual}",
-    'bin_usage': "Please place one or more BINs for verification.",
-    'bin_message': '''{flag} - Data For {bin} Found -
-- - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin}
-• Bank: {bank}
-- Info:  {level} - {vendor}  -  {type}
-- Country: {country} ({flag})
-- - - - - - - - - - - - - - - - - - - - - - - - -
-Req By: @{username} [{rango}]'''
+    'bin_message': "{bandera} - Data For {bin_number} Found - \n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "#Bin{bin_number}\n"
+                   "• Bank: {bank_name}\n"
+                   "• Info: {vendor} - {type} - {level}\n"
+                   "• Country: {pais} ({pais_codigo})\n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "Req By: @{username} [{rango}]",
+    'bin_not_found': "No information found for BIN {bin_number}.",
+    'bin_usage': "Please provide a valid BIN number after the .bin command",
+    'bin_error': "Invalid BIN number. It must contain only digits.",
 }
