@@ -27,6 +27,13 @@ en = {
         ]
     ]),
     
+    'back_lang': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+            InlineKeyboardButton("Languages", callback_data="lenguaje"),
+        ]
+          ]),
+    
     'backvR': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Return", callback_data="homevR")
@@ -80,6 +87,13 @@ es = {
             InlineKeyboardButton("Atrás", callback_data="home")
         ]
     ]),
+    
+    'back_lang': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+            InlineKeyboardButton("Idiomas", callback_data="lenguaje"),
+        ]
+          ]),
     
     'backvR': InlineKeyboardMarkup([
         [

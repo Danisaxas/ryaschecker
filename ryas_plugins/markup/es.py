@@ -23,8 +23,11 @@ async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
 
         # Responde al usuario con un mensaje de confirmación y el teclado 'back'
         await callback_query.message.edit_text(
-            "Se ha puesto el idioma Español 🇪🇸",
-            reply_markup=botones_dict['back']  # Usa el teclado del idioma correspondiente
+            """
+Cloud DB | LANG [🇪🇸] 
+
+Exito! Ahora su idioma seleccionado es [Español]!""",
+            reply_markup=botones_dict['back_lang']  # Usa el teclado del idioma correspondiente
         )
 
     except Exception as e:
