@@ -28,10 +28,11 @@ async def start(client: Client, message: types.Message):
                 user_lang = 'en'
             else:
                 user_lang = 'es'
-            from ryas_templates.chattext import en as text_dict
             if user_lang == 'en':
+                from ryas_templates.chattext import en as text_dict
                 from ryas_templates.botones import en as botones_dict
             else:
+                from ryas_templates.chattext import es as text_dict
                 from ryas_templates.botones import es as botones_dict
             await message.reply_text(en['register_not'] if user_lang == 'en' else es['register_not'], reply_to_message_id=message.id)
             return
