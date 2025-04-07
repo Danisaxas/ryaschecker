@@ -9,7 +9,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
     connection = None
     try:
         user_id = callback_query.from_user.id
-        name = callback_query.from_user.first_name or "Usuario"
+        username = callback_query.from_user.username or "Usuario" # Cambiado a username
 
         # Obtener el idioma del usuario desde la base de datos
         connection, cursor = connect_db()
@@ -29,7 +29,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             from ryas_templates.botones import es as botones_dict
 
         await callback_query.message.edit_text(
-            text=text_dict['ryas_cloud'].format(username=name),
+            text=text_dict['ryas_cloud'].format(username=username), # Usar username
             reply_markup=botones_dict['vryasx']  # Usa el teclado del idioma correspondiente
         )
 
