@@ -4,41 +4,41 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 en = {
     'mainstart': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Gateways [🏦]", callback_data="gateways"),
-            InlineKeyboardButton("Tools [⚙️]", callback_data="tools"),
-            InlineKeyboardButton("Description [ℹ️]", callback_data="description")
+            InlineKeyboardButton("Gateways", callback_data="gateways"),
+            InlineKeyboardButton("Tools", callback_data="tools"),
+            InlineKeyboardButton("Description", callback_data="description")
         ],
         [
-            InlineKeyboardButton("vRyas [⚔️]", callback_data="vryas"),
-            InlineKeyboardButton("Close [❌]", callback_data="close")
+            InlineKeyboardButton("xCloud [☁️]", callback_data="ryas_cloud"),
+            InlineKeyboardButton("Close", callback_data="close")
         ]
     ]),
 
     'atras': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Home [🏡]", callback_data="home"),
-            InlineKeyboardButton("Next [↪]", callback_data="next")
+            InlineKeyboardButton("Home", callback_data="home"),
+            InlineKeyboardButton("Next", callback_data="next")
         ]
     ]),
 
     'back': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("back [↩]", callback_data="home")
+            InlineKeyboardButton("back", callback_data="home")
         ]
     ]),
     
     'backvR': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Return [↺]", callback_data="homevR")
+            InlineKeyboardButton("Return", callback_data="homevR")
         ]
     ]),
 
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Information [❗️]", callback_data="informacion"),
-                InlineKeyboardButton("Languages [🌐]", callback_data="lenguaje"),
-                InlineKeyboardButton("Home [🏡]", callback_data="home")
+                InlineKeyboardButton("Information", callback_data="informacion"),
+                InlineKeyboardButton("Languages", callback_data="lenguaje"),
+                InlineKeyboardButton("Back", callback_data="home")
             ]
         ]
     ),
@@ -46,9 +46,9 @@ en = {
     'lang': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Return ↺", callback_data="homevR"),
+                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
                 InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-                InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es")
+                InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
             ]
         ]
     )
@@ -58,41 +58,41 @@ en = {
 es = {
     'mainstart': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Gateways [🏦]", callback_data="gateways"),
-            InlineKeyboardButton("Herramientas [⚙️]", callback_data="tools"),
-            InlineKeyboardButton("Descripción [ℹ️]", callback_data="description")
+            InlineKeyboardButton("Gateways", callback_data="gateways"),
+            InlineKeyboardButton("Herramientas", callback_data="tools"),
+            InlineKeyboardButton("Descripción", callback_data="description")
         ],
         [
-            InlineKeyboardButton("vRyas [⚔️]", callback_data="vryas"),
-            InlineKeyboardButton("Cerrar [❌]", callback_data="close")
+            InlineKeyboardButton("xCloud [☁️]", callback_data="ryas_cloud"),
+            InlineKeyboardButton("Cerrar", callback_data="close")
         ]
     ]),
 
     'atras': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Inicio [🏡]", callback_data="home"),
-            InlineKeyboardButton("Siguiente [↪︎]", callback_data="next")
+            InlineKeyboardButton("Inicio", callback_data="home"),
+            InlineKeyboardButton("Siguiente", callback_data="next")
         ]
     ]),
 
     'back': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Atrás [↩]", callback_data="home")
+            InlineKeyboardButton("Atrás", callback_data="home")
         ]
     ]),
     
     'backvR': InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Volver ↺", callback_data="homevR")
+            InlineKeyboardButton("Volver", callback_data="homevR")
         ]
     ]),
 
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Información [❗️]", callback_data="informacion"),
-                InlineKeyboardButton("Lenguajes [🌐]", callback_data="lenguaje"),
-                InlineKeyboardButton("Inicio [🏡]", callback_data="home")
+                InlineKeyboardButton("Información", callback_data="informacion"),
+                InlineKeyboardButton("Idioma", callback_data="lenguaje"),
+                InlineKeyboardButton("Atras", callback_data="home")
             ]
         ]
     ),
@@ -100,8 +100,8 @@ es = {
     'lang': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Volver ↺", callback_data="homevR"),
-                InlineKeyboardButton("Inglés [🇺🇸]", callback_data="en"),
+                InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+                InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
                 InlineKeyboardButton("Español [🇪🇸]", callback_data="es")
             ]
         ]

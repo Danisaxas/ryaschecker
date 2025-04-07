@@ -1,16 +1,15 @@
-# markup/vryas.py
 from configs.def_main import *
 from pyrogram import Client, types
 
-@ryasbt("^vryas$")
-async def handle_vryas_button(client: Client, callback_query: types.CallbackQuery):
+@ryasbt("^ryas_cloud$")
+async def handle_ryas_cloud_button(client: Client, callback_query: types.CallbackQuery):
     """
-    Muestra la información de vryas en el idioma del usuario.
+    Muestra la información de Ryas Cloud en el idioma del usuario.
     """
     connection = None
     try:
-        name = callback_query.from_user.first_name or "Usuario"
         user_id = callback_query.from_user.id
+        name = callback_query.from_user.first_name or "Usuario"
 
         # Obtener el idioma del usuario desde la base de datos
         connection, cursor = connect_db()
@@ -29,14 +28,15 @@ async def handle_vryas_button(client: Client, callback_query: types.CallbackQuer
             from ryas_templates.chattext import es as text_dict  # Por defecto español
             from ryas_templates.botones import es as botones_dict
 
-        await callback_query.message.edit(
-            text=text_dict['vryas'].format(name=name),
+        await callback_query.message.edit_text(
+            text=text_dict['ryas_cloud'].format(username=name),
             reply_markup=botones_dict['vryasx']  # Usa el teclado del idioma correspondiente
         )
+
     except Exception as e:
-        print(f"Error en handle_vryas_button: {e}")
-        await callback_query.message.edit(
-            text=f"Ocurrió un error: {e}",
+        print(f"Error en handle_ryas_cloud_button: {e}")
+        await callback_query.message.edit_text(
+            f"Ocurrió un error: {e}",
             reply_markup=None
         )
     finally:

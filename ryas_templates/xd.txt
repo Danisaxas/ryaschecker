@@ -153,14 +153,14 @@ Administrador: @{admin_username} [{admin_id}]''',
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
-    'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
-                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "<b>#Bin<code>{bin_number}</b></code>\n"
-                   "<b>• Banco: <code>{bank_name}</b></code>\n"
-                   "<b>• Informacion: <code>{vendor} - {type} - {level}</b></code>\n"
-                   "<b>• Pais: <code>{pais} ({bandera})</b></code>\n"
-                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "<b>Req By: @{username} [{rango}]</b>",
+    'bin_message': '''{flag} - Datos para {bin} encontrados -
+- - - - - - - - - - - - - - - - - - - - - - - - -
+#Bin{bin_prefix}
+• Banco: {banco}
+- Info:  {level} - {vendor}  -  {type}
+- País: {country} ({flag})
+- - - - - - - - - - - - - - - - - - - - - - - - -
+Req By: @{username} [{rango}]'''
 }
 
 # Inglés
@@ -318,7 +318,23 @@ Admin: @{admin_username} [{admin_id}]''',
     'bin_not_found': "No information found for BIN {bin_number}.",
     'bin_usage': "Please provide a valid BIN number after the .bin command",
     'bin_error': "Invalid BIN number. It must contain only digits.",
-    'bin_message': "<b>({bandera}) - Data For <code>{bin_number}</code> Found -</b> \n"
+    'bin_message': '''{flag} - Data For {bin} Found -
+- - - - - - - - - - - - - - - - - - - - - - - - -
+#Bin{bin_prefix}
+• Bank: {bank}
+- Info:  {level} - {vendor}  -  {type}
+- Country: {country} ({flag})
+- - - - - - - - - - - - - - - - - - - - - - - - -
+Req By: @{username} [{rango}]'''
+}
+
+
+
+
+
+
+
+'bin_message': "<b>({bandera}) - Data For <code>{bin_number}</code> Found -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>#Bin<code>{bin_number}</code></b>\n"
                    "<b>• Bank: <code>{bank_name}</code></b>\n"
@@ -326,4 +342,13 @@ Admin: @{admin_username} [{admin_id}]''',
                    "<b>• Country: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
-}
+
+
+                   'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "<b>#Bin<code>{bin_number}</b></code>\n"
+                   "<b>• Banco: <code>{bank_name}</b></code>\n"
+                   "<b>• Informacion: <code>{vendor} - {type} - {level}</b></code>\n"
+                   "<b>• Pais: <code>{pais} ({bandera})</b></code>\n"
+                   "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                   "<b>Req By: @{username} [{rango}]</b>",
