@@ -17,6 +17,22 @@ async def bin_command(client: Client, message: types.Message):
         cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
         result = cursor.fetchone()
         lang = result[0] if result else 'es'
+        ban_status = result[1] if result else 'No' #obtener el estado de baneo
+        razon = result[2] if result else ""
+        # Cargar el texto en el idioma correspondiente
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict
+        
+        if ban_status == 'Yes': #verificar si el usuario esta baneado
+            await message.reply_text(
+                text_dict['block_message'].format(user_id=user_id, razon=razon),
+                
+            )
+            return
         parts = message.text.split()
         if len(parts) < 2:
             if lang == 'es':
@@ -34,6 +50,8 @@ async def bin_command(client: Client, message: types.Message):
             cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
             result = cursor.fetchone()
             lang = result[0] if result else 'es'
+            ban_status = result[1] if result else 'No' #obtener el estado de baneo
+            razon = result[2] if result else ""
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         elif lang == 'en':
@@ -48,6 +66,8 @@ async def bin_command(client: Client, message: types.Message):
             cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
             result = cursor.fetchone()
             lang = result[0] if result else 'es'
+            ban_status = result[1] if result else 'No' #obtener el estado de baneo
+            razon = result[2] if result else ""
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         elif lang == 'en':
@@ -57,13 +77,14 @@ async def bin_command(client: Client, message: types.Message):
         await message.reply_text(text_dict['bin_error'])
         return
 
+    # Busca el BIN en el diccionario.
     bin_info = get_bin_info(bin_number)
-
     if connection and cursor:
         cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
         result = cursor.fetchone()
         lang = result[0] if result else 'es'
-
+        ban_status = result[1] if result else 'No' #obtener el estado de baneo
+        razon = result[2] if result else ""
     if lang == 'es':
         from ryas_templates.chattext import es as text_dict
     elif lang == 'en':
