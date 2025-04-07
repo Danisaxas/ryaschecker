@@ -30,7 +30,7 @@ async def bin_command(client: Client, message: types.Message):
         if ban_status == 'Yes': #verificar si el usuario esta baneado
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
-                reply_to_message_id=message.message_id
+                reply_to_message_id=message.id  # Corrección: usar message.id
             )
             return
         parts = message.text.split()
@@ -41,7 +41,7 @@ async def bin_command(client: Client, message: types.Message):
                 from ryas_templates.chattext import en as text_dict
             else:
                 from ryas_templates.chattext import es as text_dict
-            await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.message_id)
+            await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.id) # Corrección: usar message.id
             return
         bin_number = parts[1][:6]
     except IndexError:
@@ -58,7 +58,7 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.message_id)
+        await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.id) # Corrección: usar message.id
         return
     except ValueError:
         lang = "es"
@@ -74,7 +74,7 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import en as text_dict
         else:
             from ryas_templates.chattext import es as text_dict
-        await message.reply_text(text_dict['bin_error'], reply_to_message_id=message.message_id)
+        await message.reply_text(text_dict['bin_error'], reply_to_message_id=message.id) # Corrección: usar message.id
         return
 
     # Busca el BIN en el diccionario.
@@ -120,6 +120,6 @@ async def bin_command(client: Client, message: types.Message):
             username=message.from_user.username or message.from_user.first_name or 'Unknown',
             rango=rango_usuario
         )
-        await message.reply_text(respuesta, reply_to_message_id=message.message_id)
+        await message.reply_text(respuesta, reply_to_message_id=message.id) # Corrección: usar message.id
     else:
-        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number), reply_to_message_id=message.message_id)
+        await message.reply_text(text_dict['bin_not_found'].format(bin_number=bin_number), reply_to_message_id=message.id) # Corrección: usar message.id
