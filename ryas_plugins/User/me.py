@@ -51,23 +51,18 @@ async def me_command(client: Client, message: types.Message):
             from ryas_templates.chattext import es as text_dict  # por defecto español
         
         if ban == 'Yes': #verificar si el usuario esta baneado
-            await message.reply_text(
-                text_dict['block_message'].format(user_id=user_id, razon=razon),
-                reply_to_message_id=message.id
-            )
-            return
 
-        # Formatear el mensaje de respuesta con la información del usuario
-        formatted_text = text_dict['metext'].format(
-            username=username,
-            user_id=user_id,
-            rango=rango,
-            creditos=creditos,
-            antispam=antispam,
-            expiration=expiration or 'No plan contrated',
-            ban=ban
-        )
-        await message.reply_text(formatted_text, reply_to_message_id=message.id)
+            # Formatear el mensaje de respuesta con la información del usuario
+            formatted_text = text_dict['metext'].format(
+                username=username,
+                user_id=user_id,
+                rango=rango,
+                creditos=creditos,
+                antispam=antispam,
+                expiration=expiration or 'No plan contrated',
+                ban=ban
+            )
+            await message.reply_text(formatted_text, reply_to_message_id=message.id)
 
     except Exception as e:
         print(f"Error en me_command: {e}")
