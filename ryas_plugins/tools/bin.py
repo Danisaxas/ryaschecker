@@ -1,44 +1,7 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-
-# Función para obtener información del BIN usando una API
-def obtener_info_bin(bin_prefix):
-    """
-    Obtiene información sobre el BIN (banco, marca, país) usando una API externa.
-
-    Parámetros:
-        bin_prefix: Los primeros 6 dígitos del número de tarjeta (BIN).
-
-    Retorna:
-        Un diccionario con la información del BIN, o None si no se encuentra.
-    """
-    try:
-        # Usar una API de BINS pública
-        url = f"https://bins.antipublic.cc/bins/{bin_prefix}"
-        response = requests.get(url)
-        response.raise_for_status()  # Lanza una excepción para códigos de error HTTP
-        data = response.json()
-        # Extraer la información relevante
-        info_bin = {
-            "banco": data.get("bank", "Desconocido"),
-            "marca": data.get("brand", "Desconocido"),
-            "tipo": data.get("type", "Desconocido"),
-            "pais": data.get("country", "Desconocido"),
-            "pais_codigo": data.get("country", {}).get("alpha2", "XX"),
-            "pais_nombre": data.get("country", {}).get("name", "Desconocido") #agregado
-        }
-        return info_bin
-    except requests.exceptions.RequestException as e:
-        print(f"Error al consultar la API de BINS: {e}")
-        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX", "pais_nombre": "Desconocido"}  # Retorna valores por defecto en caso de error
-    except (ValueError, KeyError, TypeError) as e:
-        print(f"Error al procesar la respuesta de la API: {e}")
-        return {"banco": "Desconocido", "marca": "Desconocido", "tipo": "Desconocido", "pais": "Desconocido",
-                "pais_codigo": "XX", "pais_nombre": "Desconocido"}
-
-
+from func_bin import get_bin_info
 
 @ryas("bin")
 async def bin_command(client: Client, message: types.Message):
@@ -82,21 +45,21 @@ async def bin_command(client: Client, message: types.Message):
         if len(bin_prefix) > 6:
             bin_prefix = bin_prefix[:6]
 
-        bin_info = obtener_info_bin(bin_prefix)  # Llama a la función obtener_info_bin
+        bin_info = get_bin_info(bin_prefix)  # Usa la función get_bin_info
 
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
         else:
             from ryas_templates.chattext import en as text_dict
-        
+
         respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
             bin_prefix=bin_prefix,
-            banco=bin_info.get('banco'), #posible error
-            marca=bin_info.get('marca'),
-            tipo=bin_info.get('tipo'),
-            pais_nombre=bin_info.get('pais_nombre'), # Usar pais_nombre
-            pais_codigo=bin_info.get('pais_codigo'),
+            banco=bin_info['banco'],
+            marca=bin_info['marca'],
+            tipo=bin_info['tipo'],
+            pais_nombre=bin_info['pais_nombre'],  # Usa el nombre del país
+            pais_codigo=bin_info['pais_codigo'],
             username=username,
             rango=rango,
             pais_emoji=bin_info['pais_codigo']
