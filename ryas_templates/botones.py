@@ -6,7 +6,7 @@ en = {
         [
             InlineKeyboardButton("Gateways", callback_data="gateways"),
             InlineKeyboardButton("Tools", callback_data="tools"),
-            InlineKeyboardButton("Description", callback_data="description")
+            InlineKeyboardButton("Information", callback_data="description")
         ],
         [
             InlineKeyboardButton("xCloud [☁️]", callback_data="ryas_cloud"),
@@ -43,7 +43,7 @@ en = {
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Information", callback_data="informacion"),
+                InlineKeyboardButton("Description", callback_data="informacion"),
                 InlineKeyboardButton("Languages", callback_data="lenguaje"),
                 InlineKeyboardButton("Back", callback_data="home")
             ]
@@ -67,7 +67,7 @@ es = {
         [
             InlineKeyboardButton("Gateways", callback_data="gateways"),
             InlineKeyboardButton("Herramientas", callback_data="tools"),
-            InlineKeyboardButton("Descripción", callback_data="description")
+            InlineKeyboardButton("Informacion", callback_data="description")
         ],
         [
             InlineKeyboardButton("xCloud [☁️]", callback_data="ryas_cloud"),
@@ -104,7 +104,7 @@ es = {
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton("Información", callback_data="informacion"),
+                InlineKeyboardButton("Descripcionn", callback_data="informacion"),
                 InlineKeyboardButton("Idioma", callback_data="lenguaje"),
                 InlineKeyboardButton("Atras", callback_data="home")
             ]
