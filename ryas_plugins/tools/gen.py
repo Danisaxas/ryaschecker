@@ -1,22 +1,22 @@
-from configs.def_main import * # Import the main configuration
-from func_bin import get_bin_info  # Import the function to get BIN information
-from func_gen import cc_gen  # Import the function to generate credit card numbers
-from pyrogram import Client, filters, types  # Import necessary Pyrogram modules
+from configs.def_main import * # Importa la configuración principal del proyecto.
+from func_bin import get_bin_info  # Importa la función para obtener información sobre un BIN dado.
+from func_gen import cc_gen  # Importa la función para generar los números de tarjeta de crédito.
+from pyrogram import Client, filters, types  # Importa las funcionalidades de la librería Pyrogram para interactuar con Telegram.
 import random
 
-@ryas("gen") # Changed Decorator
+@ryas("gen") # Decorador modificado para usar @ryas
 async def gen(client: Client, message: types.Message):
     """
-    Generates fake credit card numbers based on the provided BIN.
+    Genera números de tarjeta de crédito falsos basados en el BIN proporcionado.
 
-    Usage: .gen <BIN> [MM] [YYYY] [CVV]
-    Examples:
+    Uso: .gen <BIN> [MM] [AAAA] [CVV]
+    Ejemplos:
         .gen 426807
         .gen 426807 12 2025
         .gen 426807 12 2025 123
     """
     try:
-        input_args = message.text.split()[1:]  # Get arguments after the command
+        input_args = message.text.split()[1:]  # Obtiene los argumentos después del comando
 
         if not input_args:
             await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
@@ -35,14 +35,14 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
-        ccs = cc_gen(cc, mes, ano, cvv)  # Generate the credit card numbers
+        ccs = cc_gen(cc, mes, ano, cvv)  # Genera los números de tarjeta de crédito
         if not ccs:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
         cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = ccs
 
-        bin_info = get_bin_info(cc[:6])  # Get BIN information
+        bin_info = get_bin_info(cc[:6])  # Obtiene información del BIN
         if bin_info:
             bin_text = f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | {bin_info.get('type')} | {bin_info.get('level')} | {bin_info.get('country')} ({bin_info.get('flag')})"
         else:
