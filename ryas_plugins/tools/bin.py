@@ -1,79 +1,79 @@
-from pyrogram import Client, types
-import requests
+from pyrogram import Client, types  # Importa Client y types de Pyrogram
+import requests  # Importa el módulo requests, aunque no se use directamente aquí
 from configs.def_main import *
-from func_bin import get_bin_info  # Importa la función get_bin_info
+from func_bin import *
+from pyrogram import filters # Importa los filtros
 
 @ryas("bin")
 async def bin_command(client: Client, message: types.Message):
     """
-    Obtiene información sobre un BIN y la muestra formateada.
+    Busca información sobre un BIN y devuelve una respuesta formateada.
 
-    Parámetros:
-        client: El cliente del bot (por ejemplo, Telegram Bot API).
-        message: El mensaje que activó el comando.
+    Args:
+        client: El objeto Client de Pyrogram para interactuar con Telegram.
+        message: El objeto Message de Pyrogram que contiene el mensaje del usuario.
     """
-    connection = None
     try:
+        # Extrae el número de BIN del mensaje.
+        parts = message.text.split()
+        if len(parts) < 2:
+            await message.reply_text("Por favor, proporciona un número de BIN válido después del comando .bin")
+            return
+        bin_number = parts[1][:6]
+    except IndexError:
+        await message.reply_text("Por favor, proporciona un número de BIN después del comando .bin")
+        return
+    except ValueError:
+        await message.reply_text("Número de BIN inválido. Debe contener solo dígitos.")
+        return
+
+    # Busca el BIN en el diccionario.
+    bin_info = get_bin_info(bin_number)
+
+    if bin_info:
+        # Si se encuentra el BIN, formatea la respuesta.
         user_id = message.from_user.id
-        username = message.from_user.username or "Usuario"
-
         connection, cursor = connect_db()
-        cursor.execute("""
-            SELECT rango, lang
-            FROM users
-            WHERE user_id = %s
-        """, (user_id,))
-        user_data = cursor.fetchone()
-
-        if not user_data:
-            user_lang = message.from_user.language_code or 'es'
-            if user_lang == 'en':
-                from ryas_templates.chattext import en as text_dict
-            else:
-                from ryas_templates.chattext import es as text_dict
-            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
-            return
-
-        rango = user_data[0]
-        lang = user_data[1]
-
-        if len(message.text.split()) < 2:
-            if lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-            else:
-                from ryas_templates.chattext import en as text_dict
-            await message.reply_text(text_dict['bin_usage'], reply_to_message_id=message.id)
-            return
-
-        bin_prefix = message.text.split()[1]
-        if len(bin_prefix) > 6:
-            bin_prefix = bin_prefix[:6]
-
-        bin_info = get_bin_info(bin_prefix[:6])  # Llama a la función get_bin_info
-
-        # Cargar el texto en el idioma correspondiente
-        if lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-        else:
-            from ryas_templates.chattext import en as text_dict
-
-        respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
-            flag=bin_info.get('pais_codigo', 'XX'), # Obtiene la bandera del país
-            bin=bin_prefix,
-            bank=bin_info.get('banco', "Desconocido"),  
-            level=bin_info.get('level', "Desconocido"),
-            vendor=bin_info.get('marca', "Desconocido"),
-            type=bin_info.get('tipo', "Desconocido"),
-            country=bin_info.get('pais_nombre', "Desconocido"),  # Usa pais_nombre
-            username=username,
-            rango=rango
-        )
-        await message.reply_text(respuesta, reply_to_message_id=message.id)
-
-    except Exception as e:
-        print(f"Ocurrió un error: {e}")
-        await message.reply_text(f"Ocurrió un error al procesar el comando: {e}", reply_to_message_id=message.id)
-    finally:
-        if connection:
-            cursor.close()
+        if connection and cursor:
+            cursor.execute("""
+                SELECT rango, lang
+                FROM users
+                WHERE user_id = %s
+            """, (user_id,))
+            user_data = cursor.fetchone()
             connection.close()
+        else:
+            user_data = ("Free", "es")
+
+        rango_usuario = user_data[0] if user_data else "Free"
+        lang_usuario = user_data[1] if user_data else "es"
+
+        # Formatea la respuesta.
+        if lang_usuario == "es":
+            respuesta = (
+                f" 🇺🇸 - Data For {bin_number} Found - \n"
+                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                f"#Bin{bin_number}\n"
+                f"• Bank: {bin_info['bank_name']}\n"
+                f"- Info: {bin_info['vendor']} - {bin_info['type']} - {bin_info['level']}\n"
+                f"- Country: {bin_info['country']} ({bin_info['flag']})\n"
+                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                f"Req By: {message.from_user.username or message.from_user.first_name or 'Unknown'}[{rango_usuario}]"
+            )
+        else:
+            respuesta = (
+                f" 🇺🇸 - Data For {bin_number} Found - \n"
+                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                f"#Bin{bin_number}\n"
+                f"• Bank: {bin_info['bank_name']}\n"
+                f"- Info: {bin_info['vendor']} - {bin_info['type']} - {bin_info['level']}\n"
+                f"- Country: {bin_info['country']} ({bin_info['flag']})\n"
+                "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
+                f"Req By: {message.from_user.username or message.from_user.first_name or 'Unknown'}[{rango_usuario}]"
+            )
+        await message.reply_text(respuesta)
+    else:
+        if lang_usuario == "es":
+            await message.reply_text(f"No se encontró información para el BIN {bin_number}.")
+        else:
+            await message.reply_text(f"No information found for BIN {bin_number}.")

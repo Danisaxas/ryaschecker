@@ -314,7 +314,7 @@ Admin: @{admin_username} [{admin_id}]''',
     'bin_usage': "Please place one or more BINs for verification.",
     'bin_message': '''{flag} - Data For {bin} Found -
 - - - - - - - - - - - - - - - - - - - - - - - - -
-#Bin{bin_prefix}
+#Bin{bin}
 • Bank: {bank}
 - Info:  {level} - {vendor}  -  {type}
 - Country: {country} ({flag})
