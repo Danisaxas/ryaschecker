@@ -122,6 +122,7 @@ async def bin_command(client: Client, message: types.Message):
         lang_usuario = user_data[1] if user_data else "es"
 
         respuesta = text_dict['bin_message'].format(
+            reply_to_message_id=reply_msg_id,
             bandera=bin_info['flag'],
             bin_number=bin_number,
             bank_name=bin_info['bank_name'],
