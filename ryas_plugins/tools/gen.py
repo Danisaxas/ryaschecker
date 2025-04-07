@@ -1,29 +1,29 @@
-from configs.def_main import * # Importa la configuración principal del proyecto.
-from func_bin import get_bin_info  # Importa la función para obtener información sobre un BIN dado.
-from func_gen import cc_gen  # Importa la función para generar los números de tarjeta de crédito.
-from pyrogram import Client, filters, types  # Importa las funcionalidades de la librería Pyrogram para interactuar con Telegram.
+from configs.def_main import *
+from func_bin import get_bin_info
+from func_gen import cc_gen
+from pyrogram import Client, filters, types
 import random
 
-@ryas("gen") # Decorador modificado para usar @ryas
+@ryas("gen")
 async def gen(client: Client, message: types.Message):
     """
-    Genera números de tarjeta de crédito falsos basados en el BIN proporcionado.
+    Ag-generate iti fake a numero ti credit card base iti naited a BIN.
 
-    Uso: .gen <BIN> [MM] [AAAA] [CVV]
-    Ejemplos:
+    Usar: .gen <BIN> [MM] [YYYY] [CVV]
+    Ehemplo:
         .gen 426807
         .gen 426807 12 2025
         .gen 426807 12 2025 123
     """
     try:
-        input_args = message.text.split()[1:]  # Obtiene los argumentos después del comando
+        input_args = message.text.split()[1:]
 
         if not input_args:
-            await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
+            await message.reply_text("Usaren: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
             return
 
         if len(input_args) < 1:
-            await message.reply_text("Debes proporcionar al menos el BIN.", quote=True)
+            await message.reply_text("Nasken nga mangtedka iti saan a basbassit ngem ti BIN.", quote=True)
             return
 
         cc = input_args[0]
@@ -35,18 +35,18 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
-        ccs = cc_gen(cc, mes, ano, cvv)  # Genera los números de tarjeta de crédito
+        ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
-            await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
+            await message.reply_text("Saan a nakapag-generate kadagiti balido a kard nga addaan iti naited a BIN.", quote=True)
             return
 
         cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = ccs
 
-        bin_info = get_bin_info(cc[:6])  # Obtiene información del BIN
+        bin_info = get_bin_info(cc[:6])
         if bin_info:
             bin_text = f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | {bin_info.get('type')} | {bin_info.get('level')} | {bin_info.get('country')} ({bin_info.get('flag')})"
         else:
-            bin_text = "Información no disponible"
+            bin_text = "Saan a magun-od ti impormasion"
 
         output_message = f"""
 [⌥] Onyx Generator | Luhn Algo:
@@ -63,5 +63,5 @@ bot by : @astrozdev🌤
         await message.reply_text(output_message, quote=True)
 
     except Exception as e:
-        await message.reply_text(f"Ocurrió un error: {e}", quote=True)
+        await message.reply_text(f"Adda nagdakes a napasamak: {e}", quote=True)
         return
