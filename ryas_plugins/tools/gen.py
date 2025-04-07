@@ -1,7 +1,7 @@
 from pyrogram import Client, types
-import requests
 from configs.def_main import *
-from func_bin import get_bin_info # Importa la función get_bin_info desde func_bin.py
+from func_bin import get_bin_info
+from func_gen import cc_gen
 import sqlite3
 import random
 
@@ -21,49 +21,6 @@ def luhn_verification(num):
         total += digit
     total = total * 9
     return (total % 10) == check_digit
-
-def cc_gen(bin_prefix, mes='rnd', ano='rnd', cvv='rnd'):
-    """
-    Genera una tarjeta de crédito válida usando el algoritmo de Luhn.
-
-    Args:
-        bin_prefix (str): Los primeros dígitos del BIN (6 o 12).
-        mes (str, opcional): El mes de expiración (MM) o 'rnd' para aleatorio.
-        ano (str, opcional): El año de expiración (AAAA) o 'rnd' para aleatorio.
-        cvv (str, opcional): El CVV (3 o 4 dígitos) o 'rnd' para aleatorio.
-
-    Returns:
-        str: La tarjeta de crédito generada con el formato CC|MM|AAAA|CVV, o None si falla.
-    """
-    card_length = 16 if bin_prefix[0] != '3' else 15
-    remaining_digits = card_length - len(bin_prefix)
-    
-    for _ in range(100): # Intentar generar una tarjeta válida hasta 100 veces
-        card_number = bin_prefix + "".join(random.choice("0123456789") for _ in range(remaining_digits))
-        if luhn_verification(card_number):
-            break
-    else:
-        return None  # No se pudo generar una tarjeta válida
-
-    if mes == 'rnd':
-        mes_gen = random.randint(1, 12)
-        mes_gen_str = f"{mes_gen:02d}"  # Asegura que el mes tenga dos dígitos
-    else:
-        mes_gen_str = mes
-    
-    if ano == 'rnd':
-        ano_gen = random.randint(2023, 2031)
-    else:
-        ano_gen = int(ano)
-    ano_gen_str = str(ano_gen)
-
-    if cvv == 'rnd':
-        cvv_len = 4 if card_number[0] == '3' else 3
-        cvv_gen_str = "".join(random.choice("0123456789") for _ in range(cvv_len))
-    else:
-        cvv_gen_str = cvv
-    
-    return f"{card_number}|{mes_gen_str}|{ano_gen_str}|{cvv_gen_str}"
 
 @ryas("gen")
 async def gen_command(client: Client, message: types.Message):
@@ -132,7 +89,7 @@ async def gen_command(client: Client, message: types.Message):
             return
 
         # Obtener información del BIN para mostrar en el mensaje
-        bin_info = get_bin_info(bin_number) # Obtiene la info del BIN del diccionario cargado desde el CSV
+        bin_info = get_bin_info(bin_number)  # Obtiene la info del BIN del diccionario cargado desde el CSV
         if bin_info:
             banco = bin_info['bank_name']
             marca = bin_info['vendor']
