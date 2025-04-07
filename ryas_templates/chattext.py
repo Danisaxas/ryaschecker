@@ -20,9 +20,9 @@ Nombre de usuario: @{username}
 ID: <code>{user_id}</code>
 ━━━━━━━━━
 [⌥] DB Informacion:
-[•] Plan: [{rango}] | [•] Spam: {antispam}
-[•] Expiracion Plan: Ningún plan contratado
-[•] Bans: [No BAN] | [•] Creditos: {creditos}
+[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>
+[•] Expiracion Plan: <code>{expiration}/<code>
+[•] Bans: [<code>{ban}</code>] | [•] Creditos: <code>{creditos}</code>
 </b>''',
 
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
@@ -193,9 +193,9 @@ Username: @{username}
 ID: <code>{user_id}</code>
 ━━━━━━━━━
 [⌥] DB Info:
-[•] Plan: [{rango}] | [•] Spam: {antispam}
-[•] Expiration {expiration}
-[•] Bans: [{ban}] | [•] Credits: {creditos}
+[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>
+[•] Expiration <code>{expiration}</code>
+[•] Bans: [<code>{ban}</code>] | [•] Credits: <code>{creditos}</code>
 </b>''',
 
     'register_not': '''<b> You are not registered in the database, use /register</b>''',
