@@ -28,11 +28,11 @@ Expiración: 0
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
 
     'startx': '''<b>
-Bienvenido Ryas dev Bot  |  Time information is Unavailable. 
+Bienvenido Ryas dev Bot  |  <code>{caracas_time}</code>
                                                                              
 [{idioma_actual}] Hola @{username} Bienvenido a Ryas Telegram Bot, las puertas de enlace, las herramientas y las funciones se agregan constantemente, para saber que mis diferentes comandos usan los botones que se muestran aquí:
 ━━━━━━━━━━━━━
-Api Bot El estado es: Online ✅ | Ryas Api ¡Está en línea!!
+<code>Api Bot El estado es: Online ✅ | Ryas Api ¡Está en línea!!</code>
 </b>''',
 
     'tools': '''<b>
@@ -192,11 +192,11 @@ Expiration: 0
     'register_not': '''<b> You are not registered in the database, use /register</b>''',
 
     'startx': '''<b>
-Welcome to Ryas dev Bot  |  Time information is Unavailable. 
+Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
                                                                              
 [{idioma_actual}] Hello @Username welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
 ━━━━━━━━━━━━━
-Api Bot Status is: Online ✅ | Ryas Api is Online!!
+<code>Api Bot Status is: Online ✅ | Ryas Api is Online!!</code>
 </b>''',
 
     'tools': '''<b>
