@@ -1,12 +1,16 @@
 from pyrogram import Client, types
 import requests
 from configs.def_main import *
-from func_bin import get_bin_info
+from func_bin import get_bin_info  # Importa la función get_bin_info
 
 @ryas("bin")
 async def bin_command(client: Client, message: types.Message):
     """
     Obtiene información sobre un BIN y la muestra formateada.
+
+    Parámetros:
+        client: El cliente del bot (por ejemplo, Telegram Bot API).
+        message: El mensaje que activó el comando.
     """
     connection = None
     try:
@@ -45,7 +49,7 @@ async def bin_command(client: Client, message: types.Message):
         if len(bin_prefix) > 6:
             bin_prefix = bin_prefix[:6]
 
-        bin_info = get_bin_info(bin_prefix)  # Usa la función get_bin_info
+        bin_info = get_bin_info(bin_prefix)  # Llama a la función get_bin_info
 
         # Cargar el texto en el idioma correspondiente
         if lang == 'es':
@@ -58,7 +62,7 @@ async def bin_command(client: Client, message: types.Message):
             banco=bin_info['banco'],
             marca=bin_info['marca'],
             tipo=bin_info['tipo'],
-            pais_nombre=bin_info['pais_nombre'],  # Usa el nombre del país
+            pais_nombre=bin_info['pais_nombre'],  # Usa pais_nombre
             pais_codigo=bin_info['pais_codigo'],
             username=username,
             rango=rango,
