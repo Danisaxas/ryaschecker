@@ -320,7 +320,7 @@ Admin: @{admin_username} [{admin_id}]''',
     'lang_message': '''
 Welcome @{username} - Cloud DB | LANG [{idioma_actual}] 
 
-EThese are the data about your language saved in the DB, do you want to change? Select a new language from the buttons below::''',
+These are the data about your language saved in the DB, do you want to change? Select a new language from the buttons below:''',
     'bin_not_found': "No information found for BIN {bin_number}.",
     'bin_usage': "Please provide a valid BIN number after the .bin command",
     'bin_error': "Invalid BIN number. It must contain only digits.",
