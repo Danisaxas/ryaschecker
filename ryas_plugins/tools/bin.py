@@ -2,6 +2,7 @@ from pyrogram import Client, types
 import requests
 from configs.def_main import *
 
+# Función para obtener información del BIN usando una API
 def obtener_info_bin(bin_prefix):
     """
     Obtiene información sobre el BIN (banco, marca, país) usando una API externa.
@@ -88,14 +89,14 @@ async def bin_command(client: Client, message: types.Message):
             from ryas_templates.chattext import es as text_dict
         else:
             from ryas_templates.chattext import en as text_dict
-
+        
         respuesta = text_dict['bin_message'].format(  # Usa el mensaje bin_message
             bin_prefix=bin_prefix,
-            banco=bin_info['banco'],
-            marca=bin_info['marca'],
-            tipo=bin_info['tipo'],
-            pais_nombre=bin_info['pais'], # Usar pais_nombre
-            pais_codigo=bin_info['pais_codigo'],
+            banco=bin_info.get('banco'), #posible error
+            marca=bin_info.get('marca'),
+            tipo=bin_info.get('tipo'),
+            pais_nombre=bin_info.get('pais_nombre'), # Usar pais_nombre
+            pais_codigo=bin_info.get('pais_codigo'),
             username=username,
             rango=rango,
             pais_emoji=bin_info['pais_codigo']
