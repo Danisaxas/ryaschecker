@@ -14,9 +14,7 @@ async def gen(client: Client, message: types.Message):
         .gen 426807
         .gen 426807 12 2025
         .gen 426807 12 2025 123
-        .gen 463846003763xxxx 03 2028
-        .gen 463846003763xxxx/03/2028
-        .gen 463846003763xxxx|03|2028
+        .gen 463846003763xxxx|03|2028|rnd
     """
     try:
         input_args = message.text.split()[1:]
@@ -36,13 +34,9 @@ async def gen(client: Client, message: types.Message):
 
         if len(input_args) > 1:
             fecha_arg = input_args[1]
-            # Dividir la fecha por diferentes separadores, probar con varios.
-            if '/' in fecha_arg:
-                mes, ano = fecha_arg.split('/')[:2]
-            elif '|' in fecha_arg:
+            # Dividir la fecha solo por barras verticales
+            if '|' in fecha_arg:
                 mes, ano = fecha_arg.split('|')[:2]
-            elif ' ' in fecha_arg:
-                mes, ano = fecha_arg.split(' ')[:2]
             else:
                 mes = input_args[1]
                 if (len(input_args) > 2):
