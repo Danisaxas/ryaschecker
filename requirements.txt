@@ -26,12 +26,3 @@ yarl==1.18.3
 mysql-connector-python==8.2.0
 pytz==2024.1
 requests==2.31.0
-
-'bin_not_found': "No se encontró información para el BIN {bin_number}.",
-    'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
-    'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
-}
-
-'bin_not_found': "No information found for BIN {bin_number}.",
-    'bin_usage': "Please provide a valid BIN number after the .bin command",
-    'bin_error': "Invalid BIN number. It must contain only digits.",
