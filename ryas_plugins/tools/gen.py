@@ -34,15 +34,17 @@ async def gen(client: Client, message: types.Message):
 
         if len(input_args) > 1:
             fecha_arg = input_args[1]
-            # Dividir la fecha solo por barras verticales
             if '|' in fecha_arg:
-                mes, ano = fecha_arg.split('|')[:2]
+                date_parts = fecha_arg.split('|')
+                mes = date_parts[0] if len(date_parts) > 0 else 'x'
+                ano = date_parts[1] if len(date_parts) > 1 else 'x'
             else:
                 mes = input_args[1]
-                if (len(input_args) > 2):
+                if len(input_args) > 2:
                     ano = input_args[2]
-        if len(input_args) > 3:
-            cvv = input_args[3]
+
+        if len(input_args) > 2:
+            cvv = input_args[2]
 
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
