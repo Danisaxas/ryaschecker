@@ -162,14 +162,15 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
                    "<b>• Pais: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
-    'gatesx_message': "Bienvenido a Ryas / Pasarelas de Ryas En línea \n"
-                     "━━━━━━━━━━━━\n"
-                     "Gates CMDS: 0 Api Gates! ✅\n"
-                     "━━━━━━━━━━━━\n"
-                     "Gates auth: 0 | Gates Charge: 0 \n"
-                     "Gates CCN (Auth & Charge): 0 | Gates Mass Checking: 0 \n"
-                     "━━━━━━━━━━━━\n"
-                     "¡Seleccione el tipo de Gate de enlace que desea utilizar!",
+    'gatesx_message': """
+<b>Bienvenido a Ryas / Pasarelas de Ryas En línea
+━━━━━━━━━━━━
+Gates CMDS: <code>0 Api Gates!</code> ✅
+━━━━━━━━━━━━
+Gates auth: <code>0</code> | Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code> | Gates Mass Checking: <code>0</code>
+━━━━━━━━━━━━
+¡Seleccione el tipo de Gate de enlace que desea utilizar!</b>""",
 }
 
 # Inglés
@@ -335,12 +336,13 @@ These are the data about your language saved in the DB, do you want to change? S
                    "<b>• Country: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
-    'gatesx_message': "Welcome to Ryas / Ryas gateways Online \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Gates CMDS:  0 Api Gates! ✅ \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Gates auth: 0    |   Gates Charge: 0 \n"
-                     "Gates CCN (Auth & Charge): 0  |   Gates Mass Checking: 0 \n"
-                     "━━━━━━━━━━━━ \n"
-                     "Select the type of gate you want for your use! ",
+    'gatesx_message': """
+<b>Welcome to Ryas / Ryas gateways Online
+━━━━━━━━━━━━
+Gates CMDS:  <code>0 Api Gates!</code> ✅ 
+━━━━━━━━━━━━
+Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
+━━━━━━━━━━━━
+Select the type of gate you want for your use!</b>""",
 }
