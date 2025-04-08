@@ -8,11 +8,36 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("Usa: .gen <BIN> [MM/AA] [CVV]", quote=True)
             return
         data = entrada[1].strip()
-        parametros = re.split(r"[ \|/:]+", data)
+        if "|" in data:
+            parametros = data.split("|")
+        else:
+            parametros = data.split()
         cc = parametros[0] if len(parametros) >= 1 else ''
-        mes = parametros[1].strip() if len(parametros) >= 2 and parametros[1].strip() else "x"
-        ano = parametros[2].strip() if len(parametros) >= 3 and parametros[2].strip() else "x"
-        cvv = parametros[3].strip() if len(parametros) >= 4 and parametros[3].strip() else "x"
+        mes = "x"
+        ano = "x"
+        cvv = "x"
+        if len(parametros) >= 2 and parametros[1].strip():
+            date_param = parametros[1].strip()
+            parts = re.split(r"[\/|:]+", date_param)
+            if parts and parts[0].strip():
+                mes = parts[0].strip().zfill(2)
+            else:
+                mes = "x"
+            if len(parts) > 1 and parts[1].strip():
+                ano = parts[1].strip()
+                if len(ano) == 2:
+                    ano = "20" + ano
+            else:
+                ano = "x"
+        else:
+            mes = "x"
+            ano = "x"
+        if len(parametros) >= 3 and not re.search(r"[\/|:]+", parametros[1]) and parametros[2].strip():
+            ano = parametros[2].strip()
+            if len(ano) == 2:
+                ano = "20" + ano
+        if len(parametros) >= 4 and parametros[3].strip():
+            cvv = parametros[3].strip()
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
@@ -21,11 +46,7 @@ async def gen(client: Client, message: types.Message):
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
-        if mes == "x":
-            mes = f"{random.randint(1,12):02d}"
-        if ano == "x":
-            ano = str(random.randint(datetime.now().year + 1, datetime.now().year + 5))
-        if cvv.lower() == "rnd" or cvv == "x":
+        if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 3:
             cvv = "x"
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
@@ -34,9 +55,11 @@ async def gen(client: Client, message: types.Message):
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = (f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-                        f"{bin_info.get('type')} | {bin_info.get('level')} | "
-                        f"{bin_info.get('country')} ({bin_info.get('flag')})")
+            bin_text = (
+                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+                f"{bin_info.get('type')} | {bin_info.get('level')} | "
+                f"{bin_info.get('country')} ({bin_info.get('flag')})"
+            )
         else:
             bin_text = "Información no disponible"
         user_id = message.from_user.id

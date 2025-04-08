@@ -37,11 +37,17 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             ano = match.group(3)
             cvv = match.group(4)
         else:
-            await callback_query.message.reply_text("⚠️ Error al regenerar. Asegúrate de que el formato del BIN y los datos sean correctos.", reply_to_message_id=reply_msg_id)
+            await callback_query.message.reply_text(
+                "⚠️ Error al regenerar. Asegúrate de que el formato del BIN y los datos sean correctos.",
+                reply_to_message_id=reply_msg_id
+            )
             return
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
-            await callback_query.message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", reply_to_message_id=reply_msg_id)
+            await callback_query.message.reply_text(
+                "No se pudieron generar tarjetas válidas con el BIN proporcionado.",
+                reply_to_message_id=reply_msg_id
+            )
             return
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
@@ -66,4 +72,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             reply_markup=botones_dict['re_genbt']
         )
     except Exception as e:
-        await callback_query.message.reply_text(f"⚠️ Ocurrió un error: {e}", reply_to_message_id=reply_msg_id if reply_msg_id else None)
+        await callback_query.message.reply_text(
+            f"⚠️ Ocurrió un error: {e}",
+            reply_to_message_id=reply_msg_id if reply_msg_id else None
+        )
