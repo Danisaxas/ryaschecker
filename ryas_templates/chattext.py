@@ -175,7 +175,7 @@ Select the type of gate you want for your use!</b>""",
 {cards_output}
 ━━━━━━━━━━━━━━
 [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Informacion:</code>
-<code>{bin_text}</code>
+{bin_text}
 ━━━━━━━━━━━━━━
 <code>bot por : @astrozdev🌤</code>'''
 }
@@ -357,7 +357,7 @@ Select the type of gate you want for your use!</b>""",
 {cards_output}
 ━━━━━━━━━━━━━━
 [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Info:</code>
-<code>{bin_text}</code>
+{bin_text}
 ━━━━━━━━━━━━━━
 <code>bot by : @astrozdev🌤</code>'''
 }

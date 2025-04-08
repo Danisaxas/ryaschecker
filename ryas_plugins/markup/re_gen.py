@@ -57,10 +57,12 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         bin_info = get_bin_info(cc[:6])
         if bin_info:
             bin_text = (
-                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-                f"{bin_info.get('type')} | {bin_info.get('level')} | "
-                f"{bin_info.get('country')} ({bin_info.get('flag')})"
-            )
+    f"{'<code>' + bin_info.get('bank_name') + '</code>'} | "
+    f"{'<code>' + bin_info.get('vendor') + '</code>'} | "
+    f"{'<code>' + bin_info.get('type') + '</code>'} | "
+    f"{'<code>' + bin_info.get('level') + '</code>'} | "
+    f"{'<code>' + bin_info.get('country') + '</code>'} ({bin_info.get('flag')})"
+)
         else:
             bin_text = "Información no disponible"
         # Para la visualización, si no se proporcionó fecha, se muestra "xx"

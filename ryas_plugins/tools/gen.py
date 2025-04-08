@@ -53,9 +53,11 @@ async def gen(client: Client, message: types.Message):
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = (f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-                        f"{bin_info.get('type')} | {bin_info.get('level')} | "
-                        f"{bin_info.get('country')} ({bin_info.get('flag')})")
+            bin_text = (
+    f"<code>{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+    f"{bin_info.get('type')} | {bin_info.get('level')} | "
+    f"{bin_info.get('country')} ({bin_info.get('flag')})</code>"
+)
         else:
             bin_text = "Información no disponible"
         user_id = message.from_user.id
