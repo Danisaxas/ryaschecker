@@ -60,7 +60,7 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
-        cards_output = "".join(ccs)
+        cards_output = "\n".join(f"<code>{cc}</code>" for cc in ccs).strip()
 
         bin_info = get_bin_info(cc[:6])
         if bin_info:

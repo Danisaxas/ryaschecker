@@ -170,14 +170,14 @@ Select the type of gate you want for your use!</b>""",
 
 'gen_message': '''[⌥] Ryas Generador | Luhn Algo:
 ━━━━━━━━━━━━━━
--{cc_first6}|{mes_display}|{ano_display}|{cvv_display}-
+-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
 {cards_output}
 ━━━━━━━━━━━━━━
-[ϟ] Bin : {bin_first6}  |  [ϟ] Informacion:
-{bin_text}
+[ϟ] <code>Bin : {bin_first6}</code>  |  [ϟ] <code>Informacion:</code>
+<code>{bin_text}</code>
 ━━━━━━━━━━━━━━
-bot por : @astrozdev🌤'''
+<code>bot por : @astrozdev🌤</code>'''
 }
 
 # Inglés
@@ -350,14 +350,14 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[⌥] Onyx Generator | Luhn Algo:
+'gen_message': '''[⌥] Ryas Generator | Luhn Algo:
 ━━━━━━━━━━━━━━
--{cc_first6}|{mes_display}|{ano_display}|{cvv_display}-
+-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
 {cards_output}
 ━━━━━━━━━━━━━━
-[ϟ] Bin : {bin_first6}  |  [ϟ] Info:
-{bin_text}
+[ϟ] <code>Bin : {bin_first6}</code>  |  [ϟ] <code>Info:</code>
+<code>{bin_text}</code>
 ━━━━━━━━━━━━━━
-bot by : @astrozdev🌤'''
+<code>bot by : @astrozdev🌤</code>'''
 }
