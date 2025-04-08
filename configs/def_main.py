@@ -8,6 +8,8 @@ import mysql.connector
 from pyrogram.types import CallbackQuery
 from ryas_templates.chattext import *
 from ryas_templates.botones import *
+from func_bin import *
+from func_gen import *
 import re
 
 def ryas(bit):
