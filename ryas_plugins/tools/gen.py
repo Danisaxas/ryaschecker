@@ -78,10 +78,13 @@ async def gen(client: Client, message: types.Message):
 
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
             from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
             from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
 
         if ban_status == 'Yes':
             await message.reply_text(
