@@ -18,7 +18,6 @@ async def gen(client: Client, message: types.Message):
         .gen 533516140120xxxx|rnd|rnd|rnd
     """
     try:
-        # Extraer el texto posterior al comando (se ignora ".gen")
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
             await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
@@ -26,21 +25,18 @@ async def gen(client: Client, message: types.Message):
 
         data = entrada[1]
 
-        # Detecta si se usa "|" como separador o si se separa por espacios
         if "|" in data:
             parametros = data.split("|")
         else:
             parametros = data.split()
 
-        # Asignación de parámetros con valores por defecto:
-        # Se usa 'x' para indicar que no se proporcionó valor
         cc = parametros[0] if len(parametros) >= 1 else ''
         mes = 'x'
         ano = 'x'
         cvv = 'x'
 
         if len(parametros) == 2:
-            mes = parametros[1]  # Puede ser un valor fijo (ej. "12") o "rnd"
+            mes = parametros[1]  
         elif len(parametros) == 3:
             mes = parametros[1]
             ano = parametros[2]
@@ -49,22 +45,16 @@ async def gen(client: Client, message: types.Message):
             ano = parametros[2]
             cvv = parametros[3]
 
-        # Validar que se haya ingresado un BIN con al menos 6 dígitos
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
-        # Si el usuario indicó valores fijos, se procesa:
-        # Si el valor es "rnd" se deja sin modificar para que se genere aleatoriamente en cada iteración.
         if mes.lower() != "rnd" and mes != "x":
             mes = mes[0:2]
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
 
-        # Para cvv, si no es "rnd" ni 'x', se deja el valor como está.
-
-        # Llamar a cc_gen: en ella se generará (por iteración) un valor aleatorio si el campo es "rnd"
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
@@ -72,7 +62,6 @@ async def gen(client: Client, message: types.Message):
 
         cards_output = "".join(ccs)
 
-        # Obtener información del BIN
         bin_info = get_bin_info(cc[:6])
         if bin_info:
             bin_text = (
@@ -83,19 +72,48 @@ async def gen(client: Client, message: types.Message):
         else:
             bin_text = "Información no disponible"
 
-        output_message = f"""
-[⌥] Onyx Generator | Luhn Algo:
-━━━━━━━━━━━━━━
--{cc[:6]}|{mes if mes != 'x' else 'xx'}|{ano if ano != 'x' else 'xx'}|{cvv if cvv != 'x' else 'rnd'}-
-━━━━━━━━━━━━━━
-{cards_output}
-━━━━━━━━━━━━━━
-[ϟ] Bin : {cc[:6]}  |  [ϟ] Info:
-{bin_text}
-━━━━━━━━━━━━━━
-bot by : @astrozdev🌤
-"""
-        await message.reply_text(output_message, quote=True)
+        user_id = message.from_user.id
+        connection, cursor = connect_db()
+        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
+        result = cursor.fetchone()
+        lang = result[0] if result else 'es'
+        ban_status = result[1] if result else 'No'
+        razon = result[2] if result else ""
+        chat_id = message.chat.id
+        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
+        
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+        else:
+            from ryas_templates.chattext import es as text_dict
+        
+        if ban_status == 'Yes': 
+            await message.reply_text(
+                text_dict['block_message'].format(user_id=user_id, razon=razon),
+                reply_to_message_id=reply_msg_id
+            )
+            return
+
+        cc_first6 = cc[:6]
+        mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
+        ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
+        cvv_display = cvv if cvv.lower() not in ["rnd", "x"] else "rnd"
+        bin_first6 = cc[:6]
+
+        await message.reply_text(
+            text_dict['gen_message'].format(
+                cc_first6=cc_first6,
+                mes_display=mes_display,
+                ano_display=ano_display,
+                cvv_display=cvv_display,
+                cards_output=cards_output,
+                bin_text=bin_text,
+                bin_first6=bin_first6
+            ),
+            reply_to_message_id=reply_msg_id
+        )
 
     except Exception as e:
         await message.reply_text(f"Ocurrió un error: {e}", quote=True)

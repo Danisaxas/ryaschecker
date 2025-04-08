@@ -167,6 +167,17 @@ Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
 Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
+
+'gen_message': '''[⌥] Ryas Generador | Luhn Algo:
+━━━━━━━━━━━━━━
+-{cc_first6}|{mes_display}|{ano_display}|{cvv_display}-
+━━━━━━━━━━━━━━
+{cards_output}
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_first6}  |  [ϟ] Informacion:
+{bin_text}
+━━━━━━━━━━━━━━
+bot por : @astrozdev🌤'''
 }
 
 # Inglés
@@ -338,4 +349,15 @@ Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
 Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
+
+'gen_message': '''[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
+-{cc_first6}|{mes_display}|{ano_display}|{cvv_display}-
+━━━━━━━━━━━━━━
+{cards_output}
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_first6}  |  [ϟ] Info:
+{bin_text}
+━━━━━━━━━━━━━━
+bot by : @astrozdev🌤'''
 }

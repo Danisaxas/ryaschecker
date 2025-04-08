@@ -13,23 +13,23 @@ Chat_ID: <code>{chat_id}</code>
 </b>''',
 
     'metext': '''<b>
-Ryas Chk ⺢ => Info de Usuario
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Usuario:
-Nombre de Usuario: @{username} [<code>{user_id}</code>]
-Nombre: {firts_name} | Baneo: No
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Membresía:
-Rol: {rango} | Créditos: {creditos}
-Antispam: {antispam}
-Expiración: 0
+Ryas bot / Obtener información. [☁️]
+━━━━━━━━━
+[⌥] Información de usuario:
+Nombre de usuario: @{username} 
+ID: <code>{user_id}</code>
+━━━━━━━━━
+[⌥] DB Informacion:
+[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>
+[•] Expiracion Plan: <code>{expiration}</code>
+[•] Bans: [<code>{ban}</code>] | [•] Creditos: <code>{creditos}</code>
 </b>''',
 
     'register_not': '''<b> No estás registrado en la base de datos, usa /register</b>''',
 
     'startx': '''<b>
-Bienvenido Ryas dev Bot  |  <code>{caracas_time}</code>
-                                                                             
+Bienvenido Ryas dev Bot  |  <code>{caracas_time}</code>
+                                                                                                 
 [{idioma_actual}] Hola @{username} Bienvenido a Ryas Telegram Bot, las puertas de enlace, las herramientas y las funciones se agregan constantemente, para saber que mis diferentes comandos usan los botones que se muestran aquí:
 ━━━━━━━━━━━━━
 <code>Api Bot El estado es: Online ✅ | Ryas Api ¡Está en línea!!</code>
@@ -47,7 +47,7 @@ Formato: $sk sk_live
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Buscador de BINs:
-Formato: $bin 601120 
+Formato: $bin 601120  
 Condición: ¡Desconectado! ❌
 ━━━━━━━━━━━━
 Generador de Direcciones:
@@ -107,7 +107,8 @@ Disfruta mi uso.
 [🇪🇸] Bienvenido a la nueva suscripción de Ryas Cloud, sus datos compartidos en la nube con Ryas se almacenarán aquí, navegue a través de los botones para descubrir qué es lo nuevo que tenemos para usted:      
 
 <code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code></b>''',
-    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos. 
+
+    'registerx': '''<b>あ » Interactúa con el bot sin ningún inconveniente, si deseas más información, usa los siguientes comandos.  
 
 ↯ » Precios: /pricings
 ↯ » Más información: /data</b>''',
@@ -116,21 +117,16 @@ Disfruta mi uso.
     'setpriv_value_error': "El ID y el privilegio deben ser números.",
     'setpriv_success': "Privilegio actualizado correctamente para el ID {user_id}.",
     'setpriv_not_found': "Ese ID no se encuentra en la base de datos.",
-    'gen_response': '''💳 Tus Tarjetas Generadas 💳
-- - - - - - - - - - - - - - - - - - - - - - -
-BIN: {bin_prefix}
-- - - - - - - - - - - - - - - - - - - - - - -
-Banco: {banco}
-Marca: {marca}
-Tipo: {tipo}
-País: {pais} ({pais_codigo})
-- - - - - - - - - - - - - - - - - - - - - - -
-
+    'gen_response':  """[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
 {tarjetas}
-
-Req By: @{username} [{rango}]
-''',
-    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:
+{banco} | {marca} | {tipo} | {pais} ({pais_codigo})
+━━━━━━━━━━━━━━
+bot by : @Astrozdev 🌤
+""",
+    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
@@ -138,15 +134,15 @@ Razón: {ban_reason}
 Administrador: @{admin_username} [{admin_id}]''',
     'ban_usage': "Uso correcto: /ban <ID> <razón>",
     'ban_validation': "El ID de usuario debe ser un número entero.",
-    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'unban_message': '''Ryas Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Desbaneado</b>
 Usuario: @{username} [{target_user_id}]
-Fecha:  {fecha}
+Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
-    'block_message': "Usuario baneado ⚠️\nID: {user_id} \nRazón: {razon}",
+    'block_message': "Usuario bloqueado ⚠️\nID: {user_id} \nRazón: {razon}",
     'lang_message': '''
 Bienvenido @{username} - Cloud DB | LANG [{idioma_actual}] 
 
@@ -156,12 +152,21 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
     'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
-                   "<b>#Bin<code>{bin_number}</b></code>\n"
-                   "<b>• Banco: <code>{bank_name}</b></code>\n"
-                   "<b>• Informacion: <code>{vendor} - {type} - {level}</b></code>\n"
-                   "<b>• Pais: <code>{pais} ({bandera})</b></code>\n"
+                   "<b>#Bin<code>{bin_number}</code></b>\n"
+                   "<b>• Banco: <code>{bank_name}</code></b>\n"
+                   "<b>• Informacion: <code>{vendor} - {type} - {level}</code></b>\n"
+                   "<b>• Pais: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
+    'gatesx_message': """
+<b>Welcome to Onyx / Onyx gateways Online
+━━━━━━━━━━━━
+Gates CMDS:  <code>0 Api Gates!</code> ✅ 
+━━━━━━━━━━━━
+Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
+━━━━━━━━━━━━
+Select the type of gate you want for your use!</b>""",
 }
 
 # Inglés
@@ -177,23 +182,23 @@ Chat_ID: <code>{chat_id}</code>
 </b>''',
 
     'metext': '''<b>
-Ryas Chk ⺢ => User Info
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ User:
-Username: @{username} [<code>{user_id}</code>]
-First Name: {firts_name} | Ban: No
-- - - - - - - - - - - - - - - - - - - - - - - - - - 
-⺢ Membership:
-Role: {rango} | Credits: {creditos}
-Antispam: {antispam}
-Expiration: 0
+Ryas bot / Get info. [☁️]
+━━━━━━━━━
+[⌥] User Info:
+Username: @{username} 
+ID: <code>{user_id}</code>
+━━━━━━━━━
+[⌥] DB Info:
+[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>
+[•] Expiration <code>{expiration}</code>
+[•] Bans: [<code>{ban}</code>] | [•] Credits: <code>{creditos}</code>
 </b>''',
 
     'register_not': '''<b> You are not registered in the database, use /register</b>''',
 
     'startx': '''<b>
-Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
-                                                                             
+Welcome to Ryas dev Bot  |  <code>{caracas_time}</code>
+                                                                                                 
 [{idioma_actual}] Hello @{username} welcome to Ryas telegram bot, gateways, tools and functions are constantly being added, to know my different commands use the buttons shown here:
 ━━━━━━━━━━━━━
 <code>Api Bot Status is: Online ✅ | Ryas Api is Online!!</code>
@@ -273,6 +278,7 @@ Enjoy my use.
 
 <code>Ryas Cloud Version:  0.0.1</code>  | Ryas Cloud Plan:  <code>Premium Cloud</code>
 </b>''',
+
     'registerx': '''<b>あ » Interact with the bot without any problems, if you want more information, use the following commands.
 
 ↯ » Prices: /pricings
@@ -282,21 +288,16 @@ Enjoy my use.
     'setpriv_value_error': "ID and privilege must be numbers.",
     'setpriv_success': "Privilege updated correctly for ID {user_id}.",
     'setpriv_not_found': "That ID is not found in the database.",
-    'gen_response': '''💳 Your Generated Cards 💳
-- - - - - - - - - - - - - - - - - - - - - - -
-BIN: {bin_prefix}
-- - - - - - - - - - - - - - - - - - - - - - -
-Bank: {banco}
-Brand: {marca}
-Type: {tipo}
-Country: {pais} ({pais_codigo})
-- - - - - - - - - - - - - - - - - - - - - - -
-
+    'gen_response':  """[⌥] Onyx Generator | Luhn Algo:
+━━━━━━━━━━━━━━
 {tarjetas}
-
-Req By: @{username} [{rango}]
-''',
-    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+━━━━━━━━━━━━━━
+[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:
+{banco} | {marca} | {tipo} | {pais} ({pais_codigo})
+━━━━━━━━━━━━━━
+bot by : @Astrozdev 🌤
+""",
+    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
@@ -304,11 +305,11 @@ Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
-    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'unban_message': '''Ryas Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Unbanned</b>
 User: @{username} [{target_user_id}]
-Date:  {fecha}
+Date:  {fecha}
 Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
@@ -328,4 +329,13 @@ These are the data about your language saved in the DB, do you want to change? S
                    "<b>• Country: <code>{pais} ({bandera})</code></b>\n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
+    'gatesx_message': """
+<b>Welcome to Onyx / Onyx gateways Online
+━━━━━━━━━━━━
+Gates CMDS:  <code>0 Api Gates!</code> ✅ 
+━━━━━━━━━━━━
+Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
+Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
+━━━━━━━━━━━━
+Select the type of gate you want for your use!</b>""",
 }
