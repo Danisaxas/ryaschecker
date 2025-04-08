@@ -15,7 +15,7 @@ async def gen(client: Client, message: types.Message):
         .gen 426807
         .gen 426807 12 2025
         .gen 426807 12 2025 123
-        .gen 533516140120xxxx|12|2027|rnd
+        .gen 533516140120xxxx|rnd|rnd|rnd
     """
     try:
         # Extraer el texto posterior al comando (se ignora ".gen")
@@ -26,20 +26,21 @@ async def gen(client: Client, message: types.Message):
 
         data = entrada[1]
 
-        # Detectar si se usa "|" o espacios como separador
+        # Detecta si se usa "|" como separador o si se separa por espacios
         if "|" in data:
             parametros = data.split("|")
         else:
             parametros = data.split()
 
-        # Asignación de parámetros con valores por defecto
+        # Asignación de parámetros con valores por defecto:
+        # Se usa 'x' para indicar que no se proporcionó valor
         cc = parametros[0] if len(parametros) >= 1 else ''
         mes = 'x'
         ano = 'x'
         cvv = 'x'
 
         if len(parametros) == 2:
-            mes = parametros[1]
+            mes = parametros[1]  # Puede ser un valor fijo (ej. "12") o "rnd"
         elif len(parametros) == 3:
             mes = parametros[1]
             ano = parametros[2]
@@ -53,28 +54,41 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
-        # Llamar a cc_gen pasándole todos los parámetros. Si se indican valores "rnd" o "x",
-        # la función cc_gen se encargará de generar valores aleatorios para cada tarjeta.
+        # Si el usuario indicó valores fijos, se procesa:
+        # Si el valor es "rnd" se deja sin modificar para que se genere aleatoriamente en cada iteración.
+        if mes.lower() != "rnd" and mes != "x":
+            mes = mes[0:2]
+        if ano.lower() != "rnd" and ano != "x":
+            if len(ano) == 2:
+                ano = "20" + ano
+
+        # Para cvv, si no es "rnd" ni 'x', se deja el valor como está.
+
+        # Llamar a cc_gen: en ella se generará (por iteración) un valor aleatorio si el campo es "rnd"
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
-        cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10 = ccs
+        cards_output = "".join(ccs)
 
         # Obtener información del BIN
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | {bin_info.get('type')} | {bin_info.get('level')} | {bin_info.get('country')} ({bin_info.get('flag')})"
+            bin_text = (
+                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+                f"{bin_info.get('type')} | {bin_info.get('level')} | "
+                f"{bin_info.get('country')} ({bin_info.get('flag')})"
+            )
         else:
             bin_text = "Información no disponible"
 
         output_message = f"""
 [⌥] Onyx Generator | Luhn Algo:
 ━━━━━━━━━━━━━━
--{cc[:6]}|{mes if mes.lower() != 'rnd' and mes != 'x' else mes}|{ano if ano.lower() != 'rnd' and ano != 'x' else ano}|{cvv if cvv.lower() != 'rnd' and cvv != 'x' else cvv}-
+-{cc[:6]}|{mes if mes != 'x' else 'xx'}|{ano if ano != 'x' else 'xx'}|{cvv if cvv != 'x' else 'rnd'}-
 ━━━━━━━━━━━━━━
-{cc1}{cc2}{cc3}{cc4}{cc5}{cc6}{cc7}{cc8}{cc9}{cc10}
+{cards_output}
 ━━━━━━━━━━━━━━
 [ϟ] Bin : {cc[:6]}  |  [ϟ] Info:
 {bin_text}
