@@ -30,7 +30,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
                 reply_to_message_id=reply_msg_id
             )
             return
-        match = re.search(r"-(.+?)\|(\d{2})\|(\d{4})\|(\w+)-", text)
+        match = re.search(r"-(.+?)\|([\dx]{2})\|([\dx]{2,4})\|(\w+)-", text)
         if match:
             cc = match.group(1)
             mes = match.group(2)
@@ -42,6 +42,12 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
                 reply_to_message_id=reply_msg_id
             )
             return
+        if mes.lower() == "xx":
+            mes = "x"
+        if ano.lower() == "xx":
+            ano = "x"
+        if cvv.lower() == "rnd":
+            cvv = "x"
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await callback_query.message.reply_text(
@@ -59,12 +65,15 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             )
         else:
             bin_text = "Información no disponible"
+        mes_display = "xx" if mes == "x" else mes
+        ano_display = "xx" if ano == "x" else ano
+        cvv_display = "rnd"
         await callback_query.message.edit_text(
             text_dict['gen_message'].format(
                 cc_first6=cc,
-                mes_display=mes,
-                ano_display=ano,
-                cvv_display=cvv,
+                mes_display=mes_display,
+                ano_display=ano_display,
+                cvv_display=cvv_display,
                 cards_output=cards_output,
                 bin_text=bin_text,
                 bin_first6=cc[:6]

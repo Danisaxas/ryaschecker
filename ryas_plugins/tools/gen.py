@@ -11,7 +11,7 @@ async def gen(client: Client, message: types.Message):
         if "|" in data:
             parametros = data.split("|")
         else:
-            parametros = data.split()
+            parametros = re.split(r"[ \/:]+", data)
         cc = parametros[0] if len(parametros) >= 1 else ''
         mes = "x"
         ano = "x"
@@ -29,9 +29,6 @@ async def gen(client: Client, message: types.Message):
                     ano = "20" + ano
             else:
                 ano = "x"
-        else:
-            mes = "x"
-            ano = "x"
         if len(parametros) >= 3 and not re.search(r"[\/|:]+", parametros[1]) and parametros[2].strip():
             ano = parametros[2].strip()
             if len(ano) == 2:
@@ -46,6 +43,10 @@ async def gen(client: Client, message: types.Message):
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
+        if mes == "x":
+            mes = f"{random.randint(1,12):02d}"
+        if ano == "x":
+            ano = str(random.randint(datetime.now().year + 1, datetime.now().year + 5))
         if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 3:
             cvv = "x"
         ccs = cc_gen(cc, mes, ano, cvv)
@@ -55,11 +56,9 @@ async def gen(client: Client, message: types.Message):
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = (
-                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-                f"{bin_info.get('type')} | {bin_info.get('level')} | "
-                f"{bin_info.get('country')} ({bin_info.get('flag')})"
-            )
+            bin_text = (f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+                        f"{bin_info.get('type')} | {bin_info.get('level')} | "
+                        f"{bin_info.get('country')} ({bin_info.get('flag')})")
         else:
             bin_text = "Información no disponible"
         user_id = message.from_user.id
