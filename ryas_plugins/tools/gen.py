@@ -13,33 +13,21 @@ async def gen(client: Client, message: types.Message):
             return
 
         data = entrada[1].strip()
-
-        if "|" in data:
-            parametros = data.split("|")
-        else:
-            parametros = data.split()
+        parametros = data.split("|") if "|" in data else data.split()
 
         cc = parametros[0] if len(parametros) >= 1 else ''
-        mes = 'x'
-        ano = 'x'
-        cvv = 'x'
+        mes = parametros[1].strip() if len(parametros) >= 2 else 'x'
+        ano = parametros[2].strip() if len(parametros) >= 3 else 'x'
+        cvv = parametros[3].strip() if len(parametros) >= 4 else 'x'
 
-        if len(parametros) >= 2:
-            mes = parametros[1].strip()
-        if len(parametros) >= 3:
-            ano = parametros[2].strip()
-        if len(parametros) >= 4:
-            cvv = parametros[3].strip()
+        cc = cc[:6]  # Asegurar que solo usemos los primeros 6 dígitos (el BIN)
 
-        if not cvv:
-            cvv = 'x'
-
-        if len(cc) < 6:
+        if len(cc) < 6 or not cc.isdigit():
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
         if mes.lower() != "rnd" and mes != "x":
-            mes = mes[0:2]
+            mes = mes[:2]
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
@@ -49,17 +37,14 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
-        cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
+        cards_output = "".join(f"<code>{c.strip()}</code>\n" for c in ccs if c.strip())
 
         bin_info = get_bin_info(cc[:6])
-        if bin_info:
-            bin_text = (
-                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-                f"{bin_info.get('type')} | {bin_info.get('level')} | "
-                f"{bin_info.get('country')} ({bin_info.get('flag')})"
-            )
-        else:
-            bin_text = "Información no disponible"
+        bin_text = (
+            f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+            f"{bin_info.get('type')} | {bin_info.get('level')} | "
+            f"{bin_info.get('country')} ({bin_info.get('flag')})"
+        ) if bin_info else "Información no disponible"
 
         user_id = message.from_user.id
         connection, cursor = connect_db()
@@ -97,7 +82,7 @@ async def gen(client: Client, message: types.Message):
                 mes_display=mes_display,
                 ano_display=ano_display,
                 cvv_display=cvv_display,
-                cards_output=cards_output,
+                cards_output=cards_output.strip(),
                 bin_text=bin_text,
                 bin_first6=bin_first6
             ),
