@@ -12,7 +12,7 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
             return
 
-        data = entrada[1]
+        data = entrada[1].strip()
 
         if "|" in data:
             parametros = data.split("|")
@@ -24,15 +24,15 @@ async def gen(client: Client, message: types.Message):
         ano = 'x'
         cvv = 'x'
 
-        if len(parametros) == 2:
-            mes = parametros[1]
-        elif len(parametros) == 3:
-            mes = parametros[1]
-            ano = parametros[2]
-        elif len(parametros) >= 4:
-            mes = parametros[1]
-            ano = parametros[2]
-            cvv = parametros[3]
+        if len(parametros) >= 2:
+            mes = parametros[1].strip()
+        if len(parametros) >= 3:
+            ano = parametros[2].strip()
+        if len(parametros) >= 4:
+            cvv = parametros[3].strip()
+
+        if not cvv:
+            cvv = 'x'
 
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
@@ -49,7 +49,7 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
-        cards_output = "\n".join(f"<code>{c}</code>" for c in ccs if c.strip())
+        cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
 
         bin_info = get_bin_info(cc[:6])
         if bin_info:
