@@ -13,38 +13,57 @@ async def gen(client: Client, message: types.Message):
             return
 
         data = entrada[1].strip()
-        parametros = data.split("|") if "|" in data else data.split()
+
+        if "|" in data:
+            parametros = data.split("|")
+        else:
+            parametros = data.split()
 
         cc = parametros[0] if len(parametros) >= 1 else ''
-        mes = parametros[1].strip() if len(parametros) >= 2 else 'x'
-        ano = parametros[2].strip() if len(parametros) >= 3 else 'x'
-        cvv = parametros[3].strip() if len(parametros) >= 4 else 'x'
+        mes = 'x'
+        ano = 'x'
+        cvv = 'x'
 
-        cc = cc[:6]  # Asegurar que solo usemos los primeros 6 dígitos (el BIN)
+        if len(parametros) >= 2:
+            mes = parametros[1].strip()
+        if len(parametros) >= 3:
+            ano = parametros[2].strip()
+        if len(parametros) >= 4:
+            cvv = parametros[3].strip()
 
-        if len(cc) < 6 or not cc.isdigit():
+        if not cvv:
+            cvv = 'x'
+
+        if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
 
         if mes.lower() != "rnd" and mes != "x":
-            mes = mes[:2]
+            mes = mes[0:2]
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
+        else:
+            ano = "x"
+        if cvv.lower() == "rnd" or cvv == "x":
+            cvv = "x"
 
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
             return
 
-        cards_output = "".join(f"<code>{c.strip()}</code>\n" for c in ccs if c.strip())
+        cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
 
         bin_info = get_bin_info(cc[:6])
-        bin_text = (
-            f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-            f"{bin_info.get('type')} | {bin_info.get('level')} | "
-            f"{bin_info.get('country')} ({bin_info.get('flag')})"
-        ) if bin_info else "Información no disponible"
+        if bin_info:
+            bin_text = (
+                f"{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
+                f"{bin_info.get('type')} | {bin_info.get('level')} | "
+                f"{bin_info.get('country')} ({bin_info.get('flag')})"
+            )
+        else:
+            bin_text = "Información no disponible"
 
         user_id = message.from_user.id
         connection, cursor = connect_db()
@@ -72,8 +91,8 @@ async def gen(client: Client, message: types.Message):
 
         cc_show = cc
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
-        ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
-        cvv_display = cvv if cvv.lower() not in ["rnd", "x"] else "rnd"
+        ano_display = "xx"
+        cvv_display = "rnd"
         bin_first6 = cc[:6]
 
         await message.reply_text(
@@ -82,7 +101,7 @@ async def gen(client: Client, message: types.Message):
                 mes_display=mes_display,
                 ano_display=ano_display,
                 cvv_display=cvv_display,
-                cards_output=cards_output.strip(),
+                cards_output=cards_output,
                 bin_text=bin_text,
                 bin_first6=bin_first6
             ),
