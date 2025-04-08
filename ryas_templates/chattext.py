@@ -168,13 +168,13 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[⌥ (https://t.me/Ryascheckerbot)] <u>Ryas Generador</u> | <u>Luhn Algo:</u>
+'gen_message': '''[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generador</u> | <u>Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
 {cards_output}
 ━━━━━━━━━━━━━━
-[ϟ (https://t.me/Ryascheckerbot)] <code>Bin : {bin_first6}</code>  |  [ϟ (https://t.me/Ryascheckerbot)] <code>Informacion:</code>
+[<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Informacion:</code>
 <code>{bin_text}</code>
 ━━━━━━━━━━━━━━
 <code>bot por : @astrozdev🌤</code>'''
@@ -350,13 +350,13 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[⌥ (https://t.me/Ryascheckerbot)] <u>Ryas Generator</u> | <u>Luhn Algo:</u>
+'gen_message': '''[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generator</u> | <u>Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
 {cards_output}
 ━━━━━━━━━━━━━━
-[ϟ (https://t.me/Ryascheckerbot)] <code>Bin : {bin_first6}</code>  |  [ϟ (https://t.me/Ryascheckerbot)] <code>Info:</code>
+[<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Info:</code>
 <code>{bin_text}</code>
 ━━━━━━━━━━━━━━
 <code>bot by : @astrozdev🌤</code>'''
