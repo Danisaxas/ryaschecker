@@ -106,7 +106,8 @@ async def gen(client: Client, message: types.Message):
                 bin_text=bin_text,
                 bin_first6=bin_first6
             ),
-            reply_to_message_id=reply_msg_id
+            reply_to_message_id=reply_msg_id,
+            reply_markup=botones_dict['re_genbt']
         )
 
     except Exception as e:
