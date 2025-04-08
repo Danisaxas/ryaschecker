@@ -1,5 +1,5 @@
 import random
-from configs.def_main import *
+from datetime import datetime
 
 def luhn_verification(num):
     num = [int(d) for d in str(num)]
