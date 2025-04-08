@@ -1,7 +1,7 @@
-from configs.def_main import *
-from func_bin import get_bin_info
-from func_gen import cc_gen
 from pyrogram import Client, filters, types
+from configs.def_main import *
+from func_gen import cc_gen
+from func_bin import get_bin_info
 from datetime import datetime
 
 @ryas("gen")
@@ -76,6 +76,7 @@ async def gen(client: Client, message: types.Message):
         chat_id = message.chat.id
         reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
 
+        # Selección de idioma
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
@@ -110,7 +111,7 @@ async def gen(client: Client, message: types.Message):
                 bin_first6=bin_first6
             ),
             reply_to_message_id=reply_msg_id,
-            reply_markup=botones_dict['re_genbt']
+            reply_markup=botones_dict['re_genbt']  # El botón de regenerar
         )
 
     except Exception as e:
