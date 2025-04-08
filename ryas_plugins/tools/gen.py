@@ -24,15 +24,12 @@ async def gen(client: Client, message: types.Message):
         ano = 'x'
         cvv = 'x'
 
-        if len(parametros) >= 2:
+        if len(parametros) >= 2 and parametros[1].strip():
             mes = parametros[1].strip()
-        if len(parametros) >= 3:
+        if len(parametros) >= 3 and parametros[2].strip():
             ano = parametros[2].strip()
-        if len(parametros) >= 4:
+        if len(parametros) >= 4 and parametros[3].strip():
             cvv = parametros[3].strip()
-
-        if not cvv:
-            cvv = 'x'
 
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
@@ -40,12 +37,16 @@ async def gen(client: Client, message: types.Message):
 
         if mes.lower() != "rnd" and mes != "x":
             mes = mes[0:2]
-        if ano.lower() != "rnd" and ano != "x":
+        if (len(parametros) < 3 or not ano.strip()) and mes.lower() != "rnd":
+            from random import randint
+            ano = str(randint(datetime.now().year + 1, datetime.now().year + 5))
+        elif ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
         else:
             ano = "x"
-        if cvv.lower() == "rnd" or cvv == "x":
+
+        if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 4:
             cvv = "x"
 
         ccs = cc_gen(cc, mes, ano, cvv)
@@ -91,7 +92,7 @@ async def gen(client: Client, message: types.Message):
 
         cc_show = cc
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
-        ano_display = "xx"
+        ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         bin_first6 = cc[:6]
 
