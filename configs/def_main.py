@@ -8,6 +8,7 @@ import mysql.connector
 from pyrogram.types import CallbackQuery
 from ryas_templates.chattext import *
 from ryas_templates.botones import *
+import re
 
 def ryas(bit):
     nix = Client.on_message(filters.command(bit, ["/", "+", "(", ")", "!", "?", "¿", "`", "~", "*", "#", "$", "_", "^", "°", "=", ".", ",", "-", "%", "@", "&", ":", ";", "<", ">", "[", "]", "{", "}", "|", "€", "£", "¢","¥", "™", "½", "¼", "§", "±", "!", "¿", "«", "»", "•", "†", "‡", "⁂", "∗", "√", "∞", "≈", "≠", "≡", "∩", "∪", "⊕", "⊗", "→", "←", "↑", "↓","⇐", "⇒", "⇔", "⇕", "✦", "✧", "✩", "✪"]))
