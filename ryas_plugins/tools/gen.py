@@ -17,35 +17,41 @@ async def gen(client: Client, message: types.Message):
         .gen 463846003763xxxx|03|2028|rnd
     """
     try:
-        input_args = message.text.split()[1:]
-
-        if not input_args:
+        # Extraer el texto posterior al comando (omitimos ".gen")
+        entrada = message.text.split(" ", 1)
+        if len(entrada) < 2:
             await message.reply_text("Usa: .gen <BIN> [MM] [AAAA] [CVV]", quote=True)
             return
 
-        if len(input_args) < 1:
-            await message.reply_text("Debes proporcionar al menos el BIN.", quote=True)
-            return
+        data = entrada[1]
 
-        cc = input_args[0]
+        # Verificar si se usa "|" como separador
+        if "|" in data:
+            parametros = data.split("|")
+        else:
+            parametros = data.split()
+
+        # Asignación de parámetros con valores por defecto
+        cc = parametros[0] if len(parametros) >= 1 else ''
         mes = 'x'
         ano = 'x'
         cvv = 'x'
 
-        if len(input_args) > 1:
-            fecha_arg = input_args[1]
-            if '|' in fecha_arg:
-                date_parts = fecha_arg.split('|')
-                mes = date_parts[0] if len(date_parts) > 0 else 'x'
-                ano = date_parts[1] if len(date_parts) > 1 else 'x'
-            else:
-                mes = input_args[1]
-                if len(input_args) > 2:
-                    ano = input_args[2]
+        if len(parametros) == 2:
+            # Se asume que se pasan mes y año juntos (delimitados por "|") o solo mes si se usan espacios.
+            mes = parametros[1][0:2]  # En caso de usar espacios, tomamos solo los dos primeros dígitos
+            # Si se usó "|" debería venir tanto mes como año
+            if "|" in data and len(parametros) >= 2:
+                ano = parametros[1] if len(parametros) > 1 else 'x'
+        elif len(parametros) == 3:
+            mes = parametros[1][0:2]
+            ano = parametros[2]
+        elif len(parametros) >= 4:
+            mes = parametros[1][0:2]
+            ano = parametros[2]
+            cvv = parametros[3]
 
-        if len(input_args) > 2:
-            cvv = input_args[2]
-
+        # Validación del BIN
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
