@@ -8,41 +8,25 @@ async def gen(client: Client, message: types.Message):
             await message.reply_text("Usa: .gen <BIN> [MM/AA] [CVV]", quote=True)
             return
         data = entrada[1].strip()
-        if "|" in data:
-            parametros = data.split("|")
-        else:
-            parametros = data.split()
+        parametros = re.split(r"[ \|/:]+", data)
         cc = parametros[0] if len(parametros) >= 1 else ''
-        mes = ""
-        ano = ""
-        cvv = "x"
-        if len(parametros) >= 2 and parametros[1].strip():
-            date_param = parametros[1].strip()
-            parts = re.split(r"[/|:]", date_param)
-            if parts and parts[0].strip():
-                mes = parts[0].strip().zfill(2)
-            if len(parts) > 1 and parts[1].strip():
-                ano = parts[1].strip()
-                if len(ano) == 2:
-                    ano = "20" + ano
-            else:
-                ano = ""
-        else:
-            mes = ""
-            ano = ""
-        if len(parametros) >= 3 and not re.search(r"[/|:]", parametros[1]) and parametros[2].strip():
-            ano = parametros[2].strip()
-            if len(ano) == 2:
-                ano = "20" + ano
-        if len(parametros) >= 4 and parametros[3].strip():
-            cvv = parametros[3].strip()
+        mes = parametros[1].strip() if len(parametros) >= 2 and parametros[1].strip() else "x"
+        ano = parametros[2].strip() if len(parametros) >= 3 and parametros[2].strip() else "x"
+        cvv = parametros[3].strip() if len(parametros) >= 4 and parametros[3].strip() else "x"
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
-        if not mes:
+        if mes.lower() != "rnd" and mes != "x":
+            mes = mes[0:2]
+        if ano.lower() != "rnd" and ano != "x":
+            if len(ano) == 2:
+                ano = "20" + ano
+        if mes == "x":
             mes = f"{random.randint(1,12):02d}"
-        if not ano:
+        if ano == "x":
             ano = str(random.randint(datetime.now().year + 1, datetime.now().year + 5))
+        if cvv.lower() == "rnd" or cvv == "x":
+            cvv = "x"
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", quote=True)
@@ -80,8 +64,8 @@ async def gen(client: Client, message: types.Message):
             )
             return
         cc_show = cc
-        mes_display = mes if mes.lower() not in ["rnd", "x", ""] else "xx"
-        ano_display = ano if ano.lower() not in ["rnd", "x", ""] else "xx"
+        mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
+        ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         bin_first6 = cc[:6]
         await message.reply_text(
