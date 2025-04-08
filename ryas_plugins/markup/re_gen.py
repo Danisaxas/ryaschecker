@@ -3,6 +3,7 @@ from configs.def_main import *
 from func_gen import cc_gen
 from func_bin import get_bin_info
 from datetime import datetime
+import random
 from ryas_templates.chattext import es as text_dict, en as text_dict_en
 from ryas_templates.botones import es as botones_dict, en as botones_dict_en
 
@@ -43,7 +44,6 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             return
 
         # Extraer los detalles de la tarjeta del mensaje
-        # Buscar el BIN y la información de fecha (MM, AA, CVV) en el texto del mensaje
         match = re.search(r"(\d{6})\|(\d{2})\|(\d{4})\|([0-9]{3})", text)
         if match:
             cc = match.group(1)
@@ -54,12 +54,13 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             await callback_query.message.reply_text("⚠️ Error al regenerar. Asegúrate de que el formato del BIN y los datos sean correctos.", reply_to_message_id=reply_msg_id)
             return
 
-        # Regenerar las tarjetas
+        # Regenerar las tarjetas (verificar la generación correcta)
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await callback_query.message.reply_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.", reply_to_message_id=reply_msg_id)
             return
 
+        # Nuevas tarjetas generadas
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
 
         # Obtener información adicional del BIN
@@ -73,7 +74,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         else:
             bin_text = "Información no disponible"
 
-        # Mostrar el resultado con los botones
+        # Ahora actualizamos el mensaje con las nuevas tarjetas y la información
         await callback_query.message.edit_text(
             text_dict['gen_message'].format(
                 cc_first6=cc,
@@ -84,10 +85,11 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
                 bin_text=bin_text,
                 bin_first6=cc[:6]
             ),
-            reply_markup=botones_dict['re_genbt'],
+            reply_markup=botones_dict['re_genbt'],  # Se mantiene el botón de regenerar
             reply_to_message_id=reply_msg_id
         )
 
     except Exception as e:
+        # En caso de error, se muestra el mensaje de error
         await callback_query.message.reply_text(f"⚠️ Ocurrió un error: {e}", reply_to_message_id=reply_msg_id)
         return
