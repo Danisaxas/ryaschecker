@@ -168,7 +168,7 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[⌥] Ryas Generador | Luhn Algo:
+'gen_message': '''[⌥] <u>Ryas Generador | Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
@@ -350,7 +350,7 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[⌥] Ryas Generator | Luhn Algo:
+'gen_message': '''[⌥] <u>Ryas Generator | Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
