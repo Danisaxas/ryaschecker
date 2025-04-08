@@ -1,10 +1,4 @@
-from pyrogram import Client, filters, types
 from configs.def_main import *
-from func_gen import cc_gen
-from func_bin import get_bin_info
-from datetime import datetime
-import re
-import random
 
 @ryas("gen")
 async def gen(client: Client, message: types.Message):
@@ -49,12 +43,9 @@ async def gen(client: Client, message: types.Message):
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
-        if mes == "x":
-            mes = "x"
-        if ano == "x":
-            ano = "x"
         if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 3:
             cvv = "x"
+
         user_id = message.from_user.id
         connection, cursor = connect_db()
         cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
@@ -62,6 +53,8 @@ async def gen(client: Client, message: types.Message):
         lang = result[0] if result else 'es'
         ban_status = result[1] if result else 'No'
         razon = result[2] if result else ""
+        chat_id = message.chat.id
+        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
@@ -71,30 +64,39 @@ async def gen(client: Client, message: types.Message):
         else:
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
-        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         if ban_status == 'Yes':
-            await message.reply_text(text_dict['block_message'].format(user_id=user_id, razon=razon), reply_to_message_id=reply_msg_id)
+            await message.reply_text(
+                text_dict['block_message'].format(user_id=user_id, razon=razon),
+                reply_to_message_id=reply_msg_id
+            )
             return
-        loading_message = await message.reply_text(text_dict['gen_loading'], quote=True)
+
+        carga = await message.reply_text(text_dict['gen_loading'], quote=True)
+
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
-            await loading_message.edit_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.")
+            await carga.edit_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.")
             return
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = (f"<code>{bin_info.get('bank_name')}</code> | <code>{bin_info.get('vendor')}</code> | "
-                        f"<code>{bin_info.get('type')}</code> | <code>{bin_info.get('level')}</code> | "
-                        f"<code>{bin_info.get('country')}</code> ({bin_info.get('flag')})")
+            bin_text = (
+                f"<code>{bin_info.get('bank_name')}</code> | "
+                f"<code>{bin_info.get('vendor')}</code> | "
+                f"<code>{bin_info.get('type')}</code> | "
+                f"<code>{bin_info.get('level')}</code> | "
+                f"<code>{bin_info.get('country')}</code> ({bin_info.get('flag')})"
+            )
         else:
             bin_text = "Información no disponible"
+        cc_show = cc
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
         ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         bin_first6 = cc[:6]
-        await loading_message.edit_text(
+        await carga.edit_text(
             text_dict['gen_message'].format(
-                cc_first6=cc,
+                cc_first6=cc_show,
                 mes_display=mes_display,
                 ano_display=ano_display,
                 cvv_display=cvv_display,
