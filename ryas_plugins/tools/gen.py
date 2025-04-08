@@ -43,10 +43,7 @@ async def gen(client: Client, message: types.Message):
         if ano.lower() != "rnd" and ano != "x":
             if len(ano) == 2:
                 ano = "20" + ano
-        if mes == "x":
-            mes = f"{random.randint(1,12):02d}"
-        if ano == "x":
-            ano = str(random.randint(datetime.now().year + 1, datetime.now().year + 5))
+        # No se asigna un valor único: se pasa "x" para que cc_gen genere valores aleatorios para cada tarjeta
         if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 3:
             cvv = "x"
         ccs = cc_gen(cc, mes, ano, cvv)

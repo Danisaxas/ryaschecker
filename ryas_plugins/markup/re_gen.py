@@ -42,12 +42,10 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
                 reply_to_message_id=reply_msg_id
             )
             return
-        if mes.lower() == "xx":
-            mes = "x"
-        if ano.lower() == "xx":
-            ano = "x"
-        if cvv.lower() == "rnd":
-            cvv = "x"
+        # Si en el mensaje original se muestra "xx" en fecha, interpretar como sin fecha, pasar "x"
+        mes = "x" if mes.lower() == "xx" else mes
+        ano = "x" if ano.lower() == "xx" else ano
+        cvv = "x" if cvv.lower() == "rnd" else cvv
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await callback_query.message.reply_text(
@@ -65,8 +63,9 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             )
         else:
             bin_text = "Información no disponible"
-        mes_display = "xx" if mes == "x" else mes
-        ano_display = "xx" if ano == "x" else ano
+        # Para la visualización, si no se proporcionó fecha, se muestra "xx"
+        mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
+        ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         await callback_query.message.edit_text(
             text_dict['gen_message'].format(
