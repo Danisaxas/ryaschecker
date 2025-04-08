@@ -54,10 +54,13 @@ async def gen(client: Client, message: types.Message):
         bin_info = get_bin_info(cc[:6])
         if bin_info:
             bin_text = (
-    f"<code>{bin_info.get('bank_name')} | {bin_info.get('vendor')} | "
-    f"{bin_info.get('type')} | {bin_info.get('level')} | "
-    f"{bin_info.get('country')} ({bin_info.get('flag')})</code>"
+    f"<code>{bin_info.get('bank_name')}</code> | "
+    f"<code>{bin_info.get('vendor')}</code> | "
+    f"<code>{bin_info.get('type')}</code> | "
+    f"<code>{bin_info.get('level')}</code> | "
+    f"<code>{bin_info.get('country')}</code> ({bin_info.get('flag')})"
 )
+
         else:
             bin_text = "Información no disponible"
         user_id = message.from_user.id
