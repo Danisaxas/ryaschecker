@@ -19,18 +19,20 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         ban_status = result[1] if result else 'No'
         razon = result[2] if result else ""
         chat_id = callback_query.message.chat.id
-        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.message_id
 
-        # Selección del idioma y botones
+        # Asignación de text_dict y botones_dict según el idioma
         if lang == 'es':
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict_en
-            from ryas_templates.botones import en as botones_dict_en
+            from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
             from ryas_templates.chattext import es as text_dict
             from ryas_templates.botones import es as botones_dict
+
+        # Manejo del reply_msg_id: Usamos el message_id directamente si no hay reply_to_message
+        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.message_id
 
         # Verificar si el usuario está baneado
         if ban_status == 'Yes':
