@@ -38,7 +38,6 @@ async def gen(client: Client, message: types.Message):
         if len(cc) < 6:
             await message.reply_text("<b>❌ Invalid Bin ❌</b>", quote=True)
             return
-        
         if mes.lower() != "rnd" and mes != "x":
             mes = mes[0:2]
         if ano.lower() != "rnd" and ano != "x":
@@ -87,18 +86,13 @@ async def gen(client: Client, message: types.Message):
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
                 reply_to_message_id=reply_msg_id
             )
-            return       
-        carga = await message.reply_text(
-            text_dict.get('gen_loading', "Generando tarjetas, por favor espera..."), 
-            quote=True
-        )
-        
+            return
         cc_show = cc
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
         ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         bin_first6 = cc[:6]
-        await carga.edit_text(
+        await message.reply_text(
             text_dict['gen_message'].format(
                 cc_first6=cc_show,
                 mes_display=mes_display,
@@ -107,7 +101,9 @@ async def gen(client: Client, message: types.Message):
                 cards_output=cards_output,
                 bin_text=bin_text,
                 bin_first6=bin_first6
-            )
+            ),
+            reply_to_message_id=reply_msg_id,
+            reply_markup=botones_dict['re_genbt']
         )
     except Exception as e:
         await message.reply_text(f"Ocurrió un error: {e}", quote=True)
