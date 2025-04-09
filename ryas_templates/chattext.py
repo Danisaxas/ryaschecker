@@ -168,7 +168,7 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generador</u> | <u>Luhn Algo:</u>
+'gen_message': """[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generador</u> | <u>Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
@@ -177,9 +177,9 @@ Select the type of gate you want for your use!</b>""",
 [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Informacion:</code>
 {bin_text}
 ━━━━━━━━━━━━━━
-<code>bot por : @astrozdev🌤</code>'''
+<code>bot por : @astrozdev🌤</code>""",
 
-    'gen_loading:' "<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>",
+    'gen_loading': "<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>"
 }
 
 # Inglés
@@ -352,7 +352,7 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 ━━━━━━━━━━━━
 Select the type of gate you want for your use!</b>""",
 
-'gen_message': '''[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generator</u> | <u>Luhn Algo:</u>
+'gen_message': """[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generator</u> | <u>Luhn Algo:</u>
 ━━━━━━━━━━━━━━
 -<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-
 ━━━━━━━━━━━━━━
@@ -361,7 +361,7 @@ Select the type of gate you want for your use!</b>""",
 [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href="t.me/Ryascheckerbot">ϟ</a>] <code>Info:</code>
 {bin_text}
 ━━━━━━━━━━━━━━
-<code>bot by : @astrozdev🌤</code>'''
+<code>bot by : @astrozdev🌤</code>""",
 
-    'gen_loading:' "<b><code>pejne cards from the bin... 🌤</b></code>",
+    'gen_loading': "<b><code>Generating cards from the bin... 🌤</b></code>"
 }
