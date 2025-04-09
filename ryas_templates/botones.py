@@ -44,7 +44,7 @@ en = {
     're_genbt': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Do you want to generate again?", callback_data="re_gen"),
-            InlineKeyboardButton("bot channel", callback_data="channel_link")
+            InlineKeyboardButton("bot channel", url="t.me/Astrozdev")
         ]
     ]),
     
@@ -134,7 +134,7 @@ es = {
     're_genbt': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("¿Quieres generar de nuevo?", callback_data="re_gen"),
-            InlineKeyboardButton("bot canal", callback_data="channel_link")
+            InlineKeyboardButton("bot canal", url="t.me/Astrozdev")
         ]
     ]),
     
