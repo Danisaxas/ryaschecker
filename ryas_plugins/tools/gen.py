@@ -72,6 +72,7 @@ async def gen(client: Client, message: types.Message):
             return
 
         carga = await message.reply_text(text_dict['gen_loading'], quote=True)
+        await asyncio.sleep(4)
 
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
