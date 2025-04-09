@@ -179,7 +179,7 @@ Select the type of gate you want for your use!</b>""",
 ━━━━━━━━━━━━━━
 <code>bot por : @astrozdev🌤</code>'''
 
-'gen_loading:' '''<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>'''
+    'gen_loading:' "<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>",
 }
 
 # Inglés
@@ -363,5 +363,5 @@ Select the type of gate you want for your use!</b>""",
 ━━━━━━━━━━━━━━
 <code>bot by : @astrozdev🌤</code>'''
 
-'gen_loading:' '''<b><code>Generating cards from the bin... 🌤</b></code>'''
+    'gen_loading:' "<b><code>Generating cards from the bin... 🌤</b></code>",
 }
