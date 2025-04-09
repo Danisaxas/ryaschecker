@@ -179,7 +179,12 @@ Select the type of gate you want for your use!</b>""",
 ━━━━━━━━━━━━━━
 <code>bot por : @astrozdev🌤</code>""",
 
-    'gen_loading': "<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>"
+    'gen_loading': "<b><code>Generando tarjetas desde el contenedor... 🌤</b></code>",
+    'gen_usage': """
+<b><u>Ryas Generador</u>[⛈]
+Formato: <code>$gen 60112088</code>
+<code>$gen 60112088 05/25 xxx</code>
+<code>$gen 60112088 05/xx</code></b>"""
 }
 
 # Inglés
@@ -363,5 +368,10 @@ Select the type of gate you want for your use!</b>""",
 ━━━━━━━━━━━━━━
 <code>bot by : @astrozdev🌤</code>""",
 
-    'gen_loading': "<b><code>Generating cards from the bin... 🌤</b></code>"
+    'gen_loading': "<b><code>Generating cards from the bin... 🌤</b></code>",
+    'gen_usage': """
+<b><u>Ryas Generator</u>[⛈]
+Format: <code>$gen 60112088</code>
+<code>$gen 60112088 05/25 xxx</code>
+<code>$gen 60112088 05/xx</code></b>"""
 }

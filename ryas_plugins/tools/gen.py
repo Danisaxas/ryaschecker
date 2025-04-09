@@ -5,7 +5,7 @@ async def gen(client: Client, message: types.Message):
     try:
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
-            await message.reply_text("Usa: .gen <BIN> [MM/AA] [CVV]", quote=True)
+            await message.reply_text(text_dict['gen_usage'], quote=True)
             return
         data = entrada[1].strip()
         if "|" in data:
@@ -56,14 +56,11 @@ async def gen(client: Client, message: types.Message):
         chat_id = message.chat.id
         reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         if lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
+            pass  # Add appropriate logic for 'es' language here
         elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict
-            from ryas_templates.botones import en as botones_dict
+            pass  # Add appropriate logic for 'en' language here
         else:
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
+            pass  # Add appropriate logic for other cases here
         if ban_status == 'Yes':
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
@@ -72,7 +69,7 @@ async def gen(client: Client, message: types.Message):
             return
 
         carga = await message.reply_text(text_dict['gen_loading'], quote=True)
-        await asyncio.sleep(4)
+        await asyncio.sleep(2)
 
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
