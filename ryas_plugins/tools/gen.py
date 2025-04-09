@@ -88,7 +88,10 @@ async def gen(client: Client, message: types.Message):
                 reply_to_message_id=reply_msg_id
             )
             return       
-        carga = await message.reply_text(text_dict['gen_loading'], quote=True)
+        carga = await message.reply_text(
+            text_dict.get('gen_loading', "Generando tarjetas, por favor espera..."), 
+            quote=True
+        )
         
         cc_show = cc
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
