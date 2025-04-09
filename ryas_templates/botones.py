@@ -47,6 +47,13 @@ en = {
             InlineKeyboardButton("bot channel", callback_data="channel_link")
         ]
     ]),
+    
+    'gen_but': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+            InlineKeyboardButton("bot channel", callback_data="channel_link")
+        ]
+    ]),
 
     'vryasx': InlineKeyboardMarkup(
         inline_keyboard=[
@@ -127,6 +134,13 @@ es = {
     're_genbt': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("¿Quieres generar de nuevo?", callback_data="re_gen"),
+            InlineKeyboardButton("bot canal", callback_data="channel_link")
+        ]
+    ]),
+    
+    'gen_but': InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
             InlineKeyboardButton("bot canal", callback_data="channel_link")
         ]
     ]),

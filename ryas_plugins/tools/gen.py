@@ -1,11 +1,11 @@
 from configs.def_main import *
 
 @ryas("gen")
-async def gen(client: Client, message: types.Message):
+async def gen(message: types.Message):
     try:
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
-            await message.reply_text(text_dict['gen_usage'], quote=True)
+            await message.reply_text(text_dict['gen_usage'], quote=True, reply_markup=botones_dict['gen_but'])
             return
         data = entrada[1].strip()
         if "|" in data:
