@@ -1,7 +1,7 @@
 from configs.def_main import *
 
 @ryas("gen")
-async def gen(message: types.Message):
+async def gen(client: Client, message: types.Message):
     try:
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
