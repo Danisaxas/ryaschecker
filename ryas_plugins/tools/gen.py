@@ -3,6 +3,22 @@ from configs.def_main import *
 @ryas("gen")
 async def gen(client: Client, message: types.Message):
     try:
+        user_id = message.from_user.id
+        connection, cursor = connect_db()
+        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
+        result = cursor.fetchone()
+        lang = result[0] if result else 'es'
+
+        if lang == 'es':
+            from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
+        elif lang == 'en':
+            from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
+        else:
+            from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
+
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
             await message.reply_text(text_dict['gen_usage'], quote=True, reply_markup=botones_dict['gen_but'])
@@ -56,11 +72,14 @@ async def gen(client: Client, message: types.Message):
         chat_id = message.chat.id
         reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         if lang == 'es':
-            pass  # Add appropriate logic for 'es' language here
+            from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         elif lang == 'en':
-            pass  # Add appropriate logic for 'en' language here
+            from ryas_templates.chattext import en as text_dict
+            from ryas_templates.botones import en as botones_dict
         else:
-            pass  # Add appropriate logic for other cases here
+            from ryas_templates.chattext import es as text_dict
+            from ryas_templates.botones import es as botones_dict
         if ban_status == 'Yes':
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),

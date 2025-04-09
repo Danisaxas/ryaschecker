@@ -13,10 +13,7 @@ from func_gen import *
 import re
 import random
 import asyncio
-from ryas_templates.chattext import en as text_dict
-from ryas_templates.botones import en as botones_dict
-from ryas_templates.chattext import es as text_dict
-from ryas_templates.botones import es as botones_dict
+
 
 def ryas(bit):
     nix = Client.on_message(filters.command(bit, ["/", "+", "(", ")", "!", "?", "¿", "`", "~", "*", "#", "$", "_", "^", "°", "=", ".", ",", "-", "%", "@", "&", ":", ";", "<", ">", "[", "]", "{", "}", "|", "€", "£", "¢","¥", "™", "½", "¼", "§", "±", "!", "¿", "«", "»", "•", "†", "‡", "⁂", "∗", "√", "∞", "≈", "≠", "≡", "∩", "∪", "⊕", "⊗", "→", "←", "↑", "↓","⇐", "⇒", "⇔", "⇕", "✦", "✧", "✩", "✪"]))
