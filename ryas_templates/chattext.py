@@ -363,5 +363,5 @@ Select the type of gate you want for your use!</b>""",
 ━━━━━━━━━━━━━━
 <code>bot by : @astrozdev🌤</code>'''
 
-    'gen_loading:' "<b><code>Generating cards from the bin... 🌤</b></code>",
+    'gen_loading:' "<b><code>pejne cards from the bin... 🌤</b></code>",
 }
