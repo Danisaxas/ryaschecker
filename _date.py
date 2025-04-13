@@ -6,8 +6,7 @@ import time, logging,requests
 from func_bin import *
 from func_gen import *
 import re, random,asyncio
-from db.database import connect_db
-import mysql.connector
+from classBot.sql import MondB
 import time, pytz
 from datetime import datetime
 
@@ -26,7 +25,7 @@ _channel= '-1002364228833'
 _plugin_root= 'ryas_plugins'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
-loogs = logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 print(requests.get('https://translate.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&es=en&q=hellow&tbb=1&ie=UTF-8&oe=UTF-8').text)
 

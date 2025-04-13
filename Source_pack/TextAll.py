@@ -150,7 +150,7 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
     'bin_not_found': "No se encontró información para el BIN {bin_number}.",
     'bin_usage': "Por favor, proporciona un número de BIN válido después del comando .bin",
     'bin_error': "Número de BIN inválido. Debe contener solo dígitos.",
-    'bin_message': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
+    'bintext': "<b>({bandera}) - Datos para <code>{bin_number}</code> encontró -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>#Bin<code>{bin_number}</code></b>\n"
                    "<b>• Banco: <code>{bank_name}</code></b>\n"
@@ -339,7 +339,7 @@ These are the data about your language saved in the DB, do you want to change? S
     'bin_not_found': "No information found for BIN {bin_number}.",
     'bin_usage': "Please provide a valid BIN number after the .bin command",
     'bin_error': "Invalid BIN number. It must contain only digits.",
-    'bin_message': "<b>({bandera}) - Data For <code>{bin_number}</code> Found -</b> \n"
+    'bintext': "<b>({bandera}) - Data For <code>{bin_number}</code> Found -</b> \n"
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>#Bin<code>{bin_number}</code></b>\n"
                    "<b>• Bank: <code>{bank_name}</code></b>\n"
