@@ -20,4 +20,4 @@ COPY . /app/
 # ENV NIXPACKS_PATH=/opt/venv/bin:$NIXPACKS_PATH
 
 # Comando para ejecutar la aplicación (ajústalo según sea necesario)
-CMD ["python", "bot.py"]
+CMD ["python", "_MainChk.py"]
