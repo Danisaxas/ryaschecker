@@ -1,19 +1,3 @@
-from pyrogram import Client, filters
-from pyrogram import *
-import time
-import pytz
-from datetime import datetime
-from db.database import connect_db
-import mysql.connector
-from pyrogram.types import CallbackQuery
-from ryas_templates.chattext import *
-from ryas_templates.botones import *
-from func_bin import *
-from func_gen import *
-import re
-import random
-import asyncio
-
 
 def ryas(bit):
     nix = Client.on_message(filters.command(bit, ["/", "+", "(", ")", "!", "?", "¿", "`", "~", "*", "#", "$", "_", "^", "°", "=", ".", ",", "-", "%", "@", "&", ":", ";", "<", ">", "[", "]", "{", "}", "|", "€", "£", "¢","¥", "™", "½", "¼", "§", "±", "!", "¿", "«", "»", "•", "†", "‡", "⁂", "∗", "√", "∞", "≈", "≠", "≡", "∩", "∪", "⊕", "⊗", "→", "←", "↑", "↓","⇐", "⇒", "⇔", "⇕", "✦", "✧", "✩", "✪"]))
