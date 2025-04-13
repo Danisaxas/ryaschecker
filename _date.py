@@ -25,7 +25,7 @@ _channel= '-1002364228833'
 _plugin_root= 'ryas_plugins'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
-logging.basicConfig(level=logging.INFO)
+loogs = logging.basicConfig(level=logging.INFO)
 
 print(requests.get('https://translate.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&es=en&q=hellow&tbb=1&ie=UTF-8&oe=UTF-8').text)
 
