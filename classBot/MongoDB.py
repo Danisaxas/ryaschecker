@@ -28,7 +28,6 @@ class MondB:
         _collection = _database['user']
         _save = {
             "_id": self.id,
-            "id": self.id,
             "username": self.username,
             "plan": "Free User",
             "role": "User",
@@ -56,7 +55,7 @@ class MondB:
         if dias is None:
             if plan is None:
                 _save = {
-                    "id": self.idchat,
+                    "_id": self.idchat,
                     "days": dias,
                     "plan": 'Free Chat',
                     "type": self.tipo
@@ -64,7 +63,7 @@ class MondB:
                 return _collection.insert_one(_save)
             else:
                 _save = {
-                    "id": self.idchat,
+                    "_id": self.idchat,
                     "days": dias,
                     "plan": 'Premium',
                     "type": self.tipo
@@ -72,7 +71,7 @@ class MondB:
                 return _collection.insert_one(_save)
         else:
             _save = {
-                "id": self.idchat,
+                "_id": self.idchat,
                 "days": dias,
                 "plan": plan,
                 "type": self.tipo
@@ -102,7 +101,6 @@ class MondB:
         _collection = _database['lang']
         _save = {
             "_id": self.id,
-            "id": self.id,
             "username": self.username,
             "plan": "Free User",
             "role": "User",
