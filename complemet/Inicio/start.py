@@ -22,9 +22,8 @@ async def start(client: Client, message: types.Message):
             text_dict = text_es if lang == "es" else text_en
             await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
-        lang = user.get("lang", "es")
-        ban = user.get("status", "Libre")
-        razon = user.get("razon", "No especificada")
+        lang = user.get("lang")
+        status = user.get("status")
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
         if lang == 'es':
             text_dict = text_es
@@ -38,8 +37,9 @@ async def start(client: Client, message: types.Message):
             text_dict = text_es
             botones_dict = btn_es
             idioma_actual = "🇪🇸"
-        if ban == 'Yes':
-            await message.reply_text(text_dict['block_message'].format(user_id=user_id, razon=razon), reply_to_message_id=message.id)
+        if status == "Baneado":
+            text_dict = text_es if lang == "es" else text_en
+            await message.reply_text(text_dict['block_message'].format(user_id=user_id), reply_to_message_id=message.id)
             return
         response = text_dict['startx'].format(username=username, idioma_actual=idioma_actual, caracas_time=caracas_time)
         await message.reply_text(response, reply_to_message_id=message.id, reply_markup=botones_dict['mainstart'])
