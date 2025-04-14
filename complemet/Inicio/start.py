@@ -1,4 +1,4 @@
-from configs.def_main import *
+from _date import *
 import pytz
 from datetime import datetime
 from pyrogram import Client, types
@@ -8,7 +8,7 @@ from Source_pack.TextAll import es as text_es
 from Source_pack.BoutnAll import en as btn_en
 from Source_pack.BoutnAll import es as btn_es
 
-@ryas("start")
+@Astro("start")
 async def start(client: Client, message: types.Message):
     user_id = message.from_user.id
     try:
