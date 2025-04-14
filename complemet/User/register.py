@@ -18,17 +18,7 @@ async def register_user(client: Client, message: types.Message):
             text_dict = text_en if lang == 'en' else text_es
             await message.reply_text(text_dict['already_registered'].format(user=username))
             return
-        db.insertUser({
-            "plan": "Free User",
-            "privilegio": 0,
-            "credits": 0,
-            "antispam": 60,
-            "expiracion": None,
-            "dias": 0,
-            "bin_lasted": None,
-            "status": "Libre",
-            "lang": lang
-        })
+        db.savedbuser()
         text_dict = text_en if lang == 'en' else text_es
         registro_msg = text_dict['registerx'].format(
             username=username, user_id=user_id, lang=lang.upper()
