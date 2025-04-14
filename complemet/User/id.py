@@ -16,9 +16,9 @@ async def obtener_id(client: Client, message: Message):
         text_dict = text_es if lang == "es" else text_en
         await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
         return
-    lang = user.get("lang", "es")
-    plan = user.get("plan", "Free User")
-    status = user.get("status", "Libre")
+    lang = user.get("lang")
+    plan = user.get("plan")
+    status = user.get("status")
     text_dict = text_es if lang == "es" else text_en
     if status.lower() == 'ban':
         await message.reply_text(
