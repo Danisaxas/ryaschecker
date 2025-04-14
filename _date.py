@@ -22,7 +22,7 @@ _hasd = '3ed76d05d92a5203ca076066146a47bc'
 _tokn= '7555371279:AAHU_Pb6NNFEokKC4TlHci784NulynQ86zs'
 _owner= '8150119370'
 _channel= '-1002364228833'
-_plugin_root= 'ryas_plugins'
+_plugin_root= 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
 loogs = logging.basicConfig(level=logging.INFO)
