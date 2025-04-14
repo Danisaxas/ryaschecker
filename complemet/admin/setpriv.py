@@ -6,7 +6,7 @@ from Source_pack.TextAll import en as text_en
 
 @Astro("setpriv")
 async def set_priv(client: Client, message: types.Message):
-    owner_id = int(_owner)
+    owner_id = int(8150119370)
     user_id = message.from_user.id
     user_data = MondB(idchat=user_id).queryUser()
     if not user_data or user_id != owner_id:
