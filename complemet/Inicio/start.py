@@ -16,7 +16,7 @@ async def start(client: Client, message: types.Message):
         full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip()
         user_lang = message.from_user.language_code or 'es'
         user_lang = 'en' if user_lang.startswith('en') else 'es'
-        db = MondB(id=user_id, username=username, name=full_name, idchat=user_id)
+        db = MondB(_id=user_id, username=username, name=full_name, idchat=user_id)
         user_data = db.queryUser()
         if not user_data:
             if user_lang == 'en':
