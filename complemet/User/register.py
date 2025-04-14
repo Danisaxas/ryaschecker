@@ -1,6 +1,6 @@
 from _date import *
 from pyrogram import Client, types
-from classBot.sql import MondB
+from classBot.MongoDB import MondB
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
 from datetime import datetime
@@ -12,17 +12,12 @@ async def register_user(client: Client, message: types.Message):
     full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip()
     lang = message.from_user.language_code or "es"
     lang = 'en' if lang.startswith("en") else "es"
-
     try:
         db = MondB(id=user_id, username=username, name=full_name, idchat=user_id)
-
-        # Verificar si ya está registrado
         if db.queryUser():
             text_dict = text_en if lang == 'en' else text_es
             await message.reply_text(text_dict['already_registered'].format(user=username))
             return
-
-        # Registrar nuevo usuario
         db.insertUser({
             "plan": "Free User",
             "privilegio": 0,
@@ -34,9 +29,7 @@ async def register_user(client: Client, message: types.Message):
             "status": "Libre",
             "lang": lang
         })
-
         text_dict = text_en if lang == 'en' else text_es
-
         registro_msg = text_dict['registerx'].format(
             username=username, user_id=user_id, lang=lang.upper()
         )
@@ -50,10 +43,8 @@ async def register_user(client: Client, message: types.Message):
 ━━━━━━━━━━━━━
 🎯 ¡Bienvenido a RyasChk!
 """
-
         await message.reply_text(registro_msg)
         await client.send_message(_channel, log_msg)
-
     except Exception as e:
         print(f"Error en register_user: {e}")
         await message.reply_text(f"Ocurrió un error durante el registro: {e}")

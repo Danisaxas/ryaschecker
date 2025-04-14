@@ -1,6 +1,5 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# English Language Buttons
 en = {
     'mainstart': InlineKeyboardMarkup([
         [
@@ -90,7 +89,6 @@ en = {
 
 }
 
-# Spanish Language Buttons
 es = {
     'mainstart': InlineKeyboardMarkup([
         [

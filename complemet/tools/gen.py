@@ -1,24 +1,34 @@
-from configs.def_main import *
+from _date import *
+from Source_pack.TextAll import es as text_es
+from Source_pack.TextAll import en as text_en
+from Source_pack.BoutnAll import es as botones_es
+from Source_pack.BoutnAll import en as botones_en
+from classBot.MongoDB import MondB
+import re
+import asyncio
 
-@ryas("gen")
+@Astro("gen")
 async def gen(client: Client, message: types.Message):
     try:
         user_id = message.from_user.id
-        connection, cursor = connect_db()
-        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
-        result = cursor.fetchone()
-        lang = result[0] if result else 'es'
-
-        if lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
-        elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict
-            from ryas_templates.botones import en as botones_dict
+        user_data = MondB(idchat=user_id).queryUser()
+        if user_data:
+            lang = user_data.get('lang', 'es')
+            ban_status = user_data.get('status', 'Libre')
+            razon = user_data.get('razon', "")
         else:
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
-
+            lang = 'es'
+            ban_status = 'No'
+            razon = ""
+        if lang == 'es':
+            text_dict = text_es
+            botones_dict = botones_es
+        elif lang == 'en':
+            text_dict = text_en
+            botones_dict = botones_en
+        else:
+            text_dict = text_es
+            botones_dict = botones_es
         entrada = message.text.split(" ", 1)
         if len(entrada) < 2:
             await message.reply_text(text_dict['gen_usage'], quote=True, reply_markup=botones_dict['gen_but'])
@@ -61,35 +71,30 @@ async def gen(client: Client, message: types.Message):
                 ano = "20" + ano
         if cvv.lower() == "rnd" or cvv == "x" or len(parametros) < 3:
             cvv = "x"
-
-        user_id = message.from_user.id
-        connection, cursor = connect_db()
-        cursor.execute("SELECT lang, ban, razon FROM users WHERE user_id = %s", (user_id,))
-        result = cursor.fetchone()
-        lang = result[0] if result else 'es'
-        ban_status = result[1] if result else 'No'
-        razon = result[2] if result else ""
-        chat_id = message.chat.id
+        user_data = MondB(idchat=user_id).queryUser()
+        if user_data:
+            lang = user_data.get('lang', 'es')
+            ban_status = user_data.get('status', 'Libre')
+            razon = user_data.get('razon', "")
+        else:
+            lang = 'es'
+            ban_status = 'No'
+            razon = ""
         reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
         if lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
+            text_dict = text_es
+            botones_dict = botones_es
         elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict
-            from ryas_templates.botones import en as botones_dict
+            text_dict = text_en
+            botones_dict = botones_en
         else:
-            from ryas_templates.chattext import es as text_dict
-            from ryas_templates.botones import es as botones_dict
+            text_dict = text_es
+            botones_dict = botones_es
         if ban_status == 'Yes':
-            await message.reply_text(
-                text_dict['block_message'].format(user_id=user_id, razon=razon),
-                reply_to_message_id=reply_msg_id
-            )
+            await message.reply_text(text_dict['block_message'].format(user_id=user_id, razon=razon), reply_to_message_id=reply_msg_id)
             return
-
         carga = await message.reply_text(text_dict['gen_loading'], quote=True)
         await asyncio.sleep(1)
-
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await carga.edit_text("No se pudieron generar tarjetas válidas con el BIN proporcionado.")
@@ -97,13 +102,7 @@ async def gen(client: Client, message: types.Message):
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
-            bin_text = (
-                f"<code>{bin_info.get('bank_name')}</code> | "
-                f"<code>{bin_info.get('vendor')}</code> | "
-                f"<code>{bin_info.get('type')}</code> | "
-                f"<code>{bin_info.get('level')}</code> | "
-                f"<code>{bin_info.get('country')}</code> ({bin_info.get('flag')})"
-            )
+            bin_text = f"<code>{bin_info.get('bank_name')}</code> | <code>{bin_info.get('vendor')}</code> | <code>{bin_info.get('type')}</code> | <code>{bin_info.get('level')}</code> | <code>{bin_info.get('country')}</code> ({bin_info.get('flag')})"
         else:
             bin_text = "Información no disponible"
         cc_show = cc
@@ -111,18 +110,7 @@ async def gen(client: Client, message: types.Message):
         ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
         bin_first6 = cc[:6]
-        await carga.edit_text(
-            text_dict['gen_message'].format(
-                cc_first6=cc_show,
-                mes_display=mes_display,
-                ano_display=ano_display,
-                cvv_display=cvv_display,
-                cards_output=cards_output,
-                bin_text=bin_text,
-                bin_first6=bin_first6
-            ),
-            reply_markup=botones_dict['re_genbt']
-        )
+        await carga.edit_text(text_dict['gen_message'].format(cc_first6=cc_show, mes_display=mes_display, ano_display=ano_display, cvv_display=cvv_display, cards_output=cards_output, bin_text=bin_text, bin_first6=bin_first6), reply_markup=botones_dict['re_genbt'])
     except Exception as e:
         await message.reply_text(f"Ocurrió un error: {e}", quote=True)
         return

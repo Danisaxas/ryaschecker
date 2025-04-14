@@ -1,94 +1,51 @@
-from configs.def_main import *
+from _date import *
 from pyrogram import Client, types
-import mysql.connector
-from datetime import datetime
+from classBot.MongoDB import MondB
+from Source_pack.TextAll import es as text_es
+from Source_pack.TextAll import en as text_en
 
-@ryas("ban")
+@Astro("ban")
 async def ban_user(client: Client, message: types.Message):
-    """
-    Banea a un usuario del bot, registrando la razón en la base de datos.
-    Solo los usuarios con privilegio mayor a 2 pueden usar este comando.
-    """
-    connection = None
     try:
         admin_id = message.from_user.id
         admin_username = message.from_user.username or "Usuario"
-
-        connection, cursor = connect_db()
-
-        # Verificar los privilegios del administrador
-        cursor.execute("SELECT privilegio, lang FROM users WHERE user_id = %s", (admin_id,))
-        admin_data = cursor.fetchone()
-
-        if not admin_data or admin_data[0] < 3:
-            # Cargar el idioma del administrador para el mensaje de error
-            admin_lang = admin_data[1] if admin_data else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-            else:
-                from ryas_templates.chattext import en as text_dict
+        admin_data = MondB(idchat=admin_id).queryUser()
+        if not admin_data or admin_data.get("role", "User") != "Admin":
+            admin_lang = admin_data.get("lang", "es") if admin_data else 'es'
+            text_dict = text_es if admin_lang == 'es' else text_en
             await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
             return
-
-        # Obtener los argumentos del comando
-        args = message.text.split(" ", 2)  # Dividir el mensaje en máximo 3 partes
+        args = message.text.split(" ", 2)
         if len(args) < 2:
-            admin_lang = admin_data[1] if admin_data else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-            else:
-                from ryas_templates.chattext import en as text_dict
+            admin_lang = admin_data.get("lang", "es")
+            text_dict = text_es if admin_lang == 'es' else text_en
             await message.reply_text(text_dict['ban_usage'], reply_to_message_id=message.id)
             return
-
         target_user_id = args[1]
         ban_reason = args[2] if len(args) > 2 else "No especificada"
-
-        # Verificar si el ID es un entero válido
         try:
             target_user_id = int(target_user_id)
         except ValueError:
-            admin_lang = admin_data[1] if admin_data else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-            else:
-                from ryas_templates.chattext import en as text_dict
+            admin_lang = admin_data.get("lang", "es")
+            text_dict = text_es if admin_lang == 'es' else text_en
             await message.reply_text(text_dict['ban_validation'], reply_to_message_id=message.id)
             return
-
-        # Actualizar el estado del usuario en la base de datos
-        cursor.execute("UPDATE users SET ban = 'Yes', razon = %s WHERE user_id = %s", (ban_reason, target_user_id))
-        connection.commit()
-
-        # Obtener el nombre de usuario del usuario baneado
-        #cursor.execute("SELECT username, lang FROM users WHERE user_id = %s", (target_user_id,)) #eliminado
-        #target_user_data = cursor.fetchone()
-        target_username = message.from_user.username or "Desconocido"  #agregado
-        target_lang = message.from_user.language_code or 'es' #agregado
-
-        # Cargar el idioma para el mensaje de confirmación
-        if target_lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-        else:
-            from ryas_templates.chattext import en as text_dict
-            
+        MondB()._client['bot']['user'].update_one(
+            {"id": target_user_id},
+            {"$set": {"status": "Baneado", "razon": ban_reason}}
+        )
+        target_user_data = MondB(idchat=target_user_id).queryUser()
+        target_username = target_user_data.get("username", "Desconocido")
+        target_lang = target_user_data.get("lang", "es")
+        text_dict = text_es if target_lang == 'es' else text_en
         ban_message = text_dict['ban_message'].format(
-            username=target_username, # Usar target_username
+            username=target_username,
             target_user_id=target_user_id,
             ban_reason=ban_reason,
             admin_username=admin_username,
             admin_id=admin_id
         )
-
         await message.reply_text(ban_message, reply_to_message_id=message.id)
-
-    except mysql.connector.Error as e:
+    except Exception as e:
         print(f"Error al banear usuario: {e}")
         await message.reply_text(f"Ocurrió un error al banear al usuario: {e}", reply_to_message_id=message.id)
-    except Exception as e:
-        print(f"Error inesperado: {e}")
-        await message.reply_text(f"Ocurrió un error inesperado: {e}", reply_to_message_id=message.id)
-    finally:
-        if connection:
-            cursor.close()
-            connection.close()

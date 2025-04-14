@@ -1,108 +1,52 @@
-from configs.def_main import *
+from _date import *
 from pyrogram import Client, types
+from classBot.MongoDB import MondB
+from Source_pack.TextAll import es as text_es
+from Source_pack.TextAll import en as text_en
 
-@ryas("setpriv")
+@Astro("setpriv")
 async def set_priv(client: Client, message: types.Message):
-    """
-    Permite al propietario del bot establecer privilegios de usuario, teniendo en cuenta el idioma del usuario.
-    """
-    owner_id = int(OWNER_ID)
+    owner_id = int(_owner)
     user_id = message.from_user.id
-    connection = None
+    user_data = MondB(idchat=user_id).queryUser()
+    if not user_data or user_id != owner_id:
+        admin_lang = user_data.get("lang", "es") if user_data else 'es'
+        text_dict = text_es if admin_lang == 'es' else text_en
+        await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
+        return
+    args = message.text.split(" ")
+    if len(args) != 3:
+        admin_lang = user_data.get("lang", "es") if user_data else 'es'
+        text_dict = text_es if admin_lang == 'es' else text_en
+        usage_text = "Uso correcto: /setpriv <ID> <Privilegio>" if admin_lang == 'es' else "Correct usage: /setpriv <ID> <Privilege>"
+        await message.reply_text(usage_text, reply_to_message_id=message.id)
+        return
+    _, target_user_id, privilegio = args
     try:
-        connection, cursor = connect_db()
-
-        cursor.execute("SELECT privilegio, lang FROM users WHERE user_id = %s", (user_id,))
-        result = cursor.fetchone()
-
-        if not result or user_id != owner_id: # Comparar user_id con owner_id
-            # Cargar el idioma del admin
-            admin_lang = result[1] if result else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-            else:
-                from ryas_templates.chattext import en as text_dict
-            await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
-            return
-
-        args = message.text.split(" ")
-        if len(args) != 3:
-            admin_lang = result[1] if result else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-                await message.reply_text(
-                    "Uso correcto: /setpriv <ID> <Privilegio>",
-                    reply_to_message_id=message.id
-                )
-            else:
-                from ryas_templates.chattext import en as text_dict
-                await message.reply_text(
-                    "Correct usage: /setpriv <ID> <Privilege>",
-                    reply_to_message_id=message.id
-                )
-            return
-
-        _, target_user_id, privilegio = args
-        try:
-            target_user_id = int(target_user_id.strip())
-            privilegio = int(privilegio.strip())
-        except ValueError:
-            admin_lang = result[1] if result else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-                await message.reply_text(
-                    "El ID y el privilegio deben ser números.",
-                    reply_to_message_id=message.id
-                )
-            else:
-                from ryas_templates.chattext import en as text_dict
-                await message.reply_text(
-                    "ID and privilege must be numbers.",
-                    reply_to_message_id=message.id
-                )
-            return
-
-        cursor.execute("SELECT rango, lang FROM users WHERE user_id = %s", (target_user_id,))
-        target_user = cursor.fetchone()
-
-        if target_user:
-            cursor.execute("UPDATE users SET privilegio = %s WHERE user_id = %s", (privilegio, target_user_id))
-            connection.commit()
-            target_lang = target_user[1]
-            if target_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-                await message.reply_text(
-                    text_dict['setpriv_success'].format(user_id=target_user_id),
-                    reply_to_message_id=message.id
-                )
-            else:
-                from ryas_templates.chattext import en as text_dict
-                await message.reply_text(
-                    text_dict['setpriv_success'].format(user_id=target_user_id),
-                    reply_to_message_id=message.id
-                )
-        else:
-            admin_lang = result[1] if result else 'es'
-            if admin_lang == 'es':
-                from ryas_templates.chattext import es as text_dict
-                await message.reply_text(
-                    text_dict['setpriv_not_found'],
-                    reply_to_message_id=message.id
-                )
-            else:
-                from ryas_templates.chattext import en as text_dict
-                await message.reply_text(
-                    text_dict['setpriv_not_found'],
-                    reply_to_message_id=message.id
-                )
-
-    except Exception as e:
-        print(f"Error en set_priv: {e}")
+        target_user_id = int(target_user_id.strip())
+        privilegio = int(privilegio.strip())
+    except ValueError:
+        admin_lang = user_data.get("lang", "es") if user_data else 'es'
+        text_dict = text_es if admin_lang == 'es' else text_en
+        number_error = "El ID y el privilegio deben ser números." if admin_lang == 'es' else "ID and privilege must be numbers."
+        await message.reply_text(number_error, reply_to_message_id=message.id)
+        return
+    target_data = MondB(idchat=target_user_id).queryUser()
+    if target_data:
+        MondB()._client['bot']['user'].update_one(
+            {"id": target_user_id},
+            {"$set": {"privilegio": privilegio}}
+        )
+        target_lang = target_data.get("lang", "es")
+        text_dict = text_es if target_lang == 'es' else text_en
         await message.reply_text(
-            "Ocurrió un error al procesar el comando setpriv.",
+            text_dict['setpriv_success'].format(user_id=target_user_id),
             reply_to_message_id=message.id
         )
-    finally:
-        if connection:
-            cursor.close()
-            connection.close()
+    else:
+        admin_lang = user_data.get("lang", "es") if user_data else 'es'
+        text_dict = text_es if admin_lang == 'es' else text_en
+        await message.reply_text(
+            text_dict['setpriv_not_found'],
+            reply_to_message_id=message.id
+        )

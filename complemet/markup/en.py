@@ -1,43 +1,26 @@
-# markup/en.py
-from configs.def_main import *
+from _date import *
 from pyrogram import Client, types
+from Source_pack.BoutnAll import en as botones_en
+from classBot.MongoDB import MondB
 
-@ryasbt("^en$")
+@AstroButton("^en$")
 async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
-    """
-    Actualiza el idioma del usuario a inglés ("en") en la base de datos y muestra un mensaje de confirmación.
-    """
-    connection = None
     try:
-        # Conecta a la base de datos usando la función connect_db()
-        connection, cursor = connect_db()
-
-        # Actualiza el idioma del usuario en la tabla 'users'
         user_id = callback_query.from_user.id
-        update_query = "UPDATE users SET lang = 'en' WHERE user_id = %s"
-        cursor.execute(update_query, (user_id,))
-        connection.commit()
-
-        # Cargar los botones en el idioma correspondiente
-        from ryas_templates.botones import en as botones_dict
-
-        # Responde al usuario con un mensaje de confirmación y el teclado 'back'
+        mdb = MondB(idchat=user_id)
+        _database = mdb._client['bot']
+        _collection = _database['user']
+        _collection.update_one({"id": user_id}, {"$set": {"lang": "en"}})
         await callback_query.message.edit_text(
-            """
-Cloud DB | LANG [🇺🇸] 
+            """Cloud DB | LANG [🇺🇸]
 
 Success! Now your selected language is [English]!""",
-            reply_markup=botones_dict['back_lang']  # Usa el teclado del idioma correspondiente
+            reply_markup=botones_en['back_lang']
         )
-
     except Exception as e:
-        # Maneja errores
         await callback_query.message.edit_text(
             f"An error occurred: {e}",
             reply_markup=None
         )
     finally:
-        # Asegura que la conexión se cierre
-        if connection:
-            cursor.close()
-            connection.close()
+        mdb._client.close()

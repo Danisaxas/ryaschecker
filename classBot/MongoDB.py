@@ -1,7 +1,6 @@
 import pymongo
 from datetime import datetime
 
-
 class MondB:
     def __init__(self,
                  id: int = None,
@@ -15,7 +14,7 @@ class MondB:
         self.username = username
         self.idchat = idchat
         self.tipo = tipo
-        self.url = 'mongodb://mongo:oanSRtUCkqbWYmfhPTCZOdNYwSKfDKHz@nozomi.proxy.rlwy.net:56228'
+        self.url = 'mongodb://mongo:AmgoVcezgoCslzqtaMYuHIjXvvdZMnlI@tramway.proxy.rlwy.net:48687'
         self._client = pymongo.MongoClient(self.url, serverSelectionTimeoutMS=5000)
 
     def queryUser(self):
@@ -118,26 +117,22 @@ class MondB:
         }
         return _collection.insert_one(_save)
 
+# Funciones auxiliares
 
 def querygrup(id: int = None):
     return MondB(idchat=id).querygrup()
 
-
 def queryUser(id: int = None):
     return MondB(idchat=id).queryUser()
-
 
 def savedbuser(id: int = None, username: str = None, name: str = None):
     return MondB(id=id, username=username, name=name).savedbuser()
 
-
 def querycora(id: int = None):
     return MondB(idchat=id).querycora()
 
-
 def savecora(id: int = None):
     return MondB(idchat=id).savecora()
-
 
 def savelang(id: int = None, username: str = None, name: str = None):
     return MondB(id=id, username=username, name=name).savelang()

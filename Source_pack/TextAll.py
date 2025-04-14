@@ -1,6 +1,3 @@
-# ryas_templates/chattext.py
-
-# Español
 es = {
     'idtext': '''<b>
 Ryas Chk </> ID de Usuario [🌹]
@@ -187,7 +184,6 @@ Formato: <code>$gen 60112088</code>
 <code>$gen 60112088 05/xx</code></b>"""
 }
 
-# Inglés
 en = {
     'idtext': '''<b>
 Ryas Chk </> User ID [🌹]

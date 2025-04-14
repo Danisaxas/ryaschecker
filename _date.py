@@ -6,9 +6,11 @@ import time, logging,requests
 from func_bin import *
 from func_gen import *
 import re, random,asyncio
-from classBot.sql import MondB
+from classBot.MongoDB import MondB
 import time, pytz
 from datetime import datetime
+from func_gen import *
+from func_bin import *
 
 def Astro(bit:str= None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
