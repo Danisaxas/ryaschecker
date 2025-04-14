@@ -9,6 +9,7 @@ from Source_pack.TextAll import es as text_es
 async def obtener_id(client: Client, message: Message):
     user_id = message.from_user.id
     chat_id = message.chat.id
+    username = message.from_user.username or "No username"
     user = MondB(idchat=user_id).queryUser()
     if not user:
         lang = "es"
@@ -26,6 +27,6 @@ async def obtener_id(client: Client, message: Message):
         )
         return
     await message.reply_text(
-        text_dict['idtext'].format(user_id=user_id, chat_id=chat_id),
+        text_dict['idtext'].format(user_id=user_id, chat_id=chat_id, username=username),
         reply_to_message_id=message.id
     )
