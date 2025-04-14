@@ -1,73 +1,45 @@
-from configs.def_main import *
+from _date import *
 from pyrogram import Client, types
+from classBot.sql import MondB
+from Source_pack.TextAll import en as text_en
+from Source_pack.TextAll import es as text_es
 
-# Decorador para el comando "me"
-@ryas('me')
+@Astro('me')
 async def me_command(client: Client, message: types.Message):
-    """
-    Muestra la información del usuario que usa el comando, en su idioma.
-
-    Parámetros:
-        client: El objeto Client de Pyrogram.
-        message: El objeto Message que activó el comando.
-    """
     user_id = message.from_user.id
-    connection = None
-    cursor = None
     try:
-        connection, cursor = connect_db()
-
-        # Obteniendo el idioma del usuario de la base de datos
-        cursor.execute("""
-            SELECT rango, creditos, antispam, expiracion, lang, ban, razon
-            FROM users
-            WHERE user_id = %s
-        """, (user_id,))
-        user_data = cursor.fetchone()
-
-        if not user_data:
-            # Si el usuario no está registrado, obtener el idioma del mensaje
-            user_lang = message.from_user.language_code or 'es'  # por defecto español
-            if user_lang.startswith('en'):
-                user_lang = 'en'
-            else:
-                user_lang = 'es'
-            if user_lang == 'en':
-                from ryas_templates.chattext import en as text_dict
-            else:
-                from ryas_templates.chattext import es as text_dict
-            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
-            return
-
-        rango, creditos, antispam, expiration, lang, ban, razon = user_data
         username = message.from_user.username or "Usuario"
-
-        # Cargar el texto en el idioma correspondiente
-        if lang == 'es':
-            from ryas_templates.chattext import es as text_dict
-        elif lang == 'en':
-            from ryas_templates.chattext import en as text_dict
+        full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip()
+        user_lang = message.from_user.language_code or 'es'
+        user_lang = 'en' if user_lang.startswith('en') else 'es'
+        db = MondB(id=user_id, username=username, name=full_name, idchat=user_id)
+        user_data = db.queryUser()
+        if not user_data:
+            if user_lang == 'en':
+                await message.reply_text(text_en['register_not'], reply_to_message_id=message.id)
+            else:
+                await message.reply_text(text_es['register_not'], reply_to_message_id=message.id)
+            return
+        rango = user_data.get("plan", "Free User")
+        creditos = user_data.get("credits", 0)
+        antispam = user_data.get("antispam", 60)
+        expiration = user_data.get("expiracion", "No plan contrated")
+        lang = user_data.get("lang", "es")
+        ban = user_data.get("status", "Libre")
+        if lang == 'en':
+            text_dict = text_en
         else:
-            from ryas_templates.chattext import es as text_dict  # por defecto español
-
-        # Formatear el mensaje de respuesta con la información del usuario
+            text_dict = text_es
         formatted_text = text_dict['metext'].format(
             username=username,
             user_id=user_id,
             rango=rango,
             creditos=creditos,
             antispam=antispam,
-            expiration=expiration or 'No plan contrated',
+            expiration=expiration,
             ban=ban
         )
         await message.reply_text(formatted_text, reply_to_message_id=message.id)
-
     except Exception as e:
         print(f"Error en me_command: {e}")
-        await message.reply_text(
-            "Ocurrió un error al procesar el comando me.",
-            reply_to_message_id=message.id
-        )
-    finally:
-        if connection:
-            connection.close()
+        await message.reply_text("Ocurrió un error al procesar el comando me.", reply_to_message_id=message.id)
