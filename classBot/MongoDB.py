@@ -19,7 +19,7 @@ class MondB:
     def queryUser(self):
         _database = self._client['bot']
         _collection = _database['user']
-        _consult = {"id": self.idchat}
+        _consult = {"_id": self.idchat}
         return _collection.find_one(_consult)
     def savedbuser(self):
         _database = self._client['bot']
