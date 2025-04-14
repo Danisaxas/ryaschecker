@@ -12,7 +12,7 @@ async def obtener_id(client: Client, message: types.Message):
         last_name = message.from_user.last_name or ""
         full_name = f"{first_name} {last_name}".strip()
         reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else None
-        db = MondB(id=user_id, username=username, name=full_name, idchat=user_id)
+        db = MondB(idchat=user_id).queryUser()
         user_data = db.queryUser()
         if not user_data:
             db.savedbuser()
