@@ -1,11 +1,12 @@
 from _date import *
 from classBot.MongoDB import MondB
-from pyrogram import Client, types
+from pyrogram import Client
+from pyrogram.types import Message
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
 
 @Astro('id')
-async def obtener_id(client: Client, message: types.Message):
+async def obtener_id(client: Client, message: Message):
     try:
         user_id = message.from_user.id
         chat_id = message.chat.id
@@ -13,7 +14,7 @@ async def obtener_id(client: Client, message: types.Message):
         first_name = message.from_user.first_name or ""
         last_name = message.from_user.last_name or ""
         full_name = f"{first_name} {last_name}".strip()
-        reply_msg_id = message.reply_to_message.message_id if message.reply_to_message else message.id
+        reply_msg_id = message.reply_to_message.id if message.reply_to_message else message.id
 
         mondb = MondB(idchat=user_id)
         user_data = mondb.queryUser()
@@ -27,7 +28,7 @@ async def obtener_id(client: Client, message: types.Message):
 
         text_dict = text_es if lang == "es" else text_en
 
-        if status.lower() == 'ban' or user_data.get("status", "").lower() == "ban":
+        if status.lower() == 'ban':
             await message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=user_data.get("razon", "No especificada")),
                 reply_to_message_id=reply_msg_id
