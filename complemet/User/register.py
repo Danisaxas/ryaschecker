@@ -16,13 +16,11 @@ async def register_user(client: Client, message: types.Message):
         db = MondB(id=user_id, username=username, name=full_name, idchat=user_id)
         if db.queryUser():
             text_dict = text_en if lang == 'en' else text_es
-            await message.reply_text(text_dict['already_registered'].format(user=username))
+            await message.reply_text(text_dict['already_registered'].format(user=username), reply_to_message_id=message.id)
             return
         db.savedbuser()
         text_dict = text_en if lang == 'en' else text_es
-        registro_msg = text_dict['registerx'].format(
-            username=username, user_id=user_id, lang=lang.upper()
-        )
-        await message.reply_text(registro_msg)
+        registro_msg = text_dict['registerx'].format(username=username, user_id=user_id, lang=lang.upper())
+        await message.reply_text(registro_msg, reply_to_message_id=message.id)
     except Exception as e:
         print(f"Error en register_user: {e}")
