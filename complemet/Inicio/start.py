@@ -16,17 +16,15 @@ async def start(client: Client, message: types.Message):
         full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip()
         user_lang = message.from_user.language_code or 'es'
         user_lang = 'en' if user_lang.startswith('en') else 'es'
-        db = MondB(_id=user_id, username=username, name=full_name, idchat=user_id)
-        user_data = db.queryUser()
-        if not user_data:
-            if user_lang == 'en':
-                await message.reply_text(text_en['register_not'], reply_to_message_id=message.id)
-            else:
-                await message.reply_text(text_es['register_not'], reply_to_message_id=message.id)
+        user = MondB(idchat=user_id).queryUser()
+        if not user:
+            lang = "es"
+            text_dict = text_es if lang == "es" else text_en
+            await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
-        lang = user_data.get("lang", "es")
-        ban = user_data.get("status", "Libre")
-        razon = user_data.get("razon", "No especificada")
+        lang = user.get("lang", "es")
+        ban = user.get("status", "Libre")
+        razon = user.get("razon", "No especificada")
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
         if lang == 'es':
             text_dict = text_es
