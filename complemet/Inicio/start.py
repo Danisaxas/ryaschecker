@@ -24,10 +24,6 @@ async def start(client: Client, message: types.Message):
             else:
                 await message.reply_text(text_es['register_not'], reply_to_message_id=message.id)
             return
-        rango = user_data.get("plan", "Free User")
-        creditos = user_data.get("credits", 0)
-        antispam = user_data.get("antispam", 60)
-        expiracion = user_data.get("expiracion", None)
         lang = user_data.get("lang", "es")
         ban = user_data.get("status", "Libre")
         razon = user_data.get("razon", "No especificada")
@@ -51,4 +47,3 @@ async def start(client: Client, message: types.Message):
         await message.reply_text(response, reply_to_message_id=message.id, reply_markup=botones_dict['mainstart'])
     except Exception as e:
         print(f"Error en start: {e}")
-        await message.reply_text("Ocurrió un error al procesar el comando start.", reply_to_message_id=message.id)
