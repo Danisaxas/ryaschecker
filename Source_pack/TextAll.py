@@ -139,7 +139,7 @@ Fecha:  {fecha}
 Administrador: @{admin_username} [{admin_id}]''',
     'unban_usage': "Uso correcto: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
-    'block_message': "Usuario bloqueado ⚠️\nID: {user_id} \nRazón: {razon}",
+    'block_message': '<b>Tu cuenta está baneada. No puedes acceder a esta información.</b>',
     'lang_message': '''
 Bienvenido @{username} - Cloud DB | LANG [{idioma_actual}] 
 
@@ -327,7 +327,7 @@ Date:  {fecha}
 Admin: @{admin_username} [{admin_id}]''',
     'unban_usage': "Correct usage: /unban <ID>",
     'unban_validation': "User ID must be an integer.",
-    'block_message': "User blocked ⚠️\nID: {user_id} \nReason: {razon}",
+    'block_message': '<b>Your account is banned. You cannot access this information.</b>',
     'lang_message': '''
 Welcome @{username} - Cloud DB | LANG [{idioma_actual}] 
 

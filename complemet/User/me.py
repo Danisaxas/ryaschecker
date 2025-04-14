@@ -1,4 +1,4 @@
-from _date import *
+from _date import Astro
 from classBot.MongoDB import MondB
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
@@ -22,8 +22,13 @@ async def me_command(client, message: Message):
     creditos = user.get("credits")
     antispam = user.get("antispam")
     expiration = user.get("since")
-    ban = "No" if user.get("status") == "Libre" else "Sí"
+    status = user.get("status")
     lang = user.get("lang")
+
+    if status == "Baneado":
+        text_dict = text_es if lang == "es" else text_en
+        await message.reply_text(text_dict['block_message'].format(user_id=user_id), reply_to_message_id=message.id)
+        return
 
     text_dict = text_es if lang == "es" else text_en
 
@@ -34,7 +39,7 @@ async def me_command(client, message: Message):
         creditos=creditos,
         antispam=antispam,
         expiration=expiration,
-        ban=ban
+        ban="Sí" if status == "Baneado" else "No"
     )
 
     await message.reply_text(formatted_text, reply_to_message_id=message.id)
