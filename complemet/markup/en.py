@@ -7,10 +7,10 @@ from classBot.MongoDB import MondB
 async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
     try:
         user_id = callback_query.from_user.id
-        mdb = MondB(idchat=user_id)
-        _database = mdb._client['bot']
-        _collection = _database['user']
-        _collection.update_one({"id": user_id}, {"$set": {"lang": "en"}})
+        db = MondB(idchat=user_id)
+        user = db.queryUser()
+        if user:
+            db.updateUser({"lang": "en"})
         await callback_query.message.edit_text(
             """Cloud DB | LANG [🇺🇸]
 
@@ -22,5 +22,3 @@ Success! Now your selected language is [English]!""",
             f"An error occurred: {e}",
             reply_markup=None
         )
-    finally:
-        mdb._client.close()
