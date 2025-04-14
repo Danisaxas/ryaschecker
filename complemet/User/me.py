@@ -16,16 +16,19 @@ async def me_command(client: Client, message: types.Message):
 
         db = MondB(_id=user_id, username=username, name=full_name, idchat=user_id)
         user_data = db.queryUser()
+
+        print("USER DATA =>", user_data)
+
         if not user_data:
             await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
 
-        rango = user_data.get("plan", "Sin rango")
-        creditos = user_data.get("credits", 0)
-        antispam = user_data.get("antispam", 60)
-        expiration = user_data.get("expiracion", "Sin fecha")
-        lang = user_data.get("lang", "es")
-        ban = user_data.get("status", "Libre")
+        rango = user_data.get("plan")
+        creditos = user_data.get("credits")
+        antispam = user_data.get("antispam")
+        expiration = user_data.get("expiracion")
+        lang = user_data.get("lang")
+        ban = user_data.get("status")
 
         formatted_text = text_dict['metext'].format(
             username=username,
