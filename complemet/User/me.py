@@ -12,12 +12,12 @@ async def me_command(client, message: Message):
     if not user:
         await message.reply("<b>No estás registrado en la base de datos.</b>")
         return
-    rango = user.get("plan", "Free User")
-    creditos = user.get("credits", 0)
-    antispam = user.get("antispam", 60)
-    expiration = user.get("since", "Sin fecha")
-    ban = "No" if user.get("status", "Libre") == "Libre" else "Sí"
-    lang = user.get("lang", "es")
+    rango = user.get("plan")
+    creditos = user.get("credits")
+    antispam = user.get("antispam")
+    expiration = user.get("since")
+    ban = "No" if user.get("status") == "Libre" else "Sí"
+    lang = user.get("lang")
     text_dict = text_es if lang == "es" else text_en
     formatted_text = text_dict['metext'].format(
         username=username,
