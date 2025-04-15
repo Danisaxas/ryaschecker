@@ -1,0 +1,1 @@
+textas = "hola bro como estas me gustas",
