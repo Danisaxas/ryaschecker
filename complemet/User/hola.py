@@ -2,13 +2,13 @@ from _date import *
 import requests
 
 @Astro('hola')
-def hola(update, context):
-    user_id = update.message.from_user.id
+def hola(client, message):
+    user_id = message.from_user.id
     user = MondB(idchat=user_id).queryUser()
     lang = user.get("lang")
     texto = "Hola, ¿cómo estás?"
     texto_traducido = texto if lang == "es" else traducir_a_ingles(texto)
-    context.bot.send_message(chat_id=user_id, text=texto_traducido)
+    client.send_message(chat_id=user_id, text=texto_traducido)
 
 def traducir_a_ingles(texto):
     url = "https://translate.google.com/translate_a/t"
