@@ -11,8 +11,8 @@ def hola(client, message):
     client.send_message(chat_id=user_id, text=texto_traducido)
 
 def traducir_a_ingles(texto):
-    url = "https://translate.google.com/translate_a/t"
-    params = {"client": "dict-chrome-ex", "sl": "auto", "tl": "en", "q": texto, "ie": "UTF-8", "oe": "UTF-8", "tbb": "1"}
+    url = "https://translate.googleapis.com/translate_a/single"
+    params = {"client": "gtx", "sl": "auto", "tl": "en", "dt": "t", "q": texto, "ie": "UTF-8", "oe": "UTF-8"}
     response = requests.get(url, params=params)
     if response.status_code == 200:
         try:
