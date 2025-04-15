@@ -29,6 +29,7 @@ _owner= '8150119370'
 _channel= '-1002364228833'
 _plugin_root= 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
+api_key = "AIzaSyCrc_ixGnZbB1o7oBdyLBeJvS4A5AqnrRQ"
 
 loogs = logging.basicConfig(level=logging.INFO)
 
@@ -102,3 +103,4 @@ def traducir_a_ingles(texto, api_key):
     translate_client = translate.Client(api_key=api_key)
     result = translate_client.translate(texto, target_language='en')
     return result['translatedText']
+
