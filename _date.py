@@ -99,7 +99,7 @@ def atspam(func):
 def traducir_a_ingles(texto):
     url = "https://translate.googleapis.com/translate_a/single"
     params = {
-        "client": "webapp",
+        "client": "gtx",
         "sl": "auto",
         "tl": "en",
         "dt": "t",
