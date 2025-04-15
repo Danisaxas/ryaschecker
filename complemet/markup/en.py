@@ -8,9 +8,9 @@ async def handle_en_button(client: Client, callback_query: types.CallbackQuery):
     try:
         user_id = callback_query.from_user.id
         db = MondB(idchat=user_id)
-        user = db.queryUser()
-        if user:
-            db.updateUser({"lang": "en"})
+        _database = db._client['bot']
+        _collection = _database['user']
+        _collection.update_one({"_id": user_id}, {"$set": {"lang": "en"}})
         await callback_query.message.edit_text(
             """Cloud DB | LANG [🇺🇸]
 
@@ -22,3 +22,5 @@ Success! Now your selected language is [English]!""",
             f"An error occurred: {e}",
             reply_markup=None
         )
+    finally:
+        db._client.close()
