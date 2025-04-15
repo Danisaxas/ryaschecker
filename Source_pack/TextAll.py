@@ -156,14 +156,14 @@ Estos son los datos sobre su idioma guardado en el DB, ¿desea cambiar?Seleccion
                    "- - - - - - - - - - - - - - - - - - - - - - - - - \n"
                    "<b>Req By: @{username} [{rango}]</b>",
     'gatesx_message': """
-<b>Welcome to Onyx / Onyx gateways Online
+<b>Bienvenido a Astro / Astro gateways Online
 ━━━━━━━━━━━━
 Gates CMDS:  <code>0 Api Gates!</code> ✅ 
 ━━━━━━━━━━━━
 Gates auth: <code>0</code>    |   Gates Charge: <code>0</code>
 Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>
 ━━━━━━━━━━━━
-Select the type of gate you want for your use!</b>""",
+¡Selecciona el tipo de puerta que deseas para tu uso!</b>""",
 
 'gen_message': """[<a href="t.me/Ryascheckerbot">⌥</a>] <u>Ryas Generador</u> | <u>Luhn Algo:</u>
 ━━━━━━━━━━━━━━
