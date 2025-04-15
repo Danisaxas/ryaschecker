@@ -12,8 +12,6 @@ import time, pytz
 from datetime import datetime
 from func_gen import *
 from func_bin import *
-from google.cloud import translate_v2 as translate
-
 
 def Astro(bit:str= None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
@@ -29,7 +27,6 @@ _owner= '8150119370'
 _channel= '-1002364228833'
 _plugin_root= 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
-api_key = "AIzaSyCrc_ixGnZbB1o7oBdyLBeJvS4A5AqnrRQ"
 
 loogs = logging.basicConfig(level=logging.INFO)
 
@@ -99,8 +96,23 @@ def atspam(func):
 
     return wrapper
 
-def traducir_a_ingles(texto, api_key):
-    translate_client = translate.Client(api_key=api_key)
-    result = translate_client.translate(texto, target_language='en')
-    return result['translatedText']
+def traducir_a_ingles(texto):
+    url = "https://translate.googleapis.com/translate_a/single"
+    params = {
+        "client": "webapp",
+        "sl": "auto",
+        "tl": "en",
+        "dt": "t",
+        "q": texto,
+        "ie": "UTF-8",
+        "oe": "UTF-8"
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        try:
+            return response.json()[0][0][0]
+        except Exception:
+            return "Error al procesar la respuesta."
+    return f"Error en la solicitud: {response.status_code}"
+
 
