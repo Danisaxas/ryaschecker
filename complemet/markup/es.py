@@ -10,7 +10,7 @@ async def handle_es_button(client: Client, callback_query: types.CallbackQuery):
         db = MondB(idchat=user_id)
         _database = db._client['bot']
         _collection = _database['user']
-        _collection.update_one({"id": user_id}, {"$set": {"lang": "es"}})
+        _collection.update_one({"_id": user_id}, {"$set": {"lang": "es"}})
         await callback_query.message.edit_text(
             """Cloud DB | LANG [🇪🇸] 
 
