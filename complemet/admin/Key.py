@@ -28,7 +28,7 @@ async def key_handler(client, message):
 
     user = MondB(idchat=user_id).queryUser()
     if user:
-        lang = user.get('language', 'es').lower()
+        lang = user.get("lang", "es").lower()
         lang = 'en' if lang.startswith('en') else 'es'
     else:
         lang = user_lang
