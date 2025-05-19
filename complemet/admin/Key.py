@@ -24,7 +24,7 @@ async def key_handler(client, message):
     text_dict = text_en if lang == "en" else text_es
 
     if len(args) < 2 or not args[1].isdigit():
-        await message.reply_text(text_dict['Key_usage'], reply_to_message_id=message.id)
+        await message.reply_text(text_dict['key_usage'], reply_to_message_id=message.id)
         return
 
     dias = int(args[1])
