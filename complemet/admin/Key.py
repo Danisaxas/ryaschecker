@@ -4,6 +4,7 @@ import string
 from datetime import datetime, timedelta
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
+from classBot.MongoDB import MondB
 
 @Astro("key")
 async def key_handler(client, message):
@@ -26,9 +27,9 @@ async def key_handler(client, message):
     fecha_expiracion = (datetime.now() + timedelta(days=dias)).strftime("%Y-%m-%d %H:%M:%S")
 
     user = MondB(idchat=user_id).queryUser()
-    lang = 'es'
     if user:
-        lang = user.get('language', 'es')
+        lang = user.get('language', 'es').lower()
+        lang = 'en' if lang.startswith('en') else 'es'
     else:
         lang = user_lang
 
