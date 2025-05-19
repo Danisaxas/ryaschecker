@@ -394,3 +394,4 @@ Astro Chk // System Key  [☁️]
 > Plan: Premium
 > Claimed: @{username}
 </b>"""
+}
