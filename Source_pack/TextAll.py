@@ -182,6 +182,18 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 Formato: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
 <code>$gen 60112088 05/xx</code></b>"""
+
+'key_system': """<b>
+Astro Chk // Sistema de Key [☁️]
+━━━━━━━━━
+[⽷] Key:
+> {Key}
+> Expiración: {date}
+━━━━━━━━━
+> Días: {días}
+> Plan: Premium
+> Reclamado por: @{username}
+</b>"""
 }
 
 en = {
@@ -370,4 +382,16 @@ Select the type of gate you want for your use!</b>""",
 Format: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
 <code>$gen 60112088 05/xx</code></b>"""
+
+'key_system': """<b>
+Astro Chk // System Key  [☁️]
+━━━━━━━━━
+[⽷] Key:
+> {Key}
+> Expiration: {date}
+━━━━━━━━━
+> Days: {días}
+> Plan: Premium
+> Claimed: @{username}
+</b>"""
 }
