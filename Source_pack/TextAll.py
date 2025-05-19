@@ -181,7 +181,7 @@ Gates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</c
 <b><u>Ryas Generador</u>[⛈]
 Formato: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
-<code>$gen 60112088 05/xx</code></b>"""
+<code>$gen 60112088 05/xx</code></b>""",
 
 'key_system': """<b>
 Astro Chk // Llave del Sistema  [☁️]
@@ -381,7 +381,7 @@ Select the type of gate you want for your use!</b>""",
 <b><u>Ryas Generator</u>[⛈]
 Format: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
-<code>$gen 60112088 05/xx</code></b>"""
+<code>$gen 60112088 05/xx</code></b>""",
 
 'key_system': """<b>
 Astro Chk // System Key  [☁️]
