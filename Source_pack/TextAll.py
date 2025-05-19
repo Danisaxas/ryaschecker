@@ -183,7 +183,7 @@ Formato: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
 <code>$gen 60112088 05/xx</code></b>"""
 
-'key_system': '''<b>
+'key_system': """<b>
 Astro Chk // Sistema de Key [☁️]
 ━━━━━━━━━
 [⽷] Key:
@@ -383,7 +383,7 @@ Format: <code>$gen 60112088</code>
 <code>$gen 60112088 05/25 xxx</code>
 <code>$gen 60112088 05/xx</code></b>"""
 
-'key_system': '''<b>
+'key_system': """<b>
 Astro Chk // System Key  [☁️]
 ━━━━━━━━━
 [⽷] Key:
