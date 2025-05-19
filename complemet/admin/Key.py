@@ -2,6 +2,7 @@ from _date import *
 import random
 import string
 from datetime import datetime, timedelta
+import pytz
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
 from classBot.MongoDB import MondB
@@ -33,7 +34,11 @@ async def key_handler(client, message):
     key_generada = f"AstroKey_#{key_random}"
 
     username = message.from_user.username or "unknown"
-    fecha_expiracion = (datetime.now() + timedelta(days=dias)).strftime("%Y-%m-%d %H:%M:%S")
+
+    venezuela_tz = pytz.timezone("America/Caracas")
+    now_utc = datetime.utcnow().replace(tzinfo=pytz.utc)
+    now_ven = now_utc.astimezone(venezuela_tz)
+    fecha_expiracion = (now_ven + timedelta(days=dias)).strftime("%Y-%m-%d %I:%M:%S %p")
 
     respuesta = text_dict['key_system'].format(
         Key=key_generada,
