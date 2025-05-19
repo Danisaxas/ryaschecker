@@ -13,7 +13,8 @@ async def key_handler(client, message):
 
     args = message.text.split()
     if len(args) < 2 or not args[1].isdigit():
-        await message.reply("Please send a valid number of days after the command, example: Key 2" if user_lang == 'en' else "Por favor envía un número válido de días después del comando, ejemplo: Key 2")
+        error_msg = "Please send a valid number of days after the command, example: Key 2" if user_lang == 'en' else "Por favor envía un número válido de días después del comando, ejemplo: Key 2"
+        await message.reply_text(error_msg, reply_to_message_id=message.id)
         return
 
     dias = int(args[1])
@@ -40,4 +41,4 @@ async def key_handler(client, message):
         username=username
     )
 
-    await message.reply(respuesta, reply_to_message_id=message.id)
+    await message.reply_text(respuesta, reply_to_message_id=message.id)
