@@ -22,7 +22,7 @@ def AstroButton(bit:str= None):
     return nix
 
 _hasd = '3ed76d05d92a5203ca076066146a47bc'
-_tokn= '7555371279:AAHU_Pb6NNFEokKC4TlHci784NulynQ86zs'
+_tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
 _owner= '8150119370'
 _channel= '-1002364228833'
 _plugin_root= 'complemet'
