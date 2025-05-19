@@ -184,9 +184,9 @@ Formato: <code>$gen 60112088</code>
 <code>$gen 60112088 05/xx</code></b>"""
 
 'key_system': """<b>
-Astro Chk // Sistema de Key [☁️]
+Astro Chk // Llave del Sistema  [☁️]
 ━━━━━━━━━
-[⽷] Key:
+[⽷] Llave:
 > {Key}
 > Expiración: {date}
 ━━━━━━━━━
@@ -394,4 +394,3 @@ Astro Chk // System Key  [☁️]
 > Plan: Premium
 > Claimed: @{username}
 </b>"""
-}
