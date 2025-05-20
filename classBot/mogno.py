@@ -1,37 +1,18 @@
-from pymongo import MongoClient
+from datetime import datetime, timedelta
+import pytz
+from classBot.MongoDB import MondB
 
-client = MongoClient("mongodb://mongo:AmgoVcezgoCslzqtaMYuHIjXvvdZMnlI@tramway.proxy.rlwy.net:48687")
-db = client["bot"]
+def guardar_key(key, dias, username):
+    venezuela = pytz.timezone("America/Caracas")
+    now = datetime.now(pytz.utc).astimezone(venezuela)
+    expiracion = now + timedelta(days=dias)
 
-try:
-    db.create_collection("key", validator={
-        "$jsonSchema": {
-            "bsonType": "object",
-            "required": ["key", "dias", "usuario", "expiracion", "fecha"],
-            "properties": {
-                "key": {
-                    "bsonType": "string",
-                    "description": "Aquí van las keys generadas"
-                },
-                "dias": {
-                    "bsonType": "int",
-                    "description": "Cantidad de días de validez"
-                },
-                "usuario": {
-                    "bsonType": "string",
-                    "description": "Usuario que usó la key"
-                },
-                "expiracion": {
-                    "bsonType": "string",
-                    "description": "Fecha de expiración formateada"
-                },
-                "fecha": {
-                    "bsonType": "date",
-                    "description": "Fecha de creación en formato Mongo"
-                }
-            }
-        }
-    })
-    print("✅ Colección 'key' creada con estructura validada.")
-except Exception as e:
-    print(f"⚠️ Error al crear la colección: {e}")
+    datos = {
+        "key": key,
+        "dias": dias,
+        "usuario": username,
+        "expiracion": expiracion.strftime("%Y-%m-%d %I:%M:%S %p"),
+        "fecha": now  # Mongo lo guarda como ISODate
+    }
+
+    MondB()._client['bot']['key'].insert_one(datos)
