@@ -24,6 +24,35 @@ async def key_handler(client, message):
 
     text_dict = text_en if lang == "en" else text_es
 
+    if not user:
+        await message.reply_text(
+            "<b>Access denied. You are not registered.</b>" if lang == 'en' else "<b>Acceso denegado. No estás registrado.</b>",
+            reply_to_message_id=message.id
+        )
+        return
+
+    role = user.get("role", "User")
+
+    db = MondB()
+    rangos_col = db._db['rangos']
+    rango_doc = rangos_col.find_one({"Rango": {"$regex": f"^{role}$", "$options": "i"}})
+
+    if not rango_doc:
+        await message.reply_text(
+            "<b>Access denied. Your role is not recognized.</b>" if lang == 'en' else "<b>Acceso denegado. Tu rol no está reconocido.</b>",
+            reply_to_message_id=message.id
+        )
+        return
+
+    numero_rango = rango_doc.get("Numero", 1)
+
+    if numero_rango == 1:
+        await message.reply_text(
+            "<b>Access denied. Your rank cannot use this command.</b>" if lang == 'en' else "<b>Acceso denegado. Tu rango no puede usar este comando.</b>",
+            reply_to_message_id=message.id
+        )
+        return
+
     if len(args) < 2 or not args[1].isdigit():
         await message.reply_text(text_dict['key_usage'], reply_to_message_id=message.id)
         return
@@ -40,7 +69,6 @@ async def key_handler(client, message):
     now_ven = now_utc.astimezone(venezuela_tz)
     fecha_expiracion = (now_ven + timedelta(days=dias)).strftime("%Y-%m-%d %I:%M:%S %p")
 
-    # Insertar en MongoDB
     MondB().save_generated_key(key_generada, dias, username)
 
     respuesta = text_dict['key_system'].format(
