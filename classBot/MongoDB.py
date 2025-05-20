@@ -1,6 +1,7 @@
 import pymongo
 from datetime import datetime, timedelta
 import pytz
+from pymongo import UpdateOne
 
 class MondB:
     def __init__(self,
@@ -127,6 +128,56 @@ class MondB:
             "fecha": now
         }
         self._key_collection.insert_one(document)
+
+    def init_rangos(self):
+        _collection = self._db['rangos']
+
+        rangos_data = [
+            {
+                "Numero": 1,
+                "Rango": "Mod",
+                "Priv": "Limited",
+                "Obsequiar": ["Admin", "Dev", "Owner"]
+            },
+            {
+                "Numero": 2,
+                "Rango": "Seller",
+                "Priv": "Standard",
+                "Obsequiar": []
+            },
+            {
+                "Numero": 3,
+                "Rango": "Admin",
+                "Priv": "High",
+                "Obsequiar": []
+            },
+            {
+                "Numero": 4,
+                "Rango": "Dev",
+                "Priv": "High",
+                "Obsequiar": []
+            },
+            {
+                "Numero": 5,
+                "Rango": "Hunter",
+                "Priv": "Medium",
+                "Obsequiar": []
+            },
+            {
+                "Numero": 6,
+                "Rango": "Owner",
+                "Priv": "Maximum",
+                "Obsequiar": []
+            }
+        ]
+
+        operations = []
+        for rango in rangos_data:
+            operations.append(
+                UpdateOne({"Numero": rango["Numero"]}, {"$set": rango}, upsert=True)
+            )
+        result = _collection.bulk_write(operations)
+        return result.bulk_api_result
 
 def querygrup(id: int = 0):
     return MondB(idchat=id).querygrup()
