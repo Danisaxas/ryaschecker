@@ -123,11 +123,10 @@ Disfruta mi uso.
 ━━━━━━━━━━━━━━
 bot by : @Astrozdev 🌤
 """,
-    'ban_message': '''Ryas Chk  Panel de Administrador [⚠️]
+    'ban_message': '''Astro Chk  Panel de Administrador [⚠️]
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
-Razón: {ban_reason}
 Administrador: @{admin_username} [{admin_id}]''',
     'ban_usage': "Uso correcto: /ban <ID> <razón>",
     'ban_validation': "El ID de usuario debe ser un número entero.",
@@ -333,11 +332,10 @@ Enjoy my use.
 ━━━━━━━━━━━━━━
 bot by : @Astrozdev 🌤
 """,
-    'ban_message': '''Ryas Chk  Admin Panel [⚠️]
+    'ban_message': '''Astro Chk  Admin Panel [⚠️]
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
-Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
