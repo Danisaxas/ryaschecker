@@ -23,7 +23,7 @@ def AstroButton(bit:str= None):
 
 _hasd = '3ed76d05d92a5203ca076066146a47bc'
 _tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
-_owner= '8150119370'
+owner= '7732700923'
 _channel= '-1002364228833'
 _plugin_root= 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
