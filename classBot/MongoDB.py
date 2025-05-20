@@ -44,7 +44,8 @@ class MondB:
             "alerts": 0,
             "since": datetime.now(),
             "key": 'None',
-            "lang": "es"
+            "lang": "es",
+            "expiracion": None
         }
         _collection.insert_one(_save)
         return True
@@ -112,7 +113,8 @@ class MondB:
             "alerts": 0,
             "since": datetime.now(),
             "key": 'None',
-            "lang": "es"
+            "lang": "es",
+            "expiracion": None
         }
         return _collection.insert_one(_save)
 
@@ -133,42 +135,12 @@ class MondB:
         _collection = self._db['rangos']
 
         rangos_data = [
-            {
-                "Numero": 1,
-                "Rango": "Mod",
-                "Priv": "Limited",
-                "Obsequiar": ["Admin", "Dev", "Owner"]
-            },
-            {
-                "Numero": 2,
-                "Rango": "Seller",
-                "Priv": "Standard",
-                "Obsequiar": []
-            },
-            {
-                "Numero": 3,
-                "Rango": "Admin",
-                "Priv": "High",
-                "Obsequiar": []
-            },
-            {
-                "Numero": 4,
-                "Rango": "Dev",
-                "Priv": "High",
-                "Obsequiar": []
-            },
-            {
-                "Numero": 5,
-                "Rango": "Hunter",
-                "Priv": "Medium",
-                "Obsequiar": []
-            },
-            {
-                "Numero": 6,
-                "Rango": "Owner",
-                "Priv": "Maximum",
-                "Obsequiar": []
-            }
+            {"Numero": 1, "Rango": "Mod", "Priv": "Limited", "Obsequiar": ["Admin", "Dev", "Owner"]},
+            {"Numero": 2, "Rango": "Seller", "Priv": "Standard", "Obsequiar": []},
+            {"Numero": 3, "Rango": "Admin", "Priv": "High", "Obsequiar": []},
+            {"Numero": 4, "Rango": "Dev", "Priv": "High", "Obsequiar": []},
+            {"Numero": 5, "Rango": "Hunter", "Priv": "Medium", "Obsequiar": []},
+            {"Numero": 6, "Rango": "Owner", "Priv": "Maximum", "Obsequiar": []}
         ]
 
         operations = []
