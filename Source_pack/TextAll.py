@@ -195,7 +195,15 @@ Astro Chk // Llave del Sistema  [☁️]
 > Días: {días}
 > Plan: Premium
 > Reclamado por: @{username}
-</b>"""
+</b>""",
+
+'setrol_usage': "<b>Uso correcto: /setrol (ID) (Rol)\nEjemplo: /setrol 123456789 Admin</b>",
+'setrol_invalid': "<b>Rol inválido. Roles permitidos: Admin, Mod, Seller, Dev, Hunter</b>",
+'setrol_not_number': "<b>El ID debe ser un número.</b>",
+'setrol_not_found': "<b>Ese ID no está registrado en la base de datos.</b>",
+'setrol_already_has': "<b>⚠️ El usuario ya tiene el rol: {role}</b>",
+'setrol_success': "<b>✅ Rol actualizado correctamente:\nID: {id}\nNuevo Rol: {role}</b>",
+'setrol_no_permission': "<b>No tienes permisos para usar este comando.</b>"
 }
 
 en = {
@@ -397,5 +405,13 @@ Astro Chk // System Key  [☁️]
 > Days: {días}
 > Plan: Premium
 > Claimed: @{username}
-</b>"""
+</b>""",
+
+'setrol_usage': "<b>Correct usage: /setrol (ID) (Rol)\nExample: /setrol 123456789 Admin</b>",
+'setrol_invalid': "<b>Invalid role. Allowed roles: Admin, Mod, Seller, Dev, Hunter</b>",
+'setrol_not_number': "<b>The ID must be a number.</b>",
+'setrol_not_found': "<b>This ID is not registered in the database.</b>",
+'setrol_already_has': "<b>⚠️ The user already has the role: {role}</b>",
+'setrol_success': "<b>✅ Role successfully updated:\nID: {id}\nNew Role: {role}</b>",
+'setrol_no_permission': "<b>You do not have permission to use this command.</b>"
 }

@@ -9,12 +9,15 @@ from pyrogram import types
 async def set_role(client: Client, message: types.Message):
     user_id = message.from_user.id
     user_data = MondB(idchat=user_id).queryUser()
+
     lang = user_data.get("lang", "es") if user_data else "es"
-    text_dict = text_es if lang == "es" else text_en
+    lang = lang.lower()
+    lang = 'en' if lang.startswith('en') else 'es'
+    text_dict = text_en if lang == "en" else text_es
 
     if str(user_id) != str(owner):
         await message.reply_text(
-            "<b>No tienes permisos para usar este comando.</b>",
+            text_dict['setrol_no_permission'],
             reply_to_message_id=message.id
         )
         return
@@ -22,7 +25,7 @@ async def set_role(client: Client, message: types.Message):
     args = message.text.split()
     if len(args) != 3:
         await message.reply_text(
-            "<b>Uso correcto: /setrol ID ROL\nEjemplo: /setrol 123456789 Admin</b>",
+            text_dict['setrol_usage'],
             reply_to_message_id=message.id
         )
         return
@@ -33,7 +36,7 @@ async def set_role(client: Client, message: types.Message):
     valid_roles = ["Admin", "Mod", "Seller", "Dev", "Hunter"]
     if role not in valid_roles:
         await message.reply_text(
-            f"<b>Rol inválido. Roles permitidos: {', '.join(valid_roles)}</b>",
+            text_dict['setrol_invalid'],
             reply_to_message_id=message.id
         )
         return
@@ -42,7 +45,7 @@ async def set_role(client: Client, message: types.Message):
         target_id = int(target_id.strip())
     except ValueError:
         await message.reply_text(
-            "<b>El ID debe ser un número.</b>",
+            text_dict['setrol_not_number'],
             reply_to_message_id=message.id
         )
         return
@@ -50,7 +53,15 @@ async def set_role(client: Client, message: types.Message):
     target_user = MondB(idchat=target_id).queryUser()
     if not target_user:
         await message.reply_text(
-            "<b>Ese ID no está registrado en la base de datos.</b>",
+            text_dict['setrol_not_found'],
+            reply_to_message_id=message.id
+        )
+        return
+
+    current_role = target_user.get("role", "User").title()
+    if current_role == role:
+        await message.reply_text(
+            text_dict['setrol_already_has'].format(role=role),
             reply_to_message_id=message.id
         )
         return
@@ -61,6 +72,6 @@ async def set_role(client: Client, message: types.Message):
     )
 
     await message.reply_text(
-        f"<b>✅ Rol actualizado correctamente:\nID: {target_id}\nNuevo Rol: {role}</b>",
+        text_dict['setrol_success'].format(id=target_id, role=role),
         reply_to_message_id=message.id
     )
