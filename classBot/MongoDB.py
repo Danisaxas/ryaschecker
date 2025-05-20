@@ -35,7 +35,7 @@ class MondB:
         _save = {
             "_id": self.id,
             "username": self.username,
-            "plan": "Free User",
+            "plan": "Free",
             "role": "User",
             "status": "Libre",
             "credits": 0,
@@ -51,7 +51,7 @@ class MondB:
 
     def savepremium(self):
         _collection = self._db['user']
-        myquery = {"plan": "Free User"}
+        myquery = {"plan": "Free"}
         newvalues = {"$set": {"plan": "premium"}}
         _collection.update_one(myquery, newvalues)
 
@@ -103,7 +103,7 @@ class MondB:
         _save = {
             "_id": self.id,
             "username": self.username,
-            "plan": "Free User",
+            "plan": "Free",
             "role": "User",
             "status": "Libre",
             "credits": 0,

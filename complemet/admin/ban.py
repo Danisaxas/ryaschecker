@@ -17,6 +17,7 @@ async def ban_user(client: Client, message: types.Message):
             await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
             return
 
+        # Validar rango de rol entre 3 y 6
         db = MondB()
         rangos_col = db._db['rangos']
         admin_role = admin_data.get("role", "User")
@@ -40,17 +41,17 @@ async def ban_user(client: Client, message: types.Message):
             await message.reply_text(text_dict['ban_usage'], reply_to_message_id=message.id)
             return
 
-        target_identifier = args[1]
-
-        target_user_data = None
+        target_user_id = args[1]
+        ban_reason = args[2] if len(args) > 2 else "No especificada"
         try:
-            target_id = int(target_identifier)
-            target_user_data = MondB(idchat=target_id).queryUser()
+            target_user_id = int(target_user_id)
         except ValueError:
-            # Buscar por username
-            _collection = db._db['user']
-            target_user_data = _collection.find_one({"username": target_identifier.lstrip("@")})
+            admin_lang = admin_data.get("lang", "es")
+            text_dict = text_es if admin_lang == 'es' else text_en
+            await message.reply_text(text_dict['ban_validation'], reply_to_message_id=message.id)
+            return
 
+        target_user_data = MondB(idchat=target_user_id).queryUser()
         if not target_user_data:
             admin_lang = admin_data.get("lang", "es")
             text_dict = text_es if admin_lang == 'es' else text_en
@@ -67,11 +68,9 @@ async def ban_user(client: Client, message: types.Message):
             )
             return
 
-        # Actualizar solo el status a 'Baneado' sin razón
-        _id = target_user_data.get("_id")
-        db._client['bot']['user'].update_one(
-            {"_id": _id},
-            {"$set": {"status": "Baneado"}}
+        MondB()._client['bot']['user'].update_one(
+            {"_id": target_user_id},
+            {"$set": {"status": "Baneado", "razon": ban_reason}}
         )
 
         target_username = target_user_data.get("username", "Desconocido")
@@ -79,8 +78,8 @@ async def ban_user(client: Client, message: types.Message):
         text_dict = text_es if target_lang == 'es' else text_en
         ban_message = text_dict['ban_message'].format(
             username=target_username,
-            target_user_id=_id,
-            ban_reason="No especificada",
+            target_user_id=target_user_id,
+            ban_reason=ban_reason,
             admin_username=admin_username,
             admin_id=admin_id
         )

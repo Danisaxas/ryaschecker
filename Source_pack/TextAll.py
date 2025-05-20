@@ -127,6 +127,7 @@ bot by : @Astrozdev 🌤
 - - - - - - - - - - - - - - -
 <b>Usuario Baneado</b>
 Usuario: @{username} [{target_user_id}]
+Razón: {ban_reason}
 Administrador: @{admin_username} [{admin_id}]''',
     'ban_usage': "Uso correcto: /ban <ID> <razón>",
     'ban_validation': "El ID de usuario debe ser un número entero.",
@@ -336,6 +337,7 @@ bot by : @Astrozdev 🌤
 - - - - - - - - - - - - - - -
 <b>User Banned</b>
 User: @{username} [{target_user_id}]
+Reason: {ban_reason}
 Admin: @{admin_username} [{admin_id}]''',
     'ban_usage': "Correct usage: /ban <ID> <reason>",
     'ban_validation': "User ID must be an integer.",
