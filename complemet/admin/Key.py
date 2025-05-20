@@ -39,7 +39,7 @@ async def key_handler(client, message):
 
     if not rango_doc:
         await message.reply_text(
-            "<b>Access denied. Your role is not recognized.</b>" if lang == 'en' else "<b>Acceso denegado. Tu rol no está reconocido.</b>",
+            "<b>Access denied</b>" if lang == 'en' else "<b>Acceso denegado</b>",
             reply_to_message_id=message.id
         )
         return
@@ -48,7 +48,7 @@ async def key_handler(client, message):
 
     if numero_rango == 1:
         await message.reply_text(
-            "<b>Access denied. Your rank cannot use this command.</b>" if lang == 'en' else "<b>Acceso denegado. Tu rango no puede usar este comando.</b>",
+            "<b>Your rank cannot use this command.</b>" if lang == 'en' else "<b>Tu rango no puede usar este comando.</b>",
             reply_to_message_id=message.id
         )
         return

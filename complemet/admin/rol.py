@@ -1,7 +1,7 @@
 from _date import *
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
-from classBot.MongoDB import MondB
+from classBot.MongoDB import MondB, queryUser
 from pyrogram.client import Client
 from pyrogram import types
 
@@ -30,19 +30,10 @@ async def set_role(client: Client, message: types.Message):
         )
         return
 
-    _, target_id, role_input = args
-    role_clean = role_input.title()
-
-    valid_roles = ["Admin", "Mod", "Seller", "Dev", "Hunter"]
-    if role_clean not in valid_roles:
-        await message.reply_text(
-            text_dict['setrol_invalid'],
-            reply_to_message_id=message.id
-        )
-        return
+    _, target_id_str, role_input = args
 
     try:
-        target_id = int(target_id.strip())
+        target_id = int(target_id_str.strip())
     except ValueError:
         await message.reply_text(
             text_dict['setrol_not_number'],
@@ -50,7 +41,28 @@ async def set_role(client: Client, message: types.Message):
         )
         return
 
-    target_user = MondB(idchat=target_id).queryUser()
+    db = MondB()
+    rangos_col = db._db['rangos']
+
+    if not role_input.isdigit():
+        await message.reply_text(
+            text_dict['setrol_invalid'],
+            reply_to_message_id=message.id
+        )
+        return
+
+    role_num = int(role_input)
+    rango_doc = rangos_col.find_one({"Numero": role_num})
+    if not rango_doc:
+        await message.reply_text(
+            text_dict['setrol_invalid'],
+            reply_to_message_id=message.id
+        )
+        return
+
+    role_name = rango_doc.get("Rango", "").title()
+
+    target_user = queryUser(target_id)
     if not target_user:
         await message.reply_text(
             text_dict['setrol_not_found'],
@@ -59,19 +71,19 @@ async def set_role(client: Client, message: types.Message):
         return
 
     current_role = target_user.get("role", "User").title()
-    if current_role == role_clean:
+    if current_role == role_name:
         await message.reply_text(
-            text_dict['setrol_already_has'].format(role=role_input),
+            text_dict['setrol_already_has'].format(role=role_name),
             reply_to_message_id=message.id
         )
         return
 
-    MondB()._client['bot']['user'].update_one(
+    db._client['bot']['user'].update_one(
         {"_id": target_id},
-        {"$set": {"role": role_clean}}
+        {"$set": {"role": role_name}}
     )
 
     await message.reply_text(
-        text_dict['setrol_success'].format(id=target_id, role=role_input),
+        text_dict['setrol_success'].format(id=target_id, role=role_name),
         reply_to_message_id=message.id
     )
