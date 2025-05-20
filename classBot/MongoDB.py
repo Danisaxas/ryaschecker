@@ -127,7 +127,8 @@ class MondB:
             "dias": dias,
             "usuario": usuario,
             "expiracion": expiracion.strftime("%Y-%m-%d %I:%M:%S %p"),
-            "fecha": now
+            "fecha": now,
+            "status": "on"
         }
         self._key_collection.insert_one(document)
 
