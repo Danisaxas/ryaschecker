@@ -1,5 +1,6 @@
 import pymongo
-from datetime import datetime
+from datetime import datetime, timedelta
+import pytz
 
 class MondB:
     def __init__(self,
@@ -16,11 +17,13 @@ class MondB:
         self.tipo = tipo
         self.url = 'mongodb://mongo:AmgoVcezgoCslzqtaMYuHIjXvvdZMnlI@tramway.proxy.rlwy.net:48687'
         self._client = pymongo.MongoClient(self.url, serverSelectionTimeoutMS=5000)
+
     def queryUser(self):
         _database = self._client['bot']
         _collection = _database['user']
         _consult = {"_id": self.idchat}
         return _collection.find_one(_consult)
+
     def savedbuser(self):
         _database = self._client['bot']
         _collection = _database['user']
@@ -51,7 +54,8 @@ class MondB:
         myquery = {"plan": "Free User"}
         newvalues = {"$set": {"plan": "premium"}}
         _collection.update_one(myquery, newvalues)
-def savedbgrup(self, dias: int = None, plan: str = None):
+
+    def savedbgrup(self, dias: int = None, plan: str = None):
         _database = self._client['bot']
         _collection = _database['group']
         if dias is None:
@@ -79,22 +83,26 @@ def savedbgrup(self, dias: int = None, plan: str = None):
                 "type": self.tipo
             }
             return _collection.insert_one(_save)
-def querygrup(self):
+
+    def querygrup(self):
         _database = self._client['bot']
         _collection = _database['group']
         _consult = {"id": self.idchat}
         return _collection.find_one(_consult)
-def querycora(self):
+
+    def querycora(self):
         _database = self._client['bot']
         _collection = _database['corazon']
         _consult = {"id": self.idchat}
         return _collection.find_one(_consult)
-def savecora(self):
+
+    def savecora(self):
         _database = self._client['bot']
         _collection = _database['corazon']
         _consult = {"id": self.idchat}
         return _collection.insert_one(_consult)
-def savelang(self):
+
+    def savelang(self):
         _database = self._client['bot']
         _collection = _database['lang']
         _save = {
@@ -112,6 +120,23 @@ def savelang(self):
             "lang": "es"
         }
         return _collection.insert_one(_save)
+
+    def save_generated_key(self, key: str, dias: int, usuario: str):
+        _database = self._client['bot']
+        _collection = _database['key']
+        venezuela = pytz.timezone("America/Caracas")
+        now = datetime.now(pytz.utc).astimezone(venezuela)
+        expiracion = now + timedelta(days=dias)
+        document = {
+            "key": key,
+            "dias": dias,
+            "usuario": usuario,
+            "expiracion": expiracion.strftime("%Y-%m-%d %I:%M:%S %p"),
+            "fecha": now
+        }
+        _collection.insert_one(document)
+
+
 def querygrup(id: int = None):
     return MondB(idchat=id).querygrup()
 
