@@ -31,10 +31,10 @@ async def set_role(client: Client, message: types.Message):
         return
 
     _, target_id, role_input = args
-    role = role_input.title()
+    role_clean = role_input.title()
 
     valid_roles = ["Admin", "Mod", "Seller", "Dev", "Hunter"]
-    if role not in valid_roles:
+    if role_clean not in valid_roles:
         await message.reply_text(
             text_dict['setrol_invalid'],
             reply_to_message_id=message.id
@@ -59,19 +59,19 @@ async def set_role(client: Client, message: types.Message):
         return
 
     current_role = target_user.get("role", "User").title()
-    if current_role == role:
+    if current_role == role_clean:
         await message.reply_text(
-            text_dict['setrol_already_has'].format(role=role),
+            text_dict['setrol_already_has'].format(role=role_input),
             reply_to_message_id=message.id
         )
         return
 
     MondB()._client['bot']['user'].update_one(
         {"_id": target_id},
-        {"$set": {"role": role}}
+        {"$set": {"role": role_clean}}
     )
 
     await message.reply_text(
-        text_dict['setrol_success'].format(id=target_id, role=role),
+        text_dict['setrol_success'].format(id=target_id, role=role_input),
         reply_to_message_id=message.id
     )
