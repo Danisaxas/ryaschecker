@@ -27,9 +27,10 @@ async def set_role(client: Client, message: types.Message):
         )
         return
 
-    _, target_id, role = args
-    valid_roles = ["Admin", "Mod", "Seller", "Dev", "Hunter"]
+    _, target_id, role_input = args
+    role = role_input.title()
 
+    valid_roles = ["Admin", "Mod", "Seller", "Dev", "Hunter"]
     if role not in valid_roles:
         await message.reply_text(
             f"<b>Rol inválido. Roles permitidos: {', '.join(valid_roles)}</b>",
@@ -54,7 +55,6 @@ async def set_role(client: Client, message: types.Message):
         )
         return
 
-    # ✅ Actualizar usando _id como clave
     MondB()._client['bot']['user'].update_one(
         {"_id": target_id},
         {"$set": {"role": role}}
