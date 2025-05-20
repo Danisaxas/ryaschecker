@@ -36,7 +36,8 @@ async def redeem_key(client: Client, message: types.Message):
         )
         return
 
-    if key_doc.get("expiracion") is None or key_doc.get("expiracion") == "none":
+    status = key_doc.get("status", "off").lower()
+    if status != "on":
         await message.reply_text(
             "<b>This key has already been redeemed or is expired.</b>" if user_lang == 'en' else "<b>Esta key ya fue canjeada o está expirada.</b>",
             reply_to_message_id=message.id
@@ -45,7 +46,6 @@ async def redeem_key(client: Client, message: types.Message):
 
     dias = key_doc.get("dias", 0)
 
-    # Actualizar usuario: poner dias nuevos y guardar la key canjeada
     user_collection.update_one(
         {"_id": user_id},
         {
@@ -57,10 +57,9 @@ async def redeem_key(client: Client, message: types.Message):
         upsert=True
     )
 
-    # Actualizar la key para marcarla como usada
     key_collection.update_one(
         {"_id": key_doc["_id"]},
-        {"$set": {"expiracion": None}}
+        {"$set": {"status": "off", "expiracion": None}}
     )
 
     msg = text_dict.get('redeem_success', 
