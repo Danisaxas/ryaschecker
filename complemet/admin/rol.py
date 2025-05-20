@@ -5,7 +5,6 @@ from classBot.MongoDB import MondB
 from pyrogram.client import Client
 from pyrogram import types
 
-
 @Astro("setrol")
 async def set_role(client: Client, message: types.Message):
     user_id = message.from_user.id
@@ -55,8 +54,9 @@ async def set_role(client: Client, message: types.Message):
         )
         return
 
+    # ✅ Actualizar usando _id como clave
     MondB()._client['bot']['user'].update_one(
-        {"id": target_id},
+        {"_id": target_id},
         {"$set": {"role": role}}
     )
 
