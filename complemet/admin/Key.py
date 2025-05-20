@@ -40,6 +40,9 @@ async def key_handler(client, message):
     now_ven = now_utc.astimezone(venezuela_tz)
     fecha_expiracion = (now_ven + timedelta(days=dias)).strftime("%Y-%m-%d %I:%M:%S %p")
 
+    # Insertar en MongoDB
+    MondB().save_generated_key(key_generada, dias, username)
+
     respuesta = text_dict['key_system'].format(
         Key=key_generada,
         date=fecha_expiracion,
