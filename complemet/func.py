@@ -88,18 +88,16 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
-    if total_segundos == 0 and dias_bd > 0:
+    if nueva_expiracion == "0d-00h-00m-00s" and dias_bd > 0:
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
-    elif dias_bd > 0:
-        prev_total_segundos = (exp_dias * 86400 + exp_horas * 3600 + exp_minutos * 60 + exp_segundos)
-        if total_segundos < prev_total_segundos and nuevo_dias < exp_dias:
-            dias_bd -= 1
-            db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": dias_bd}})
-            actualizar_plan_por_dias(idchat, dias_bd)
-        else:
-            actualizar_plan_por_dias(idchat, dias_bd)
+    elif exp_dias > nuevo_dias and dias_bd > 0:
+        dias_bd -= 1
+        if dias_bd < 0:
+            dias_bd = 0
+        db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": dias_bd}})
+        actualizar_plan_por_dias(idchat, dias_bd)
     else:
         actualizar_plan_por_dias(idchat, dias_bd)
 
