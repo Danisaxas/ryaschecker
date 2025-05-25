@@ -27,6 +27,14 @@ def actualizar_plan_por_dias(idchat: int, dias: int):
         db._db['user'].update_one({"_id": idchat}, {"$set": {"plan": rango_nombre}})
     return True
 
+def expiracion_menor_que_dias(expiracion: str, dias: int) -> bool:
+    """Devuelve True si expiracion representa menos días que el valor dias"""
+    match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
+    if not match:
+        return True  # si no se puede leer, consideramos que es menor
+    exp_dias = int(match.group(1)) + 1  # +1 porque expiracion cuenta dias-1
+    return exp_dias < dias
+
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     db = MondB(idchat=idchat)
     user = db.queryUser()
@@ -36,7 +44,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reiniciar expiracion si nuevo_dias_param es distinto al actual (mayor o menor)
+    # Reiniciar expiracion si nuevo_dias_param es distinto (mayor o menor)
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
@@ -46,6 +54,12 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         )
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
+
+    # Si expiracion es menor que lo que indica dias_bd, reiniciamos expiracion
+    if expiracion_menor_que_dias(expiracion, dias_bd):
+        nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
+        db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
+        expiracion = nueva_expiracion
 
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
@@ -74,9 +88,9 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (resto % 3600) // 60
     nuevo_segundos = resto % 60
 
-    nueva_expiracion = f"{max(nuevo_dias, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
-    # No actualizamos dias aquí para evitar conflictos, solo expiracion
+    # Actualizamos solo la expiracion (dias se actualiza manualmente o con nuevo_dias_param)
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
     actualizar_plan_por_dias(idchat, dias_bd)
