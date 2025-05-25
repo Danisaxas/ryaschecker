@@ -7,8 +7,10 @@ import re
 def inicializar_expiracion_por_dias(dias: int) -> str:
     if dias <= 0:
         return "0d-00h-00m-00s"
-    dias_restantes = dias - 1
-    return f"{dias_restantes}d-23h-59m-59s"
+    else:
+        # Para dias=1 retornamos 0d-23h-59m-59s, para 20 retornamos 19d-23h-59m-59s etc.
+        dias_restantes = dias - 1
+        return f"{dias_restantes}d-23h-59m-59s"
 
 def obtener_rango_por_numero(numero: int) -> str:
     db = MondB()
@@ -36,11 +38,14 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reiniciar expiracion si nuevo_dias_param es distinto al actual, sea mayor o menor
+    # Si cambias días explícitamente (mayor o menor), reinicia expiración
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
-        db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": dias_bd, "expiracion": expiracion}})
+        db._db['user'].update_one(
+            {"_id": idchat},
+            {"$set": {"dias": dias_bd, "expiracion": expiracion}}
+        )
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
 
@@ -71,9 +76,9 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (resto % 3600) // 60
     nuevo_segundos = resto % 60
 
-    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
-    # Si el día en expiracion disminuyó, descontar un día en campo dias si es mayor a 0
+    # Si el día en expiración disminuyó, descontar un día en campo dias si es mayor a 0
     if exp_dias > nuevo_dias and dias_bd > 0:
         dias_bd -= 1
         if dias_bd < 0:
