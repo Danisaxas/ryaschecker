@@ -12,12 +12,6 @@ def inicializar_expiracion_por_dias(dias: int) -> str:
         return f"{dias_restantes}d-23h-59m-59s"
 
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
-    """
-    Actualiza expiracion y dias para el usuario idchat.
-
-    Si se pasa nuevo_dias_param y es mayor que dias actual en BD,
-    reinicia la expiracion para reflejar ese nuevo valor.
-    """
     db = MondB(idchat=idchat)
     user = db.queryUser()
     if not user:
@@ -26,12 +20,11 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Si nuevo_dias_param es mayor que dias_bd, reiniciamos expiracion y dias
-    if nuevo_dias_param is not None and nuevo_dias_param > dias_bd:
-        dias_bd = nuevo_dias_param
-        expiracion = inicializar_expiracion_por_dias(dias_bd)
+    if nuevo_dias_param is not None:
+        if nuevo_dias_param != dias_bd:
+            dias_bd = nuevo_dias_param
+            expiracion = inicializar_expiracion_por_dias(dias_bd)
     else:
-        # Si expiracion es 0 y dias_bd > 0, inicializar expiracion
         if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
             expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -64,13 +57,10 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    # Actualizar dias solo si es diferente y menor o igual al actual (para que no baje días si es mayor)
-    if nuevo_dias != dias_bd:
-        if nuevo_dias < dias_bd:
-            dias_bd = nuevo_dias
-        # Si nuevo_dias es mayor, lo dejamos como está (nuevo_dias_param forzó expiración)
+    if nuevo_dias < dias_bd:
+        dias_bd = nuevo_dias
 
-    nueva_expiracion = f"{nuevo_dias - 1 if nuevo_dias > 0 else 0}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias - 1, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one(
         {"_id": idchat},
@@ -79,7 +69,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
             "dias": dias_bd
         }}
     )
-
     return True
 
 def worker_expiracion(interval_seconds=1):
