@@ -5,7 +5,7 @@ from Source_pack.TextAll import en as text_en
 from Source_pack.BoutnAll import en as btn_en
 from Source_pack.BoutnAll import es as btn_es
 
-@Astro("cmds, gates, comandos, cmd, cm")
+@Astro("cmds, 'gates', comandos, cmd, cm")
 async def cmds_command(client, message):
     user_id = message.from_user.id
     caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
