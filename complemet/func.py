@@ -1,5 +1,15 @@
 from datetime import datetime, timedelta, timezone
-from classBot.MongoDB import MondB, queryUser
+from classBot.MongoDB import MondB, queryUser 
+
+def formato_tiempo(delta: timedelta) -> str:
+    total_segundos = int(delta.total_seconds())
+    if total_segundos <= 0:
+        return "0d-00h-00m-00s"
+    dias = total_segundos // 86400
+    horas = (total_segundos % 86400) // 3600
+    minutos = (total_segundos % 3600) // 60
+    segundos = total_segundos % 60
+    return f"{dias}d-{horas:02d}h-{minutos:02d}m-{segundos:02d}s"
 
 def actualizar_expiracion_si_necesario(user_id: int):
     db = MondB()
@@ -8,7 +18,6 @@ def actualizar_expiracion_si_necesario(user_id: int):
         return None
 
     dias = user.get("dias", 0)
-    expiracion = user.get("expiracion")
     since = user.get("since")
     now = datetime.now(timezone.utc)
 
@@ -20,74 +29,26 @@ def actualizar_expiracion_si_necesario(user_id: int):
     else:
         since_dt = since
 
-    if dias > 0:
-        if expiracion is None:
-            nueva_expiracion = since_dt + timedelta(days=dias)
-            db._client['bot']['user'].update_one(
-                {"_id": user_id},
-                {"$set": {"expiracion": nueva_expiracion}}
-            )
-        else:
-            if isinstance(expiracion, str):
-                expiracion_dt = datetime.fromisoformat(expiracion.replace("Z", "+00:00"))
-            else:
-                expiracion_dt = expiracion
+    # Calcular tiempo total permitido
+    tiempo_total = timedelta(days=dias)
 
-            if expiracion_dt <= now:
-                nuevos_dias = max(dias - 1, 0)
-                nuevo_since = now if nuevos_dias > 0 else since_dt
-                db._client['bot']['user'].update_one(
-                    {"_id": user_id},
-                    {"$set": {"dias": nuevos_dias, "since": nuevo_since}}
-                )
-                if nuevos_dias > 0:
-                    nueva_expiracion = nuevo_since + timedelta(days=nuevos_dias)
-                    db._client['bot']['user'].update_one(
-                        {"_id": user_id},
-                        {"$set": {"expiracion": nueva_expiracion}}
-                    )
-                else:
-                    db._client['bot']['user'].update_one(
-                        {"_id": user_id},
-                        {"$set": {"expiracion": None}}
-                    )
-    else:
-        if expiracion is not None:
-            db._client['bot']['user'].update_one(
-                {"_id": user_id},
-                {"$set": {"expiracion": None}}
-            )
+    # Tiempo pasado desde 'since'
+    tiempo_pasado = now - since_dt
 
-def tiempo_restante(user_id: int):
-    actualizar_expiracion_si_necesario(user_id)
-    user = queryUser(user_id)
-    if not user:
-        return None
+    # Tiempo restante
+    tiempo_restante = tiempo_total - tiempo_pasado
 
-    expiracion = user.get("expiracion")
-    now = datetime.now(timezone.utc)
+    # Si el tiempo restante es negativo o 0, poner dias a 0 y expiracion en 0
+    if tiempo_restante.total_seconds() <= 0:
+        db._client['bot']['user'].update_one(
+            {"_id": user_id},
+            {"$set": {"dias": 0, "expiracion": "0d-00h-00m-00s"}}
+        )
+        return
 
-    if not expiracion:
-        return {"dias": 0, "horas": 0, "minutos": 0, "segundos": 0}
-
-    if isinstance(expiracion, str):
-        expiracion_dt = datetime.fromisoformat(expiracion.replace("Z", "+00:00"))
-    else:
-        expiracion_dt = expiracion
-
-    delta = expiracion_dt - now
-    if delta.total_seconds() <= 0:
-        return {"dias": 0, "horas": 0, "minutos": 0, "segundos": 0}
-
-    dias_restantes = delta.days
-    segundos_restantes = delta.seconds
-    horas = segundos_restantes // 3600
-    minutos = (segundos_restantes % 3600) // 60
-    segundos = segundos_restantes % 60
-
-    return {
-        "dias": dias_restantes,
-        "horas": horas,
-        "minutos": minutos,
-        "segundos": segundos
-    }
+    # Actualizar expiracion como string en formato deseado
+    expiracion_str = formato_tiempo(tiempo_restante)
+    db._client['bot']['user'].update_one(
+        {"_id": user_id},
+        {"$set": {"expiracion": expiracion_str}}
+    )
