@@ -13,7 +13,6 @@ class _Astro:
         apihasd: str = None,
         token: str = None
     ):
-
         self.apiid = apiid
         self.aapihasd = apihasd
         self.token = token
@@ -30,8 +29,8 @@ class _Astro:
 
 
 if __name__ == '__main__':
-    if _Astro:
-        # limpiar consola windows/linux
+    try:
+        # Limpiar consola multiplataforma
         try:
             system('cls')
         except Exception:
@@ -39,13 +38,12 @@ if __name__ == '__main__':
 
         print('Running: True \n')
 
+        # Iniciar expiracion en background con intervalo de 1 segundo
+        iniciar_expiracion_en_background(interval_seconds=1)
+
         setcion = _Astro(21199736, _hasd, _tokn).inictSecc()
 
-        # Iniciar la expiracion en background
-        iniciar_expiracion_en_background(interval_seconds=60)
-
         setcion.run()
-    else:
-        None
 
-    print('_Error: No se pudo conectar, revisa los datos.')
+    except Exception as e:
+        print(f'_Error: No se pudo conectar, revisa los datos.\n{e}')

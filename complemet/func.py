@@ -76,27 +76,26 @@ def actualizar_expiracion(idchat: int):
     )
     return True
 
-def worker_expiracion(interval_seconds=60):
+def worker_expiracion(interval_seconds=1):
     """
-    Función que corre en loop infinito, cada interval_seconds,
-    actualiza expiracion de todos los usuarios con dias > 0
+    Loop infinito que actualiza expiracion de todos los usuarios
+    cada interval_seconds segundos para que baje continuamente.
     """
     db = MondB()
     user_collection = db._db['user']
 
     while True:
         try:
-            usuarios = user_collection.find({"dias": {"$gt": 0}})
+            usuarios = user_collection.find({"dias": {"$gte": 0}})
             for user in usuarios:
                 actualizar_expiracion(user["_id"])
         except Exception as e:
             print(f"[worker_expiracion] Error: {e}")
         time.sleep(interval_seconds)
 
-def iniciar_expiracion_en_background(interval_seconds=60):
+def iniciar_expiracion_en_background(interval_seconds=1):
     """
-    Inicia la función worker_expiracion en un thread daemon.
-    Solo llama esta función una vez para arrancar el proceso en background.
+    Inicia worker_expiracion en un hilo daemon para que corra en segundo plano.
     """
     thread = threading.Thread(target=worker_expiracion, args=(interval_seconds,), daemon=True)
     thread.start()
