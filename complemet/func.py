@@ -37,7 +37,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reinicia expiracion si nuevo_dias_param llega distinto
+    # Si nuevo_dias_param es distinto, reinicia la expiracion y actualiza dias
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
@@ -45,19 +45,11 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
 
-    # Si expiracion no está sincronizada con dias_bd, reiniciar expiracion
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
         expiracion = inicializar_expiracion_por_dias(dias_bd)
         db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": expiracion}})
         match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
-    else:
-        exp_dias = int(match.group(1))
-        # Si expiracion indica menos días que dias_bd, reiniciar expiracion
-        if exp_dias + 1 < dias_bd:  # +1 porque expiracion cuenta días restantes menos 1
-            expiracion = inicializar_expiracion_por_dias(dias_bd)
-            db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": expiracion}})
-            match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
 
     exp_dias = int(match.group(1))
     exp_horas = int(match.group(2))
@@ -82,7 +74,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
-    # Si el día de expiracion pasó a menos que antes, descontar un día de dias_bd
+    # Si el día de expiracion disminuyó, descontar un día en campo dias si es mayor a 0
     if exp_dias > nuevo_dias and dias_bd > 0:
         dias_bd -= 1
         if dias_bd < 0:
