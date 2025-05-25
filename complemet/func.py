@@ -19,16 +19,12 @@ def obtener_rango_por_numero(numero: int) -> str:
     return "Free"
 
 def actualizar_plan_por_dias(idchat: int, dias: int):
-    if dias > 0:
-        rango_nombre = obtener_rango_por_numero(7)
-    else:
-        rango_nombre = obtener_rango_por_numero(0)
+    rango_nombre = obtener_rango_por_numero(7 if dias > 0 else 0)
     db = MondB(idchat=idchat)
     user = db.queryUser()
     if not user:
         return False
-    plan_actual = user.get("plan", "")
-    if plan_actual != rango_nombre:
+    if user.get("plan", "") != rango_nombre:
         db._db['user'].update_one({"_id": idchat}, {"$set": {"plan": rango_nombre}})
     return True
 
@@ -41,10 +37,12 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
+    # Si hay nuevo_dias_param y es mayor, reiniciar expiracion a ese valor
+    if nuevo_dias_param is not None and nuevo_dias_param > dias_bd:
         dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
     else:
+        # Si expiracion en cero y dias_bd > 0, inicializar expiracion
         if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
             expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -60,6 +58,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
+    # Descontar 2 segundos por ciclo para acelerar expiracion
     if tiempo_restante.total_seconds() > 0:
         tiempo_restante -= timedelta(seconds=2)
     else:
@@ -75,12 +74,20 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
+    # Para el campo dias, sumamos 1 si quedan horas/minutos/segundos restantes
     if resto > 0:
-        dias_bd = nuevo_dias + 1
+        nuevo_dias_con_extra = nuevo_dias + 1
     else:
-        dias_bd = nuevo_dias
+        nuevo_dias_con_extra = nuevo_dias
 
-    nueva_expiracion = f"{max(nuevo_dias, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    # Evitar bajar dias si nuevo_dias_con_extra es menor que dias_bd y no hay nuevo_dias_param
+    if nuevo_dias_con_extra < dias_bd and nuevo_dias_param is None:
+        dias_bd = nuevo_dias_con_extra
+    else:
+        # Si hay nuevo_dias_param mayor o igual, respetamos dias_bd (ya actualizado arriba)
+        dias_bd = max(dias_bd, nuevo_dias_con_extra)
+
+    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one(
         {"_id": idchat},
