@@ -20,7 +20,6 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Inicializar expiracion si forzar o está en cero y dias > 0
     if forzar_reinicio or (expiracion == "0d-00h-00m-00s" and dias_bd > 0):
         expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -43,7 +42,6 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
 
     total_segundos = int(tiempo_restante.total_seconds())
 
-    # Calcular dias reales redondeando hacia arriba si queda algo de horas/minutos/segundos
     nuevo_dias = total_segundos // 86400
     resto = total_segundos % 86400
     if resto > 0:
@@ -54,7 +52,6 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    # Actualizar dias si cambió
     if dias_bd != nuevo_dias:
         dias_bd = nuevo_dias
 
@@ -70,14 +67,18 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
 
     return True
 
+def cambiar_dias_y_reiniciar(idchat: int, nuevos_dias: int):
+    db = MondB(idchat=idchat)
+    db._db['user'].update_one(
+        {"_id": idchat},
+        {"$set": {"dias": nuevos_dias}}
+    )
+    # Reinicia expiracion para reflejar el nuevo dias
+    actualizar_expiracion(idchat, forzar_reinicio=True)
+
 def worker_expiracion(interval_seconds=1):
-    """
-    Loop infinito que actualiza expiracion de todos los usuarios
-    cada interval_seconds segundos para que baje continuamente.
-    """
     db = MondB()
     user_collection = db._db['user']
-
     while True:
         try:
             usuarios = user_collection.find({"dias": {"$gte": 0}})
@@ -88,8 +89,5 @@ def worker_expiracion(interval_seconds=1):
         time.sleep(interval_seconds)
 
 def iniciar_expiracion_en_background(interval_seconds=1):
-    """
-    Inicia worker_expiracion en un hilo daemon para que corra en segundo plano.
-    """
     thread = threading.Thread(target=worker_expiracion, args=(interval_seconds,), daemon=True)
     thread.start()

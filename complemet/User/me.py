@@ -17,7 +17,7 @@ async def me_command(client, message: Message):
     rango = user.get("plan")
     creditos = user.get("credits")
     antispam = user.get("antispam")
-    expiration = user.get("since")
+    expiration = user.get("expiracion")
     status = user.get("status")
     lang = user.get("lang")
     if status == "Baneado":
