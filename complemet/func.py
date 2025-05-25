@@ -42,7 +42,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
-    forzar_actualizacion = False
 
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
@@ -61,9 +60,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
-        nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
-        db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
-        match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", nueva_expiracion)
+        return False
 
     exp_dias = int(match.group(1))
     exp_horas = int(match.group(2))
@@ -78,27 +75,24 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         tiempo_restante = timedelta(0)
 
     total_segundos = int(tiempo_restante.total_seconds())
-
     nuevo_dias = total_segundos // 86400
     resto = total_segundos % 86400
-
     nuevo_horas = resto // 3600
     nuevo_minutos = (resto % 3600) // 60
     nuevo_segundos = resto % 60
-
-    nueva_expiracion = f"{max(nuevo_dias, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
-    if nueva_expiracion == "0d-00h-00m-00s" and total_segundos == 0 and dias_bd > 0 and nuevo_dias == 0:
+    if expiracion == "0d-00h-00m-00s" and dias_bd == 1 and nueva_expiracion != "0d-00h-00m-00s":
+        return True
+
+    if total_segundos == 0 and dias_bd > 0:
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
-
     elif exp_dias > nuevo_dias and dias_bd > 0:
         dias_bd -= 1
-        if dias_bd < 0:
-            dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": dias_bd}})
         actualizar_plan_por_dias(idchat, dias_bd)
     else:
