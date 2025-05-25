@@ -11,40 +11,28 @@ def inicializar_expiracion_por_dias(dias: int) -> str:
         dias_restantes = dias - 1
         return f"{dias_restantes}d-23h-59m-59s"
 
-def actualizar_expiracion(idchat: int):
+def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
     db = MondB(idchat=idchat)
     user = db.queryUser()
     if not user:
         return False
 
-    dias = user.get("dias", 0)
+    dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if expiracion == "0d-00h-00m-00s" and dias > 0:
-        expiracion = inicializar_expiracion_por_dias(dias)
+    # Inicializar expiracion si forzar o está en cero y dias > 0
+    if forzar_reinicio or (expiracion == "0d-00h-00m-00s" and dias_bd > 0):
+        expiracion = inicializar_expiracion_por_dias(dias_bd)
 
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
-    if match:
-        exp_dias = int(match.group(1))
-        exp_horas = int(match.group(2))
-        exp_minutos = int(match.group(3))
-        exp_segundos = int(match.group(4))
-    else:
-        exp_dias = dias - 1 if dias > 0 else 0
-        exp_horas = 23 if dias > 0 else 0
-        exp_minutos = 59 if dias > 0 else 0
-        exp_segundos = 59 if dias > 0 else 0
+    if not match:
+        expiracion = inicializar_expiracion_por_dias(dias_bd)
+        match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
 
-    if dias == 0 and exp_dias == 0 and exp_horas == 0 and exp_minutos == 0 and exp_segundos == 0:
-        user_collection = db._db['user']
-        user_collection.update_one(
-            {"_id": idchat},
-            {"$set": {
-                "expiracion": "0d-00h-00m-00s",
-                "dias": 0
-            }}
-        )
-        return True
+    exp_dias = int(match.group(1))
+    exp_horas = int(match.group(2))
+    exp_minutos = int(match.group(3))
+    exp_segundos = int(match.group(4))
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
@@ -54,26 +42,32 @@ def actualizar_expiracion(idchat: int):
         tiempo_restante = timedelta(0)
 
     total_segundos = int(tiempo_restante.total_seconds())
+
+    # Calcular dias reales redondeando hacia arriba si queda algo de horas/minutos/segundos
     nuevo_dias = total_segundos // 86400
     resto = total_segundos % 86400
-    nuevo_horas = resto // 3600
-    resto = resto % 3600
-    nuevo_minutos = resto // 60
-    nuevo_segundos = resto % 60
+    if resto > 0:
+        nuevo_dias += 1
 
-    if dias != nuevo_dias:
-        dias = nuevo_dias
+    segundos_resto_dias = total_segundos % 86400
+    nuevo_horas = segundos_resto_dias // 3600
+    nuevo_minutos = (segundos_resto_dias % 3600) // 60
+    nuevo_segundos = segundos_resto_dias % 60
 
-    nueva_expiracion = f"{nuevo_dias}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    # Actualizar dias si cambió
+    if dias_bd != nuevo_dias:
+        dias_bd = nuevo_dias
 
-    user_collection = db._db['user']
-    user_collection.update_one(
+    nueva_expiracion = f"{nuevo_dias - 1 if nuevo_dias > 0 else 0}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+
+    db._db['user'].update_one(
         {"_id": idchat},
         {"$set": {
             "expiracion": nueva_expiracion,
-            "dias": dias
+            "dias": dias_bd
         }}
     )
+
     return True
 
 def worker_expiracion(interval_seconds=1):
