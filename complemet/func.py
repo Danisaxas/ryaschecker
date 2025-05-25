@@ -68,7 +68,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     exp_segundos = int(match.group(4))
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
-
     if tiempo_restante.total_seconds() > 0:
         tiempo_restante -= timedelta(seconds=2)
     else:
@@ -84,10 +83,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
-    if expiracion == "0d-00h-00m-00s" and dias_bd == 1 and nueva_expiracion != "0d-00h-00m-00s":
-        return True
-
-    if total_segundos == 0 and dias_bd > 0:
+    if total_segundos == 0 and expiracion == "0d-00h-00m-00s" and dias_bd > 0:
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
