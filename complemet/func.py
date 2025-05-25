@@ -27,12 +27,13 @@ def actualizar_plan_por_dias(idchat: int, dias: int):
         db._db['user'].update_one({"_id": idchat}, {"$set": {"plan": rango_nombre}})
     return True
 
-def expiracion_menor_que_dias(expiracion: str, dias: int) -> bool:
+def expiracion_distinta_a_dias(expiracion: str, dias: int) -> bool:
+    """Retorna True si expiracion no refleja exactamente el número de días."""
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
         return True
     exp_dias = int(match.group(1)) + 1
-    return exp_dias < dias
+    return exp_dias != dias
 
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     db = MondB(idchat=idchat)
@@ -43,7 +44,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reiniciar expiracion siempre que nuevo_dias_param sea distinto a dias_bd (mayor o menor)
+    # Si nuevo_dias_param existe y es distinto al actual, reinicia la expiración con ese valor
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
@@ -54,8 +55,8 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
 
-    # Reiniciar expiracion si expiracion actual representa menos dias que dias_bd
-    if expiracion_menor_que_dias(expiracion, dias_bd):
+    # Si la expiracion no coincide con los dias (mayor o menor), reinicia expiracion
+    if expiracion_distinta_a_dias(expiracion, dias_bd):
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
         db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
         expiracion = nueva_expiracion
@@ -74,7 +75,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
     if tiempo_restante.total_seconds() > 0:
-        tiempo_restante -= timedelta(seconds=2)
+        tiempo_restante -= timedelta(seconds=2)  # doble velocidad para la expiración
     else:
         tiempo_restante = timedelta(0)
 
@@ -89,7 +90,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
-    # Actualizamos solo la expiracion (dias solo cambia con nuevo_dias_param)
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
     actualizar_plan_por_dias(idchat, dias_bd)
