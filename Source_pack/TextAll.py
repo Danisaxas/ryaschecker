@@ -203,7 +203,21 @@ Astro Chk // Llave del Sistema  [☁️]
 'setrol_not_found': "<b>Ese ID no está registrado en la base de datos.</b>",
 'setrol_already_has': "<b>⚠️ El usuario ya tiene el rol: {role}</b>",
 'setrol_success': "<b>✅ Rol actualizado correctamente:\nID: {id}\nNuevo Rol: {role}</b>",
-'setrol_no_permission': "<b>No tienes permisos para usar este comando.</b>"
+'setrol_no_permission': "<b>No tienes permisos para usar este comando.</b>",
+
+'command_list': """<b>Lista de Comandos:
+    ━━━━━━━━━━━━━
+    /start - Iniciar el bot
+    /register - Registrarse en la base de datos
+    /me - Obtener información del usuario
+    /ban <ID> <razón> - Bannear a un usuario
+    /unban <ID> - Desbannear a un usuario
+    /bin <número> - Buscar información de un BIN
+    /gen <BIN> <fecha> <CVV> - Generar tarjetas
+    /tools - Mostrar herramientas disponibles
+    /informacion - Información sobre el bot
+    ━━━━━━━━━━━━━</b>
+    """
 }
 
 en = {
@@ -413,5 +427,19 @@ Astro Chk // System Key  [☁️]
 'setrol_not_found': "<b>This ID is not registered in the database.</b>",
 'setrol_already_has': "<b>⚠️ The user already has the role: {role}</b>",
 'setrol_success': "<b>✅ Role successfully updated:\nID: {id}\nNew Role: {role}</b>",
-'setrol_no_permission': "<b>You do not have permission to use this command.</b>"
+'setrol_no_permission': "<b>You do not have permission to use this command.</b>",
+
+'command_list': """<b>Command List:
+    ━━━━━━━━━━━━━
+    /start - Start the bot
+    /register - Register in the database
+    /me - Get user information
+    /ban <ID> <reason> - Ban a user
+    /unban <ID> - Unban a user
+    /bin <number> - Search BIN information
+    /gen <BIN> <date> <CVV> - Generate cards
+    /tools - Show available tools
+    /information - Information about the bot
+    ━━━━━━━━━━━━━</b>
+    """
 }

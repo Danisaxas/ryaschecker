@@ -1,6 +1,5 @@
 from _date import *
 from classBot.MongoDB import MondB
-from pyrogram import Client
 from pyrogram.types import Message
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
