@@ -3,6 +3,7 @@ from os import system
 from _date import (_tokn,
                    _hasd,
                    loogs)
+from complemet.func import iniciar_expiracion_en_background
 
 class _Astro:
 
@@ -29,15 +30,22 @@ class _Astro:
 
 
 if __name__ == '__main__':
-   # try:
     if _Astro:
-        system('cls')
+        # limpiar consola windows/linux
+        try:
+            system('cls')
+        except Exception:
+            system('clear')
+
         print('Running: True \n')
+
         setcion = _Astro(21199736, _hasd, _tokn).inictSecc()
+
+        # Iniciar la expiracion en background
+        iniciar_expiracion_en_background(interval_seconds=60)
+
         setcion.run()
     else:
         None
- #   except:
-    print('_Error: Nose pudo conectar, Revices los datos.')
-else:
-    None
+
+    print('_Error: No se pudo conectar, revisa los datos.')
