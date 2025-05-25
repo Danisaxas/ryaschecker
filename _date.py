@@ -21,11 +21,11 @@ def AstroButton(bit:str= None):
     nix = Client.on_callback_query(filters.regex(bit)) # type: ignore
     return nix
 
-_hasd = '3ed76d05d92a5203ca076066146a47bc'
-_tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
+hasd = '3ed76d05d92a5203ca076066146a47bc'
+tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
 owner= '7732700923'
-_channel= '-1002364228833'
-_plugin_root= 'complemet'
+channel= '-1002364228833'
+plugin_root= 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
 loogs = logging.basicConfig(level=logging.INFO)
