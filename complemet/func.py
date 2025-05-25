@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from classBot.MongoDB import MondB, queryUser 
+from classBot.MongoDB import MondB, queryUser
 
 def formato_tiempo(delta: timedelta) -> str:
     total_segundos = int(delta.total_seconds())
@@ -19,6 +19,7 @@ def actualizar_expiracion_si_necesario(user_id: int):
 
     dias = user.get("dias", 0)
     since = user.get("since")
+    expiracion = user.get("expiracion")
     now = datetime.now(timezone.utc)
 
     if not since:
@@ -29,26 +30,33 @@ def actualizar_expiracion_si_necesario(user_id: int):
     else:
         since_dt = since
 
-    # Calcular tiempo total permitido
     tiempo_total = timedelta(days=dias)
-
-    # Tiempo pasado desde 'since'
     tiempo_pasado = now - since_dt
-
-    # Tiempo restante
     tiempo_restante = tiempo_total - tiempo_pasado
 
-    # Si el tiempo restante es negativo o 0, poner dias a 0 y expiracion en 0
-    if tiempo_restante.total_seconds() <= 0:
+    if dias <= 0 or tiempo_restante.total_seconds() <= 0:
         db._client['bot']['user'].update_one(
             {"_id": user_id},
             {"$set": {"dias": 0, "expiracion": "0d-00h-00m-00s"}}
         )
         return
 
-    # Actualizar expiracion como string en formato deseado
     expiracion_str = formato_tiempo(tiempo_restante)
-    db._client['bot']['user'].update_one(
-        {"_id": user_id},
-        {"$set": {"expiracion": expiracion_str}}
-    )
+
+    if expiracion != expiracion_str:
+        db._client['bot']['user'].update_one(
+            {"_id": user_id},
+            {"$set": {"expiracion": expiracion_str}}
+        )
+
+def tiempo_restante(user_id: int) -> str:
+    actualizar_expiracion_si_necesario(user_id)
+    user = queryUser(user_id)
+    if not user:
+        return "0d-00h-00m-00s"
+
+    expiracion = user.get("expiracion")
+    if not expiracion:
+        return "0d-00h-00m-00s"
+
+    return expiracion
