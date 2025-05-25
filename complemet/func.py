@@ -60,7 +60,9 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
-        return False
+        nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
+        db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
+        match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", nueva_expiracion)
 
     exp_dias = int(match.group(1))
     exp_horas = int(match.group(2))
@@ -68,6 +70,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     exp_segundos = int(match.group(4))
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
+
     if tiempo_restante.total_seconds() > 0:
         tiempo_restante -= timedelta(seconds=2)
     else:
@@ -79,11 +82,15 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_horas = resto // 3600
     nuevo_minutos = (resto % 3600) // 60
     nuevo_segundos = resto % 60
+
     nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
-    if total_segundos == 0 and expiracion == "0d-00h-00m-00s" and dias_bd > 0:
+    if expiracion == "0d-00h-00m-00s" and dias_bd == 1:
+        return True
+
+    if total_segundos == 0 and dias_bd > 0:
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
