@@ -1,47 +1,63 @@
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
+import re
 from classBot.MongoDB import MondB
 
-def formato_tiempo(delta: timedelta) -> str:
-    total_segundos = int(delta.total_seconds())
-    if total_segundos <= 0:
-        return "0d-00h-00m-00s"
-    dias = total_segundos // 86400
-    horas = (total_segundos % 86400) // 3600
-    minutos = (total_segundos % 3600) // 60
-    segundos = total_segundos % 60
-    return f"{dias}d-{horas:02d}h-{minutos:02d}m-{segundos:02d}s"
+def actualizar_expiracion(idchat: int):
+    db = MondB(idchat=idchat)
+    user = db.queryUser()
+    if not user:
+        return False  # Usuario no encontrado
 
-def actualizar_expiracion_usuario(user):
-    user_id = user.get('_id')
     dias = user.get("dias", 0)
-    since = user.get("since")
-    now = datetime.now(timezone.utc)
+    expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if not since or dias <= 0:
-        MondB()._client['bot']['user'].update_one(
-            {"_id": user_id},
-            {"$set": {"dias": 0, "expiracion": "0d-00h-00m-00s"}}
-        )
-        return
-
-    if isinstance(since, str):
-        since_dt = datetime.fromisoformat(since.replace("Z", "+00:00"))
+    # Extraer valores de expiracion
+    match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
+    if match:
+        exp_dias = int(match.group(1))
+        exp_horas = int(match.group(2))
+        exp_minutos = int(match.group(3))
+        exp_segundos = int(match.group(4))
     else:
-        since_dt = since
+        exp_dias = dias
+        exp_horas = 23
+        exp_minutos = 59
+        exp_segundos = 59
 
-    tiempo_total = timedelta(days=dias)
-    tiempo_restante = (since_dt + tiempo_total) - now
+    # Si ya expiró todo
+    if dias == 0 and exp_dias == 0 and exp_horas == 0 and exp_minutos == 0 and exp_segundos == 0:
+        return True
 
-    if tiempo_restante.total_seconds() <= 0:
-        MondB()._client['bot']['user'].update_one(
-            {"_id": user_id},
-            {"$set": {"dias": 0, "expiracion": "0d-00h-00m-00s"}}
-        )
-        return
+    # Tiempo restante como timedelta
+    tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
-    expiracion_str = formato_tiempo(tiempo_restante)
+    # Descontar 1 segundo
+    if tiempo_restante.total_seconds() > 0:
+        tiempo_restante -= timedelta(seconds=1)
+    else:
+        tiempo_restante = timedelta(0)
 
-    MondB()._client['bot']['user'].update_one(
-        {"_id": user_id},
-        {"$set": {"expiracion": expiracion_str}}
+    total_segundos = int(tiempo_restante.total_seconds())
+    nuevo_dias = total_segundos // 86400
+    resto = total_segundos % 86400
+    nuevo_horas = resto // 3600
+    resto = resto % 3600
+    nuevo_minutos = resto // 60
+    nuevo_segundos = resto % 60
+
+    # Actualizamos campo "dias" si cambio
+    if dias != nuevo_dias:
+        dias = nuevo_dias
+
+    nueva_expiracion = f"{nuevo_dias}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+
+    # Actualizamos la base de datos
+    user_collection = db._db['user']
+    user_collection.update_one(
+        {"_id": idchat},
+        {"$set": {
+            "expiracion": nueva_expiracion,
+            "dias": dias
+        }}
     )
+    return True
