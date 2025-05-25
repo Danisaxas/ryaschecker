@@ -1,4 +1,5 @@
-import asyncio
+import threading
+import time
 from classBot.MongoDB import MondB
 from datetime import timedelta
 import re
@@ -15,6 +16,7 @@ def actualizar_expiracion(idchat: int):
     user = db.queryUser()
     if not user:
         return False
+
     dias = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
@@ -45,6 +47,7 @@ def actualizar_expiracion(idchat: int):
         return True
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
+
     if tiempo_restante.total_seconds() > 0:
         tiempo_restante -= timedelta(seconds=1)
     else:
@@ -73,15 +76,27 @@ def actualizar_expiracion(idchat: int):
     )
     return True
 
-async def expiracion_worker(interval_seconds: int = 60):
+def worker_expiracion(interval_seconds=60):
     """
-    Worker que actualiza expiracion de todos los usuarios con dias > 0 cada interval_seconds.
+    Función que corre en loop infinito, cada interval_seconds,
+    actualiza expiracion de todos los usuarios con dias > 0
     """
     db = MondB()
     user_collection = db._db['user']
+
     while True:
-        # Buscar todos usuarios con dias > 0
-        usuarios = user_collection.find({"dias": {"$gt": 0}})
-        for u in usuarios:
-            actualizar_expiracion(u["_id"])
-        await asyncio.sleep(interval_seconds)
+        try:
+            usuarios = user_collection.find({"dias": {"$gt": 0}})
+            for user in usuarios:
+                actualizar_expiracion(user["_id"])
+        except Exception as e:
+            print(f"[worker_expiracion] Error: {e}")
+        time.sleep(interval_seconds)
+
+def iniciar_expiracion_en_background(interval_seconds=60):
+    """
+    Inicia la función worker_expiracion en un thread daemon.
+    Solo llama esta función una vez para arrancar el proceso en background.
+    """
+    thread = threading.Thread(target=worker_expiracion, args=(interval_seconds,), daemon=True)
+    thread.start()
