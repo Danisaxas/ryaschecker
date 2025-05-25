@@ -11,7 +11,13 @@ def inicializar_expiracion_por_dias(dias: int) -> str:
         dias_restantes = dias - 1
         return f"{dias_restantes}d-23h-59m-59s"
 
-def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
+def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
+    """
+    Actualiza expiracion y dias para el usuario idchat.
+
+    Si se pasa nuevo_dias_param y es diferente al dias actual en BD,
+    reinicia la expiracion para reflejar ese nuevo valor.
+    """
     db = MondB(idchat=idchat)
     user = db.queryUser()
     if not user:
@@ -20,8 +26,14 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if forzar_reinicio or (expiracion == "0d-00h-00m-00s" and dias_bd > 0):
+    # Si se pasa nuevo_dias_param y es diferente, reiniciamos expiracion y dias
+    if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
+        dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
+    else:
+        # Si expiracion está a cero y dias_bd > 0, inicializar expiracion
+        if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
+            expiracion = inicializar_expiracion_por_dias(dias_bd)
 
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if not match:
@@ -66,15 +78,6 @@ def actualizar_expiracion(idchat: int, forzar_reinicio: bool = False):
     )
 
     return True
-
-def cambiar_dias_y_reiniciar(idchat: int, nuevos_dias: int):
-    db = MondB(idchat=idchat)
-    db._db['user'].update_one(
-        {"_id": idchat},
-        {"$set": {"dias": nuevos_dias}}
-    )
-    # Reinicia expiracion para reflejar el nuevo dias
-    actualizar_expiracion(idchat, forzar_reinicio=True)
 
 def worker_expiracion(interval_seconds=1):
     db = MondB()
