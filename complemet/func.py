@@ -15,7 +15,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     """
     Actualiza expiracion y dias para el usuario idchat.
 
-    Si se pasa nuevo_dias_param y es diferente al dias actual en BD,
+    Si se pasa nuevo_dias_param y es mayor que dias actual en BD,
     reinicia la expiracion para reflejar ese nuevo valor.
     """
     db = MondB(idchat=idchat)
@@ -26,12 +26,12 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Si se pasa nuevo_dias_param y es diferente, reiniciamos expiracion y dias
-    if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
+    # Si nuevo_dias_param es mayor que dias_bd, reiniciamos expiracion y dias
+    if nuevo_dias_param is not None and nuevo_dias_param > dias_bd:
         dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
     else:
-        # Si expiracion está a cero y dias_bd > 0, inicializar expiracion
+        # Si expiracion es 0 y dias_bd > 0, inicializar expiracion
         if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
             expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -64,8 +64,11 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    if dias_bd != nuevo_dias:
-        dias_bd = nuevo_dias
+    # Actualizar dias solo si es diferente y menor o igual al actual (para que no baje días si es mayor)
+    if nuevo_dias != dias_bd:
+        if nuevo_dias < dias_bd:
+            dias_bd = nuevo_dias
+        # Si nuevo_dias es mayor, lo dejamos como está (nuevo_dias_param forzó expiración)
 
     nueva_expiracion = f"{nuevo_dias - 1 if nuevo_dias > 0 else 0}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
