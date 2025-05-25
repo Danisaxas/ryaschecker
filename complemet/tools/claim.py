@@ -6,7 +6,7 @@ from Source_pack.TextAll import es as text_es
 from Source_pack.TextAll import en as text_en
 from datetime import datetime
 
-@Astro("redeem")
+@Astro("claim")
 async def redeem_key(client: Client, message: types.Message):
     user_id = message.from_user.id
     user_lang = message.from_user.language_code or 'es'
@@ -16,7 +16,7 @@ async def redeem_key(client: Client, message: types.Message):
     args = message.text.split()
     if len(args) != 2:
         await message.reply_text(
-            "<b>Usage: /redeem <YourKey></b>" if user_lang == 'en' else "<b>Uso: /redeem <TuKey></b>",
+            "<b>Usage: /claim <YourKey></b>" if user_lang == 'en' else "<b>Uso: /claim <TuKey></b>",
             reply_to_message_id=message.id
         )
         return
@@ -46,11 +46,18 @@ async def redeem_key(client: Client, message: types.Message):
 
     dias = key_doc.get("dias", 0)
 
+    user_doc = user_collection.find_one({"_id": user_id})
+    if user_doc:
+        current_dias = user_doc.get("dias", 0)
+        total_dias = current_dias + dias
+    else:
+        total_dias = dias
+
     user_collection.update_one(
         {"_id": user_id},
         {
             "$set": {
-                "dias": dias,
+                "dias": total_dias,
                 "key": key_input
             }
         },
@@ -65,6 +72,6 @@ async def redeem_key(client: Client, message: types.Message):
     msg = text_dict.get('redeem_success', 
             "<b>Key redeemed successfully! You now have {dias} days.</b>" if user_lang == 'en' else
             "<b>Key canjeada con éxito! Ahora tienes {dias} días.</b>"
-        ).format(dias=dias)
+        ).format(dias=total_dias)
 
     await message.reply_text(msg, reply_to_message_id=message.id)
