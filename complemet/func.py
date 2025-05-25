@@ -20,11 +20,12 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if nuevo_dias_param is not None:
-        if nuevo_dias_param != dias_bd:
-            dias_bd = nuevo_dias_param
-            expiracion = inicializar_expiracion_por_dias(dias_bd)
+    # Si cambia dias y es distinto, reiniciar expiracion a nuevo dias
+    if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
+        dias_bd = nuevo_dias_param
+        expiracion = inicializar_expiracion_por_dias(dias_bd)
     else:
+        # Si expiracion es cero y dias > 0, inicializar expiracion
         if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
             expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -40,8 +41,9 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
+    # Descontar 2 segundos para que pase el doble de rápido
     if tiempo_restante.total_seconds() > 0:
-        tiempo_restante -= timedelta(seconds=1)
+        tiempo_restante -= timedelta(seconds=2)
     else:
         tiempo_restante = timedelta(0)
 
@@ -55,7 +57,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    # Para poner "dias" igual a dias completos + 1 si hay horas o minutos restantes
+    # Dias incluye el día extra si queda algo de tiempo (horas,min,seg)
     if resto > 0:
         dias_bd = nuevo_dias + 1
     else:
