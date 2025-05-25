@@ -2,6 +2,13 @@ from datetime import timedelta
 import re
 from classBot.MongoDB import MondB
 
+def inicializar_expiracion_por_dias(dias: int) -> str:
+    if dias <= 0:
+        return "0d-00h-00m-00s"
+    else:
+        dias_restantes = dias - 1
+        return f"{dias_restantes}d-23h-59m-59s"
+
 def actualizar_expiracion(idchat: int):
     db = MondB(idchat=idchat)
     user = db.queryUser()
@@ -11,6 +18,10 @@ def actualizar_expiracion(idchat: int):
     dias = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
+    # Si expiracion está en cero y dias > 0, inicializamos expiracion acorde a dias
+    if expiracion == "0d-00h-00m-00s" and dias > 0:
+        expiracion = inicializar_expiracion_por_dias(dias)
+
     # Extraer valores de expiracion
     match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
     if match:
@@ -19,13 +30,23 @@ def actualizar_expiracion(idchat: int):
         exp_minutos = int(match.group(3))
         exp_segundos = int(match.group(4))
     else:
-        exp_dias = dias
-        exp_horas = 23
-        exp_minutos = 59
-        exp_segundos = 59
+        # Formato incorrecto, reiniciar expiracion
+        exp_dias = dias - 1 if dias > 0 else 0
+        exp_horas = 23 if dias > 0 else 0
+        exp_minutos = 59 if dias > 0 else 0
+        exp_segundos = 59 if dias > 0 else 0
 
     # Si ya expiró todo
     if dias == 0 and exp_dias == 0 and exp_horas == 0 and exp_minutos == 0 and exp_segundos == 0:
+        # Actualizamos para asegurar 0 expiracion y dias 0
+        user_collection = db._db['user']
+        user_collection.update_one(
+            {"_id": idchat},
+            {"$set": {
+                "expiracion": "0d-00h-00m-00s",
+                "dias": 0
+            }}
+        )
         return True
 
     # Tiempo restante como timedelta
@@ -45,7 +66,7 @@ def actualizar_expiracion(idchat: int):
     nuevo_minutos = resto // 60
     nuevo_segundos = resto % 60
 
-    # Actualizamos campo "dias" si cambio
+    # Actualizamos campo "dias" si cambió
     if dias != nuevo_dias:
         dias = nuevo_dias
 
@@ -61,3 +82,20 @@ def actualizar_expiracion(idchat: int):
         }}
     )
     return True
+
+# Ejemplo para sincronizar un usuario con id 7732700923 que tiene 2 días y expiracion a cero
+if __name__ == "__main__":
+    id_usuario = 7732700923
+    db = MondB(idchat=id_usuario)
+    user = db.queryUser()
+    if user:
+        dias = user.get("dias", 0)
+        expiracion = user.get("expiracion", "0d-00h-00m-00s")
+        if expiracion == "0d-00h-00m-00s" and dias > 0:
+            nueva_exp = inicializar_expiracion_por_dias(dias)
+            db._db['user'].update_one({"_id": id_usuario}, {"$set": {"expiracion": nueva_exp}})
+            print(f"Expiracion actualizada a {nueva_exp} para el usuario con {dias} días.")
+        else:
+            print("El usuario ya tiene expiración correcta.")
+    else:
+        print("Usuario no encontrado.")
