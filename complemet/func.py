@@ -49,18 +49,19 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     nuevo_dias = total_segundos // 86400
     resto = total_segundos % 86400
-    if resto > 0:
-        nuevo_dias += 1
 
-    segundos_resto_dias = total_segundos % 86400
+    segundos_resto_dias = resto
     nuevo_horas = segundos_resto_dias // 3600
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    if nuevo_dias < dias_bd:
+    # Para poner "dias" igual a dias completos + 1 si hay horas o minutos restantes
+    if resto > 0:
+        dias_bd = nuevo_dias + 1
+    else:
         dias_bd = nuevo_dias
 
-    nueva_expiracion = f"{max(nuevo_dias - 1, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one(
         {"_id": idchat},
@@ -69,6 +70,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
             "dias": dias_bd
         }}
     )
+
     return True
 
 def worker_expiracion(interval_seconds=1):
