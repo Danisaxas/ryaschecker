@@ -11,6 +11,27 @@ def inicializar_expiracion_por_dias(dias: int) -> str:
         dias_restantes = dias - 1
         return f"{dias_restantes}d-23h-59m-59s"
 
+def actualizar_plan_por_dias(idchat: int):
+    db = MondB(idchat=idchat)
+    user = db.queryUser()
+    if not user:
+        return False
+
+    dias_bd = user.get("dias", 0)
+    plan_actual = user.get("plan", "Free")
+
+    if dias_bd > 0 and plan_actual != "7":
+        db._db['user'].update_one(
+            {"_id": idchat},
+            {"$set": {"plan": "7"}}
+        )
+    elif dias_bd == 0 and plan_actual != "0":
+        db._db['user'].update_one(
+            {"_id": idchat},
+            {"$set": {"plan": "0"}}
+        )
+    return True
+
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     db = MondB(idchat=idchat)
     user = db.queryUser()
@@ -20,12 +41,10 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Si cambia dias y es distinto, reiniciar expiracion a nuevo dias
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         expiracion = inicializar_expiracion_por_dias(dias_bd)
     else:
-        # Si expiracion es cero y dias > 0, inicializar expiracion
         if expiracion == "0d-00h-00m-00s" and dias_bd > 0:
             expiracion = inicializar_expiracion_por_dias(dias_bd)
 
@@ -41,7 +60,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
-    # Descontar 2 segundos para que pase el doble de rápido
     if tiempo_restante.total_seconds() > 0:
         tiempo_restante -= timedelta(seconds=2)
     else:
@@ -57,7 +75,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     nuevo_minutos = (segundos_resto_dias % 3600) // 60
     nuevo_segundos = segundos_resto_dias % 60
 
-    # Dias incluye el día extra si queda algo de tiempo (horas,min,seg)
     if resto > 0:
         dias_bd = nuevo_dias + 1
     else:
@@ -72,6 +89,8 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
             "dias": dias_bd
         }}
     )
+
+    actualizar_plan_por_dias(idchat)
 
     return True
 
