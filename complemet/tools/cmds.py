@@ -5,7 +5,7 @@ from Source_pack.TextAll import en as text_en
 from Source_pack.BoutnAll import en as btn_en
 from Source_pack.BoutnAll import es as btn_es
 
-@Astro("cmds")
+@Astro("cmds, gates, comandos, cmd, cm")
 async def cmds_command(client, message):
     user_id = message.from_user.id
     caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
@@ -20,4 +20,4 @@ async def cmds_command(client, message):
 
     text_dict = text_es if lang == 'es' else text_en
 
-    await message.reply_text(text_dict['command_list'], reply_to_message_id=message.id, reply_markup=botones_dict['mainstart'])
+    await message.reply_text(text_dict['startx'], reply_to_message_id=message.id, reply_markup=botones_dict['mainstart'])
