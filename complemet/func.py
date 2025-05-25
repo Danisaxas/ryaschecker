@@ -11,25 +11,25 @@ def inicializar_expiracion_por_dias(dias: int) -> str:
         dias_restantes = dias - 1
         return f"{dias_restantes}d-23h-59m-59s"
 
-def actualizar_plan_por_dias(idchat: int):
+def obtener_rango_por_numero(numero: int) -> str:
+    db = MondB()
+    rango_doc = db._db['rangos'].find_one({"Numero": numero})
+    if rango_doc and "Rango" in rango_doc:
+        return rango_doc["Rango"]
+    return "Free"  # valor por defecto si no encuentra
+
+def actualizar_plan_por_dias(idchat: int, dias: int):
+    if dias > 0:
+        rango_nombre = obtener_rango_por_numero(7)
+    else:
+        rango_nombre = obtener_rango_por_numero(0)
     db = MondB(idchat=idchat)
     user = db.queryUser()
     if not user:
         return False
-
-    dias_bd = user.get("dias", 0)
-    plan_actual = user.get("plan", "Free")
-
-    if dias_bd > 0 and plan_actual != "7":
-        db._db['user'].update_one(
-            {"_id": idchat},
-            {"$set": {"plan": "7"}}
-        )
-    elif dias_bd == 0 and plan_actual != "0":
-        db._db['user'].update_one(
-            {"_id": idchat},
-            {"$set": {"plan": "0"}}
-        )
+    plan_actual = user.get("plan", "")
+    if plan_actual != rango_nombre:
+        db._db['user'].update_one({"_id": idchat}, {"$set": {"plan": rango_nombre}})
     return True
 
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
@@ -90,7 +90,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         }}
     )
 
-    actualizar_plan_por_dias(idchat)
+    actualizar_plan_por_dias(idchat, dias_bd)
 
     return True
 
