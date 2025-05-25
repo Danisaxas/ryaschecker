@@ -43,7 +43,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reiniciar expiracion si nuevo_dias_param existe y es distinto
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
@@ -54,7 +53,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
 
-    # Reiniciar expiracion si expiracion no coincide con dias
     if expiracion_distinta_a_dias(expiracion, dias_bd):
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
         db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
@@ -89,16 +87,13 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
 
     nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
-    # Actualizar expiracion
     db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
 
-    # Si la expiracion llegó a "0d-00h-00m-00s" y dias_bd > 0, actualizar dias a 0
-    if nueva_expiracion == "0d-00h-00m-00s" and dias_bd > 0:
+    if nueva_expiracion == "0d-00h-00m-00s" and total_segundos == 0 and dias_bd > 0:
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
 
-    # Si la expiracion bajó un día completo, descontar un día de dias_bd
     elif exp_dias > nuevo_dias and dias_bd > 0:
         dias_bd -= 1
         if dias_bd < 0:
