@@ -16,7 +16,7 @@ def obtener_rango_por_numero(numero: int) -> str:
     rango_doc = db._db['rangos'].find_one({"Numero": numero})
     if rango_doc and "Rango" in rango_doc:
         return rango_doc["Rango"]
-    return "Free"  # valor por defecto si no encuentra
+    return "Free"
 
 def actualizar_plan_por_dias(idchat: int, dias: int):
     if dias > 0:
@@ -80,7 +80,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     else:
         dias_bd = nuevo_dias
 
-    nueva_expiracion = f"{max(nuevo_dias,0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
+    nueva_expiracion = f"{max(nuevo_dias, 0)}d-{nuevo_horas:02d}h-{nuevo_minutos:02d}m-{nuevo_segundos:02d}s"
 
     db._db['user'].update_one(
         {"_id": idchat},
