@@ -45,7 +45,8 @@ class MondB:
             "since": datetime.now(),
             "key": 'None',
             "lang": "es",
-            "expiracion": None
+            "expiracion": "0d-00h-00m-00s",  # Valor por defecto en formato string
+            "dias": 0                        # Valor por defecto
         }
         _collection.insert_one(_save)
         return True
@@ -114,7 +115,8 @@ class MondB:
             "since": datetime.now(),
             "key": 'None',
             "lang": "es",
-            "expiracion": None
+            "expiracion": "0d-00h-00m-00s",  # Igual aquí si quieres
+            "dias": 0
         }
         return _collection.insert_one(_save)
 
@@ -151,6 +153,7 @@ class MondB:
             )
         result = _collection.bulk_write(operations)
         return result.bulk_api_result
+
 
 def querygrup(id: int = 0):
     return MondB(idchat=id).querygrup()
