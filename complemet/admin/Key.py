@@ -74,7 +74,7 @@ async def key_handler(client, message):
     respuesta = text_dict['key_system'].format(
         Key=key_generada,
         date=fecha_expiracion,
-        días=dias,
+        dias=dias,
         username=username
     )
 

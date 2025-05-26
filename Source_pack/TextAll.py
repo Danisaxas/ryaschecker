@@ -189,10 +189,10 @@ Formato: <code>$gen 60112088</code>
 Astro Chk | Systema De Key ☁️
 ─────────────────────
 Key: <code>{Key}</code>
-Expiracion: <code{date}</code>
+Expiracion: <code>{date}</code>
 ─────────────────────
-Dias: <code{días}</code>
-Plan: <codePremium</code>
+Dias: <code>{dias}</code>
+Plan: <code>Premium</code>
 Canjeado por: @{username}
 </b>""",
 
@@ -398,10 +398,10 @@ Format: <code>$gen 60112088</code>
 Astro Chk | System Key ☁️
 ─────────────────────
 Key: <code>{Key}</code>
-Expiration: <code{date}</code>
+Expiration: <code>{date}</code>
 ─────────────────────
-Days: <code{días}</code>
-Plan: <codePremium</code>
+Days: <code>{dias}</code>
+Plan: <code>Premium</code>
 Claimed by: @{username}
 </b>""",
 
