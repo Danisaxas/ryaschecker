@@ -52,7 +52,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Si hay cambio en dias y no hay expiracion manual nueva, reinicia normal
     if nuevo_dias_param is not None and nuevo_dias_param != dias_bd and nuevo_expiracion_param is None:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
@@ -63,7 +62,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
         actualizar_plan_por_dias(idchat, dias_bd)
         return True
 
-    # Si se pasa una expiracion manual nueva (ej. con segundos modificados), usarla y actualizar dias acorde
     if nuevo_expiracion_param is not None:
         expiracion = nuevo_expiracion_param
         match = re.match(r"(\d+)d-(\d+)h-(\d+)m-(\d+)s", expiracion)
@@ -75,18 +73,13 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
 
             total_segundos = exp_dias*86400 + exp_horas*3600 + exp_minutos*60 + exp_segundos
             dias_bd = total_segundos // 86400
-            # Actualiza sin reiniciar completo
             db._db['user'].update_one(
                 {"_id": idchat},
                 {"$set": {"dias": dias_bd, "expiracion": expiracion}}
             )
             actualizar_plan_por_dias(idchat, dias_bd)
             return True
-        else:
-            # Si no tiene formato valido, ignora y sigue normalmente
-            pass
 
-    # Si expiracion y dias no coinciden, reiniciar expiracion normalmente
     if expiracion_distinta_a_dias(expiracion, dias_bd):
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
         db._db['user'].update_one({"_id": idchat}, {"$set": {"expiracion": nueva_expiracion}})
@@ -106,7 +99,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
     if tiempo_restante.total_seconds() > 0:
-        tiempo_restante -= timedelta(seconds=2)
+        tiempo_restante -= timedelta(seconds=1)  # Cambié a 1 segundo para evitar saltos grandes
     else:
         tiempo_restante = timedelta(0)
 
