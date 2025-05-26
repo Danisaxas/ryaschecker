@@ -186,15 +186,14 @@ Formato: <code>$gen 60112088</code>
 'key_usage': """<b>[⽷] Usa /Key (Dias) Para generar la Key</b>""",
 
 'key_system': """<b>
-Astro Chk // Llave del Sistema  [☁️]
-━━━━━━━━━
-[⽷] Llave:
-> {Key}
-> Expiración: {date}
-━━━━━━━━━
-> Días: {días}
-> Plan: Premium
-> Reclamado por: @{username}
+Astro Chk | Systema De Key ☁️
+─────────────────────
+Key: <code>{Key}</code>
+Expiracion: <code{date}</code>
+─────────────────────
+Dias: <code{días}</code>
+Plan: <codePremium</code>
+Canjeado por: @{username}
 </b>""",
 
 'setrol_usage': "<b>Uso correcto: /setrol (ID) (Rol)\nEjemplo: /setrol 123456789 Admin</b>",
@@ -396,15 +395,14 @@ Format: <code>$gen 60112088</code>
 'key_usage': """<b>[⽷] Use /Key (Days) to generate the Key</b>""",
 
 'key_system': """<b>
-Astro Chk // System Key  [☁️]
-━━━━━━━━━
-[⽷] Key:
-> {Key}
-> Expiration: {date}
-━━━━━━━━━
-> Days: {días}
-> Plan: Premium
-> Claimed: @{username}
+Astro Chk | System Key ☁️
+─────────────────────
+Key: <code>{Key}</code>
+Expiration: <code{date}</code>
+─────────────────────
+Days: <code{días}</code>
+Plan: <codePremium</code>
+Claimed by: @{username}
 </b>""",
 
 'setrol_usage': "<b>Correct usage: /setrol (ID) (Rol)\nExample: /setrol 123456789 Admin</b>",
