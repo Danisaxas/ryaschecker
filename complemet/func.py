@@ -52,7 +52,8 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    if nuevo_dias_param is not None and nuevo_dias_param != dias_bd and nuevo_expiracion_param is None:
+    # Reemplaza días si nuevo_dias_param existe y no hay expiracion manual
+    if nuevo_dias_param is not None and nuevo_expiracion_param is None:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
         db._db['user'].update_one(
@@ -99,7 +100,7 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
     tiempo_restante = timedelta(days=exp_dias, hours=exp_horas, minutes=exp_minutos, seconds=exp_segundos)
 
     if tiempo_restante.total_seconds() > 0:
-        tiempo_restante -= timedelta(seconds=1)  # Cambié a 1 segundo para evitar saltos grandes
+        tiempo_restante -= timedelta(seconds=1)
     else:
         tiempo_restante = timedelta(0)
 
