@@ -32,16 +32,7 @@ def expiracion_distinta_a_dias(expiracion: str, dias: int) -> bool:
     if not match:
         return True
     exp_dias = int(match.group(1))
-    exp_horas = int(match.group(2))
-    exp_minutos = int(match.group(3))
-    exp_segundos = int(match.group(4))
-
-    if exp_dias == 0 and (exp_horas > 0 or exp_minutos > 0 or exp_segundos > 0):
-        expiracion_equivalente = 1
-    else:
-        expiracion_equivalente = exp_dias
-
-    return expiracion_equivalente != dias
+    return exp_dias != (dias - 1 if dias > 0 else 0)
 
 def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
     db = MondB(idchat=idchat)
@@ -102,14 +93,12 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None):
         dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": 0}})
         actualizar_plan_por_dias(idchat, 0)
-
     elif exp_dias > nuevo_dias and dias_bd > 0:
         dias_bd -= 1
         if dias_bd < 0:
             dias_bd = 0
         db._db['user'].update_one({"_id": idchat}, {"$set": {"dias": dias_bd}})
         actualizar_plan_por_dias(idchat, dias_bd)
-
     else:
         actualizar_plan_por_dias(idchat, dias_bd)
 
