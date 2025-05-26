@@ -7,8 +7,7 @@ import re
 def inicializar_expiracion_por_dias(dias: int) -> str:
     if dias <= 0:
         return "0d-00h-00m-00s"
-    dias_restantes = dias - 1
-    return f"{dias_restantes}d-23h-59m-59s"
+    return f"{dias}d-00h-00m-00s"
 
 def obtener_rango_por_numero(numero: int) -> str:
     db = MondB()
@@ -52,7 +51,6 @@ def actualizar_expiracion(idchat: int, nuevo_dias_param: int = None, nuevo_expir
     dias_bd = user.get("dias", 0)
     expiracion = user.get("expiracion", "0d-00h-00m-00s")
 
-    # Reemplaza días si nuevo_dias_param existe y no hay expiracion manual
     if nuevo_dias_param is not None and nuevo_expiracion_param is None:
         dias_bd = nuevo_dias_param
         nueva_expiracion = inicializar_expiracion_por_dias(dias_bd)
