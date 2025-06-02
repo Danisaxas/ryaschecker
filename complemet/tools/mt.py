@@ -1,8 +1,11 @@
-from _date import mitad
 from classBot.MongoDB import MondB
 from pyrogram.types import Message
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
+from _date import *
+
+def mitad(numero):
+    return numero / 2
 
 @Astro("mt")
 async def comando_mt(client, message: Message):
