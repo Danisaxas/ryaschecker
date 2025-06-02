@@ -206,7 +206,13 @@ Canjeado por: @{username}
 
 'mt_usage': "Uso correcto: /mt <número>. Ejemplo: /mt 100",
 'mt_invalid': "Por favor proporciona un número válido.",
-'mt_result': "La mitad de {numero} es {resultado}"
+'mt_result': "La mitad de {numero} es {resultado}",
+
+'setlang_usage': "Uso correcto: .setlang <ID> <es|en>",
+'setlang_invalid_id': "El ID debe ser un número entero.",
+'setlang_invalid_lang': "Idioma no válido. Usa 'es' o 'en'.",
+'setlang_not_found': "Ese ID no está registrado en la base de datos.",
+'setlang_success': "✅ Idioma actualizado correctamente a '{idioma}' para el usuario con ID {id}."
 }
 
 en = {
@@ -419,5 +425,11 @@ Claimed by: @{username}
 
 'mt_usage': "Correct usage: /mt <number>. Example: /mt 100",
 'mt_invalid': "Please provide a valid number.",
-'mt_result': "The half of {numero} is {resultado}"
+'mt_result': "The half of {numero} is {resultado}",
+
+'setlang_usage': "Correct usage: .setlang <ID> <es|en>",
+'setlang_invalid_id': "ID must be an integer.",
+'setlang_invalid_lang': "Invalid language. Use 'es' or 'en'.",
+'setlang_not_found': "That ID is not registered in the database.",
+'setlang_success': "✅ Language successfully updated to '{idioma}' for user with ID {id}."
 }
