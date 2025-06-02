@@ -1,26 +1,24 @@
 from _date import *
 from classBot.MongoDB import MondB
-from pyrogram.types import Message
 from Source_pack.TextAll import en as text_en
 from Source_pack.TextAll import es as text_es
-
-RANGOS_PERMITIDOS = [4, 5, 6]
+from pyrogram.types import Message
 
 @Astro("setlang")
 async def comando_setlang(client, message: Message):
     user_id = message.from_user.id
-    user = MondB(idchat=user_id).queryUser()
+    user_data = MondB(idchat=user_id).queryUser()
 
-    if not user:
-        await message.reply_text(text_es['register_not'], reply_to_message_id=message.id)
-        return
+    lang = user_data.get("lang", "es") if user_data else "es"
+    lang = lang.lower()
+    lang = 'en' if lang.startswith('en') else 'es'
+    text = text_en if lang == "en" else text_es
 
-    lang = user.get("lang", "es")
-    rango = user.get("rango", 0)
-    text = text_es if lang == "es" else text_en
-
-    if rango not in RANGOS_PERMITIDOS:
-        await message.reply_text(text['not_privilegios'], reply_to_message_id=message.id)
+    if str(user_id) != str(owner):
+        await message.reply_text(
+            text['setrol_no_permission'],
+            reply_to_message_id=message.id
+        )
         return
 
     args = message.text.split(maxsplit=2)
@@ -50,6 +48,7 @@ async def comando_setlang(client, message: Message):
         return
 
     _collection.update_one({"_id": target_id}, {"$set": {"lang": nuevo_idioma}})
+
     await message.reply_text(
         text['setlang_success'].format(id=target_id, idioma=nuevo_idioma),
         reply_to_message_id=message.id
