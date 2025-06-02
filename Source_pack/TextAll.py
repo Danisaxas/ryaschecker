@@ -202,7 +202,11 @@ Canjeado por: @{username}
 'setrol_not_found': "<b>Ese ID no está registrado en la base de datos.</b>",
 'setrol_already_has': "<b>⚠️ El usuario ya tiene el rol: {role}</b>",
 'setrol_success': "<b>✅ Rol actualizado correctamente:\nID: {id}\nNuevo Rol: {role}</b>",
-'setrol_no_permission': "<b>No tienes permisos para usar este comando.</b>"
+'setrol_no_permission': "<b>No tienes permisos para usar este comando.</b>",
+
+'mt_usage': "Uso correcto: /mt <número>. Ejemplo: /mt 100",
+'mt_invalid': "Por favor proporciona un número válido.",
+'mt_result': "La mitad de {numero} es {resultado}"
 }
 
 en = {
@@ -411,5 +415,9 @@ Claimed by: @{username}
 'setrol_not_found': "<b>This ID is not registered in the database.</b>",
 'setrol_already_has': "<b>⚠️ The user already has the role: {role}</b>",
 'setrol_success': "<b>✅ Role successfully updated:\nID: {id}\nNew Role: {role}</b>",
-'setrol_no_permission': "<b>You do not have permission to use this command.</b>"
+'setrol_no_permission': "<b>You do not have permission to use this command.</b>",
+
+'mt_usage': "Correct usage: /mt <number>. Example: /mt 100",
+'mt_invalid': "Please provide a valid number.",
+'mt_result': "The half of {numero} is {resultado}"
 }
