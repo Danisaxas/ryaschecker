@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> Kullanıcı Kimliği [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nKullanıcı Adı: @{username}\nID: <code>{user_id}</code>\nSohbet_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot yapan: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas bot / Bilgi al. [☁️]\n━━━━━━━━━\n[⌥] Kullanıcı Bilgisi:\nKullanıcı adı: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] Veritabanı Bilgisi:\n[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>\n[•] Plan Bitişi: <code>{expiration}</code>\n[•] Banlar: [<code>{ban}</code>] | [•] Kredi: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> Veritabanına kayıtlı değilsin, /register komutunu kullan.</b>",
+
+  "startx": "<b>\nRyas dev Bot'a hoş geldin  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] Merhaba @{username}, Ryas Telegram Bot'a hoş geldin! Sürekli yeni kapılar, araçlar ve özellikler ekleniyor. Hangi komutları kullanabileceğini görmek için aşağıdaki butonları kullan:\n━━━━━━━━━━━━━\n<code>Bot API Durumu: Çevrimiçi ✅ | Ryas Api Aktif!!</code>\n</b>",
+
+  "tools": "<b>\nRyasChk Araçları / Sayfa 1\n━━━━━━━━━━━━\nBIN Oluşturucu:\nFormat: $gen 601120\nDurum: Çevrimdışı! ❌\n━━━━━━━━━━━━\nSk Kontrol:\nFormat: $sk sk_live\nDurum: Çevrimdışı! ❌\n━━━━━━━━━━━━\nBIN Arayıcı:\nFormat: $bin 601120\nDurum: Çevrimdışı! ❌\n━━━━━━━━━━━━\nAdres Oluşturucu:\nFormat: $dir Ülke_Kodu\nDurum: Çevrimdışı! ❌\n━━━━━━━━━━━━\nIP Dolandırıcılık Kontrolü:\nFormat: $ip 1.1.1.1\nDurum: Çevrimdışı! ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nRyasChk Hakkında! 🌩\n━━━━━━━━━━━━\nSon Güncelleme: 04/04/25\nMevcut Diller: İspanyolca, İngilizce\nGeliştirici: @Exzzex\nBot Oluşturulma Tarihi: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nRyas Açıklaması! 🌩\n━━━━━━━━━━━━\nKanallar:\nOnyx Güncellemeleri: @yakında\nOnyx Referans Kanalı: @yakında\nOnyx Ücretsiz Kullanıcılar: @yakında\n━━━━━━━━━━━━━━━━━\nRyas Bilgisi:\n━━━━━━━\nGeliştirici: @Exzzex ✅ | [Satın Al]\nGeliştirici Notu: Selam millet, bu yeni onyx versiyonu; hızlı ve iyi bir kontrol deneyimi sunmak için hazırlandı!\n━━━━━━━\nSatıcılar:\n@coming soon | coming soon ✅ | [Satın Al]\n━━━━━━━━━━━━━━━━━\nOnyx Güncellemeleri:\nSürüm: 1.3.0 [✅]\nGüncelleme: yakında akşam (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\nSorunları bildir: @Exzzex\n</b>",
+
+  "close_text": "<b>\nHoşça kal! 🌩\n━━━━━━━━━━━━━━━━━\nKullanmaktan keyif al.</b>",
+
+  "not_privilegios": "<b> Bu komutu kullanmak için yeterli yetkin yok</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id veya all !metin</b>",
+
+  "ryas_cloud": "<b>\n>_ $Başla_ Ryas Cloud | Hoş geldin @{username} - Cloud DB\n\n[🇹🇷] Yeni Ryas Cloud aboneliğine hoş geldin, Ryas ile bulutta paylaşılan verilerin burada saklanacaktır. Yenilikleri görmek için butonları kullan:\n\n<code>Ryas Cloud Sürümü:  0.0.1</code>  | Ryas Cloud Planı:  <code>Premium Cloud</code></b>",
+
+  "registerx": "<b>あ » Bot ile sorunsuzca etkileşim kurabilirsin. Daha fazla bilgi için şu komutları kullan:\n\n↯ » Fiyatlar: /pricings\n↯ » Daha fazla bilgi: /data</b>",
+
+  "already_registered": "<b>あ » {user} adlı kullanıcı zaten veritabanına kayıtlı.</b>",
+
+  "setpriv_usage": "Doğru kullanım: /setpriv <ID> <Yetki>",
+
+  "setpriv_value_error": "ID ve yetki rakam olmalı.",
+
+  "setpriv_success": "ID {user_id} için yetki başarıyla güncellendi.",
+
+  "setpriv_not_found": "Bu ID veritabanında yok.",
+
+  "gen_response": "[⌥] Onyx Oluşturucu | Luhn Algoritması:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] Bilgi:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\nbot yapan : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  Yönetici Paneli [⚠️]\n- - - - - - - - - - - - - - -\n<b>Kullanıcı Yasaklandı</b>\nKullanıcı: @{username} [{target_user_id}]\nSebep: {ban_reason}\nAdmin: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "Doğru kullanım: /ban <ID> <sebep>",
+
+  "ban_validation": "Kullanıcı ID'si tam sayı olmalı.",
+
+  "unban_message": "Ryas Chk  Yönetici Paneli [⚠️]\n- - - - - - - - - - - - - - -\n<b>Kullanıcı Yasağı Kaldırıldı</b>\nKullanıcı: @{username} [{target_user_id}]\nTarih:  {fecha}\nAdmin: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "Doğru kullanım: /unban <ID>",
+
+  "unban_validation": "Kullanıcı ID'si tam sayı olmalı.",
+
+  "block_message": "<b>Hesabın yasaklandı. Bu bilgilere erişemezsin.</b>",
+
+  "lang_message": "\nHoş geldin @{username} - Cloud DB | DİL [{idioma_actual}]\n\nBunlar veritabanında kayıtlı dil verilerin. Değiştirmek ister misin? Aşağıdaki butonlardan yeni bir dil seçebilirsin:",
+
+  "bin_not_found": "BIN {bin_number} için bilgi bulunamadı.",
+
+  "bin_usage": "Lütfen .bin komutundan sonra geçerli bir BIN numarası gir.",
+
+  "bin_error": "Geçersiz BIN numarası. Sadece rakam içermeli.",
+
+  "bintext": "<b>({bandera}) - <code>{bin_number}</code> için veri bulundu -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• Banka: <code>{bank_name}</code></b>\n<b>• Bilgi: <code>{vendor} - {type} - {level}</code></b>\n<b>• Ülke: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>İsteyen: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nAstro / Astro Gateways Online'a Hoş Geldin\n━━━━━━━━━━━━\nGate Komutları:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nGate Yetki: <code>0</code>    |   Gate Ücret: <code>0</code>\nGate CCN (Yetki & Ücret): <code>0</code>  |   Gate Toplu Kontrol: <code>0</code>\n━━━━━━━━━━━━\nKullanmak istediğin kapı tipini seç!</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas Oluşturucu</u> | <u>Luhn Algoritması:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bilgi:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot yapan : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>Kartlar konteynerden oluşturuluyor... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>Ryas Oluşturucu</u>[⛈]\nFormat: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] /Key (gün) ile anahtar oluştur</b>",
+
+  "key_system": "<b>\nAstro Chk | Anahtar Sistemi ☁️\n─────────────────────\nAnahtar: <code>{Key}</code>\nBitiş Tarihi: <code>{date}</code>\n─────────────────────\nGün: <code>{dias}</code>\nPlan: <code>Premium</code>\nKullanan: @{username}\n</b>",
+
+  "setrol_usage": "<b>Doğru kullanım: /setrol (ID) (Rol)\nÖrnek: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>Geçersiz rol. İzin verilen roller: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>ID rakam olmalı.</b>",
+
+  "setrol_not_found": "<b>Bu ID veritabanında kayıtlı değil.</b>",
+
+  "setrol_already_has": "<b>⚠️ Kullanıcı zaten bu role sahip: {role}</b>",
+
+  "setrol_success": "<b>✅ Rol başarıyla güncellendi:\nID: {id}\nYeni Rol: {role}</b>",
+
+  "setrol_no_permission": "<b>Bu komutu kullanmak için yetkin yok.</b>",
+
+  "mt_usage": "Doğru kullanım: /mt <sayı>. Örnek: /mt 100",
+
+  "mt_invalid": "Lütfen geçerli bir sayı gir.",
+
+  "mt_result": "{numero} sayısının yarısı {resultado}",
+
+  "setlang_usage": "Doğru kullanım: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "ID tam sayı olmalı.",
+
+  "setlang_invalid_lang": "Geçersiz dil. 'es' ya da 'en' kullan.",
+
+  "setlang_not_found": "Bu ID veritabanında kayıtlı değil.",
+
+  "setlang_success": "✅ ID {id} için dil başarıyla '{idioma}' olarak güncellendi."
+}
