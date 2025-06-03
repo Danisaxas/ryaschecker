@@ -631,28 +631,25 @@ mx = {
         ]
     ]),
     'lang': InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
-        InlineKeyboardButton("ES MX [🇲🇽]", callback_data="mx"),
-        InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
-        InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
-    ],
-    [
-        InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
-        InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-        InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
-        InlineKeyboardButton("DE [🇩🇪]", callback_data="de"),
-    ],
-    [
-        InlineKeyboardButton("IT [🇮🇹]", callback_data="it"),
-        InlineKeyboardButton("AR [🇸🇦]", callback_data="ar"),
-        InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
-        InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    ],
-    [
-        InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
-    ]
-])
+        [
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
+        ],
+        [
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
+            InlineKeyboardButton("DE [🇩🇪]", callback_data="de"),
+        ],
+        [
+            InlineKeyboardButton("IT [🇮🇹]", callback_data="it"),
+            InlineKeyboardButton("AR [🇸🇦]", callback_data="ar"),
+            InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+        ],
+        [
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]),
