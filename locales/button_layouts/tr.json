@@ -1,0 +1,96 @@
+{
+  "tr": {
+    "mainstart": [
+      [
+        {"text": "Gateways", "callback_data": "gateways"},
+        {"text": "Araçlar", "callback_data": "tools"},
+        {"text": "Bilgiler", "callback_data": "description"}
+      ],
+      [
+        {"text": "xCloud [☁️]", "callback_data": "ryas_cloud"},
+        {"text": "Kapat", "callback_data": "close"}
+      ]
+    ],
+    "atras": [
+      [
+        {"text": "Anasayfa", "callback_data": "home"},
+        {"text": "Sonraki", "callback_data": "next"}
+      ]
+    ],
+    "back": [
+      [
+        {"text": "Geri", "callback_data": "home"}
+      ]
+    ],
+    "back_lang": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Diller", "callback_data": "lenguaje"}
+      ]
+    ],
+    "backvR": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Geri", "callback_data": "home"}
+      ]
+    ],
+    "re_genbt": [
+      [
+        {"text": "Yine oluşturmak ister misiniz?", "callback_data": "re_gen"},
+        {"text": "Bot Kanalı", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "gen_but": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Bot Kanalı", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "vryasx": [
+      [
+        {"text": "Açıklama", "callback_data": "informacion"},
+        {"text": "Diller", "callback_data": "lenguaje"},
+        {"text": "Geri", "callback_data": "home"}
+      ]
+    ],
+    "lang": [
+      [
+        {"text": "EN [🇺🇸]", "callback_data": "en"},
+        {"text": "ES [🇪🇸]", "callback_data": "es"},
+        {"text": "PT [🇧🇷]", "callback_data": "pt"},
+        {"text": "RU [🇷🇺]", "callback_data": "ru"}
+      ],
+      [
+        {"text": "CH [🇨🇳]", "callback_data": "zh"},
+        {"text": "KO [🇰🇷]", "callback_data": "ko"},
+        {"text": "MX [🇲🇽]", "callback_data": "mx"},
+        {"text": "FR [🇫🇷]", "callback_data": "fr"}
+      ],
+      [
+        {"text": "DE [🇩🇪]", "callback_data": "de"},
+        {"text": "IT [🇮🇹]", "callback_data": "it"},
+        {"text": "AR [🇸🇦]", "callback_data": "ar"},
+        {"text": "JA [🇯🇵]", "callback_data": "ja"}
+      ],
+      [
+        {"text": "TR [🇹🇷]", "callback_data": "tr"},
+        {"text": "xCloud [☁️]", "callback_data": "homevR"}
+      ],
+      [
+        {"text": "VI [🇻🇳]", "callback_data": "vi"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"}
+      ]
+    ],
+    "gatewaysx": [
+      [
+        {"text": "Kimlik Doğrulama", "callback_data": "Auth"},
+        {"text": "Ücret", "callback_data": "Charge"},
+        {"text": "CCN Gates", "callback_data": "CCN"}
+      ],
+      [
+        {"text": "Toplu Kontrol", "callback_data": "Mass_Check"},
+        {"text": "Geri", "callback_data": "home"}
+      ]
+    ]
+  }
+}
