@@ -83,8 +83,6 @@
 
   "setrol_success": "<b>✅ Rol actualizado correctamente:\nID: {id}\nNuevo Rol: {role}</b>",
 
-  "setrol_no_permission": "<b>No tienes permisos para usar este comando.</b>"
-
   "setrol_no_permission": "<b>No tienes permisos para usar este comando.</b>",
 
   "mt_usage": "Uso correcto: /mt <número>. Ejemplo: /mt 100",
