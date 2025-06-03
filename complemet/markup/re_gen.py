@@ -2,8 +2,16 @@ from _date import *
 from pyrogram import Client, types
 from Source_pack.TextAll import es as text_es
 from Source_pack.TextAll import en as text_en
+from Source_pack.TextAll import pt as text_pt
+from Source_pack.TextAll import ru as text_ru
+from Source_pack.TextAll import zh as text_zh
+from Source_pack.TextAll import ko as text_ko
 from Source_pack.BoutnAll import es as botones_es
 from Source_pack.BoutnAll import en as botones_en
+from Source_pack.BoutnAll import pt as botones_pt
+from Source_pack.BoutnAll import ru as botones_ru
+from Source_pack.BoutnAll import zh as botones_zh
+from Source_pack.BoutnAll import ko as botones_ko
 from classBot.MongoDB import MondB
 import re
 
@@ -16,46 +24,62 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         text = message.text or message.caption or ""
         reply_msg_id = message.reply_to_message.id if message.reply_to_message else message.id
         user_data = MondB(idchat=user_id).queryUser()
-        lang = user_data.get("lang", "es")
+        lang = user_data.get("lang", "es").lower()
         ban_status = user_data.get("ban", "No")
         razon = user_data.get("razon", "")
-        if lang == "es":
-            text_dict = text_es
-            botones_dict = botones_es
-        elif lang == "en":
-            text_dict = text_en
-            botones_dict = botones_en
-        else:
-            text_dict = text_es
-            botones_dict = botones_es
+
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko"}
+        if lang not in valid_langs:
+            lang = "es"
+
+        text_dicts = {
+            "es": text_es,
+            "en": text_en,
+            "pt": text_pt,
+            "ru": text_ru,
+            "zh": text_zh,
+            "ko": text_ko,
+        }
+        botones_dicts = {
+            "es": botones_es,
+            "en": botones_en,
+            "pt": botones_pt,
+            "ru": botones_ru,
+            "zh": botones_zh,
+            "ko": botones_ko,
+        }
+
+        text_dict = text_dicts[lang]
+        botones_dict = botones_dicts[lang]
+
         if ban_status == "Yes":
             await callback_query.message.reply_text(
                 text_dict['block_message'].format(user_id=user_id, razon=razon),
                 reply_to_message_id=reply_msg_id
             )
             return
+
         match = re.search(r"-(.+?)\|([\dx]{2})\|([\dx]{2,4})\|(\w+)-", text)
-        if match:
-            cc = match.group(1)
-            mes = match.group(2)
-            ano = match.group(3)
-            cvv = match.group(4)
-        else:
+        if not match:
             await callback_query.message.reply_text(
-                "⚠️ Error al regenerar. Asegúrate de que el formato del BIN y los datos sean correctos.",
+                text_dict.get('re_gen_error', "⚠️ Error al regenerar. Asegúrate de que el formato del BIN y los datos sean correctos."),
                 reply_to_message_id=reply_msg_id
             )
             return
+
+        cc, mes, ano, cvv = match.group(1), match.group(2), match.group(3), match.group(4)
         mes = "x" if mes.lower() == "xx" else mes
         ano = "x" if ano.lower() == "xx" else ano
         cvv = "x" if cvv.lower() == "rnd" else cvv
+
         ccs = cc_gen(cc, mes, ano, cvv)
         if not ccs:
             await callback_query.message.reply_text(
-                "No se pudieron generar tarjetas válidas con el BIN proporcionado.",
+                text_dict.get('gen_fail', "No se pudieron generar tarjetas válidas con el BIN proporcionado."),
                 reply_to_message_id=reply_msg_id
             )
             return
+
         cards_output = "\n".join(f"<code>{c.strip()}</code>" for c in ccs if c.strip())
         bin_info = get_bin_info(cc[:6])
         if bin_info:
@@ -67,10 +91,12 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
                 f"<code>{bin_info.get('country')}</code> ({bin_info.get('flag')})"
             )
         else:
-            bin_text = "Información no disponible"
+            bin_text = text_dict.get('info_unavailable', "Información no disponible")
+
         mes_display = mes if mes.lower() not in ["rnd", "x"] else "xx"
         ano_display = ano if ano.lower() not in ["rnd", "x"] else "xx"
         cvv_display = "rnd"
+
         await callback_query.message.edit_text(
             text_dict['gen_message'].format(
                 cc_first6=cc,
@@ -86,5 +112,5 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
     except Exception as e:
         await callback_query.message.reply_text(
             f"⚠️ Ocurrió un error: {e}",
-            reply_to_message_id=reply_msg_id if reply_msg_id else None
+            reply_to_message_id=reply_msg_id
         )
