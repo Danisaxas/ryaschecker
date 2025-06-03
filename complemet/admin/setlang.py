@@ -6,9 +6,16 @@ from Source_pack.TextAll import pt as text_pt
 from Source_pack.TextAll import ru as text_ru
 from Source_pack.TextAll import zh as text_zh
 from Source_pack.TextAll import ko as text_ko
+from Source_pack.TextAll import fr as text_fr
+from Source_pack.TextAll import de as text_de
+from Source_pack.TextAll import tr as text_tr
+from Source_pack.TextAll import ja as text_ja
+from Source_pack.TextAll import ar as text_ar
+from Source_pack.TextAll import it as text_it
+from Source_pack.TextAll import es_mx as text_es_mx
 from pyrogram.types import Message
 
-IDIOMAS_VALIDOS = ["es", "en", "pt", "ru", "zh", "ko"]
+IDIOMAS_VALIDOS = ["es", "en", "pt", "ru", "zh", "ko", "fr", "de", "tr", "ja", "ar", "it", "es_mx"]
 
 @Astro("setlang")
 async def comando_setlang(client, message: Message):
@@ -17,12 +24,12 @@ async def comando_setlang(client, message: Message):
 
     lang = user_data.get("lang", "es") if user_data else "es"
     lang = lang.lower()
-    lang = 'en' if lang.startswith('en') else lang
-    lang = 'pt' if lang.startswith('pt') else lang
-    lang = 'ru' if lang.startswith('ru') else lang
-    lang = 'zh' if lang.startswith('zh') else lang
-    lang = 'ko' if lang.startswith('ko') else lang
-    lang = 'es' if lang not in IDIOMAS_VALIDOS else lang
+    for code in IDIOMAS_VALIDOS:
+        if lang.startswith(code):
+            lang = code
+            break
+    else:
+        lang = "es"
 
     text = {
         "es": text_es,
@@ -30,7 +37,14 @@ async def comando_setlang(client, message: Message):
         "pt": text_pt,
         "ru": text_ru,
         "zh": text_zh,
-        "ko": text_ko
+        "ko": text_ko,
+        "fr": text_fr,
+        "de": text_de,
+        "tr": text_tr,
+        "ja": text_ja,
+        "ar": text_ar,
+        "it": text_it,
+        "es_mx": text_es_mx,
     }[lang]
 
     if str(user_id) != str(owner):
