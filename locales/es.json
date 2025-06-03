@@ -84,4 +84,22 @@
   "setrol_success": "<b>✅ Rol actualizado correctamente:\nID: {id}\nNuevo Rol: {role}</b>",
 
   "setrol_no_permission": "<b>No tienes permisos para usar este comando.</b>"
+
+  "setrol_no_permission": "<b>No tienes permisos para usar este comando.</b>",
+
+  "mt_usage": "Uso correcto: /mt <número>. Ejemplo: /mt 100",
+
+  "mt_invalid": "Por favor proporciona un número válido.",
+
+  "mt_result": "La mitad de {numero} es {resultado}",
+
+  "setlang_usage": "Uso correcto: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "El ID debe ser un número entero.",
+
+  "setlang_invalid_lang": "Idioma no válido. Usa 'es' o 'en'.",
+
+  "setlang_not_found": "Ese ID no está registrado en la base de datos.",
+
+  "setlang_success": "✅ Idioma actualizado correctamente a '{idioma}' para el usuario con ID {id}."
 }
