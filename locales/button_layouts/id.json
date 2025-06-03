@@ -1,0 +1,96 @@
+{
+  "id": {
+    "mainstart": [
+      [
+        {"text": "Gateways", "callback_data": "gateways"},
+        {"text": "Alat", "callback_data": "tools"},
+        {"text": "Informasi", "callback_data": "description"}
+      ],
+      [
+        {"text": "xCloud [☁️]", "callback_data": "ryas_cloud"},
+        {"text": "Tutup", "callback_data": "close"}
+      ]
+    ],
+    "atras": [
+      [
+        {"text": "Beranda", "callback_data": "home"},
+        {"text": "Selanjutnya", "callback_data": "next"}
+      ]
+    ],
+    "back": [
+      [
+        {"text": "Kembali", "callback_data": "home"}
+      ]
+    ],
+    "back_lang": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Bahasa", "callback_data": "lenguaje"}
+      ]
+    ],
+    "backvR": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Kembali", "callback_data": "home"}
+      ]
+    ],
+    "re_genbt": [
+      [
+        {"text": "Ingin menghasilkan lagi?", "callback_data": "re_gen"},
+        {"text": "Saluran Bot", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "gen_but": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Saluran Bot", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "vryasx": [
+      [
+        {"text": "Deskripsi", "callback_data": "informacion"},
+        {"text": "Bahasa", "callback_data": "lenguaje"},
+        {"text": "Kembali", "callback_data": "home"}
+      ]
+    ],
+    "lang": [
+      [
+        {"text": "EN [🇺🇸]", "callback_data": "en"},
+        {"text": "ES [🇪🇸]", "callback_data": "es"},
+        {"text": "PT [🇧🇷]", "callback_data": "pt"},
+        {"text": "RU [🇷🇺]", "callback_data": "ru"}
+      ],
+      [
+        {"text": "CH [🇨🇳]", "callback_data": "zh"},
+        {"text": "KO [🇰🇷]", "callback_data": "ko"},
+        {"text": "MX [🇲🇽]", "callback_data": "mx"},
+        {"text": "FR [🇫🇷]", "callback_data": "fr"}
+      ],
+      [
+        {"text": "DE [🇩🇪]", "callback_data": "de"},
+        {"text": "IT [🇮🇹]", "callback_data": "it"},
+        {"text": "AR [🇸🇦]", "callback_data": "ar"},
+        {"text": "JA [🇯🇵]", "callback_data": "ja"}
+      ],
+      [
+        {"text": "TR [🇹🇷]", "callback_data": "tr"},
+        {"text": "xCloud [☁️]", "callback_data": "homevR"}
+      ],
+      [
+        {"text": "VI [🇻🇳]", "callback_data": "vi"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"}
+      ]
+    ],
+    "gatewaysx": [
+      [
+        {"text": "Otentikasi", "callback_data": "Auth"},
+        {"text": "Biaya", "callback_data": "Charge"},
+        {"text": "CCN Gates", "callback_data": "CCN"}
+      ],
+      [
+        {"text": "Pemeriksaan Massal", "callback_data": "Mass_Check"},
+        {"text": "Kembali", "callback_data": "home"}
+      ]
+    ]
+  }
+}
