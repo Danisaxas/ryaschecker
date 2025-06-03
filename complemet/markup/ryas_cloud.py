@@ -21,7 +21,7 @@ from Source_pack.BoutnAll import (
     zh as botones_zh,
     ko as botones_ko,
     fr as botones_fr,
-    MX as botones_mx,
+    es_mx as botones_es_mx,
     tr as botones_tr,
     ar as botones_ar,
     de as botones_de,
@@ -37,7 +37,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
         user_data = MondB(idchat=user_id).queryUser()
         lang = (user_data.get("lang") if user_data else "es").lower()
 
-        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de", "ja"}
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "es_mx", "tr", "ar", "de", "ja"}
         if lang not in valid_langs:
             lang = "es"
 
@@ -49,7 +49,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "zh": text_zh,
             "ko": text_ko,
             "fr": text_fr,
-            "mx": text_mx,
+            "es_mx": text_es_mx,
             "tr": text_tr,
             "ar": text_ar,
             "de": text_de,
@@ -63,7 +63,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "zh": botones_zh,
             "ko": botones_ko,
             "fr": botones_fr,
-            "mx": botones_mx,
+            "es_mx": botones_es_mx,
             "tr": botones_tr,
             "ar": botones_ar,
             "de": botones_de,
