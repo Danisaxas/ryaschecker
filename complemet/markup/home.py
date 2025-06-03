@@ -43,6 +43,15 @@ async def home_callback(client: Client, callback_query: types.CallbackQuery):
             "zh": botones_zh,
             "ko": botones_ko,
         }
+        flags = {
+            "es": "🇪🇸",
+            "en": "🇺🇸",
+            "pt": "🇧🇷",
+            "ru": "🇷🇺",
+            "zh": "🇨🇳",
+            "ko": "🇰🇷",
+        }
+        idioma_actual = flags.get(lang, "🇪🇸")
 
         text_dict = text_dicts[lang]
         botones_dict = botones_dicts[lang]
