@@ -20,38 +20,38 @@ async def tools_callback(client: Client, callback_query: types.CallbackQuery):
         user_data = MondB(idchat=user_id).queryUser()
         lang = user_data.get("lang", "es") if user_data else "es"
         lang = lang.lower()
-        lang = "en" if lang.startswith("en") else lang
-        lang = "pt" if lang.startswith("pt") else lang
-        lang = "ru" if lang.startswith("ru") else lang
-        lang = "zh" if lang.startswith("zh") else lang
-        lang = "ko" if lang.startswith("ko") else lang
-        lang = "es" if lang not in ["en", "pt", "ru", "zh", "ko"] else lang
+        valid_langs = {"en", "es", "pt", "ru", "zh", "ko"}
+        if lang not in valid_langs:
+            lang = "es"
 
-        text_dict = {
+        text_dicts = {
             "es": text_es,
             "en": text_en,
             "pt": text_pt,
             "ru": text_ru,
             "zh": text_zh,
-            "ko": text_ko
-        }[lang]
+            "ko": text_ko,
+        }
 
-        botones_dict = {
+        botones_dicts = {
             "es": botones_es,
             "en": botones_en,
             "pt": botones_pt,
             "ru": botones_ru,
             "zh": botones_zh,
-            "ko": botones_ko
-        }[lang]
+            "ko": botones_ko,
+        }
+
+        text_dict = text_dicts[lang]
+        botones_dict = botones_dicts[lang]
 
         await callback_query.message.edit_text(
-            text_dict['tools'],
-            reply_markup=botones_dict['atras']
+            text_dict["tools"],
+            reply_markup=botones_dict["atras"],
         )
     except Exception as e:
         print(f"Error en tools_callback: {e}")
         await callback_query.message.edit_text(
             f"Ocurrió un error: {e}",
-            reply_markup=InlineKeyboardMarkup([])
+            reply_markup=InlineKeyboardMarkup([]),
         )
