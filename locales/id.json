@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> ID Pengguna [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nNama Pengguna: @{username}\nID: <code>{user_id}</code>\nChat_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot oleh: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas bot / Dapatkan informasi. [☁️]\n━━━━━━━━━\n[⌥] Info Pengguna:\nNama Pengguna: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] Info Database:\n[•] Paket: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>\n[•] Kadaluarsa Paket: <code>{expiration}</code>\n[•] Banned: [<code>{ban}</code>] | [•] Kredit: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> Kamu belum terdaftar di database, gunakan /register</b>",
+
+  "startx": "<b>\nSelamat datang di Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] Halo @{username}, selamat datang di Ryas Telegram Bot. Fitur, alat, dan gateway terus ditambah. Untuk tahu perintah apa saja yang bisa digunakan, tekan tombol di bawah ini:\n━━━━━━━━━━━━━\n<code>Status API Bot: Online ✅ | Ryas Api sudah online!!</code>\n</b>",
+
+  "tools": "<b>\nAlat RyasChk / Halaman 1\n━━━━━━━━━━━━\nGenerator BIN:\nFormat: $gen 601120\nStatus: Offline! ❌\n━━━━━━━━━━━━\nPemeriksa Sk:\nFormat: $sk sk_live\nStatus: Offline! ❌\n━━━━━━━━━━━━\nPencari BIN:\nFormat: $bin 601120\nStatus: Offline! ❌\n━━━━━━━━━━━━\nGenerator Alamat:\nFormat: $dir Kode_Negara\nStatus: Offline! ❌\n━━━━━━━━━━━━\nPengecekan Penipuan IP:\nFormat: $ip 1.1.1.1\nStatus: Offline! ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nInfo RyasChk! 🌩\n━━━━━━━━━━━━\nUpdate Terakhir: 04/04/25\nBahasa Tersedia: Spanyol, Inggris\nDeveloper: @Exzzex\nTanggal Dibuat: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nDeskripsi Ryas! 🌩\n━━━━━━━━━━━━\nChannel:\nOnyx Updates: @segera\nChannel Referensi Onyx: @segera\nPengguna Gratis Onyx: @segera\n━━━━━━━━━━━━━━━━━\nInfo Ryas:\n━━━━━━━\nDeveloper: @Exzzex ✅ | [Beli]\nCatatan Dev: Halo teman-teman, ini adalah versi onyx terbaru, dibuat agar lebih cepat dan nyaman digunakan!\n━━━━━━━\nPenjual:\n@coming soon | coming soon ✅ | [Beli]\n━━━━━━━━━━━━━━━━━\nOnyx Updates:\nVersi: 1.3.0 [✅]\nUpdate: segera sore (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\nLaporkan masalah ke: @Exzzex\n</b>",
+
+  "close_text": "<b>\nSampai jumpa! 🌩\n━━━━━━━━━━━━━━━━━\nSelamat menggunakan bot.\n</b>",
+
+  "not_privilegios": "<b> Kamu tidak punya hak akses untuk perintah ini</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id atau all !teks</b>",
+
+  "ryas_cloud": "<b>\n>_ $Mulai_ Ryas Cloud | Selamat datang @{username} - Cloud DB\n\n[🇮🇩] Selamat datang di langganan Ryas Cloud baru. Data yang kamu bagikan di cloud bersama Ryas akan tersimpan di sini. Gunakan tombol untuk mengecek fitur baru:\n\n<code>Versi Ryas Cloud:  0.0.1</code>  | Paket Ryas Cloud:  <code>Premium Cloud</code></b>",
+
+  "registerx": "<b>あ » Gunakan bot tanpa hambatan, untuk info lebih lanjut gunakan perintah berikut.\n\n↯ » Harga: /pricings\n↯ » Info lainnya: /data</b>",
+
+  "already_registered": "<b>あ » Pengguna {user} sudah terdaftar di database.</b>",
+
+  "setpriv_usage": "Penggunaan yang benar: /setpriv <ID> <HakAkses>",
+
+  "setpriv_value_error": "ID dan hak akses harus berupa angka.",
+
+  "setpriv_success": "Hak akses berhasil diperbarui untuk ID {user_id}.",
+
+  "setpriv_not_found": "ID tersebut tidak ditemukan di database.",
+
+  "gen_response": "[⌥] Onyx Generator | Algoritma Luhn:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\nbot oleh : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  Panel Admin [⚠️]\n- - - - - - - - - - - - - - -\n<b>Pengguna Diblokir</b>\nPengguna: @{username} [{target_user_id}]\nAlasan: {ban_reason}\nAdmin: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "Penggunaan yang benar: /ban <ID> <alasan>",
+
+  "ban_validation": "ID pengguna harus berupa angka bulat.",
+
+  "unban_message": "Ryas Chk  Panel Admin [⚠️]\n- - - - - - - - - - - - - - -\n<b>Pengguna Di-unban</b>\nPengguna: @{username} [{target_user_id}]\nTanggal:  {fecha}\nAdmin: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "Penggunaan yang benar: /unban <ID>",
+
+  "unban_validation": "User ID harus berupa angka bulat.",
+
+  "block_message": "<b>Akunmu telah diblokir. Kamu tidak bisa mengakses info ini.</b>",
+
+  "lang_message": "\nSelamat datang @{username} - Cloud DB | BAHASA [{idioma_actual}]\n\nIni adalah data bahasa yang tersimpan di database, ingin ganti bahasa? Pilih bahasa baru dari tombol di bawah ini:",
+
+  "bin_not_found": "Data untuk BIN {bin_number} tidak ditemukan.",
+
+  "bin_usage": "Tolong masukkan nomor BIN yang valid setelah perintah .bin",
+
+  "bin_error": "Nomor BIN tidak valid. Hanya boleh angka.",
+
+  "bintext": "<b>({bandera}) - Data untuk <code>{bin_number}</code> ditemukan -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• Bank: <code>{bank_name}</code></b>\n<b>• Info: <code>{vendor} - {type} - {level}</code></b>\n<b>• Negara: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>Diminta oleh: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nSelamat datang di Astro / Astro gateways Online\n━━━━━━━━━━━━\nPerintah Gates:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nAuth Gates: <code>0</code>    |   Charge Gates: <code>0</code>\nGates CCN (Auth & Charge): <code>0</code>  |   Mass Checking Gates: <code>0</code>\n━━━━━━━━━━━━\nPilih tipe gateway yang ingin kamu gunakan!</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas Generator</u> | <u>Algoritma Luhn:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Info:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot oleh : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>Menghasilkan kartu dari container... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>Ryas Generator</u>[⛈]\nFormat: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] Gunakan /Key (Hari) untuk membuat Key</b>",
+
+  "key_system": "<b>\nAstro Chk | Sistem Kunci ☁️\n─────────────────────\nKunci: <code>{Key}</code>\nKadaluarsa: <code>{date}</code>\n─────────────────────\nHari: <code>{dias}</code>\nPaket: <code>Premium</code>\nDitebus oleh: @{username}\n</b>",
+
+  "setrol_usage": "<b>Penggunaan yang benar: /setrol (ID) (Peran)\nContoh: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>Peran tidak valid. Peran yang diizinkan: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>ID harus berupa angka.</b>",
+
+  "setrol_not_found": "<b>ID tersebut tidak terdaftar di database.</b>",
+
+  "setrol_already_has": "<b>⚠️ Pengguna sudah memiliki peran: {role}</b>",
+
+  "setrol_success": "<b>✅ Peran berhasil diperbarui:\nID: {id}\nPeran Baru: {role}</b>",
+
+  "setrol_no_permission": "<b>Kamu tidak punya izin untuk menggunakan perintah ini.</b>",
+
+  "mt_usage": "Penggunaan yang benar: /mt <angka>. Contoh: /mt 100",
+
+  "mt_invalid": "Tolong masukkan angka yang valid.",
+
+  "mt_result": "Setengah dari {numero} adalah {resultado}",
+
+  "setlang_usage": "Penggunaan yang benar: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "ID harus berupa angka bulat.",
+
+  "setlang_invalid_lang": "Bahasa tidak valid. Gunakan 'es' atau 'en'.",
+
+  "setlang_not_found": "ID tersebut tidak terdaftar di database.",
+
+  "setlang_success": "✅ Bahasa berhasil diperbarui menjadi '{idioma}' untuk pengguna dengan ID {id}."
+}
