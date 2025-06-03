@@ -7,7 +7,7 @@ from Source_pack.TextAll import (
     zh as text_zh,
     ko as text_ko,
     fr as text_fr,
-    es_mx as text_mx,
+    es_mx as text_es_mx,
     tr as text_tr,
     ar as text_ar,
     de as text_de,
