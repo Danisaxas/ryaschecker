@@ -63,6 +63,8 @@ en = {
             InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
+        ],
+        [
             InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
@@ -147,6 +149,8 @@ es = {
             InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
+        ],
+        [
             InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
@@ -231,6 +235,8 @@ pt = {
             InlineKeyboardButton("Espanhol [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("Russo [🇷🇺]", callback_data="ru"),
+            ],
+            [
             InlineKeyboardButton("Chinês [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("Coreano [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
@@ -315,6 +321,8 @@ ru = {
             InlineKeyboardButton("Испанский [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("Португальский [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
+            ],
+            [
             InlineKeyboardButton("Китайский [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("Корейский [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
@@ -399,6 +407,8 @@ zh = {
             InlineKeyboardButton("西班牙语 [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("葡萄牙语 [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("俄语 [🇷🇺]", callback_data="ru"),
+            ],
+            [
             InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("韩语 [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
@@ -483,6 +493,8 @@ ko = {
             InlineKeyboardButton("스페인어 [🇪🇸]", callback_data="es"),
             InlineKeyboardButton("포르투갈어 [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("러시아어 [🇷🇺]", callback_data="ru"),
+            ],
+            [
             InlineKeyboardButton("중국어 [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
