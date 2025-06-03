@@ -77,11 +77,8 @@ async def description_callback(client: Client, callback_query: types.CallbackQue
             "it": botones_it,
         }
 
-        text_key = lang
-        botones_key = "mx" if lang == "es_mx" else lang
-
-        text_dict = text_dicts[text_key]
-        botones_dict = botones_dicts[botones_key]
+        text_dict = text_dicts[lang]
+        botones_dict = botones_dicts[lang]
 
         await callback_query.message.edit_text(
             text_dict["description_text"],
