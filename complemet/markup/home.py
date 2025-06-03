@@ -60,8 +60,8 @@ async def home_callback(client: Client, callback_query: types.CallbackQuery):
         caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
 
         await callback_query.message.edit_text(
-            text=text_dict['startx'].format(username=username, idioma_actual=lang.upper(), caracas_time=caracas_time),
-            reply_markup=botones_dict['mainstart']
+    text=text_dict['startx'].format(username=username, idioma_actual=idioma_actual, caracas_time=caracas_time),
+    reply_markup=botones_dict['mainstart']
         )
     except Exception as e:
         print(f"Error en home_callback: {e}")
