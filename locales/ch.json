@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> 用户ID [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n用户名: @{username}\nID: <code>{user_id}</code>\n聊天ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>机器人作者: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas机器人 / 获取信息. [☁️]\n━━━━━━━━━\n[⌥] 用户信息:\n用户名: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] 数据库信息:\n[•] 计划: [<code>{rango}</code>] | [•] 垃圾信息: <code>{antispam}</code>\n[•] 计划过期: <code>{expiration}</code>\n[•] 禁止: [<code>{ban}</code>] | [•] 积分: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> 您尚未注册数据库，请使用 /register</b>",
+
+  "startx": "<b>\n欢迎使用 Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] 你好 @{username}，欢迎使用 Ryas Telegram 机器人，网关、工具和功能不断增加，了解不同命令请使用下面显示的按钮：\n━━━━━━━━━━━━━\n<code>API 机器人状态：在线 ✅ | Ryas API 已上线！！</code>\n</b>",
+
+  "tools": "<b>\nRyasChk 工具 / 第1页\n━━━━━━━━━━━━\nBIN 生成器:\n格式: $gen 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\nSk 检查:\n格式: $sk sk_live\n状态: 离线 ❌\n━━━━━━━━━━━━\nBIN 查询:\n格式: $bin 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\n地址生成器:\n格式: $dir 国家代码\n状态: 离线 ❌\n━━━━━━━━━━━━\nIP 欺诈验证:\n格式: $ip 1.1.1.1\n状态: 离线 ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nRyasChk 信息! 🌩\n━━━━━━━━━━━━\n最新更新: 04/04/25\n支持语言: 西班牙语，英语\n开发者: @Exzzex\n机器人创建日期: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nRyas 介绍! 🌩\n━━━━━━━━━━━━\n频道:\nOnyx 更新: @即将推出\nOnyx 推荐频道: @即将推出\nOnyx 免费用户: @即将推出\n━━━━━━━━━━━━━━━━━\nRyas 信息:\n━━━━━━━\n开发者: @Exzzex ✅ | [购买]\n开发者说明: 大家好，这是新的 onyx 版本，专注于速度和良好的检测体验！\n━━━━━━━\n卖家:\n@coming soon | coming soon ✅ | [购买]\n━━━━━━━━━━━━━━━━━\nOnyx 更新:\n版本: 1.3.0 [✅]\n更新: 即将上线 下午 (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\n问题反馈: @Exzzex\n</b>",
+
+  "close_text": "<b>\n再见! 🌩\n━━━━━━━━━━━━━━━━━\n祝您使用愉快。\n</b>",
+
+  "not_privilegios": "<b> 您没有足够的权限使用此命令</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] 管理中心: $msg id 或 all !文本</b>",
+
+  "ryas_cloud": "<b>\n>_ $开始_ Ryas Cloud | 欢迎 @{username} - 云数据库\n\n[🇨🇳] 欢迎使用新的 Ryas Cloud 订阅，您与 Ryas 云共享的数据将储存在此处，使用按钮探索新功能：\n\n<code>Ryas Cloud 版本:  0.0.1</code>  | Ryas Cloud 计划:  <code>高级云服务</code></b>",
+
+  "registerx": "<b>あ » 无障碍互动机器人，如需更多信息，请使用以下命令。\n\n↯ » 价格: /pricings\n↯ » 更多信息: /data</b>",
+
+  "already_registered": "<b>あ » 用户 {user} 已注册于数据库。</b>",
+
+  "setpriv_usage": "正确用法: /setpriv <ID> <权限>",
+
+  "setpriv_value_error": "ID 和权限必须为数字。",
+
+  "setpriv_success": "权限已成功更新，ID 为 {user_id}。",
+
+  "setpriv_not_found": "该 ID 未在数据库中找到。",
+
+  "gen_response": "[⌥] Onyx 生成器 | Luhn 算法:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] 信息:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\n机器人作者 : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  管理员面板 [⚠️]\n- - - - - - - - - - - - - - -\n<b>用户已被封禁</b>\n用户: @{username} [{target_user_id}]\n原因: {ban_reason}\n管理员: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "正确用法: /ban <ID> <原因>",
+
+  "ban_validation": "用户 ID 必须是整数。",
+
+  "unban_message": "Ryas Chk  管理员面板 [⚠️]\n- - - - - - - - - - - - - - -\n<b>用户已被解禁</b>\n用户: @{username} [{target_user_id}]\n日期:  {fecha}\n管理员: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "正确用法: /unban <ID>",
+
+  "unban_validation": "用户 ID 必须是整数。",
+
+  "block_message": "<b>您的账号已被封禁。无法访问此信息。</b>",
+
+  "lang_message": "\n欢迎 @{username} - 云数据库 | 语言 [{idioma_actual}]\n\n这是您在数据库中保存的语言数据，是否想更改？请通过以下按钮选择新语言：",
+
+  "bin_not_found": "未找到 BIN {bin_number} 的信息。",
+
+  "bin_usage": "请在命令 .bin 后提供有效的 BIN 号码",
+
+  "bin_error": "无效的 BIN 号码。只能包含数字。",
+
+  "bintext": "<b>({bandera}) - 找到 <code>{bin_number}</code> 的数据 -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• 银行: <code>{bank_name}</code></b>\n<b>• 信息: <code>{vendor} - {type} - {level}</code></b>\n<b>• 国家: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>请求者: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\n欢迎使用 Astro / Astro 在线网关\n━━━━━━━━━━━━\n网关命令:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\n网关授权: <code>0</code>    |   网关计费: <code>0</code>\n网关 CCN (授权 & 计费): <code>0</code>  |   网关批量检查: <code>0</code>\n━━━━━━━━━━━━\n请选择您想使用的网关类型！</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas 生成器</u> | <u>Luhn 算法:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>信息:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>机器人作者 : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>正在从容器生成卡片... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>Ryas 生成器</u>[⛈]\n格式: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] 使用 /Key (天数) 生成密钥</b>",
+
+  "key_system": "<b>\nAstro Chk | 密钥系统 ☁️\n─────────────────────\n密钥: <code>{Key}</code>\n过期时间: <code>{date}</code>\n─────────────────────\n天数: <code>{dias}</code>\n计划: <code>高级</code>\n兑换人: @{username}\n</b>",
+
+  "setrol_usage": "<b>正确用法: /setrol (ID) (角色)\n示例: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>无效角色。允许的角色: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>ID 必须是数字。</b>",
+
+  "setrol_not_found": "<b>该 ID 未在数据库中注册。</b>",
+
+  "setrol_already_has": "<b>⚠️ 用户已拥有角色: {role}</b>",
+
+  "setrol_success": "<b>✅ 角色已成功更新:\nID: {id}\n新角色: {role}</b>",
+
+  "setrol_no_permission": "<b>您没有权限使用此命令。</b>",
+
+  "mt_usage": "正确用法: /mt <数字>。示例: /mt 100",
+
+  "mt_invalid": "请输入有效的数字。",
+
+  "mt_result": "{numero} 的一半是 {resultado}",
+
+  "setlang_usage": "正确用法: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "ID 必须是整数。",
+
+  "setlang_invalid_lang": "无效语言。请使用 'es' 或 'en'。",
+
+  "setlang_not_found": "该 ID 未在数据库中注册。",
+
+  "setlang_success": "✅ 已成功为 ID 为 {id} 的用户更新语言为 '{idioma}'。"
+}
