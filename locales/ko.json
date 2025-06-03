@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> 사용자 ID [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n사용자 이름: @{username}\nID: <code>{user_id}</code>\n채팅_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>봇 제작자: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas 봇 / 정보 얻기. [☁️]\n━━━━━━━━━\n[⌥] 사용자 정보:\n사용자 이름: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] DB 정보:\n[•] 플랜: [<code>{rango}</code>] | [•] 스팸: <code>{antispam}</code>\n[•] 플랜 만료: <code>{expiration}</code>\n[•] 밴: [<code>{ban}</code>] | [•] 크레딧: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> 데이터베이스에 등록되어 있지 않습니다, /register를 사용하세요</b>",
+
+  "startx": "<b>\nRyas dev Bot에 오신 것을 환영합니다  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] 안녕하세요 @{username} Ryas Telegram Bot에 오신 것을 환영합니다. 게이트웨이, 도구 및 기능이 지속적으로 추가되고 있습니다. 명령어를 확인하려면 아래 버튼을 사용하세요:\n━━━━━━━━━━━━━\n<code>API 봇 상태: 온라인 ✅ | Ryas API 온라인!!</code>\n</b>",
+
+  "tools": "<b>\nRyasChk 도구 / 1페이지\n━━━━━━━━━━━━\nBIN 생성기:\n형식: $gen 601120\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nSk 체크:\n형식: $sk sk_live\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nBIN 검색기:\n형식: $bin 601120\n상태: 오프라인 ❌\n━━━━━━━━━━━━\n주소 생성기:\n형식: $dir 국가 코드\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nIP 사기 검증:\n형식: $ip 1.1.1.1\n상태: 오프라인 ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nRyasChk 정보! 🌩\n━━━━━━━━━━━━\n최신 업데이트: 04/04/25\n사용 가능 언어: 스페인어, 영어\n개발자: @Exzzex\n봇 생성일: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nRyas 설명! 🌩\n━━━━━━━━━━━━\n채널:\nOnyx 업데이트: @곧 출시\nOnyx 추천 채널: @곧 출시\nOnyx 무료 사용자: @곧 출시\n━━━━━━━━━━━━━━━━━\nRyas 정보:\n━━━━━━━\n개발자: @Exzzex ✅ | [구매]\n개발자 노트: 여러분 안녕하세요, 이것은 속도와 좋은 체크 경험을 염두에 두고 만든 새로운 onyx 버전입니다!\n━━━━━━━\n판매자:\n@coming soon | coming soon ✅ | [구매]\n━━━━━━━━━━━━━━━━━\nOnyx 업데이트:\n버전: 1.3.0 [✅]\n업데이트: 곧 예정 오후 (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\n문제 신고: @Exzzex\n</b>",
+
+  "close_text": "<b>\n안녕히 가세요! 🌩\n━━━━━━━━━━━━━━━━━\n즐거운 사용 되세요.\n</b>",
+
+  "not_privilegios": "<b> 이 명령어를 사용할 권한이 없습니다</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] 관리자 허브: $msg id 또는 all !텍스트</b>",
+
+  "ryas_cloud": "<b>\n>_ $시작_ Ryas Cloud | 환영합니다 @{username} - 클라우드 DB\n\n[🇰🇷] 새로운 Ryas Cloud 구독에 오신 것을 환영합니다. Ryas 클라우드와 공유하는 데이터는 여기 저장됩니다. 버튼을 통해 새로운 기능을 확인하세요:\n\n<code>Ryas Cloud 버전:  0.0.1</code>  | Ryas Cloud 플랜:  <code>프리미엄 클라우드</code></b>",
+
+  "registerx": "<b>あ » 문제없이 봇과 상호작용하세요. 더 많은 정보를 원하면 다음 명령어를 사용하세요.\n\n↯ » 가격: /pricings\n↯ » 추가 정보: /data</b>",
+
+  "already_registered": "<b>あ » 사용자 {user} 가 이미 데이터베이스에 등록되어 있습니다.</b>",
+
+  "setpriv_usage": "사용법: /setpriv <ID> <권한>",
+
+  "setpriv_value_error": "ID와 권한은 숫자여야 합니다.",
+
+  "setpriv_success": "ID {user_id} 에 대한 권한이 성공적으로 업데이트되었습니다.",
+
+  "setpriv_not_found": "해당 ID를 데이터베이스에서 찾을 수 없습니다.",
+
+  "gen_response": "[⌥] Onyx 생성기 | Luhn 알고리즘:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] 정보:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\n봇 제작자 : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  관리자 패널 [⚠️]\n- - - - - - - - - - - - - - -\n<b>사용자 차단됨</b>\n사용자: @{username} [{target_user_id}]\n사유: {ban_reason}\n관리자: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "사용법: /ban <ID> <사유>",
+
+  "ban_validation": "사용자 ID는 정수여야 합니다.",
+
+  "unban_message": "Ryas Chk  관리자 패널 [⚠️]\n- - - - - - - - - - - - - - -\n<b>사용자 차단 해제됨</b>\n사용자: @{username} [{target_user_id}]\n날짜:  {fecha}\n관리자: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "사용법: /unban <ID>",
+
+  "unban_validation": "사용자 ID는 정수여야 합니다.",
+
+  "block_message": "<b>계정이 차단되어 이 정보에 접근할 수 없습니다.</b>",
+
+  "lang_message": "\n환영합니다 @{username} - 클라우드 DB | 언어 [{idioma_actual}]\n\nDB에 저장된 언어 데이터입니다. 변경하시겠습니까? 아래 버튼에서 새 언어를 선택하세요:",
+
+  "bin_not_found": "BIN {bin_number} 에 대한 정보를 찾을 수 없습니다.",
+
+  "bin_usage": ".bin 명령어 뒤에 유효한 BIN 번호를 입력하세요.",
+
+  "bin_error": "잘못된 BIN 번호입니다. 숫자만 포함해야 합니다.",
+
+  "bintext": "<b>({bandera}) - <code>{bin_number}</code> 에 대한 데이터 발견 -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• 은행: <code>{bank_name}</code></b>\n<b>• 정보: <code>{vendor} - {type} - {level}</code></b>\n<b>• 국가: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>요청자: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nAstro / Astro 온라인 게이트웨이에 오신 것을 환영합니다\n━━━━━━━━━━━━\n게이트 명령어:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\n게이트 인증: <code>0</code>    |   게이트 청구: <code>0</code>\n게이트 CCN (인증 및 청구): <code>0</code>  |   게이트 대량 검사: <code>0</code>\n━━━━━━━━━━━━\n사용하려는 게이트 유형을 선택하세요!</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas 생성기</u> | <u>Luhn 알고리즘:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>정보:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>봇 제작자 : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>컨테이너에서 카드 생성 중... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>Ryas 생성기</u>[⛈]\n형식: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] /Key (일수) 명령어로 키 생성</b>",
+
+  "key_system": "<b>\nAstro Chk | 키 시스템 ☁️\n─────────────────────\n키: <code>{Key}</code>\n만료: <code>{date}</code>\n─────────────────────\n일수: <code>{dias}</code>\n플랜: <code>프리미엄</code>\n사용자: @{username}\n</b>",
+
+  "setrol_usage": "<b>사용법: /setrol (ID) (역할)\n예: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>잘못된 역할입니다. 허용된 역할: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>ID는 숫자여야 합니다.</b>",
+
+  "setrol_not_found": "<b>해당 ID는 데이터베이스에 등록되어 있지 않습니다.</b>",
+
+  "setrol_already_has": "<b>⚠️ 사용자는 이미 역할을 가지고 있습니다: {role}</b>",
+
+  "setrol_success": "<b>✅ 역할이 성공적으로 업데이트되었습니다:\nID: {id}\n새 역할: {role}</b>",
+
+  "setrol_no_permission": "<b>이 명령어를 사용할 권한이 없습니다.</b>",
+
+  "mt_usage": "사용법: /mt <숫자>. 예: /mt 100",
+
+  "mt_invalid": "유효한 숫자를 입력하세요.",
+
+  "mt_result": "{numero}의 절반은 {resultado}입니다.",
+
+  "setlang_usage": "사용법: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "ID는 정수여야 합니다.",
+
+  "setlang_invalid_lang": "유효하지 않은 언어입니다. 'es' 또는 'en'을 사용하세요.",
+
+  "setlang_not_found": "해당 ID는 데이터베이스에 등록되어 있지 않습니다.",
+
+  "setlang_success": "✅ ID {id} 사용자에 대해 언어가 '{idioma}'(으)로 성공적으로 업데이트되었습니다."
+}
