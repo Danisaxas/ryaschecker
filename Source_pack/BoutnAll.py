@@ -258,7 +258,7 @@ pt = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
