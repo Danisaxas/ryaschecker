@@ -1,13 +1,13 @@
 from _date import *
 from Source_pack.TextAll import (
     es as text_es,
+    es_mx as text_es_mx,
     en as text_en,
     pt as text_pt,
     ru as text_ru,
     zh as text_zh,
     ko as text_ko,
     fr as text_fr,
-    es_mx as text_mx,
     tr as text_tr,
     ar as text_ar,
     de as text_de,
@@ -15,17 +15,17 @@ from Source_pack.TextAll import (
 )
 from Source_pack.BoutnAll import (
     es as botones_es,
+    es_mx as botones_es_mx,
     en as botones_en,
     pt as botones_pt,
     ru as botones_ru,
     zh as botones_zh,
     ko as botones_ko,
     fr as botones_fr,
-    es_mx as botones_es_mx,
     tr as botones_tr,
     ar as botones_ar,
     de as botones_de,
-    de as botones_ja,
+    ja as botones_ja,
 )
 from classBot.MongoDB import MondB
 
