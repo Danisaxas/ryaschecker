@@ -11,7 +11,6 @@ async def start(client: Client, message: types.Message):
     user_id = message.from_user.id
     try:
         username = message.from_user.username or "Usuario"
-        full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip()
         user_lang = (message.from_user.language_code or 'es').lower()
         valid_langs = {"es", "en", "pt", "ru", "zh", "ko"}
         user_lang = next((lang for lang in valid_langs if user_lang.startswith(lang)), "es")
@@ -19,8 +18,12 @@ async def start(client: Client, message: types.Message):
         user = MondB(idchat=user_id).queryUser()
         if not user:
             text_dict = {
-                "es": text_es, "en": text_en, "pt": text_pt,
-                "ru": text_ru, "zh": text_zh, "ko": text_ko,
+                "es": text_es,
+                "en": text_en,
+                "pt": text_pt,
+                "ru": text_ru,
+                "zh": text_zh,
+                "ko": text_ko,
             }[user_lang]
             await message.reply_text(text_dict['register_not'], reply_to_message_id=message.id)
             return
@@ -31,24 +34,36 @@ async def start(client: Client, message: types.Message):
         status = user.get("status", "")
 
         text_dicts = {
-            "es": text_es, "en": text_en, "pt": text_pt,
-            "ru": text_ru, "zh": text_zh, "ko": text_ko,
+            "es": text_es,
+            "en": text_en,
+            "pt": text_pt,
+            "ru": text_ru,
+            "zh": text_zh,
+            "ko": text_ko,
         }
         botones_dicts = {
-            "es": btn_es, "en": btn_en, "pt": btn_pt,
-            "ru": btn_ru, "zh": btn_zh, "ko": btn_ko,
+            "es": btn_es,
+            "en": btn_en,
+            "pt": btn_pt,
+            "ru": btn_ru,
+            "zh": btn_zh,
+            "ko": btn_ko,
         }
+
         text_dict = text_dicts[lang]
         botones_dict = botones_dicts[lang]
 
         if status == "Baneado":
-            block_text = text_dicts[lang]
-            await message.reply_text(block_text['block_message'].format(user_id=user_id), reply_to_message_id=message.id)
+            await message.reply_text(text_dict['block_message'].format(user_id=user_id), reply_to_message_id=message.id)
             return
 
         flags = {
-            "es": "🇪🇸", "en": "🇺🇸", "pt": "🇧🇷",
-            "ru": "🇷🇺", "zh": "🇨🇳", "ko": "🇰🇷",
+            "es": "🇪🇸",
+            "en": "🇺🇸",
+            "pt": "🇧🇷",
+            "ru": "🇷🇺",
+            "zh": "🇨🇳",
+            "ko": "🇰🇷",
         }
         idioma_actual = flags.get(lang, "🇪🇸")
 
@@ -60,7 +75,6 @@ async def start(client: Client, message: types.Message):
             "zh": ("Asia/Shanghai", "Beijing, China"),
             "ko": ("Asia/Seoul", "Seoul, South Korea"),
         }
-
         tz_name, city_country = timezones.get(lang, ("America/Caracas", "Caracas, Venezuela"))
         now = datetime.now(pytz.timezone(tz_name))
         formatted_time = now.strftime(f"%Y-%m-%d {city_country} %I:%M %p")
