@@ -11,6 +11,7 @@ from Source_pack.TextAll import (
     tr as text_tr,
     ar as text_ar,
     de as text_de,
+    ja as text_ja,
 )
 from Source_pack.BoutnAll import (
     es as botones_es,
@@ -24,6 +25,7 @@ from Source_pack.BoutnAll import (
     tr as botones_tr,
     ar as botones_ar,
     de as botones_de,
+    de as botones_ja,
 )
 from classBot.MongoDB import MondB
 
@@ -35,7 +37,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
         user_data = MondB(idchat=user_id).queryUser()
         lang = (user_data.get("lang") if user_data else "es").lower()
 
-        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de"}
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de", "ja"}
         if lang not in valid_langs:
             lang = "es"
 
@@ -51,6 +53,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "tr": text_tr,
             "ar": text_ar,
             "de": text_de,
+            "ja": text_ja,
         }
         botones_dicts = {
             "es": botones_es,
@@ -64,6 +67,7 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "tr": botones_tr,
             "ar": botones_ar,
             "de": botones_de,
+            "ja": botones_ja,
         }
 
         text_dict = text_dicts[lang]
