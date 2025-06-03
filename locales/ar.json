@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> معرف المستخدم [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nاسم المستخدم: @{username}\nالمعرف: <code>{user_id}</code>\nمعرف الدردشة: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>بوت من: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas بوت / الحصول على المعلومات. [☁️]\n━━━━━━━━━\n[⌥] معلومات المستخدم:\nاسم المستخدم: @{username}\nالمعرف: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] معلومات قاعدة البيانات:\n[•] الخطة: [<code>{rango}</code>] | [•] الرسائل المزعجة: <code>{antispam}</code>\n[•] انتهاء الخطة: <code>{expiration}</code>\n[•] الحظر: [<code>{ban}</code>] | [•] الرصيد: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> أنت غير مسجل في قاعدة البيانات، استخدم /register</b>",
+
+  "startx": "<b>\nمرحبًا بك في Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] مرحبًا @{username} مرحبًا بك في Ryas Telegram Bot، يتم إضافة البوابات والأدوات والوظائف باستمرار، لمعرفة الأوامر المتاحة استخدم الأزرار الموضحة هنا:\n━━━━━━━━━━━━━\n<code>حالة API بوت: متصل ✅ | Ryas Api متصل!!</code>\n</b>",
+
+  "tools": "<b>\nأدوات RyasChk / الصفحة 1\n━━━━━━━━━━━━\nمولد BIN:\nالتنسيق: $gen 601120\nالحالة: غير متصل! ❌\n━━━━━━━━━━━━\nفحص Sk:\nالتنسيق: $sk sk_live\nالحالة: غير متصل! ❌\n━━━━━━━━━━━━\nالبحث عن BIN:\nالتنسيق: $bin 601120\nالحالة: غير متصل! ❌\n━━━━━━━━━━━━\nمولد العناوين:\nالتنسيق: $dir رمز_الدولة\nالحالة: غير متصل! ❌\n━━━━━━━━━━━━\nالتحقق من الاحتيال عبر IP:\nالتنسيق: $ip 1.1.1.1\nالحالة: غير متصل! ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nمعلومات RyasChk ! 🌩\n━━━━━━━━━━━━\nآخر تحديث: 04/04/25\nاللغات المتاحة: الإسبانية، الإنجليزية\nالمطور: @Exzzex\nتاريخ إنشاء البوت: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nوصف Ryas ! 🌩\n━━━━━━━━━━━━\nالقنوات:\nOnyx Updates: @قريبًا\nقناة الإحالات Onyx: @قريبًا\nالمستخدمون المجانيون Onyx: @قريبًا\n━━━━━━━━━━━━━━━━━\nمعلومات عن Ryas:\n━━━━━━━\nالمطور: @Exzzex ✅ | [شراء]\nملاحظة المطور: مرحبًا يا شباب، هذه هي النسخة الجديدة من onyx، مصممة للسرعة وتجربة تحقق جيدة!\n━━━━━━━\nالبائعون:\n@coming soon | coming soon ✅ | [شراء]\n━━━━━━━━━━━━━━━━━\nتحديثات Onyx:\nالإصدار: 1.3.0 [✅]\nالتحديث: قريبًا مساءً (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\nأبلغ عن المشاكل إلى: @Exzzex\n</b>",
+
+  "close_text": "<b>\nوداعًا! 🌩\n━━━━━━━━━━━━━━━━━\nاستمتع باستخدام البوت.\n</b>",
+
+  "not_privilegios": "<b> ليس لديك الصلاحيات الكافية لاستخدام هذا الأمر</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] مركز الإدارة: $msg id أو all !النص</b>",
+
+  "ryas_cloud": "<b>\n>_ $ابدأ_ Ryas Cloud | مرحبًا @{username} - قاعدة بيانات السحابة\n\n[🇸🇦] مرحبًا بك في الاشتراك الجديد في Ryas Cloud، سيتم تخزين بياناتك المشتركة في السحابة هنا، استعرض الأزرار لاكتشاف ما هو جديد:\n\n<code>نسخة Ryas Cloud:  0.0.1</code>  | خطة Ryas Cloud:  <code>السحابة المميزة</code></b>",
+
+  "registerx": "<b>あ » تفاعل مع البوت بدون مشاكل، إذا أردت المزيد من المعلومات استخدم الأوامر التالية.\n\n↯ » الأسعار: /pricings\n↯ » المزيد من المعلومات: /data</b>",
+
+  "already_registered": "<b>あ » المستخدم {user} مسجل بالفعل في قاعدة البيانات.</b>",
+
+  "setpriv_usage": "الاستخدام الصحيح: /setpriv <ID> <الصلاحية>",
+
+  "setpriv_value_error": "يجب أن يكون المعرف والصلاحية أرقامًا.",
+
+  "setpriv_success": "تم تحديث الصلاحية بنجاح للمعرف {user_id}.",
+
+  "setpriv_not_found": "لم يتم العثور على هذا المعرف في قاعدة البيانات.",
+
+  "gen_response": "[⌥] مولد Onyx | خوارزمية Luhn:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] معلومات:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\nبوت بواسطة : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  لوحة الإدارة [⚠️]\n- - - - - - - - - - - - - - -\n<b>تم حظر المستخدم</b>\nالمستخدم: @{username} [{target_user_id}]\nالسبب: {ban_reason}\nالمشرف: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "الاستخدام الصحيح: /ban <ID> <السبب>",
+
+  "ban_validation": "يجب أن يكون معرف المستخدم عددًا صحيحًا.",
+
+  "unban_message": "Ryas Chk  لوحة الإدارة [⚠️]\n- - - - - - - - - - - - - - -\n<b>تم إلغاء حظر المستخدم</b>\nالمستخدم: @{username} [{target_user_id}]\nالتاريخ:  {fecha}\nالمشرف: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "الاستخدام الصحيح: /unban <ID>",
+
+  "unban_validation": "يجب أن يكون معرف المستخدم عددًا صحيحًا.",
+
+  "block_message": "<b>تم حظر حسابك. لا يمكنك الوصول إلى هذه المعلومات.</b>",
+
+  "lang_message": "\nمرحبًا @{username} - قاعدة بيانات السحابة | اللغة [{idioma_actual}]\n\nهذه هي بيانات لغتك المحفوظة في قاعدة البيانات، هل تريد التغيير؟ اختر لغة جديدة من الأزرار أدناه:",
+
+  "bin_not_found": "لم يتم العثور على معلومات لـ BIN {bin_number}.",
+
+  "bin_usage": "يرجى تقديم رقم BIN صالح بعد الأمر .bin",
+
+  "bin_error": "رقم BIN غير صالح. يجب أن يحتوي على أرقام فقط.",
+
+  "bintext": "<b>({bandera}) - تم العثور على بيانات لـ <code>{bin_number}</code> -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• البنك: <code>{bank_name}</code></b>\n<b>• المعلومات: <code>{vendor} - {type} - {level}</code></b>\n<b>• البلد: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>طلب بواسطة: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nمرحبًا بك في Astro / بوابات Astro أونلاين\n━━━━━━━━━━━━\nأوامر البوابات:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nمصادقة البوابات: <code>0</code>    |   رسوم البوابات: <code>0</code>\nبوابات CCN (المصادقة والرسوم): <code>0</code>  |   فحص البوابات الجماعي: <code>0</code>\n━━━━━━━━━━━━\nاختر نوع البوابة التي تريد استخدامها!</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>مولد Ryas</u> | <u>خوارزمية Luhn:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>المعلومات:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>بوت بواسطة : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>جارٍ إنشاء البطاقات من الحاوية... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>مولد Ryas</u>[⛈]\nالصيغة: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] استخدم /Key (الأيام) لإنشاء المفتاح</b>",
+
+  "key_system": "<b>\nAstro Chk | نظام المفاتيح ☁️\n─────────────────────\nالمفتاح: <code>{Key}</code>\nتاريخ الانتهاء: <code>{date}</code>\n─────────────────────\nالأيام: <code>{dias}</code>\nالخطة: <code>مميز</code>\nتم استبداله بواسطة: @{username}\n</b>",
+
+  "setrol_usage": "<b>الاستخدام الصحيح: /setrol (ID) (الدور)\nمثال: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>دور غير صالح. الأدوار المسموح بها: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>يجب أن يكون المعرف رقمًا.</b>",
+
+  "setrol_not_found": "<b>هذا المعرف غير مسجل في قاعدة البيانات.</b>",
+
+  "setrol_already_has": "<b>⚠️ المستخدم لديه بالفعل الدور: {role}</b>",
+
+  "setrol_success": "<b>✅ تم تحديث الدور بنجاح:\nID: {id}\nالدور الجديد: {role}</b>",
+
+  "setrol_no_permission": "<b>ليس لديك صلاحيات استخدام هذا الأمر.</b>",
+
+  "mt_usage": "الاستخدام الصحيح: /mt <رقم>. مثال: /mt 100",
+
+  "mt_invalid": "يرجى تقديم رقم صالح.",
+
+  "mt_result": "نصف {numero} هو {resultado}",
+
+  "setlang_usage": "الاستخدام الصحيح: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "يجب أن يكون المعرف رقمًا صحيحًا.",
+
+  "setlang_invalid_lang": "لغة غير صالحة. استخدم 'es' أو 'en'.",
+
+  "setlang_not_found": "هذا المعرف غير مسجل في قاعدة البيانات.",
+
+  "setlang_success": "✅ تم تحديث اللغة إلى '{idioma}' للمستخدم بالمعرف {id}."
+}
