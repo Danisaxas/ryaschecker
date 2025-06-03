@@ -66,7 +66,7 @@ en = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -162,7 +162,7 @@ es = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -354,7 +354,7 @@ ru = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -450,7 +450,7 @@ zh = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -546,7 +546,7 @@ ko = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -576,7 +576,7 @@ ko = {
     ),
 }
 
-MX = {
+es_mx = {
     'mainstart': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Gateways", callback_data="gateways"),
@@ -633,7 +633,7 @@ MX = {
     'lang': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("ES MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("ES MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
             InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
         ],
@@ -724,7 +724,7 @@ in_ = {
     'lang': InlineKeyboardMarkup([
     [
         InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
-        InlineKeyboardButton("ES MX [🇲🇽]", callback_data="mx"),
+        InlineKeyboardButton("ES MX [🇲🇽]", callback_data="es_mx"),
         InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
         InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
     ],
@@ -822,7 +822,7 @@ fr = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -914,7 +914,7 @@ de = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -1006,7 +1006,7 @@ it = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -1098,7 +1098,7 @@ ar = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -1190,7 +1190,7 @@ ja = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
@@ -1282,7 +1282,7 @@ tr = {
         [
             InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
             InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
-            InlineKeyboardButton("MX [🇲🇽]", callback_data="mx"),
+            InlineKeyboardButton("MX [🇲🇽]", callback_data="es_mx"),
             InlineKeyboardButton("FR [🇫🇷]", callback_data="fr"),
         ],
         [
