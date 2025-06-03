@@ -1,16 +1,30 @@
 from _date import *
-from Source_pack.TextAll import es as text_es
-from Source_pack.TextAll import en as text_en
-from Source_pack.TextAll import pt as text_pt
-from Source_pack.TextAll import ru as text_ru
-from Source_pack.TextAll import zh as text_zh
-from Source_pack.TextAll import ko as text_ko
-from Source_pack.BoutnAll import es as botones_es
-from Source_pack.BoutnAll import en as botones_en
-from Source_pack.BoutnAll import pt as botones_pt
-from Source_pack.BoutnAll import ru as botones_ru
-from Source_pack.BoutnAll import zh as botones_zh
-from Source_pack.BoutnAll import ko as botones_ko
+from Source_pack.TextAll import (
+    es as text_es,
+    en as text_en,
+    pt as text_pt,
+    ru as text_ru,
+    zh as text_zh,
+    ko as text_ko,
+    fr as text_fr,
+    es_mx as text_mx,
+    tr as text_tr,
+    ar as text_ar,
+    de as text_de,
+)
+from Source_pack.BoutnAll import (
+    es as botones_es,
+    en as botones_en,
+    pt as botones_pt,
+    ru as botones_ru,
+    zh as botones_zh,
+    ko as botones_ko,
+    fr as botones_fr,
+    MX as botones_mx,
+    tr as botones_tr,
+    ar as botones_ar,
+    de as botones_de,
+)
 from classBot.MongoDB import MondB
 
 @AstroButton("^ryas_cloud$")
@@ -19,10 +33,9 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
         user_id = callback_query.from_user.id
         username = callback_query.from_user.username or "Usuario"
         user_data = MondB(idchat=user_id).queryUser()
-        lang = user_data.get("lang", "es")
-        lang = lang.lower()
+        lang = (user_data.get("lang") if user_data else "es").lower()
 
-        valid_langs = {"es", "en", "pt", "ru", "zh", "ko"}
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de"}
         if lang not in valid_langs:
             lang = "es"
 
@@ -33,6 +46,11 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "ru": text_ru,
             "zh": text_zh,
             "ko": text_ko,
+            "fr": text_fr,
+            "mx": text_mx,
+            "tr": text_tr,
+            "ar": text_ar,
+            "de": text_de,
         }
         botones_dicts = {
             "es": botones_es,
@@ -41,6 +59,11 @@ async def handle_ryas_cloud_button(client: Client, callback_query: types.Callbac
             "ru": botones_ru,
             "zh": botones_zh,
             "ko": botones_ko,
+            "fr": botones_fr,
+            "mx": botones_mx,
+            "tr": botones_tr,
+            "ar": botones_ar,
+            "de": botones_de,
         }
 
         text_dict = text_dicts[lang]
