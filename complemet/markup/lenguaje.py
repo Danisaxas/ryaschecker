@@ -93,11 +93,8 @@ async def handle_lenguaje_button(client: Client, callback_query: types.CallbackQ
             "it": "🇮🇹",
         }
 
-        text_key = lang
-        botones_key = "mx" if lang == "es_mx" else lang
-
-        text_dict = text_dicts[text_key]
-        botones_dict = botones_dicts[botones_key]
+        text_dict = text_dicts[lang]
+        botones_dict = botones_dicts[lang]
         idioma_actual = flags[lang]
 
         await callback_query.message.edit_text(
