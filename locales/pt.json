@@ -1,0 +1,103 @@
+{
+  "idtext": "<b>\nRyas Chk </> ID do Usuário [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nNome de Usuário: @{username}\nID: <code>{user_id}</code>\nChat_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot por: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas bot / Obter informações. [☁️]\n━━━━━━━━━\n[⌥] Informações do usuário:\nNome de usuário: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] Informações do BD:\n[•] Plano: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>\n[•] Expiração do Plano: <code>{expiration}</code>\n[•] Banimentos: [<code>{ban}</code>] | [•] Créditos: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b>Você não está registrado no banco de dados, use /register</b>",
+
+  "startx": "<b>\nBem-vindo ao Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] Olá @{username}, bem-vindo ao Ryas Telegram Bot. Portas de entrada, ferramentas e funcionalidades estão sempre sendo adicionadas. Para saber quais comandos usar, utilize os botões abaixo:\n━━━━━━━━━━━━━\n<code>Status da API do Bot: Online ✅ | Ryas Api está online!!</code>\n</b>",
+
+  "tools": "<b>\nFerramentas do RyasChk / Página 1\n━━━━━━━━━━━━\nGerador de BINs:\nFormato: $gen 601120\nStatus: Desconectado! ❌\n━━━━━━━━━━━━\nSk Check:\nFormato: $sk sk_live\nStatus: Desconectado! ❌\n━━━━━━━━━━━━\nBuscador de BINs:\nFormato: $bin 601120\nStatus: Desconectado! ❌\n━━━━━━━━━━━━\nGerador de Endereços:\nFormato: $dir Código_do_País\nStatus: Desconectado! ❌\n━━━━━━━━━━━━\nVerificação de Fraude de IP:\nFormato: $ip 1.1.1.1\nStatus: Desconectado! ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nInformações do RyasChk! 🌩\n━━━━━━━━━━━━\nÚltima Atualização: 04/04/25\nIdiomas Disponíveis: Português, Inglês\nDesenvolvedor: @Exzzex\nData de Criação do Bot: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nDescrição do Ryas! 🌩\n━━━━━━━━━━━━\nCanais:\nOnyx Updates: @em breve\nCanal de Referências Onyx: @em breve\nUsuários Gratuitos Onyx: @em breve\n━━━━━━━━━━━━━━━━━\nInformações do Ryas:\n━━━━━━━\nDesenvolvedor: @Exzzex ✅ | [Comprar]\nNota do Dev: Olá pessoal, esta é a nova versão do onyx, feita para velocidade e boa experiência de checagem!\n━━━━━━━\nVendedores:\n@coming soon | coming soon ✅ | [Comprar]\n━━━━━━━━━━━━━━━━━\nOnyx Updates:\nVersão: 1.3.0 [✅]\nAtualização: em breve p.m (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\nReporte problemas para: @Exzzex\n</b>",
+
+  "close_text": "<b>\nAdeus! 🌩\n━━━━━━━━━━━━━━━━━\nAproveite o uso do bot.\n</b>",
+
+  "not_privilegios": "<b>Você não tem privilégios suficientes para usar este comando</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id ou all !texto</b>",
+
+  "ryas_cloud": "<b>\n>_ $Começar_ Ryas Cloud | Bem-vindo @{username} - Cloud DB\n\n[🇧🇷] Bem-vindo à nova assinatura do Ryas Cloud. Seus dados compartilhados na nuvem com o Ryas serão armazenados aqui. Navegue pelos botões para descobrir as novidades:\n\n<code>Versão Ryas Cloud:  0.0.1</code>  | Plano Ryas Cloud:  <code>Premium Cloud</code></b>",
+
+  "registerx": "<b>あ » Interaja com o bot sem problemas, se quiser mais informações, use os comandos abaixo.\n\n↯ » Preços: /pricings\n↯ » Mais informações: /data</b>",
+
+  "already_registered": "<b>あ » Usuário {user} já está registrado no banco de dados.</b>",
+
+  "setpriv_usage": "Uso correto: /setpriv <ID> <Privilégio>",
+
+  "setpriv_value_error": "O ID e o privilégio devem ser números.",
+
+  "setpriv_success": "Privilégio atualizado com sucesso para o ID {user_id}.",
+
+  "setpriv_not_found": "Esse ID não está no banco de dados.",
+
+  "gen_response": "[⌥] Onyx Gerador | Algoritmo Luhn:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] Info:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\nbot por : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk Painel do Administrador [⚠️]\n- - - - - - - - - - - - - - -\n<b>Usuário Banido</b>\nUsuário: @{username} [{target_user_id}]\nRazão: {ban_reason}\nAdministrador: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "Uso correto: /ban <ID> <razão>",
+
+  "ban_validation": "O ID do usuário deve ser um número inteiro.",
+
+  "unban_message": "Ryas Chk Painel do Administrador [⚠️]\n- - - - - - - - - - - - - - -\n<b>Usuário Desbanido</b>\nUsuário: @{username} [{target_user_id}]\nData:  {fecha}\nAdministrador: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "Uso correto: /unban <ID>",
+
+  "unban_validation": "O ID do usuário deve ser um número inteiro.",
+
+  "block_message": "<b>Sua conta está banida. Você não pode acessar essas informações.</b>",
+
+  "lang_message": "\nBem-vindo @{username} - Cloud DB | LANG [{idioma_actual}]\n\nEstes são os dados sobre o idioma salvo no BD. Deseja mudar? Selecione um novo idioma nos botões abaixo:",
+
+  "bin_not_found": "Não foi encontrada informação para o BIN {bin_number}.",
+
+  "bin_usage": "Por favor, forneça um número BIN válido após o comando .bin",
+
+  "bin_error": "Número BIN inválido. Deve conter apenas dígitos.",
+
+  "bintext": "<b>({bandera}) - Dados para <code>{bin_number}</code> encontrados -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• Banco: <code>{bank_name}</code></b>\n<b>• Informação: <code>{vendor} - {type} - {level}</code></b>\n<b>• País: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>Req By: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nBem-vindo ao Astro / Astro gateways Online\n━━━━━━━━━━━━\nComandos Gates:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nGates auth: <code>0</code>    |   Gates Charge: <code>0</code>\nGates CCN (Auth & Charge): <code>0</code>  |   Gates Mass Checking: <code>0</code>\n━━━━━━━━━━━━\nSelecione o tipo de porta que deseja usar!</b>",
+
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas Gerador</u> | <u>Algoritmo Luhn:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Informação:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot por : @astrozdev🌤</code>",
+
+  "gen_loading": "<b><code>Gerando cartões a partir do contêiner... 🌤</b></code>",
+
+  "gen_usage": "<b>\n<u>Ryas Gerador</u>[⛈]\nFormato: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+  "key_usage": "<b>[⽷] Use /Key (Dias) para gerar a Key</b>",
+
+  "key_system": "<b>\nAstro Chk | Sistema de Key ☁️\n─────────────────────\nKey: <code>{Key}</code>\nExpiração: <code>{date}</code>\n─────────────────────\nDias: <code>{dias}</code>\nPlano: <code>Premium</code>\nResgatado por: @{username}\n</b>",
+
+  "setrol_usage": "<b>Uso correto: /setrol (ID) (Cargo)\nExemplo: /setrol 123456789 Admin</b>",
+
+  "setrol_invalid": "<b>Cargo inválido. Cargos permitidos: Admin, Mod, Seller, Dev, Hunter</b>",
+
+  "setrol_not_number": "<b>O ID deve ser um número.</b>",
+
+  "setrol_not_found": "<b>Esse ID não está registrado no banco de dados.</b>",
+
+  "setrol_already_has": "<b>⚠️ O usuário já possui o cargo: {role}</b>",
+
+  "setrol_success": "<b>✅ Cargo atualizado com sucesso:\nID: {id}\nNovo Cargo: {role}</b>",
+
+  "setrol_no_permission": "<b>Você não tem permissão para usar este comando.</b>",
+
+  "mt_usage": "Uso correto: /mt <número>. Exemplo: /mt 100",
+
+  "mt_invalid": "Por favor, forneça um número válido.",
+
+  "mt_result": "A metade de {numero} é {resultado}",
+
+  "setlang_usage": "Uso correto: .setlang <ID> <es|en>",
+
+  "setlang_invalid_id": "O ID deve ser um número inteiro.",
+
+  "setlang_invalid_lang": "Idioma inválido. Use 'es' ou 'en'.",
+
+  "setlang_not_found": "Esse ID não está registrado no banco de dados.",
+
+  "setlang_success": "✅ Idioma atualizado com sucesso para '{idioma}' para o usuário com ID {id}."
+}
