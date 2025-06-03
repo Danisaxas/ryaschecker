@@ -114,11 +114,8 @@ async def home_callback(client: Client, callback_query: types.CallbackQuery):
         idioma_actual = flags[lang]
         tz_name, city_country = timezones.get(lang, ("America/Caracas", "Caracas, Venezuela"))
 
-        text_key = lang
-        botones_key = "mx" if lang == "es_mx" else lang
-
-        text_dict = text_dicts[text_key]
-        botones_dict = botones_dicts[botones_key]
+        text_dict = text_dicts[lang]
+        botones_dict = botones_dicts[lang]
 
         username = callback_query.from_user.username or "Usuario"
         now = datetime.now(pytz.timezone(tz_name))
