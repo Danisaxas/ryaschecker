@@ -59,14 +59,14 @@ en = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("Spanish [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
         ],
         [
-            InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
         ]
     ]
@@ -145,14 +145,14 @@ es = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("English [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("Español [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
         ],
         [
-            InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]
@@ -231,14 +231,14 @@ pt = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("Inglês [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("Espanhol [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("Português [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("Russo [🇷🇺]", callback_data="ru"),
-            ],
-            [
-            InlineKeyboardButton("Chinês [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("Coreano [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
+        ],
+        [
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]
@@ -317,14 +317,14 @@ ru = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("Английский [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("Испанский [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("Португальский [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("Русский [🇷🇺]", callback_data="ru"),
-            ],
-            [
-            InlineKeyboardButton("Китайский [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("Корейский [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
+        ],
+        [
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]
@@ -403,14 +403,14 @@ zh = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("英语 [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("西班牙语 [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("葡萄牙语 [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("俄语 [🇷🇺]", callback_data="ru"),
-            ],
-            [
-            InlineKeyboardButton("中文 [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("韩语 [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
+        ],
+        [
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]
@@ -489,14 +489,14 @@ ko = {
     'lang': InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("영어 [🇺🇸]", callback_data="en"),
-            InlineKeyboardButton("스페인어 [🇪🇸]", callback_data="es"),
-            InlineKeyboardButton("포르투갈어 [🇧🇷]", callback_data="pt"),
-            InlineKeyboardButton("러시아어 [🇷🇺]", callback_data="ru"),
-            ],
-            [
-            InlineKeyboardButton("중국어 [🇨🇳]", callback_data="zh"),
-            InlineKeyboardButton("한국어 [🇰🇷]", callback_data="ko"),
+            InlineKeyboardButton("EN [🇺🇸]", callback_data="en"),
+            InlineKeyboardButton("ES [🇪🇸]", callback_data="es"),
+            InlineKeyboardButton("PT [🇧🇷]", callback_data="pt"),
+            InlineKeyboardButton("RU [🇷🇺]", callback_data="ru"),
+        ],
+        [
+            InlineKeyboardButton("CH [🇨🇳]", callback_data="zh"),
+            InlineKeyboardButton("KO [🇰🇷]", callback_data="ko"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
     ]
