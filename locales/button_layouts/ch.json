@@ -1,0 +1,96 @@
+{
+  "ch": {
+    "mainstart": [
+      [
+        {"text": "Gateways", "callback_data": "gateways"},
+        {"text": "工具", "callback_data": "tools"},
+        {"text": "信息", "callback_data": "description"}
+      ],
+      [
+        {"text": "xCloud [☁️]", "callback_data": "ryas_cloud"},
+        {"text": "关闭", "callback_data": "close"}
+      ]
+    ],
+    "atras": [
+      [
+        {"text": "首页", "callback_data": "home"},
+        {"text": "下一个", "callback_data": "next"}
+      ]
+    ],
+    "back": [
+      [
+        {"text": "返回", "callback_data": "home"}
+      ]
+    ],
+    "back_lang": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "语言", "callback_data": "lenguaje"}
+      ]
+    ],
+    "backvR": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "返回", "callback_data": "home"}
+      ]
+    ],
+    "re_genbt": [
+      [
+        {"text": "你想重新生成吗?", "callback_data": "re_gen"},
+        {"text": "Bot频道", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "gen_but": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Bot频道", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "vryasx": [
+      [
+        {"text": "描述", "callback_data": "informacion"},
+        {"text": "语言", "callback_data": "lenguaje"},
+        {"text": "返回", "callback_data": "home"}
+      ]
+    ],
+    "lang": [
+      [
+        {"text": "EN [🇺🇸]", "callback_data": "en"},
+        {"text": "ES [🇪🇸]", "callback_data": "es"},
+        {"text": "PT [🇧🇷]", "callback_data": "pt"},
+        {"text": "RU [🇷🇺]", "callback_data": "ru"}
+      ],
+      [
+        {"text": "CH [🇨🇳]", "callback_data": "zh"},
+        {"text": "KO [🇰🇷]", "callback_data": "ko"},
+        {"text": "MX [🇲🇽]", "callback_data": "mx"},
+        {"text": "FR [🇫🇷]", "callback_data": "fr"}
+      ],
+      [
+        {"text": "DE [🇩🇪]", "callback_data": "de"},
+        {"text": "IT [🇮🇹]", "callback_data": "it"},
+        {"text": "AR [🇸🇦]", "callback_data": "ar"},
+        {"text": "JA [🇯🇵]", "callback_data": "ja"}
+      ],
+      [
+        {"text": "TR [🇹🇷]", "callback_data": "tr"},
+        {"text": "xCloud [☁️]", "callback_data": "homevR"}
+      ],
+      [
+        {"text": "VI [🇻🇳]", "callback_data": "vi"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"}
+      ]
+    ],
+    "gatewaysx": [
+      [
+        {"text": "认证", "callback_data": "Auth"},
+        {"text": "收费", "callback_data": "Charge"},
+        {"text": "CCN Gates", "callback_data": "CCN"}
+      ],
+      [
+        {"text": "批量检查", "callback_data": "Mass_Check"},
+        {"text": "返回", "callback_data": "home"}
+      ]
+    ]
+  }
+}
