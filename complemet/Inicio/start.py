@@ -52,8 +52,20 @@ async def start(client: Client, message: types.Message):
         }
         idioma_actual = flags.get(lang, "🇪🇸")
 
-        caracas_time = datetime.now(pytz.timezone("America/Caracas")).strftime("%Y-%m-%d Venezuela, Caracas %I:%M %p")
-        response = text_dict['startx'].format(username=username, idioma_actual=idioma_actual, caracas_time=caracas_time)
+        timezones = {
+            "es": ("Europe/Madrid", "Madrid, Spain"),
+            "en": ("America/New_York", "Washington DC, United States"),
+            "pt": ("America/Sao_Paulo", "São Paulo, Brazil"),
+            "ru": ("Europe/Moscow", "Moscow, Russia"),
+            "zh": ("Asia/Shanghai", "Beijing, China"),
+            "ko": ("Asia/Seoul", "Seoul, South Korea"),
+        }
+
+        tz_name, city_country = timezones.get(lang, ("America/Caracas", "Caracas, Venezuela"))
+        now = datetime.now(pytz.timezone(tz_name))
+        formatted_time = now.strftime(f"%Y-%m-%d {city_country} %I:%M %p")
+
+        response = text_dict['startx'].format(username=username, idioma_actual=idioma_actual, caracas_time=formatted_time)
         await message.reply_text(response, reply_to_message_id=message.id, reply_markup=botones_dict['mainstart'])
     except Exception as e:
         print(f"Error en start: {e}")
