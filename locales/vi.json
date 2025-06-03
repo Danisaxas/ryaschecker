@@ -1,0 +1,102 @@
+{
+  "idtext": "<b>\nRyas Chk </> ID Người Dùng [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nTên Người Dùng: @{username}\nID: <code>{user_id}</code>\nChat_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot bởi: @Exzzex 🌸</code>\n</b>",
+
+  "metext": "<b>\nRyas bot / Lấy thông tin. [☁️]\n━━━━━━━━━\n[⌥] Thông tin người dùng:\nTên người dùng: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] Thông tin cơ sở dữ liệu:\n[•] Gói: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>\n[•] Hết hạn gói: <code>{expiration}</code>\n[•] Bị cấm: [<code>{ban}</code>] | [•] Tín dụng: <code>{creditos}</code>\n</b>",
+
+  "register_not": "<b> Bạn chưa đăng ký trong cơ sở dữ liệu, hãy dùng /register</b>",
+
+  "startx": "<b>\nChào mừng đến với Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] Xin chào @{username}, chào mừng bạn đến với Ryas Telegram Bot, các cổng, công cụ và tính năng được thêm liên tục, để biết các lệnh, hãy dùng các nút bên dưới:\n━━━━━━━━━━━━━\n<code>Trạng thái API Bot: Online ✅ | Ryas Api đang hoạt động!!</code>\n</b>",
+
+  "tools": "<b>\nCông cụ RyasChk / Trang 1\n━━━━━━━━━━━━\nTrình tạo BIN:\nĐịnh dạng: $gen 601120\nTình trạng: Ngoại tuyến! ❌\n━━━━━━━━━━━━\nKiểm tra Sk:\nĐịnh dạng: $sk sk_live\nTình trạng: Ngoại tuyến! ❌\n━━━━━━━━━━━━\nTìm BIN:\nĐịnh dạng: $bin 601120\nTình trạng: Ngoại tuyến! ❌\n━━━━━━━━━━━━\nTrình tạo địa chỉ:\nĐịnh dạng: $dir Mã_Quốc_gia\nTình trạng: Ngoại tuyến! ❌\n━━━━━━━━━━━━\nKiểm tra gian lận IP:\nĐịnh dạng: $ip 1.1.1.1\nTình trạng: Ngoại tuyến! ❌\n━━━━━━━━━━━━\n</b>",
+
+  "informacion_text": "<b>\nThông tin RyasChk! 🌩\n━━━━━━━━━━━━\nCập nhật lần cuối: 04/04/25\nNgôn ngữ có sẵn: Tiếng Tây Ban Nha, Tiếng Anh\nNhà phát triển: @Exzzex\nNgày tạo bot: 10/10/2024\n</b>",
+
+  "description_text": "<b>\nMô tả Ryas! 🌩\n━━━━━━━━━━━━\nKênh:\nCập nhật Onyx: @sắp tới\nKênh giới thiệu Onyx: @sắp tới\nNgười dùng Onyx miễn phí: @sắp tới\n━━━━━━━━━━━━━━━━━\nThông tin về Ryas:\n━━━━━━━\nNhà phát triển: @Exzzex ✅ | [Mua]\nGhi chú dev: Xin chào mọi người, đây là phiên bản onyx mới, được tạo ra với tốc độ và trải nghiệm kiểm tra tốt!\n━━━━━━━\nNgười bán:\n@coming soon | coming soon ✅ | [Mua]\n━━━━━━━━━━━━━━━━━\nCập nhật Onyx:\nPhiên bản: 1.3.0 [✅]\nCập nhật: sắp tới vào buổi chiều (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\nBáo lỗi cho: @Exzzex\n</b>",
+
+  "close_text": "<b>\nTạm biệt! 🌩\n━━━━━━━━━━━━━━━━━\nChúc bạn sử dụng vui vẻ.\n</b>",
+
+  "not_privilegios": "<b> Bạn không có quyền sử dụng lệnh này</b>",
+
+  "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] Trung tâm quản trị: $msg id hoặc all !văn bản</b>",
+
+  "ryas_cloud": "<b>\n>_ $Bắt đầu_ Ryas Cloud | Chào mừng @{username} - Cơ sở dữ liệu đám mây\n\n[🇻🇳] Chào mừng bạn đến với gói đăng ký Ryas Cloud mới, dữ liệu bạn chia sẻ với Ryas trên đám mây sẽ được lưu ở đây, hãy sử dụng các nút để khám phá các tính năng mới:\n\n<code>Phiên bản Ryas Cloud:  0.0.1</code>  | Gói Ryas Cloud:  <code>Premium Cloud</code></b>",
+
+  "registerx": "<b>あ » Tương tác với bot dễ dàng, nếu muốn thêm thông tin, dùng các lệnh sau.\n\n↯ » Giá: /pricings\n↯ » Thông tin thêm: /data</b>",
+
+  "already_registered": "<b>あ » Người dùng {user} đã đăng ký trong cơ sở dữ liệu.</b>",
+
+  "setpriv_usage": "Cách dùng đúng: /setpriv <ID> <Quyền>",
+
+  "setpriv_value_error": "ID và quyền phải là số.",
+
+  "setpriv_success": "Quyền đã được cập nhật thành công cho ID {user_id}.",
+
+  "setpriv_not_found": "ID này không tìm thấy trong cơ sở dữ liệu.",
+
+  "gen_response": "[⌥] Trình tạo Onyx | Thuật toán Luhn:\n━━━━━━━━━━━━━━\n{tarjetas}\n━━━━━━━━━━━━━━\n[ϟ] Bin : {bin_prefix}  |  [ϟ] Thông tin:\n{banco} | {marca} | {tipo} | {pais} ({pais_codigo})\n━━━━━━━━━━━━━━\nbot bởi : @Astrozdev 🌤",
+
+  "ban_message": "Astro Chk  Bảng quản trị [⚠️]\n- - - - - - - - - - - - - - -\n<b>Người dùng bị cấm</b>\nNgười dùng: @{username} [{target_user_id}]\nLý do: {ban_reason}\nQuản trị viên: @{admin_username} [{admin_id}]",
+
+  "ban_usage": "Cách dùng đúng: /ban <ID> <lý do>",
+
+  "ban_validation": "ID người dùng phải là số nguyên.",
+
+  "unban_message": "Ryas Chk  Bảng quản trị [⚠️]\n- - - - - - - - - - - - - - -\n<b>Người dùng được bỏ cấm</b>\nNgười dùng: @{username} [{target_user_id}]\nNgày:  {fecha}\nQuản trị viên: @{admin_username} [{admin_id}]",
+
+  "unban_usage": "Cách dùng đúng: /unban <ID>",
+
+  "unban_validation": "ID người dùng phải là số nguyên.",
+
+  "block_message": "<b>Tài khoản của bạn đã bị cấm. Bạn không thể truy cập thông tin này.</b>",
+
+  "lang_message": "\nChào mừng @{username} - Cơ sở dữ liệu đám mây | NGÔN NGỮ [{idioma_actual}]\n\nĐây là dữ liệu ngôn ngữ của bạn được lưu trong cơ sở dữ liệu, bạn có muốn đổi không? Chọn ngôn ngữ mới bằng các nút bên dưới:",
+
+  "bin_not_found": "Không tìm thấy thông tin cho BIN {bin_number}.",
+
+  "bin_usage": "Vui lòng nhập số BIN hợp lệ sau lệnh .bin",
+
+  "bin_error": "Số BIN không hợp lệ. Chỉ được chứa chữ số.",
+
+  "bintext": "<b>({bandera}) - Dữ liệu cho <code>{bin_number}</code> đã được tìm thấy -</b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>#Bin<code>{bin_number}</code></b>\n<b>• Ngân hàng: <code>{bank_name}</code></b>\n<b>• Thông tin: <code>{vendor} - {type} - {level}</code></b>\n<b>• Quốc gia: <code>{pais} ({bandera})</code></b>\n- - - - - - - - - - - - - - - - - - - - - - - - -\n<b>Yêu cầu bởi: @{username} [{rango}]</b>",
+
+  "gatesx_message": "<b>\nChào mừng đến với Astro / Astro gateways Online\n━━━━━━━━━━━━\nLệnh Gates:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nXác thực Gates: <code>0</code>    |   Phí Gates: <code>0</code>\nGates CCN (Xác thực & Tính phí): <code>0</code>  |   Gates Kiểm tra hàng loạt: <code>0</code>\n━━━━━━━━━━━━\nHãy chọn loại cổng mà bạn muốn sử dụng!</b>",
+
+"gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Trình tạo Ryas</u> | <u>Thuật toán Luhn:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Thông tin:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot bởi : @astrozdev🌤</code>",
+
+"gen_loading": "<b><code>Đang tạo thẻ từ container... 🌤</b></code>",
+
+"gen_usage": "<b>\n<u>Trình tạo Ryas</u>[⛈]\nĐịnh dạng: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
+
+"key_usage": "<b>[⽷] Dùng /Key (ngày) để tạo Key</b>",
+
+"key_system": "<b>\nAstro Chk | Hệ thống Key ☁️\n─────────────────────\nKey: <code>{Key}</code>\nHết hạn: <code>{date}</code>\n─────────────────────\nSố ngày: <code>{dias}</code>\nGói: <code>Premium</code>\nĐược tạo bởi: @{username}\n</b>",
+
+"setrol_usage": "<b>Cách dùng đúng: /setrol (ID) (Vai trò)\nVí dụ: /setrol 123456789 Admin</b>",
+
+"setrol_invalid": "<b>Vai trò không hợp lệ. Vai trò cho phép: Admin, Mod, Seller, Dev, Hunter</b>",
+
+"setrol_not_number": "<b>ID phải là số.</b>",
+
+"setrol_not_found": "<b>ID này chưa được đăng ký trong cơ sở dữ liệu.</b>",
+
+"setrol_already_has": "<b>⚠️ Người dùng đã có vai trò: {role}</b>",
+
+"setrol_success": "<b>✅ Vai trò cập nhật thành công:\nID: {id}\nVai trò mới: {role}</b>",
+
+"setrol_no_permission": "<b>Bạn không có quyền sử dụng lệnh này.</b>",
+
+"mt_usage": "Cách dùng đúng: /mt <số>. Ví dụ: /mt 100",
+
+"mt_invalid": "Vui lòng nhập số hợp lệ.",
+
+"mt_result": "Một nửa của {numero} là {resultado}",
+
+"setlang_usage": "Cách dùng đúng: .setlang <ID> <es|en>",
+
+"setlang_invalid_id": "ID phải là số nguyên.",
+
+"setlang_invalid_lang": "Ngôn ngữ không hợp lệ. Dùng 'es' hoặc 'en'.",
+
+"setlang_not_found": "ID này chưa được đăng ký trong cơ sở dữ liệu.",
+
+"setlang_success": "✅ Ngôn ngữ đã cập nhật thành công thành '{idioma}' cho người dùng với ID {id}."
