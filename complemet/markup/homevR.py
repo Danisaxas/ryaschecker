@@ -16,7 +16,7 @@ from Source_pack.TextAll import (
 )
 from Source_pack.BoutnAll import (
     es as botones_es,
-    mx as botones_es_mx,
+    es_mx as botones_es_mx,
     en as botones_en,
     pt as botones_pt,
     ru as botones_ru,
@@ -64,7 +64,7 @@ async def handle_homevr_button(client: Client, callback_query: types.CallbackQue
         }
         botones_dicts = {
             "es": botones_es,
-            "mx": botones_es_mx,
+            "es_mx": botones_es_mx,
             "en": botones_en,
             "pt": botones_pt,
             "ru": botones_ru,
@@ -78,10 +78,8 @@ async def handle_homevr_button(client: Client, callback_query: types.CallbackQue
             "it": botones_it,
         }
 
-        text_key = lang
-        botones_key = "mx" if lang == "es_mx" else lang
-
-        text_dict = text_dicts[text_key]
+        text_dict = text_dicts[lang]
+        botones_key = "es_mx" if lang == "es_mx" else lang
         botones_dict = botones_dicts[botones_key]
 
         await callback_query.message.edit_text(
