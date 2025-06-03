@@ -3,7 +3,7 @@ from pyrogram import Client, types
 from Source_pack.BoutnAll import es_mx as botones_es_mx
 from classBot.MongoDB import MondB
 
-@AstroButton("^mx$")
+@AstroButton("^es_mx$")
 async def handle_es_mx_button(client: Client, callback_query: types.CallbackQuery):
     try:
         user_id = callback_query.from_user.id
