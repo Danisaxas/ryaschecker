@@ -1,0 +1,96 @@
+{
+  "vi": {
+    "mainstart": [
+      [
+        {"text": "Gateways", "callback_data": "gateways"},
+        {"text": "Công cụ", "callback_data": "tools"},
+        {"text": "Thông tin", "callback_data": "description"}
+      ],
+      [
+        {"text": "xCloud [☁️]", "callback_data": "ryas_cloud"},
+        {"text": "Đóng", "callback_data": "close"}
+      ]
+    ],
+    "atras": [
+      [
+        {"text": "Trang chủ", "callback_data": "home"},
+        {"text": "Tiếp theo", "callback_data": "next"}
+      ]
+    ],
+    "back": [
+      [
+        {"text": "Quay lại", "callback_data": "home"}
+      ]
+    ],
+    "back_lang": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Ngôn ngữ", "callback_data": "lenguaje"}
+      ]
+    ],
+    "backvR": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Quay lại", "callback_data": "home"}
+      ]
+    ],
+    "re_genbt": [
+      [
+        {"text": "Bạn có muốn tạo lại không?", "callback_data": "re_gen"},
+        {"text": "Kênh Bot", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "gen_but": [
+      [
+        {"text": "xCloud [☁️]", "callback_data": "homevR"},
+        {"text": "Kênh Bot", "url": "t.me/Astrozdev"}
+      ]
+    ],
+    "vryasx": [
+      [
+        {"text": "Mô tả", "callback_data": "informacion"},
+        {"text": "Ngôn ngữ", "callback_data": "lenguaje"},
+        {"text": "Quay lại", "callback_data": "home"}
+      ]
+    ],
+    "lang": [
+      [
+        {"text": "EN [🇺🇸]", "callback_data": "en"},
+        {"text": "ES [🇪🇸]", "callback_data": "es"},
+        {"text": "PT [🇧🇷]", "callback_data": "pt"},
+        {"text": "RU [🇷🇺]", "callback_data": "ru"}
+      ],
+      [
+        {"text": "CH [🇨🇳]", "callback_data": "zh"},
+        {"text": "KO [🇰🇷]", "callback_data": "ko"},
+        {"text": "MX [🇲🇽]", "callback_data": "mx"},
+        {"text": "FR [🇫🇷]", "callback_data": "fr"}
+      ],
+      [
+        {"text": "DE [🇩🇪]", "callback_data": "de"},
+        {"text": "IT [🇮🇹]", "callback_data": "it"},
+        {"text": "AR [🇸🇦]", "callback_data": "ar"},
+        {"text": "JA [🇯🇵]", "callback_data": "ja"}
+      ],
+      [
+        {"text": "TR [🇹🇷]", "callback_data": "tr"},
+        {"text": "xCloud [☁️]", "callback_data": "homevR"}
+      ],
+      [
+        {"text": "VI [🇻🇳]", "callback_data": "vi"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"}
+      ]
+    ],
+    "gatewaysx": [
+      [
+        {"text": "Xác thực", "callback_data": "Auth"},
+        {"text": "Sạc", "callback_data": "Charge"},
+        {"text": "CCN Gates", "callback_data": "CCN"}
+      ],
+      [
+        {"text": "Kiểm tra hàng loạt", "callback_data": "Mass_Check"},
+        {"text": "Quay lại", "callback_data": "home"}
+      ]
+    ]
+  }
+}
