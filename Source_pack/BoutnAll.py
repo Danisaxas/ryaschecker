@@ -647,12 +647,13 @@ mx = {
             InlineKeyboardButton("IT [🇮🇹]", callback_data="it"),
             InlineKeyboardButton("AR [🇸🇦]", callback_data="ar"),
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
-            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
         ],
         [
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
-    ]),
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Auth", callback_data="Auth"),
@@ -737,15 +738,13 @@ in_ = {
         InlineKeyboardButton("IT [🇮🇹]", callback_data="it"),
         InlineKeyboardButton("AR [🇸🇦]", callback_data="ar"),
         InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
-        InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    ],
-    [
-        InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
-    ]
-])
+        ],
+        [
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
             InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
         ]
-    ]),
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("प्रमाणीकरण", callback_data="Auth"),
@@ -831,11 +830,13 @@ fr = {
             InlineKeyboardButton("IT [🇮🇹]", callback_data="it"),
             InlineKeyboardButton("AR [🇸🇦]", callback_data="ar"),
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
+        ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Auth", callback_data="Auth"),
@@ -923,10 +924,11 @@ de = {
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
         ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Auth", callback_data="Auth"),
@@ -1014,10 +1016,11 @@ it = {
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
         ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Auth", callback_data="Auth"),
@@ -1105,10 +1108,11 @@ ar = {
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
         ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("المصادقة", callback_data="Auth"),
@@ -1196,10 +1200,11 @@ ja = {
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
         ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("認証", callback_data="Auth"),
@@ -1287,10 +1292,11 @@ tr = {
             InlineKeyboardButton("JA [🇯🇵]", callback_data="ja"),
         ],
         [
-    InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
-    InlineKeyboardButton("xCloud [☁️]", callback_data="homevR")
-]
-]),
+            InlineKeyboardButton("TR [🇹🇷]", callback_data="tr"),
+            InlineKeyboardButton("xCloud [☁️]", callback_data="homevR"),
+        ]
+    ]
+),
     'gatewaysx': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Yetkilendirme", callback_data="Auth"),
