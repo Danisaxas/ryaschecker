@@ -8,7 +8,7 @@ from Source_pack.TextAll import (
     zh as text_zh,
     ko as text_ko,
     fr as text_fr,
-    es_mx as text_mx,
+    es_mx as text_es_mx,
     tr as text_tr,
     ar as text_ar,
     de as text_de,
@@ -22,7 +22,7 @@ from Source_pack.BoutnAll import (
     zh as botones_zh,
     ko as botones_ko,
     fr as botones_fr,
-    MX as botones_mx,
+    es_mx as botones_es_mx,
     tr as botones_tr,
     ar as botones_ar,
     de as botones_de,
@@ -44,7 +44,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         ban_status = user_data.get("ban", "No")
         razon = user_data.get("razon", "")
 
-        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de", "ja"}
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "es_mx", "tr", "ar", "de", "ja"}
         if lang not in valid_langs:
             lang = "es"
 
@@ -56,7 +56,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             "zh": text_zh,
             "ko": text_ko,
             "fr": text_fr,
-            "mx": text_mx,
+            "es_mx": text_es_mx,
             "tr": text_tr,
             "ar": text_ar,
             "de": text_de,
@@ -70,7 +70,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             "zh": botones_zh,
             "ko": botones_ko,
             "fr": botones_fr,
-            "mx": botones_mx,
+            "es_mx": botones_es_mx,
             "tr": botones_tr,
             "ar": botones_ar,
             "de": botones_de,
