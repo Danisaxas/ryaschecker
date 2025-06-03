@@ -1,6 +1,6 @@
 from _date import *
 from pyrogram import Client, types
-from Source_pack.BoutnAll import mx as botones_mx
+from Source_pack.BoutnAll import es_mx as botones_es_mx
 from classBot.MongoDB import MondB
 
 @AstroButton("^mx$")
@@ -15,7 +15,7 @@ async def handle_es_mx_button(client: Client, callback_query: types.CallbackQuer
             """Cloud DB | LANG [🇲🇽]
 
 ¡Éxito! ¡Ahora tu idioma seleccionado es [Español México]!""",
-            reply_markup=botones_mx['back_lang']
+            reply_markup=botones_es_mx['back_lang']
         )
     except Exception as e:
         await callback_query.message.edit_text(f"Ocurrió un error: {e}", reply_markup=None)
