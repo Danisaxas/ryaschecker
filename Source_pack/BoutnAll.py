@@ -576,7 +576,7 @@ ko = {
     ),
 }
 
-mx = {
+MX = {
     'mainstart': InlineKeyboardMarkup([
         [
             InlineKeyboardButton("Gateways", callback_data="gateways"),
