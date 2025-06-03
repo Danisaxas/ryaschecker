@@ -1,17 +1,33 @@
 from _date import *
 from pyrogram import Client, types
-from Source_pack.TextAll import es as text_es
-from Source_pack.TextAll import en as text_en
-from Source_pack.TextAll import pt as text_pt
-from Source_pack.TextAll import ru as text_ru
-from Source_pack.TextAll import zh as text_zh
-from Source_pack.TextAll import ko as text_ko
-from Source_pack.BoutnAll import es as botones_es
-from Source_pack.BoutnAll import en as botones_en
-from Source_pack.BoutnAll import pt as botones_pt
-from Source_pack.BoutnAll import ru as botones_ru
-from Source_pack.BoutnAll import zh as botones_zh
-from Source_pack.BoutnAll import ko as botones_ko
+from Source_pack.TextAll import (
+    es as text_es,
+    en as text_en,
+    pt as text_pt,
+    ru as text_ru,
+    zh as text_zh,
+    ko as text_ko,
+    fr as text_fr,
+    es_mx as text_mx,
+    tr as text_tr,
+    ar as text_ar,
+    de as text_de,
+    ja as text_ja,
+)
+from Source_pack.BoutnAll import (
+    es as botones_es,
+    en as botones_en,
+    pt as botones_pt,
+    ru as botones_ru,
+    zh as botones_zh,
+    ko as botones_ko,
+    fr as botones_fr,
+    MX as botones_mx,
+    tr as botones_tr,
+    ar as botones_ar,
+    de as botones_de,
+    ja as botones_ja,
+)
 from classBot.MongoDB import MondB
 import re
 
@@ -28,7 +44,7 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
         ban_status = user_data.get("ban", "No")
         razon = user_data.get("razon", "")
 
-        valid_langs = {"es", "en", "pt", "ru", "zh", "ko"}
+        valid_langs = {"es", "en", "pt", "ru", "zh", "ko", "fr", "mx", "tr", "ar", "de", "ja"}
         if lang not in valid_langs:
             lang = "es"
 
@@ -39,6 +55,12 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             "ru": text_ru,
             "zh": text_zh,
             "ko": text_ko,
+            "fr": text_fr,
+            "mx": text_mx,
+            "tr": text_tr,
+            "ar": text_ar,
+            "de": text_de,
+            "ja": text_ja,
         }
         botones_dicts = {
             "es": botones_es,
@@ -47,6 +69,12 @@ async def regenerate_cards(client: Client, callback_query: types.CallbackQuery):
             "ru": botones_ru,
             "zh": botones_zh,
             "ko": botones_ko,
+            "fr": botones_fr,
+            "mx": botones_mx,
+            "tr": botones_tr,
+            "ar": botones_ar,
+            "de": botones_de,
+            "ja": botones_ja,
         }
 
         text_dict = text_dicts[lang]
