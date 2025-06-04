@@ -17,9 +17,10 @@ async def start(client, message):
 
     base_path = os.path.dirname(os.path.abspath(__file__))
     locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "locales"))
-    
+    buttons_path = os.path.join(locales_path, "button_layouts")
+
     lang_file = os.path.join(locales_path, f"{lang}.json")
-    buttons_file = os.path.join(locales_path, "button_layouts", f"{lang}.json")
+    buttons_file = os.path.join(buttons_path, f"{lang}.json")
 
     try:
         with open(lang_file, "r", encoding="utf-8") as f:
@@ -32,7 +33,7 @@ async def start(client, message):
         with open(buttons_file, "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
     except Exception:
-        with open(os.path.join(locales_path, "button_layouts", "es.json"), "r", encoding="utf-8") as f:
+        with open(os.path.join(buttons_path, "es.json"), "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
 
     start_text = data.get("startx", "¡Bienvenido!")
