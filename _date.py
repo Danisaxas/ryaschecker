@@ -92,21 +92,90 @@ from classBot.MongoDB import MondB
 import json
 from classBot.MongoDB import MondB
 
+import json
+from classBot.MongoDB import MondB
+
 def load_language_file(user_id):
     user = MondB(idchat=user_id).queryUser()
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Ruta para cargar los archivos de idioma y botones directamente
-    locales_path = "locales"
-    buttons_path = "locales/button_layouts"
-
-    # Cargar archivo de idioma
-    with open(f"{locales_path}/{lang}.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    # Cargar archivo de botones
-    with open(f"{buttons_path}/{lang}.json", "r", encoding="utf-8") as f:
-        buttons_data = json.load(f)
+    # Cargar los archivos directamente desde locales/
+    if lang == "es":
+        with open("locales/es.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/es.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "en":
+        with open("locales/en.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/en.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "fr":
+        with open("locales/fr.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/fr.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "de":
+        with open("locales/de.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/de.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "ru":
+        with open("locales/ru.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/ru.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "id":
+        with open("locales/id.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/id.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "it":
+        with open("locales/it.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/it.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "ja":
+        with open("locales/ja.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/ja.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "ko":
+        with open("locales/ko.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/ko.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "mx":
+        with open("locales/mx.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/mx.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "pt":
+        with open("locales/pt.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/pt.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "tr":
+        with open("locales/tr.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/tr.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "vi":
+        with open("locales/vi.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/vi.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    elif lang == "ch":
+        with open("locales/ch.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/ch.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
+    else:
+        # Si el idioma no está disponible, cargar español por defecto
+        with open("locales/es.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/es.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
 
     return data, buttons_data
