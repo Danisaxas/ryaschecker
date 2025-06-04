@@ -86,33 +86,27 @@ LANGUAGES_FLAGS = {
     "tr": "🇹🇷",
 }
 
+import json
+from classBot.MongoDB import MondB
+
+import json
+from classBot.MongoDB import MondB
+
 def load_language_file(user_id):
     user = MondB(idchat=user_id).queryUser()
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Ajustar la ruta para la carpeta locales en la raíz del proyecto
-    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
-    buttons_path = os.path.join(locales_path, "button_layouts")
+    # Ruta para cargar los archivos de idioma y botones directamente
+    locales_path = "locales"
+    buttons_path = "locales/button_layouts"
 
-    # Ruta para el archivo de idioma
-    lang_file = os.path.join(locales_path, f"{lang}.json")
-    buttons_file = os.path.join(buttons_path, f"{lang}.json")
+    # Cargar archivo de idioma
+    with open(f"{locales_path}/{lang}.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    # Verificar si el archivo de idioma existe
-    if os.path.exists(lang_file):
-        with open(lang_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    else:
-        with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-    # Verificar si el archivo de botones existe
-    if os.path.exists(buttons_file):
-        with open(buttons_file, "r", encoding="utf-8") as f:
-            buttons_data = json.load(f)
-    else:
-        with open(os.path.join(buttons_path, "es.json"), "r", encoding="utf-8") as f:
-            buttons_data = json.load(f)
+    # Cargar archivo de botones
+    with open(f"{buttons_path}/{lang}.json", "r", encoding="utf-8") as f:
+        buttons_data = json.load(f)
 
     return data, buttons_data
