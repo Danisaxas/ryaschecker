@@ -15,9 +15,10 @@ async def start(client, message):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Ruta del archivo de idioma
+    # Ajustar la ruta de Locales correctamente
     base_path = os.path.dirname(os.path.abspath(__file__))
-    locales_path = os.path.join(base_path, "..", "..", "Locales")
+    locales_path = os.path.join(os.path.dirname(base_path), "Locales")  # Cambiado para apuntar a la raíz
+
     lang_file = os.path.join(locales_path, f"{lang}.json")
 
     # Cargar archivo JSON del idioma
