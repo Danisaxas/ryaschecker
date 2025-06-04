@@ -1,27 +1,39 @@
 from _date import *
 from classBot.MongoDB import MondB
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 @AstroButton("^ryas_cloud$")
 async def handle_xcloud(client, callback_query):
-    user = callback_query.from_user
-    user_id = user.id
+    try:
+        user = callback_query.from_user
+        user_id = user.id
 
-    user_data = MondB(idchat=user_id).queryUser()
-    lang = (user_data.get("lang") if user_data else "es") or "es"
-    lang = lang.lower()
+        logging.info(f"Button pressed by user: {user.username or user.first_name}, User ID: {user_id}")
 
-    data, buttons_data = load_language_file(user_id)
+        user_data = MondB(idchat=user_id).queryUser()
+        lang = (user_data.get("lang") if user_data else "es") or "es"
+        lang = lang.lower()
 
-    ryas_cloud_template = data.get("ryas_cloud", "")
-    message = ryas_cloud_template.format(
-        username=user.username or user.first_name
-    )
+        data, buttons_data = load_language_file(user_id)
 
-    vryasx_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data.get("vryasx", [])
-    ]
+        ryas_cloud_template = data.get("ryas_cloud", "")
+        message = ryas_cloud_template.format(
+            username=user.username or user.first_name
+        )
 
-    await callback_query.message.edit_text(message, reply_markup=InlineKeyboardMarkup(vryasx_buttons))
-    await callback_query.answer()
+        vryasx_buttons = [
+            [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
+            for row in buttons_data.get("vryasx", [])
+        ]
+
+        await callback_query.message.edit_text(message, reply_markup=InlineKeyboardMarkup(vryasx_buttons))
+        await callback_query.answer()
+
+        logging.info("Successfully updated message with xCloud buttons.")
+
+    except Exception as e:
+        logging.error(f"Error handling 'ryas_cloud' button: {e}")
+        await callback_query.answer("Ocurrió un error al procesar el botón.", show_alert=True)
