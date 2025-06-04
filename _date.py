@@ -91,7 +91,8 @@ def load_language_file(user_id):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "locales")
+    # Usar la ruta correcta para la carpeta locales en el VPS
+    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
     lang_file = os.path.join(locales_path, f"{lang}.json")
