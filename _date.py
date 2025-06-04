@@ -1,9 +1,9 @@
-from pyrogram import Client,filters
+from pyrogram import Client, filters
 from pyrogram import *
-import time, logging,requests
+import time, logging, requests
 from func_bin import *
 from func_gen import *
-import re, random,asyncio
+import re, random, asyncio
 from classBot.MongoDB import MondB
 import time, pytz
 from datetime import datetime
@@ -12,19 +12,19 @@ from func_bin import *
 import os
 import json
 
-def Astro(bit:str= None):
-    nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
+def Astro(bit: str = None):
+    nix = Client.on_message(filters.command(bit, ["/", ".", ",", "-", "$", "%", "&"]))
     return nix
 
-def AstroButton(bit:str= None):
-    nix = Client.on_callback_query(filters.regex(bit)) # type: ignore
+def AstroButton(bit: str = None):
+    nix = Client.on_callback_query(filters.regex(bit))
     return nix
 
 _hasd = '3ed76d05d92a5203ca076066146a47bc'
-_tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
-owner= '7732700923'
-_channel= '-1002364228833'
-_plugin_root= 'complemet'
+_tokn = '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
+owner = '7732700923'
+_channel = '-1002364228833'
+_plugin_root = 'complemet'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
 loogs = logging.basicConfig(level=logging.INFO)
@@ -81,9 +81,9 @@ LANGUAGES_FLAGS = {
     "ko": "🇰🇷",
     "id": "🇮🇩",
     "ch": "🇨🇳",
-    "vi": "🇻🇳", 
+    "vi": "🇻🇳",
     "ru": "🇷🇺",
-    "tr": "🇹🇷",  
+    "tr": "🇹🇷",
 }
 
 def load_language_file(user_id):
@@ -94,7 +94,6 @@ def load_language_file(user_id):
     locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
-    # Cargar el archivo de idioma
     lang_file = os.path.join(locales_path, f"{lang}.json")
     try:
         with open(lang_file, "r", encoding="utf-8") as f:
@@ -103,7 +102,6 @@ def load_language_file(user_id):
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
-    # Cargar el archivo de botones
     buttons_file = os.path.join(buttons_path, f"{lang}.json")
     try:
         with open(buttons_file, "r", encoding="utf-8") as f:
@@ -113,5 +111,3 @@ def load_language_file(user_id):
             buttons_data = json.load(f)
 
     return data, buttons_data
-
-
