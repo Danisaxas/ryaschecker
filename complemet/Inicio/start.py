@@ -1,7 +1,7 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from _date import *
 import json
 import os
-from _date import *
 from classBot.MongoDB import MondB
 from datetime import datetime
 import pytz
@@ -36,12 +36,15 @@ async def start(client, message):
             buttons_data = json.load(f)
 
     start_text = data.get("startx", "¡Bienvenido!")
-    mainstart_buttons = buttons_data.get("mainstart", [])
+    
+    mainstart_buttons = [
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data'])] 
+        for button in buttons_data.get("mainstart", [])
+    ]
 
     timezone = pytz.timezone("America/Caracas")
     caracas_time = datetime.now(timezone).strftime("%H:%M:%S")
 
-    # Obtener la bandera correspondiente al idioma
     idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')} {lang.upper()}"
 
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
