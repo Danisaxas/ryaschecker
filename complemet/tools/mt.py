@@ -1,8 +1,17 @@
 from classBot.MongoDB import MondB
 from pyrogram.types import Message
-from Source_pack.TextAll import en as text_en
-from Source_pack.TextAll import es as text_es
 from _date import *
+import json
+import os
+
+BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
+
+def load_language_data(lang_code: str) -> dict:
+    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 def mitad(numero):
     return numero / 2
@@ -13,16 +22,21 @@ async def comando_mt(client, message: Message):
     user = MondB(idchat=user_id).queryUser()
 
     if not user:
-        await message.reply_text(text_es['register_not'], reply_to_message_id=message.id)
+        text_data = load_language_data("es")
+        if not text_data:
+            text_data = {}
+        await message.reply_text(text_data.get('register_not', "No estás registrado."), reply_to_message_id=message.id)
         return
 
-    lang = user.get("lang", "es")
-    status = user.get("status", "").lower()
-    text = text_es if lang == "es" else text_en
+    lang = (user.get("lang") or "es").lower()
+    lang_data = load_language_data(lang)
+    if not lang_data:
+        lang_data = load_language_data("es")
 
+    status = user.get("status", "").lower()
     if status == "ban":
         await message.reply_text(
-            text['block_message'].format(
+            lang_data['block_message'].format(
                 user_id=user_id,
                 razon=user.get("razon", "No especificada")
             ),
@@ -32,15 +46,15 @@ async def comando_mt(client, message: Message):
 
     args = message.text.split(maxsplit=1)
     if len(args) < 2:
-        await message.reply_text(text['mt_usage'], reply_to_message_id=message.id)
+        await message.reply_text(lang_data['mt_usage'], reply_to_message_id=message.id)
         return
 
     try:
         numero = float(args[1])
         resultado = mitad(numero)
         await message.reply_text(
-            text['mt_result'].format(numero=numero, resultado=resultado),
+            lang_data['mt_result'].format(numero=numero, resultado=resultado),
             reply_to_message_id=message.id
         )
     except ValueError:
-        await message.reply_text(text['mt_invalid'], reply_to_message_id=message.id)
+        await message.reply_text(lang_data['mt_invalid'], reply_to_message_id=message.id)
