@@ -19,7 +19,7 @@ async def start(client, message):
 
     user_data = MondB(idchat=user_id).queryUser()
     lang = (user_data.get("lang") if user_data else "es") or "es"
-    idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')} {lang.upper()}"
+    idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')}"
 
     caracas_time_value = caracas_time(lang)
 
