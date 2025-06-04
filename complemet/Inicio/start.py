@@ -52,5 +52,6 @@ async def start(client, message):
     await client.send_message(
         chat_id=user_id,
         text=message_text,
-        reply_markup=InlineKeyboardMarkup(mainstart_buttons)
+        reply_markup=InlineKeyboardMarkup(mainstart_buttons),
+        reply_to_message_id=message.message_id
     )
