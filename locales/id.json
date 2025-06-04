@@ -61,43 +61,43 @@
 
   "gatesx_message": "<b>\nSelamat datang di Astro / Astro gateways Online\n━━━━━━━━━━━━\nPerintah Gates:  <code>0 Api Gates!</code> ✅\n━━━━━━━━━━━━\nAuth Gates: <code>0</code>    |   Charge Gates: <code>0</code>\nGates CCN (Auth & Charge): <code>0</code>  |   Mass Checking Gates: <code>0</code>\n━━━━━━━━━━━━\nPilih tipe gateway yang ingin kamu gunakan!</b>",
 
-  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas Generator</u> | <u>Algoritma Luhn:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Info:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot oleh : @astrozdev🌤</code>",
+  "gen_message": "[<a href=\"t.me/Ryascheckerbot\">⌥</a>] <u>Ryas Generator</u> | <u>Luhn Algo:</u>\n━━━━━━━━━━━━━━\n-<code>{cc_first6}|{mes_display}|{ano_display}|{cvv_display}</code>-\n━━━━━━━━━━━━━━\n{cards_output}\n━━━━━━━━━━━━━━\n[<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Bin : {bin_first6}</code>  |  [<a href=\"t.me/Ryascheckerbot\">ϟ</a>] <code>Informasi:</code>\n{bin_text}\n━━━━━━━━━━━━━━\n<code>bot by : @astrozdev🌤</code>",
 
-  "gen_loading": "<b><code>Menghasilkan kartu dari container... 🌤</b></code>",
+  "gen_loading": "<b><code>Menyiapkan kartu dari wadah... 🌤</b></code>",
 
   "gen_usage": "<b>\n<u>Ryas Generator</u>[⛈]\nFormat: <code>$gen 60112088</code>\n<code>$gen 60112088 05/25 xxx</code>\n<code>$gen 60112088 05/xx</code></b>",
 
-  "key_usage": "<b>[⽷] Gunakan /Key (Hari) untuk membuat Key</b>",
+  "key_usage": "<b>[⽷] Gunakan /Key (Days) untuk menghasilkan Key</b>",
 
-  "key_system": "<b>\nAstro Chk | Sistem Kunci ☁️\n─────────────────────\nKunci: <code>{Key}</code>\nKadaluarsa: <code>{date}</code>\n─────────────────────\nHari: <code>{dias}</code>\nPaket: <code>Premium</code>\nDitebus oleh: @{username}\n</b>",
+  "key_system": "<b>\nAstro Chk | Sistem Kunci ☁️\n─────────────────────\nKey: <code>{Key}</code>\nKedaluwarsa: <code>{date}</code>\n─────────────────────\nHari: <code>{dias}</code>\nRencana: <code>Premium</code>\nDitebus oleh: @{username}\n</b>",
 
-  "setrol_usage": "<b>Penggunaan yang benar: /setrol (ID) (Peran)\nContoh: /setrol 123456789 Admin</b>",
+  "setrol_usage": "<b>Penggunaan yang benar: /setrol (ID) (Role)\nContoh: /setrol 123456789 Admin</b>",
 
-  "setrol_invalid": "<b>Peran tidak valid. Peran yang diizinkan: Admin, Mod, Seller, Dev, Hunter</b>",
+  "setrol_invalid": "<b>Role tidak valid. Role yang diizinkan: Admin, Mod, Seller, Dev, Hunter</b>",
 
   "setrol_not_number": "<b>ID harus berupa angka.</b>",
 
   "setrol_not_found": "<b>ID tersebut tidak terdaftar di database.</b>",
 
-  "setrol_already_has": "<b>⚠️ Pengguna sudah memiliki peran: {role}</b>",
+  "setrol_already_has": "<b>⚠️ Pengguna sudah memiliki role: {role}</b>",
 
-  "setrol_success": "<b>✅ Peran berhasil diperbarui:\nID: {id}\nPeran Baru: {role}</b>",
+  "setrol_success": "<b>✅ Role berhasil diperbarui:\nID: {id}\nRole Baru: {role}</b>",
 
-  "setrol_no_permission": "<b>Kamu tidak punya izin untuk menggunakan perintah ini.</b>",
+  "setrol_no_permission": "<b>Anda tidak memiliki izin untuk menggunakan perintah ini.</b>",
 
-  "mt_usage": "Penggunaan yang benar: /mt <angka>. Contoh: /mt 100",
+  "mt_usage": "Penggunaan yang benar: /mt <number>. Contoh: /mt 100",
 
-  "mt_invalid": "Tolong masukkan angka yang valid.",
+  "mt_invalid": "Harap berikan nomor yang valid.",
 
   "mt_result": "Setengah dari {numero} adalah {resultado}",
 
   "setlang_usage": "Penggunaan yang benar: .setlang <ID> <es|en>",
 
-  "setlang_invalid_id": "ID harus berupa angka bulat.",
+  "setlang_invalid_id": "ID harus berupa angka.",
 
   "setlang_invalid_lang": "Bahasa tidak valid. Gunakan 'es' atau 'en'.",
 
   "setlang_not_found": "ID tersebut tidak terdaftar di database.",
 
-  "setlang_success": "✅ Bahasa berhasil diperbarui menjadi '{idioma}' untuk pengguna dengan ID {id}."
+  "setlang_success": "✅ Bahasa berhasil diperbarui ke '{idioma}' untuk user ID {id}."
 }
