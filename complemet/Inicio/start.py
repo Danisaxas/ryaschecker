@@ -1,5 +1,4 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from _date import *
 import json
 import os
 from classBot.MongoDB import MondB
@@ -15,14 +14,13 @@ async def start(client, message):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    base_path = os.path.dirname(os.path.abspath(__file__))
-    locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "locales"))
+    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
     lang_file = os.path.join(locales_path, f"{lang}.json")
     buttons_file = os.path.join(buttons_path, f"{lang}.json")
 
-    # Verifica si el archivo de idioma existe
+    # Verificar si el archivo de idioma existe
     if os.path.exists(lang_file):
         with open(lang_file, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -30,7 +28,7 @@ async def start(client, message):
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
-    # Verifica si el archivo de botones existe
+    # Verificar si el archivo de botones existe
     if os.path.exists(buttons_file):
         with open(buttons_file, "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
