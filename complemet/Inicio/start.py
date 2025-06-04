@@ -27,14 +27,12 @@ async def start(client, message):
 
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
 
-    # Verificar si el mensaje tiene un ID (esto es importante para saber si se puede hacer una respuesta)
-    reply_to_message_id = None
-    if hasattr(message, "message_id"):
-        reply_to_message_id = message.message_id  # Usamos el ID del mensaje actual
+    # Usar message.id para la respuesta
+    reply_to_message_id = message.id  # Utiliza message.id para responder al mensaje actual
 
     await client.send_message(
         chat_id=user_id,
         text=message_text,
         reply_markup=InlineKeyboardMarkup(mainstart_buttons),
-        reply_to_message_id=reply_to_message_id  # Responde al mensaje actual si tiene un ID
+        reply_to_message_id=reply_to_message_id  # Responde al mensaje original con el comando /start
     )
