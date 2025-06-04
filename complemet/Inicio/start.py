@@ -38,8 +38,8 @@ async def start(client, message):
     start_text = data.get("startx", "¡Bienvenido!")
     
     mainstart_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data'])] 
-        for button in buttons_data.get("mainstart", [])
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
+        for row in buttons_data.get("mainstart", [])
     ]
 
     timezone = pytz.timezone("America/Caracas")
