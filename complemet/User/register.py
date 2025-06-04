@@ -1,5 +1,4 @@
 from _date import *
-from pyrogram import Client, types
 from classBot.MongoDB import MondB
 import json
 import os

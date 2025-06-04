@@ -34,8 +34,9 @@ async def comando_mt(client, message: Message):
         return
 
     args = message.text.split(maxsplit=1)
+
     if len(args) < 2:
-        await message.reply_text(lang['mt_usage'], reply_to_message_id=message.id)
+        await message.reply_text(data['mt_usage'], reply_to_message_id=message.id)
         return
 
     try:
@@ -44,8 +45,8 @@ async def comando_mt(client, message: Message):
         if resultado.is_integer():
             resultado = int(resultado)
         await message.reply_text(
-            lang['mt_result'].format(numero=numero, resultado=resultado),
+            data['mt_result'].format(numero=numero, resultado=resultado),
             reply_to_message_id=message.id
         )
     except ValueError:
-        await message.reply_text(lang['mt_invalid'], reply_to_message_id=message.id)
+        await message.reply_text(data['mt_invalid'], reply_to_message_id=message.id)
