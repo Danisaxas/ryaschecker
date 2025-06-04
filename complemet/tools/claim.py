@@ -2,21 +2,32 @@ from _date import *
 from pyrogram.client import Client
 from pyrogram import types
 from classBot.MongoDB import MondB
-from Source_pack.TextAll import es as text_es
-from Source_pack.TextAll import en as text_en
-from datetime import datetime
+import json
+import os
+
+BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
+
+def load_language_data(lang_code: str) -> dict:
+    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 @Astro("claim")
 async def redeem_key(client: Client, message: types.Message):
     user_id = message.from_user.id
     user_lang = message.from_user.language_code or 'es'
     user_lang = 'en' if user_lang.startswith('en') else 'es'
-    text_dict = text_en if user_lang == 'en' else text_es
+
+    lang_data = load_language_data(user_lang)
+    if not lang_data:
+        lang_data = load_language_data("es")
 
     args = message.text.split()
     if len(args) != 2:
         await message.reply_text(
-            "<b>Usage: /claim <YourKey></b>" if user_lang == 'en' else "<b>Uso: /claim <TuKey></b>",
+            lang_data['claim_usage'],
             reply_to_message_id=message.id
         )
         return
@@ -31,7 +42,7 @@ async def redeem_key(client: Client, message: types.Message):
 
     if not key_doc:
         await message.reply_text(
-            "<b>Invalid key.</b>" if user_lang == 'en' else "<b>Key inválida.</b>",
+            lang_data['claim_invalid_key'],
             reply_to_message_id=message.id
         )
         return
@@ -39,7 +50,7 @@ async def redeem_key(client: Client, message: types.Message):
     status = key_doc.get("status", "off").lower()
     if status != "on":
         await message.reply_text(
-            "<b>This key has already been redeemed or is expired.</b>" if user_lang == 'en' else "<b>Esta key ya fue canjeada o está expirada.</b>",
+            lang_data['claim_key_used'],
             reply_to_message_id=message.id
         )
         return
@@ -69,9 +80,7 @@ async def redeem_key(client: Client, message: types.Message):
         {"$set": {"status": "off", "expiracion": None}}
     )
 
-    msg = text_dict.get('redeem_success', 
-            "<b>Key redeemed successfully! You now have {dias} days.</b>" if user_lang == 'en' else
-            "<b>Key canjeada con éxito! Ahora tienes {dias} días.</b>"
-        ).format(dias=total_dias)
-
-    await message.reply_text(msg, reply_to_message_id=message.id)
+    await message.reply_text(
+        lang_data['redeem_success'].format(dias=total_dias),
+        reply_to_message_id=message.id
+    )
