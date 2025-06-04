@@ -22,17 +22,19 @@ async def start(client, message):
     lang_file = os.path.join(locales_path, f"{lang}.json")
     buttons_file = os.path.join(buttons_path, f"{lang}.json")
 
-    try:
+    # Verifica si el archivo de idioma existe
+    if os.path.exists(lang_file):
         with open(lang_file, "r", encoding="utf-8") as f:
             data = json.load(f)
-    except Exception:
+    else:
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
-    try:
+    # Verifica si el archivo de botones existe
+    if os.path.exists(buttons_file):
         with open(buttons_file, "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
-    except Exception:
+    else:
         with open(os.path.join(buttons_path, "es.json"), "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
 
