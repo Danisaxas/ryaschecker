@@ -22,8 +22,8 @@ class _Astro:
             api_hash=self.aapihasd,
             bot_token=self.token,
             plugins=dict(
-                root="complemet",  # Aquí está la raíz para los plugins principales
-                handlers="locales/handlers"  # Aquí añades el directorio locales/handlers
+                root="complemet",  # Raíz de los plugins principales
+                handlers="locales/handlers"  # Directorio de los handlers en locales
             )
         )
         loogs
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
         print('Running: True \n')
 
-        # Iniciar expiracion en background con intervalo de 1 segundo
+        # Iniciar expiración en background con intervalo de 1 segundo
         iniciar_expiracion_en_background(interval_seconds=1)
 
         setcion = _Astro(21199736, _hasd, _tokn).inictSecc()
