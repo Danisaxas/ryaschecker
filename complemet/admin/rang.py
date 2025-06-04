@@ -1,35 +1,51 @@
 from _date import *
-from Source_pack.TextAll import en as text_en
-from Source_pack.TextAll import es as text_es
 from classBot.MongoDB import MondB
 from pyrogram.client import Client
 from pyrogram import types
+import json
+import os
+
+BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
+
+def load_language_data(lang_code: str) -> dict:
+    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 @Astro("rang")
 async def rang_handler(client: Client, message: types.Message):
     user_id = str(message.from_user.id)
     user_lang = message.from_user.language_code or 'es'
     user_lang = 'en' if user_lang.startswith('en') else 'es'
-    text_dict = text_en if user_lang == 'en' else text_es
 
-    if user_id != owner:
+    lang_data = load_language_data(user_lang)
+    if not lang_data:
+        lang_data = load_language_data("es")
+
+    if int(user_id) != owner:
         await message.reply_text(
-            "<b>Access denied. You do not have permission to use this command.</b>" if user_lang == 'en' else "<b>Acceso denegado. No tienes permiso para usar este comando.</b>",
+            lang_data['not_privilegios'],
             reply_to_message_id=message.id
         )
         return
 
     args = message.text.split(maxsplit=4)
     if len(args) < 5:
-        usage_msg = "<b>Usage: /rang Numero Rango Priv Obsequiar</b>" if user_lang == 'en' else "<b>Uso: /rang Numero Rango Priv Obsequiar</b>"
-        await message.reply_text(usage_msg, reply_to_message_id=message.id)
+        await message.reply_text(
+            lang_data['rang_usage'],
+            reply_to_message_id=message.id
+        )
         return
 
     _, numero_str, rango, priv, obsequiar = args
 
     if not numero_str.isdigit():
-        error_msg = "<b>Numero must be a number.</b>" if user_lang == 'en' else "<b>El Numero debe ser un número.</b>"
-        await message.reply_text(error_msg, reply_to_message_id=message.id)
+        await message.reply_text(
+            lang_data['rang_numero_error'],
+            reply_to_message_id=message.id
+        )
         return
 
     numero = int(numero_str)
@@ -38,7 +54,6 @@ async def rang_handler(client: Client, message: types.Message):
     db = MondB()
     rangos_col = db._db['rangos']
 
-    # Insert or update document with upsert=True
     rangos_col.update_one(
         {"Numero": numero},
         {
@@ -51,7 +66,12 @@ async def rang_handler(client: Client, message: types.Message):
         upsert=True
     )
 
-    success_msg = f"<b>Rango actualizado:\nNumero: {numero}\nRango: {rango}\nPriv: {priv}\nObsequiar: {', '.join(obsequiar_list)}</b>" if user_lang == 'en' else \
-                  f"<b>Rango actualizado:\nNumero: {numero}\nRango: {rango}\nPriv: {priv}\nObsequiar: {', '.join(obsequiar_list)}</b>"
-
-    await message.reply_text(success_msg, reply_to_message_id=message.id)
+    await message.reply_text(
+        lang_data['rang_success'].format(
+            numero=numero,
+            rango=rango,
+            priv=priv,
+            obsequiar=', '.join(obsequiar_list)
+        ),
+        reply_to_message_id=message.id
+    )
