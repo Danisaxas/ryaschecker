@@ -4,13 +4,7 @@ import pytz
 from pymongo import UpdateOne
 
 class MondB:
-    def __init__(self,
-                 id: int = 0,
-                 name: str = "",
-                 username: str = "",
-                 idchat: int = 0,
-                 tipo: str = "",
-                 ):
+    def __init__(self, id: int = 0, name: str = "", username: str = "", idchat: int = 0, tipo: str = ""):
         self.id = id
         self.name = name
         self.username = username
@@ -20,7 +14,7 @@ class MondB:
         self._client = pymongo.MongoClient(self.url, serverSelectionTimeoutMS=5000)
         self._db = self._client['bot']
         self._key_collection = self._db['key']
-
+    
     def queryUser(self):
         _collection = self._db['user']
         _consult = {"_id": self.idchat}
