@@ -1,5 +1,4 @@
 {
-  "en": {
     "mainstart": [
       [
         {"text": "Gateways", "callback_data": "gateways"},
