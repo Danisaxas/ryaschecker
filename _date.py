@@ -1,17 +1,5 @@
 from pyrogram import Client,filters
 from pyrogram import *
-from Source_pack.TextAll import *
-from Source_pack.TextAll import *
-from Source_pack.TextAll import *
-from Source_pack.TextAll import *
-from Source_pack.TextAll import *
-from Source_pack.TextAll import *
-from Source_pack.BoutnAll import *
-from Source_pack.BoutnAll import *
-from Source_pack.BoutnAll import *
-from Source_pack.BoutnAll import *
-from Source_pack.BoutnAll import *
-from Source_pack.BoutnAll import *
 import time, logging,requests
 from func_bin import *
 from func_gen import *
