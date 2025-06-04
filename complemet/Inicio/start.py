@@ -6,9 +6,9 @@ from datetime import datetime
 import pytz
 
 @Astro("Start")
-async def start(update, context):
-    user_id = update.effective_chat.id
-    username = update.effective_user.username or "Usuario"
+async def start(client, message):
+    user_id = message.chat.id  # Usar message.chat.id en lugar de update.effective_chat.id
+    username = message.from_user.username or "Usuario"  # Usar message.from_user.username
 
     # Obtener idioma del usuario desde la base de datos
     user = MondB(idchat=user_id).queryUser()
@@ -40,7 +40,7 @@ async def start(update, context):
     idioma_actual = lang.upper()
 
     # Formatear texto con variables
-    message = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
+    message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
 
     # Enviar mensaje sin parse_mode
-    await context.bot.send_message(chat_id=user_id, text=message)
+    await client.send_message(chat_id=user_id, text=message_text)
