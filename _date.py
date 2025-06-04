@@ -67,4 +67,32 @@ def traducir_a_ingles(texto):
             return "Error al procesar la respuesta."
     return f"Error en la solicitud: {response.status_code}"
 
+IDIOMA_CAPITAL_MAP = {
+    "mx": ("Mexico City", "Mexico", "America/Mexico_City"),
+    "es": ("Madrid", "Spain", "Europe/Madrid"),
+    "en": ("Washington DC", "United States", "America/New_York"),
+    "tr": ("Ankara", "Turkey", "Europe/Istanbul"),
+    "ru": ("Moscow", "Russia", "Europe/Moscow"),
+    "pt": ("Lisbon", "Portugal", "Europe/Lisbon"),
+    "ko": ("Seoul", "South Korea", "Asia/Seoul"),
+    "ch": ("Beijing", "China", "Asia/Shanghai"),
+    "fr": ("Paris", "France", "Europe/Paris"),
+    "de": ("Berlin", "Germany", "Europe/Berlin"),
+    "vi": ("Hanoi", "Vietnam", "Asia/Bangkok"),
+    "id": ("Jakarta", "Indonesia", "Asia/Jakarta"),
+    "it": ("Rome", "Italy", "Europe/Rome"),
+    "ja": ("Tokyo", "Japan", "Asia/Tokyo"),
+    "ar": ("Riyadh", "Saudi Arabia", "Asia/Riyadh"),
+}
+
+def get_capital_time(lang_code: str) -> str:
+    lang_code = lang_code.lower()
+    if lang_code not in IDIOMA_CAPITAL_MAP:
+        city, country, tz = "Caracas", "Venezuela", "America/Caracas"
+    else:
+        city, country, tz = IDIOMA_CAPITAL_MAP[lang_code]
+    tz_obj = pytz.timezone(tz)
+    now = datetime.now(tz_obj)
+    return now.strftime(f"%Y-%m-%d {city}, {country} %I:%M %p")
+
 
