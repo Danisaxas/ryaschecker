@@ -29,6 +29,7 @@ _tokn = '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
 owner = '7732700923'
 _channel = '-1002364228833'
 _plugin_root = 'complemet'
+_handlers_root = 'locales/handlers'
 video = 'https://i.imgur.com/Ewq69ET.gif'
 
 loogs = logging.basicConfig(level=logging.INFO)

@@ -22,7 +22,7 @@ class _Astro:
                              api_id=self.apiid,
                              api_hash=self.aapihasd,
                              bot_token=self.token,
-                             plugins=dict(root="complemet")
+                             plugins=dict(root="complemet, locales/handlers")
                              )
         loogs
         return self.client
