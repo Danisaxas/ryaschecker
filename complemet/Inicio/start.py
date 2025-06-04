@@ -15,7 +15,8 @@ async def start(client, message):
     lang = lang.lower()
 
     base_path = os.path.dirname(os.path.abspath(__file__))  # /app/complemet/Inicio
-    locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "Locales"))  # /app/Locales
+    # Cambio importante: 'locales' en minúscula
+    locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "locales"))  # /app/locales
 
     lang_file = os.path.join(locales_path, f"{lang}.json")
 
