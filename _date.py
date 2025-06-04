@@ -12,6 +12,8 @@ from func_bin import *
 import os
 import json
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import pycountry
+
 
 def Astro(bit: str = None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",", "-", "$", "%", "&"]))
@@ -180,3 +182,29 @@ def load_language_file(user_id):
             buttons_data = json.load(f)
 
     return data, buttons_data
+
+def caracas_time(lang: str) -> str:
+    timezones = {
+        "es": ("Europe/Madrid", "Madrid, España"),
+        "mx": ("America/Mexico_City", "Ciudad de México, México"),
+        "en": ("Europe/London", "London, UK"),
+        "fr": ("Europe/Paris", "Paris, France"),
+        "de": ("Europe/Berlin", "Berlin, Germany"),
+        "pt": ("Europe/Lisbon", "Lisbon, Portugal"),
+        "ru": ("Europe/Moscow", "Moscow, Russia"),
+        "it": ("Europe/Rome", "Rome, Italy"),
+        "ja": ("Asia/Tokyo", "Tokyo, Japan"),
+        "ko": ("Asia/Seoul", "Seoul, South Korea"),
+        "id": ("Asia/Jakarta", "Jakarta, Indonesia"),
+        "ch": ("Asia/Shanghai", "Shanghai, China"),
+        "vi": ("Asia/Ho_Chi_Minh", "Ho Chi Minh City, Vietnam"),
+        "tr": ("Europe/Istanbul", "Istanbul, Turkey")
+    }
+
+    # Si el idioma no se encuentra, se asigna España por defecto
+    timezone, city_country = timezones.get(lang, ("Europe/Madrid", "Madrid, España"))
+
+    tz = pytz.timezone(timezone)
+    now = datetime.now(tz)
+    
+    return now.strftime(f"%Y-%m-%d {city_country} %I:%M %p")

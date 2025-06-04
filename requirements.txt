@@ -29,3 +29,4 @@ pymongo==4.6.1
 requests==2.31.0
 google-cloud-translate==3.12.0
 schedule==1.2.0
+pycountry==24.6.1
