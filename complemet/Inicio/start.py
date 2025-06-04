@@ -21,14 +21,24 @@ async def start_command(client, message):
     lang_data = load_language_data(lang)
     if not lang_data:
         lang_data = load_language_data("es") or {}
-    startx_template = lang_data.get("startx", "")
+
+    startx_template = lang_data.get("startx")
+    if not startx_template or not isinstance(startx_template, str):
+        startx_template = "⚠️ No welcome message defined."
+
     mainstart_buttons = lang_data.get("mainstart", [])
     caracas_time_str = get_capital_time(lang)
-    await message.reply_text(
-        startx_template.format(
+
+    try:
+        startx = startx_template.format(
             caracas_time=caracas_time_str,
-            idioma_actual=lang,
-            username=message.from_user.username or message.from_user.first_name or "Usuario"
-        ),
+            idioma_actual=lang.upper(),
+            username=message.from_user.username or message.from_user.first_name or "User"
+        )
+    except Exception as e:
+        startx = f"⚠️ Formatting error: {e}"
+
+    await message.reply_text(
+        startx,
         reply_markup=InlineKeyboardMarkup(mainstart_buttons)
     )
