@@ -100,3 +100,4 @@
 "setlang_not_found": "ID này chưa được đăng ký trong cơ sở dữ liệu.",
 
 "setlang_success": "✅ Ngôn ngữ đã cập nhật thành công thành '{idioma}' cho người dùng với ID {id}."
+}
