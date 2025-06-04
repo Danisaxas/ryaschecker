@@ -1,4 +1,3 @@
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from _date import *
 from classBot.MongoDB import MondB
 from datetime import datetime
@@ -28,11 +27,12 @@ async def start(client, message):
 
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
 
-    reply_to_message_id = message.reply_to_message.message_id if message.reply_to_message else None
+    # Obtener el mensaje anterior (si existe) para responder en modo respuesta
+    reply_to_message_id = message.message_id  # Usamos el ID del mensaje actual como respuesta
 
     await client.send_message(
         chat_id=user_id,
         text=message_text,
         reply_markup=InlineKeyboardMarkup(mainstart_buttons),
-        reply_to_message_id=reply_to_message_id
+        reply_to_message_id=reply_to_message_id  # Responde al mensaje actual
     )

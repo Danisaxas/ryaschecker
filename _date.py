@@ -11,6 +11,7 @@ from func_gen import *
 from func_bin import *
 import os
 import json
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 def Astro(bit: str = None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",", "-", "$", "%", "&"]))
