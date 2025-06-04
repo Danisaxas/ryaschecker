@@ -12,8 +12,11 @@ async def set_lang_en(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("en")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^es$")
@@ -26,8 +29,11 @@ async def set_lang_es(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("es")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^pt$")
@@ -40,8 +46,11 @@ async def set_lang_pt(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("pt")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^ru$")
@@ -54,8 +63,11 @@ async def set_lang_ru(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("ru")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^zh$")
@@ -68,8 +80,11 @@ async def set_lang_zh(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("zh")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^ko$")
@@ -82,8 +97,11 @@ async def set_lang_ko(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("ko")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^mx$")
@@ -96,8 +114,11 @@ async def set_lang_mx(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("mx")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^fr$")
@@ -110,8 +131,11 @@ async def set_lang_fr(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("fr")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^de$")
@@ -124,8 +148,11 @@ async def set_lang_de(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("de")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^it$")
@@ -138,8 +165,11 @@ async def set_lang_it(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("it")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^ja$")
@@ -152,8 +182,11 @@ async def set_lang_ja(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("ja")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^tr$")
@@ -166,8 +199,11 @@ async def set_lang_tr(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("tr")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^vi$")
@@ -180,8 +216,11 @@ async def set_lang_vi(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("vi")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
 @AstroButton("^id$")
@@ -194,6 +233,9 @@ async def set_lang_id(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("id")
 
-    back_button = InlineKeyboardButton("Back", callback_data="back_lang")
-    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup([[back_button]]))
+    back_lang_buttons = [
+        [InlineKeyboardButton("Back", callback_data="back_lang")]
+    ]
+
+    await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()

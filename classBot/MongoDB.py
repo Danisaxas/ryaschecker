@@ -154,21 +154,12 @@ class MondB:
         result = _collection.bulk_write(operations)
         return result.bulk_api_result
 
-
-def querygrup(id: int = 0):
-    return MondB(idchat=id).querygrup()
-
-def queryUser(id: int = 0):
-    return MondB(idchat=id).queryUser()
-
-def savedbuser(id: int = 0, username: str = "", name: str = ""):
-    return MondB(id=id, username=username, name=name).savedbuser()
-
-def querycora(id: int = 0):
-    return MondB(idchat=id).querycora()
-
-def savecora(id: int = 0):
-    return MondB(idchat=id).savecora()
-
-def savelang(id: int = 0, username: str = "", name: str = ""):
-    return MondB(id=id, username=username, name=name).savelang()
+    def update_user_lang(self, lang: str):
+        """
+        Actualiza el idioma del usuario en la base de datos.
+        """
+        _collection = self._db['user']
+        _collection.update_one(
+            {"_id": self.idchat},
+            {"$set": {"lang": lang}}
+        )
