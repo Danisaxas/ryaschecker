@@ -7,15 +7,6 @@ from classBot.MongoDB import MondB
 import json
 import os
 
-BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
-
-def load_language_data(lang_code: str) -> dict:
-    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
 @Astro("key")
 async def key_handler(client, message):
     user_id = message.from_user.id
@@ -31,13 +22,11 @@ async def key_handler(client, message):
     else:
         lang = user_lang
 
-    lang_data = load_language_data(lang)
-    if not lang_data:
-        lang_data = load_language_data("es")
+    data, buttons_data = load_language_file(user_id)
 
     if not user:
         await message.reply_text(
-            lang_data['block_message'],
+            data['block_message'],
             reply_to_message_id=message.id
         )
         return
@@ -50,7 +39,7 @@ async def key_handler(client, message):
 
     if not rango_doc:
         await message.reply_text(
-            lang_data['block_message'],
+            data['block_message'],
             reply_to_message_id=message.id
         )
         return
@@ -59,14 +48,14 @@ async def key_handler(client, message):
 
     if numero_rango == 1:
         await message.reply_text(
-            lang_data['not_privilegios'],
+            data['not_privilegios'],
             reply_to_message_id=message.id
         )
         return
 
     if len(args) < 2 or not args[1].isdigit():
         await message.reply_text(
-            lang_data['key_usage'],
+            data['key_usage'],
             reply_to_message_id=message.id
         )
         return
@@ -85,7 +74,7 @@ async def key_handler(client, message):
 
     MondB().save_generated_key(key_generada, dias, username)
 
-    respuesta = lang_data['key_system'].format(
+    respuesta = data['key_system'].format(
         Key=key_generada,
         date=fecha_expiracion,
         dias=dias,

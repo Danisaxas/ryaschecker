@@ -5,29 +5,22 @@ from classBot.MongoDB import MondB
 import json
 import os
 
-BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
-
-def load_language_data(lang_code: str) -> dict:
-    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
 @Astro("claim")
 async def redeem_key(client: Client, message: types.Message):
     user_id = message.from_user.id
-    user_lang = message.from_user.language_code or 'es'
-    user_lang = 'en' if user_lang.startswith('en') else 'es'
+    user_data = MondB(idchat=user_id).queryUser()
+    lang = (user_data.get('lang') if user_data else 'es') or 'es'
+    lang = lang.lower()
 
-    lang_data = load_language_data(user_lang)
-    if not lang_data:
-        lang_data = load_language_data("es")
+    data, buttons_data = load_language_file(user_id)
+
+    if not data:
+        data, buttons_data = load_language_file("es")
 
     args = message.text.split()
     if len(args) != 2:
         await message.reply_text(
-            lang_data['claim_usage'],
+            data['claim_usage'],
             reply_to_message_id=message.id
         )
         return
@@ -42,7 +35,7 @@ async def redeem_key(client: Client, message: types.Message):
 
     if not key_doc:
         await message.reply_text(
-            lang_data['claim_invalid_key'],
+            data['claim_invalid_key'],
             reply_to_message_id=message.id
         )
         return
@@ -50,7 +43,7 @@ async def redeem_key(client: Client, message: types.Message):
     status = key_doc.get("status", "off").lower()
     if status != "on":
         await message.reply_text(
-            lang_data['claim_key_used'],
+            data['claim_key_used'],
             reply_to_message_id=message.id
         )
         return
@@ -81,6 +74,6 @@ async def redeem_key(client: Client, message: types.Message):
     )
 
     await message.reply_text(
-        lang_data['redeem_success'].format(dias=total_dias),
+        data['redeem_success'].format(dias=total_dias),
         reply_to_message_id=message.id
     )

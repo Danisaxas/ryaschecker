@@ -1,17 +1,7 @@
-from classBot.MongoDB import MondB
 from pyrogram.types import Message
 from _date import *
 import json
 import os
-
-BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
-
-def load_language_data(lang_code: str) -> dict:
-    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 def mitad(numero):
     return numero / 2
@@ -52,6 +42,8 @@ async def comando_mt(client, message: Message):
     try:
         numero = float(args[1])
         resultado = mitad(numero)
+        if resultado.is_integer():
+            resultado = int(resultado)
         await message.reply_text(
             lang_data['mt_result'].format(numero=numero, resultado=resultado),
             reply_to_message_id=message.id
