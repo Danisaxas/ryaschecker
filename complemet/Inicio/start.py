@@ -7,41 +7,32 @@ import pytz
 
 @Astro("Start")
 async def start(client, message):
-    user_id = message.chat.id  # Usar message.chat.id en lugar de update.effective_chat.id
-    username = message.from_user.username or "Usuario"  # Usar message.from_user.username
+    user_id = message.chat.id
+    username = message.from_user.username or "Usuario"
 
-    # Obtener idioma del usuario desde la base de datos
     user = MondB(idchat=user_id).queryUser()
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Ajustar la ruta de Locales correctamente
-    base_path = os.path.dirname(os.path.abspath(__file__))
-    locales_path = os.path.join(os.path.dirname(base_path), "Locales")  # Cambiado para apuntar a la raíz
+    base_path = os.path.dirname(os.path.abspath(__file__))  # /app/complemet/Inicio
+    locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "Locales"))  # /app/Locales
 
     lang_file = os.path.join(locales_path, f"{lang}.json")
 
-    # Cargar archivo JSON del idioma
     try:
         with open(lang_file, "r", encoding="utf-8") as f:
             data = json.load(f)
     except Exception:
-        # En caso de error cargar español por defecto
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
-    # Obtener el texto de startx
     start_text = data.get("startx", "¡Bienvenido!")
 
-    # Obtener hora de Caracas para variable caracas_time
     timezone = pytz.timezone("America/Caracas")
     caracas_time = datetime.now(timezone).strftime("%H:%M:%S")
 
-    # Preparar idioma_actual para mostrar (puedes personalizar nombres si quieres)
     idioma_actual = lang.upper()
 
-    # Formatear texto con variables
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
 
-    # Enviar mensaje sin parse_mode
     await client.send_message(chat_id=user_id, text=message_text)
