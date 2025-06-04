@@ -1,5 +1,5 @@
 {
-  "idtext": "<b>\nRyas Chk </> User ID [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nUsername: @{username}\nID: <code>{user_id}</code>\nChat_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot by: @Exzzex 🌸</code>\n</b>",
+  "idtext": "<b>\nRyas Chk </> User ID [🌹]\n- - - - - - - - - - - - - - - - - - - - - - - - - -\nUsername: @{username}\nID: <code>{user_id}</code>\nChat_ID: <code>{chat_id}</code>\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n<code>Bot by: @Exzzex 🌸</code></b>",
 
   "metext": "<b>\nRyas bot / Get information. [☁️]\n━━━━━━━━━\n[⌥] User information:\nUsername: @{username}\nID: <code>{user_id}</code>\n━━━━━━━━━\n[⌥] DB Information:\n[•] Plan: [<code>{rango}</code>] | [•] Spam: <code>{antispam}</code>\n[•] Plan Expiration: <code>{expiration}</code>\n[•] Bans: [<code>{ban}</code>] | [•] Credits: <code>{creditos}</code>\n</b>",
 
@@ -83,7 +83,6 @@
 
   "setrol_success": "<b>✅ Role successfully updated:\nID: {id}\nNew Role: {role}</b>",
 
-  {
   "setrol_no_permission": "<b>You do not have permission to use this command.</b>",
 
   "mt_usage": "Correct use: /mt <number>. Example: /mt 100",
