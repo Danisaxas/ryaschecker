@@ -91,7 +91,7 @@ def load_language_file(user_id):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Definir las rutas de locales y botones
+    # Ajustar la ruta para la carpeta locales en la raíz del proyecto
     locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
