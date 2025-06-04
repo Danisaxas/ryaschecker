@@ -154,7 +154,7 @@ class MondB:
         result = _collection.bulk_write(operations)
         return result.bulk_api_result
     
-     def update_user_lang(self, lang: str):
+    def update_user_lang(self, lang: str):
         """
         Actualiza el idioma del usuario en la base de datos.
         """
