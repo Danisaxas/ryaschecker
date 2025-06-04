@@ -1,5 +1,4 @@
 {
-  "ar": {
     "mainstart": [
       [
         {"text": "بوابات", "callback_data": "gateways"},
