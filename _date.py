@@ -67,4 +67,21 @@ def traducir_a_ingles(texto):
             return "Error al procesar la respuesta."
     return f"Error en la solicitud: {response.status_code}"
 
+LANGUAGES_FLAGS = {
+    "es": "🇪🇦",
+    "en": "🇺🇲",
+    "mx": "🇲🇽",
+    "fr": "🇫🇷",
+    "de": "🇩🇪",
+    "pt": "🇵🇹",
+    "it": "🇮🇹",
+    "ja": "🇯🇵",
+    "ko": "🇰🇷",
+    "id": "🇮🇩",
+    "ch": "🇨🇳",
+    "vi": "🇻🇳", 
+    "ru": "🇷🇺",
+    "tr": "🇹🇷",  
+}
+
 
