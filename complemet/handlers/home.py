@@ -21,5 +21,10 @@ async def handle_home(client, callback_query):
         username=user.username or user.first_name
     )
 
-    await callback_query.message.edit_text(message)
+    mainstart_buttons = [
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
+        for row in buttons_data.get("mainstart", [])
+    ]
+
+    await callback_query.message.edit_text(message, reply_markup=InlineKeyboardMarkup(mainstart_buttons))
     await callback_query.answer()
