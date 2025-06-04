@@ -9,6 +9,8 @@ import time, pytz
 from datetime import datetime
 from func_gen import *
 from func_bin import *
+import json
+import os
 
 def Astro(bit:str= None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
@@ -94,5 +96,22 @@ def get_capital_time(lang_code: str) -> str:
     tz_obj = pytz.timezone(tz)
     now = datetime.now(tz_obj)
     return now.strftime(f"%Y-%m-%d {city}, {country} %I:%M %p")
+
+def load_language_file(user_id, default_lang="es"):
+    from classBot.MongoDB import MondB
+    user = MondB(idchat=user_id).queryUser()
+    lang = (user.get("lang") if user else default_lang) or default_lang
+    lang = lang.lower()
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    locales_path = os.path.abspath(os.path.join(base_path, "..", "..", "locales"))
+    lang_file = os.path.join(locales_path, f"{lang}.json")
+    try:
+        with open(lang_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data
 
 
