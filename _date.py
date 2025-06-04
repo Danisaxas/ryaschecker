@@ -9,6 +9,8 @@ import time, pytz
 from datetime import datetime
 from func_gen import *
 from func_bin import *
+import os
+import json
 
 def Astro(bit:str= None):
     nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
