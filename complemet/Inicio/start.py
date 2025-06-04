@@ -17,7 +17,7 @@ def build_keyboard(buttons_data):
     for row in buttons_data:
         keyboard_row = []
         for button in row:
-            text = button.get("text", "Botón")
+            text = button.get("text", "Button")
             callback_data = button.get("callback_data")
             url = button.get("url")
             if callback_data:
@@ -42,7 +42,7 @@ async def start_command(client, message):
 
     startx_template = lang_data.get("startx")
     if not startx_template or not isinstance(startx_template, str):
-        startx_template = "⚠️ No hay mensaje de bienvenida definido."
+        startx_template = "⚠️ No welcome message defined."
 
     mainstart_buttons_data = lang_data.get("mainstart", [])
     reply_markup = build_keyboard(mainstart_buttons_data)
@@ -53,10 +53,10 @@ async def start_command(client, message):
         startx = startx_template.format(
             caracas_time=caracas_time_str,
             idioma_actual=lang.upper(),
-            username=message.from_user.username or message.from_user.first_name or "Usuario"
+            username=message.from_user.username or message.from_user.first_name or "User"
         )
     except Exception as e:
-        startx = f"⚠️ Error al formatear el mensaje: {e}"
+        startx = f"⚠️ Formatting error: {e}"
 
     await message.reply_text(
         startx,
