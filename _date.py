@@ -1,4 +1,5 @@
-from pyrogram import Client, filters
+from pyrogram.client import Client
+from pyrogram import filters
 from pyrogram import *
 import time, logging, requests
 from func_bin import *
