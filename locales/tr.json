@@ -51,6 +51,8 @@
 
   "lang_message": "\nHoş geldin @{username} - Cloud DB | DİL [{idioma_actual}]\n\nBunlar veritabanında kayıtlı dil verilerin. Değiştirmek ister misin? Aşağıdaki butonlardan yeni bir dil seçebilirsin:",
 
+  "lang_success": "Cloud DB | LANG [🇹🇷] \n\nBaşarı! Seçilen diliniz artık [Türkçe]!",
+
   "bin_not_found": "BIN {bin_number} için bilgi bulunamadı.",
 
   "bin_usage": "Lütfen .bin komutundan sonra geçerli bir BIN numarası gir.",

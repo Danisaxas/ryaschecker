@@ -51,6 +51,8 @@
 
   "lang_message": "\nChào mừng @{username} - Cơ sở dữ liệu đám mây | NGÔN NGỮ [{idioma_actual}]\n\nĐây là dữ liệu ngôn ngữ của bạn được lưu trong cơ sở dữ liệu, bạn có muốn đổi không? Chọn ngôn ngữ mới bằng các nút bên dưới:",
 
+  "lang_success": "Cloud DB | LANG [🇻🇳] \n\nThành công! Ngôn ngữ bạn chọn bây giờ là [Tiếng Việt]!",
+  
   "bin_not_found": "Không tìm thấy thông tin cho BIN {bin_number}.",
 
   "bin_usage": "Vui lòng nhập số BIN hợp lệ sau lệnh .bin",

@@ -51,6 +51,8 @@
 
   "lang_message": "\n欢迎 @{username} - 云数据库 | 语言 [{idioma_actual}]\n\n这是您在数据库中保存的语言数据，是否想更改？请通过以下按钮选择新语言：",
 
+  "lang_success": "Cloud DB | LANG [🇨🇳] \n\n成功！您选择的语言现在是 [中文]!",
+  
   "bin_not_found": "未找到 BIN {bin_number} 的信息。",
 
   "bin_usage": "请在命令 .bin 后提供有效的 BIN 号码",

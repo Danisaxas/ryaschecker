@@ -51,6 +51,8 @@
 
   "lang_message": "\nBienvenue @{username} - Cloud DB | LANG [{idioma_actual}]\n\nVoici les données sur votre langue sauvegardée dans la base de données, souhaitez-vous changer ? Sélectionnez une nouvelle langue dans les boutons ci-dessous :",
 
+  "lang_success": "Cloud DB | LANG [🇫🇷] \n\nSuccès! Votre langue sélectionnée est maintenant [Français]!",
+  
   "bin_not_found": "Aucune information trouvée pour le BIN {bin_number}.",
 
   "bin_usage": "Veuillez fournir un numéro BIN valide après la commande .bin",

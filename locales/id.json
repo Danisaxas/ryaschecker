@@ -51,6 +51,8 @@
 
   "lang_message": "\nSelamat datang @{username} - Cloud DB | BAHASA [{idioma_actual}]\n\nIni adalah data bahasa yang tersimpan di database, ingin ganti bahasa? Pilih bahasa baru dari tombol di bawah ini:",
 
+  "lang_success": "Cloud DB | LANG [🇮🇩] \n\nBerhasil! Bahasa yang Anda pilih sekarang adalah [Bahasa Indonesia]!",
+
   "bin_not_found": "Data untuk BIN {bin_number} tidak ditemukan.",
 
   "bin_usage": "Tolong masukkan nomor BIN yang valid setelah perintah .bin",
