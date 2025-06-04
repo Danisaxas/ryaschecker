@@ -1,8 +1,6 @@
 from pyrogram import Client
 from os import system
-from _date import (_tokn,
-                   _hasd,
-                   loogs)
+from _date import (_tokn, _hasd, loogs)
 from complemet.func import iniciar_expiracion_en_background
 
 class _Astro:
@@ -18,12 +16,16 @@ class _Astro:
         self.token = token
 
     def inictSecc(self):
-        self.client = Client('_Astro',
-                             api_id=self.apiid,
-                             api_hash=self.aapihasd,
-                             bot_token=self.token,
-                             plugins=dict(root="complemet, locales/handlers")
-                             )
+        self.client = Client(
+            '_Astro',
+            api_id=self.apiid,
+            api_hash=self.aapihasd,
+            bot_token=self.token,
+            plugins=dict(
+                root="complemet",  # Aquí está la raíz para los plugins principales
+                handlers="locales/handlers"  # Aquí añades el directorio locales/handlers
+            )
+        )
         loogs
         return self.client
 
