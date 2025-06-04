@@ -1,6 +1,8 @@
 from pyrogram import Client
 from os import system
-from _date import (_tokn, _hasd, loogs)
+from _date import (_tokn,
+                   _hasd,
+                   loogs)
 from complemet.func import iniciar_expiracion_en_background
 
 class _Astro:
@@ -16,16 +18,12 @@ class _Astro:
         self.token = token
 
     def inictSecc(self):
-        self.client = Client(
-            '_Astro',
-            api_id=self.apiid,
-            api_hash=self.aapihasd,
-            bot_token=self.token,
-            plugins=dict(
-                root="complemet",  # Raíz de los plugins principales
-                handlers="locales/handlers"  # Directorio de los handlers en locales
-            )
-        )
+        self.client = Client('_Astro',
+                             api_id=self.apiid,
+                             api_hash=self.aapihasd,
+                             bot_token=self.token,
+                             plugins=dict(root="complemet")
+                             )
         loogs
         return self.client
 
@@ -40,7 +38,7 @@ if __name__ == '__main__':
 
         print('Running: True \n')
 
-        # Iniciar expiración en background con intervalo de 1 segundo
+        # Iniciar expiracion en background con intervalo de 1 segundo
         iniciar_expiracion_en_background(interval_seconds=1)
 
         setcion = _Astro(21199736, _hasd, _tokn).inictSecc()
