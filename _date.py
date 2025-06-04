@@ -91,10 +91,11 @@ def load_language_file(user_id):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Usar la ruta correcta para la carpeta locales en el VPS
+    # Ajustamos la ruta para apuntar correctamente a la carpeta 'locales' en la raíz del proyecto
     locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
+    # Ruta completa para el archivo de idioma
     lang_file = os.path.join(locales_path, f"{lang}.json")
     try:
         with open(lang_file, "r", encoding="utf-8") as f:
@@ -103,6 +104,7 @@ def load_language_file(user_id):
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
+    # Ruta para el archivo de botones
     buttons_file = os.path.join(buttons_path, f"{lang}.json")
     try:
         with open(buttons_file, "r", encoding="utf-8") as f:
