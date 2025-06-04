@@ -124,3 +124,22 @@ def load_language_file(user_id, default_lang="es"):
         except FileNotFoundError:
             # Si tampoco se encuentra el archivo por defecto, manejar el error
             raise FileNotFoundError("No se pudo encontrar el archivo de idioma por defecto (es.json).")
+
+LANGUAGES_FLAGS = {
+    "es": "🇪🇦",
+    "en": "🇺🇲",
+    "mx": "🇲🇽",
+    "fr": "🇫🇷",
+    "de": "🇩🇪",
+    "pt": "🇵🇹",
+    "it": "🇮🇹",
+    "ja": "🇯🇵",
+    "ko": "🇰🇷",
+    "id": "🇮🇩",
+    "ch": "🇨🇳",
+    "tr": "🇹🇷",
+    "ar": "🇸🇦",
+    "ru": "🇷🇺",
+    "vi": "🇻🇳",
+    "id": "🇮🇩",
+}
