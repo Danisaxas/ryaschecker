@@ -45,7 +45,7 @@ async def comando_mt(client, message: Message):
         if resultado.is_integer():
             resultado = int(resultado)
         await message.reply_text(
-            data['mt_result'].format(numero=numero, resultado=resultado),
+            data['mt_result'].format(numero=int(numero), resultado=resultado),
             reply_to_message_id=message.id
         )
     except ValueError:
