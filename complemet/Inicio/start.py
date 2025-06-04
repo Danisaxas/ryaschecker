@@ -49,9 +49,14 @@ async def start(client, message):
 
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
 
+    if message.reply_to_message:
+        reply_to_message_id = message.reply_to_message.message_id
+    else:
+        reply_to_message_id = None
+
     await client.send_message(
         chat_id=user_id,
         text=message_text,
         reply_markup=InlineKeyboardMarkup(mainstart_buttons),
-        reply_to_message_id=message.message_id
+        reply_to_message_id=reply_to_message_id
     )
