@@ -4,15 +4,6 @@ from pyrogram.types import Message
 import json
 import os
 
-BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
-
-def load_language_data(lang_code: str) -> dict:
-    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
 @Astro('me')
 async def me_command(client, message: Message):
     user_id = message.from_user.id
@@ -22,13 +13,11 @@ async def me_command(client, message: Message):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    lang_data = load_language_data(lang)
-    if not lang_data:
-        lang_data = load_language_data("es")
+    data, buttons_data = load_language_file(user_id)
 
     if not user:
         await message.reply_text(
-            lang_data['register_not'],
+            data['register_not'],
             reply_to_message_id=message.id
         )
         return
@@ -42,12 +31,12 @@ async def me_command(client, message: Message):
 
     if status.lower() == "baneado":
         await message.reply_text(
-            lang_data['block_message'].format(user_id=user_id),
+            data['block_message'].format(user_id=user_id),
             reply_to_message_id=message.id
         )
         return
 
-    metext = lang_data.get('metext', "")
+    metext = data.get('metext', "")
     formatted_text = metext.format(
         username=username,
         user_id=user_id,
