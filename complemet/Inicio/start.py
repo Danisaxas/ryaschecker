@@ -21,7 +21,9 @@ async def start(client, message):
     timezone = pytz.timezone("America/Caracas")
     caracas_time = datetime.now(timezone).strftime("%H:%M:%S")
 
-    lang = (MondB(idchat=user_id).queryUser().get("lang") if user else "es") or "es"
+    # Usar directamente el resultado de queryUser() para obtener el idioma
+    user_data = MondB(idchat=user_id).queryUser()
+    lang = (user_data.get("lang") if user_data else "es") or "es"
     idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')} {lang.upper()}"
 
     message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
