@@ -1,63 +1,70 @@
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from _date import *
-import json
-import os
+from pyrogram import Client,filters
+from pyrogram import *
+import time, logging,requests
+from func_bin import *
+from func_gen import *
+import re, random,asyncio
 from classBot.MongoDB import MondB
+import time, pytz
 from datetime import datetime
-import pytz
+from func_gen import *
+from func_bin import *
 
-@Astro("Start")
-async def start(client, message):
-    user_id = message.chat.id
-    username = message.from_user.username or "Usuario"
+def Astro(bit:str= None):
+    nix = Client.on_message(filters.command(bit, ["/", ".", ",","-","$","%","&"]))
+    return nix
 
-    user = MondB(idchat=user_id).queryUser()
-    lang = (user.get("lang") if user else "es") or "es"
-    lang = lang.lower()
+def AstroButton(bit:str= None):
+    nix = Client.on_callback_query(filters.regex(bit)) # type: ignore
+    return nix
 
-    _lang_root = 'locales'
+_hasd = '3ed76d05d92a5203ca076066146a47bc'
+_tokn= '7555371279:AAFH3aSAR9yqiLm5nbD36q3TorpdFzJQKPY'
+owner= '7732700923'
+_channel= '-1002364228833'
+_plugin_root= 'complemet'
+video = 'https://i.imgur.com/Ewq69ET.gif'
 
-    lang_file = os.path.join(_lang_root, f"{lang}.json")
-    buttons_file = os.path.join(_lang_root, "button_layouts", f"{lang}.json")
+loogs = logging.basicConfig(level=logging.INFO)
 
-    # Verifica si el archivo de idioma existe
-    if os.path.exists(lang_file):
-        with open(lang_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    else:
-        with open(os.path.join(_lang_root, "es.json"), "r", encoding="utf-8") as f:
-            data = json.load(f)
+print(requests.get('https://translate.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&es=en&q=hellow&tbb=1&ie=UTF-8&oe=UTF-8').text)
 
-    # Verifica si el archivo de botones existe
-    if os.path.exists(buttons_file):
-        with open(buttons_file, "r", encoding="utf-8") as f:
-            buttons_data = json.load(f)
-    else:
-        with open(os.path.join(_lang_root, "button_layouts", "es.json"), "r", encoding="utf-8") as f:
-            buttons_data = json.load(f)
+usertime = {}
+timetake = 15
+def atspam(func):
+    async def wrapper(client, message):
+        user_id = message.from_user.id
+        if 5416957433 in usertime and time.time() - usertime[user_id] < timetake:
+            await func(client, message)
+            usertime[user_id] = time.time()
+            return
+        elif user_id in usertime and time.time() - usertime[user_id] < timetake:
+            wait_time = int(timetake - (time.time() - usertime[user_id]))
+            await message.reply(f"<b>₪ AntiFlood ⇝ <code>{wait_time} sg.</code> </b>")
+            return
+        else:
+            await func(client, message)
+            usertime[user_id] = time.time()
 
-    start_text = data.get("startx", "¡Bienvenido!")
-    
-    mainstart_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data.get("mainstart", [])
-    ]
+    return wrapper
 
-    timezone = pytz.timezone("America/Caracas")
-    caracas_time = datetime.now(timezone).strftime("%H:%M:%S")
+def traducir_a_ingles(texto):
+    url = "https://translate.googleapis.com/translate_a/single"
+    params = {
+        "client": "gtx",
+        "sl": "auto",
+        "tl": "en",
+        "dt": "t",
+        "q": texto,
+        "ie": "UTF-8",
+        "oe": "UTF-8"
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        try:
+            return response.json()[0][0][0]
+        except Exception:
+            return "Error al procesar la respuesta."
+    return f"Error en la solicitud: {response.status_code}"
 
-    idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')} {lang.upper()}"
 
-    message_text = start_text.format(caracas_time=caracas_time, username=username, idioma_actual=idioma_actual)
-
-    if message.reply_to_message:
-        reply_to_message_id = message.reply_to_message.message_id
-    else:
-        reply_to_message_id = None
-
-    await client.send_message(
-        chat_id=user_id,
-        text=message_text,
-        reply_markup=InlineKeyboardMarkup(mainstart_buttons),
-        reply_to_message_id=reply_to_message_id
-    )
