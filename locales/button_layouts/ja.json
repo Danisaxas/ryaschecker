@@ -1,5 +1,4 @@
 {
-  "ja": {
     "mainstart": [
       [
         {"text": "ゲートウェイ", "callback_data": "gateways"},
