@@ -16,20 +16,17 @@ def load_language_data(lang_code: str) -> dict:
 async def start_command(client, message):
     user_id = message.from_user.id
     user_data = MondB(idchat=user_id).queryUser()
-
     lang = (user_data.get("lang") if user_data else "es") or "es"
     lang = lang.lower()
-
     lang_data = load_language_data(lang)
     if not lang_data:
         lang_data = load_language_data("es") or {}
-
     startx_template = lang_data.get("startx", "")
     mainstart_buttons = lang_data.get("mainstart", [])
-
+    caracas_time_str = get_capital_time(lang)
     await message.reply_text(
         startx_template.format(
-            caracas_time=caracas_time(),
+            caracas_time=caracas_time_str,
             idioma_actual=lang,
             username=message.from_user.username or message.from_user.first_name or "Usuario"
         ),
