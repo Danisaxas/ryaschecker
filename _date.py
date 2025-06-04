@@ -102,14 +102,23 @@ def load_language_file(user_id, default_lang="es"):
     user = MondB(idchat=user_id).queryUser()
     lang = (user.get("lang") if user else default_lang) or default_lang
     lang = lang.lower()
+    
+    # Base path de _date.py
     base_path = os.path.dirname(os.path.abspath(__file__))  
-    locales_path = os.path.abspath(os.path.join(base_path, "..", "locales"))  # Corregido a /app/locales
+    
+    # Cambiado para acceder correctamente a /app/locales
+    locales_path = os.path.abspath(os.path.join(base_path, "..", "locales"))  # /app/locales
+    
+    # Ruta completa del archivo del idioma
     lang_file = os.path.join(locales_path, f"{lang}.json")
+    
     try:
+        # Intentamos abrir el archivo del idioma específico
         with open(lang_file, "r", encoding="utf-8") as f:
             data = json.load(f)
         return data
     except FileNotFoundError:
+        # Si no se encuentra, cargamos el español por defecto
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
         return data
