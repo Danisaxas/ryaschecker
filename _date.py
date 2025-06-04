@@ -91,25 +91,27 @@ def load_language_file(user_id):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Ruta correcta para 'locales' en la raíz del proyecto
-    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "locales")
+    # Definir las rutas de locales y botones
+    locales_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locales")
     buttons_path = os.path.join(locales_path, "button_layouts")
 
-    # Cargar el archivo de idioma
+    # Ruta para el archivo de idioma
     lang_file = os.path.join(locales_path, f"{lang}.json")
-    try:
+    buttons_file = os.path.join(buttons_path, f"{lang}.json")
+
+    # Verificar si el archivo de idioma existe
+    if os.path.exists(lang_file):
         with open(lang_file, "r", encoding="utf-8") as f:
             data = json.load(f)
-    except Exception:
+    else:
         with open(os.path.join(locales_path, "es.json"), "r", encoding="utf-8") as f:
             data = json.load(f)
 
-    # Cargar el archivo de botones
-    buttons_file = os.path.join(buttons_path, f"{lang}.json")
-    try:
+    # Verificar si el archivo de botones existe
+    if os.path.exists(buttons_file):
         with open(buttons_file, "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
-    except Exception:
+    else:
         with open(os.path.join(buttons_path, "es.json"), "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
 
