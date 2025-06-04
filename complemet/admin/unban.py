@@ -2,9 +2,18 @@ from _date import *
 from pyrogram.client import Client
 from pyrogram import types
 from classBot.MongoDB import MondB
-from Source_pack.TextAll import es as text_es
-from Source_pack.TextAll import en as text_en
 from datetime import datetime
+import json
+import os
+
+BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
+
+def load_language_data(lang_code: str) -> dict:
+    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 @Astro("unban")
 async def unban_user(client: Client, message: types.Message):
@@ -13,10 +22,15 @@ async def unban_user(client: Client, message: types.Message):
         admin_username = message.from_user.username or "Usuario"
 
         admin_data = MondB(idchat=admin_id).queryUser()
+        admin_lang = (admin_data.get("lang") if admin_data else "es") or "es"
+        admin_lang = admin_lang.lower()
+
+        lang_data = load_language_data(admin_lang)
+        if not lang_data:
+            lang_data = load_language_data("es")
+
         if not admin_data:
-            admin_lang = 'es'
-            text_dict = text_es
-            await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
+            await message.reply_text(lang_data['not_privilegios'], reply_to_message_id=message.id)
             return
 
         db = MondB()
@@ -24,22 +38,17 @@ async def unban_user(client: Client, message: types.Message):
         admin_role = admin_data.get("role", "User")
         rango_doc = rangos_col.find_one({"Rango": {"$regex": f"^{admin_role}$", "$options": "i"}})
         if not rango_doc:
-            admin_lang = admin_data.get("lang", "es")
-            text_dict = text_es if admin_lang == 'es' else text_en
-            await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
+            await message.reply_text(lang_data['not_privilegios'], reply_to_message_id=message.id)
             return
+
         numero_rango = rango_doc.get("Numero", 0)
         if numero_rango < 3 or numero_rango > 6:
-            admin_lang = admin_data.get("lang", "es")
-            text_dict = text_es if admin_lang == 'es' else text_en
-            await message.reply_text(text_dict['not_privilegios'], reply_to_message_id=message.id)
+            await message.reply_text(lang_data['not_privilegios'], reply_to_message_id=message.id)
             return
 
         args = message.text.split()
         if len(args) != 2:
-            admin_lang = admin_data.get("lang", "es")
-            text_dict = text_es if admin_lang == 'es' else text_en
-            await message.reply_text(text_dict['unban_usage'], reply_to_message_id=message.id)
+            await message.reply_text(lang_data['unban_usage'], reply_to_message_id=message.id)
             return
 
         target_identifier = args[1]
@@ -53,19 +62,12 @@ async def unban_user(client: Client, message: types.Message):
             target_user_data = _collection.find_one({"username": target_identifier.lstrip("@")})
 
         if not target_user_data:
-            admin_lang = admin_data.get("lang", "es")
-            text_dict = text_es if admin_lang == 'es' else text_en
-            await message.reply_text(text_dict['unban_validation'], reply_to_message_id=message.id)
+            await message.reply_text(lang_data['unban_validation'], reply_to_message_id=message.id)
             return
 
         current_status = target_user_data.get("status", "Libre")
         if current_status.lower() != "baneado":
-            admin_lang = admin_data.get("lang", "es")
-            text_dict = text_es if admin_lang == 'es' else text_en
-            await message.reply_text(
-                "<b>El usuario no está baneado.</b>" if admin_lang == 'en' else "<b>El usuario no está baneado.</b>",
-                reply_to_message_id=message.id
-            )
+            await message.reply_text(lang_data.get('not_banned', "<b>El usuario no está baneado.</b>"), reply_to_message_id=message.id)
             return
 
         _id = target_user_data.get("_id")
@@ -75,9 +77,12 @@ async def unban_user(client: Client, message: types.Message):
         )
 
         target_username = target_user_data.get("username", "Desconocido")
-        target_lang = target_user_data.get("lang", "es")
-        text_dict = text_es if target_lang == 'es' else text_en
-        unban_message = text_dict['unban_message'].format(
+        target_lang = (target_user_data.get("lang") or "es").lower()
+        target_lang_data = load_language_data(target_lang)
+        if not target_lang_data:
+            target_lang_data = load_language_data("es")
+
+        unban_message = target_lang_data['unban_message'].format(
             username=target_username,
             target_user_id=_id,
             fecha=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
