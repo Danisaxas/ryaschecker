@@ -4,19 +4,10 @@ from pyrogram.types import Message
 import json
 import os
 
-BASE_LOCALES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Locales")
-
 IDIOMAS_VALIDOS = [
     "ar", "mx", "es", "en", "tr", "ru", "pt", "ko", "ch",
     "fr", "de", "vi", "id", "it", "ja"
 ]
-
-def load_language_data(lang_code: str) -> dict:
-    path = os.path.join(BASE_LOCALES_PATH, f"{lang_code}.json")
-    if not os.path.isfile(path):
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 @Astro("setlang")
 async def comando_setlang(client, message: Message):
@@ -32,13 +23,12 @@ async def comando_setlang(client, message: Message):
     else:
         lang = "es"
 
-    lang_data = load_language_data(lang)
-    if not lang_data:
-        lang_data = load_language_data("es")
+    # Cargar datos de idioma y botones con la función de _date.py
+    data, buttons_data = load_language_file(user_id)
 
     if str(user_id) != str(owner):
         await message.reply_text(
-            lang_data['setrol_no_permission'],
+            data['setrol_no_permission'],
             reply_to_message_id=message.id
         )
         return
@@ -46,7 +36,7 @@ async def comando_setlang(client, message: Message):
     args = message.text.split(maxsplit=2)
     if len(args) < 3:
         await message.reply_text(
-            lang_data['setlang_usage'],
+            data['setlang_usage'],
             reply_to_message_id=message.id
         )
         return
@@ -55,7 +45,7 @@ async def comando_setlang(client, message: Message):
         target_id = int(args[1])
     except ValueError:
         await message.reply_text(
-            lang_data['setlang_invalid_id'],
+            data['setlang_invalid_id'],
             reply_to_message_id=message.id
         )
         return
@@ -63,7 +53,7 @@ async def comando_setlang(client, message: Message):
     nuevo_idioma = args[2].lower()
     if nuevo_idioma not in IDIOMAS_VALIDOS:
         await message.reply_text(
-            lang_data['setlang_invalid_lang'],
+            data['setlang_invalid_lang'],
             reply_to_message_id=message.id
         )
         return
@@ -75,7 +65,7 @@ async def comando_setlang(client, message: Message):
     target_user = _collection.find_one({"_id": target_id})
     if not target_user:
         await message.reply_text(
-            lang_data['setlang_not_found'],
+            data['setlang_not_found'],
             reply_to_message_id=message.id
         )
         db._client.close()
@@ -84,7 +74,7 @@ async def comando_setlang(client, message: Message):
     _collection.update_one({"_id": target_id}, {"$set": {"lang": nuevo_idioma}})
 
     await message.reply_text(
-        lang_data['setlang_success'].format(id=target_id, idioma=nuevo_idioma),
+        data['setlang_success'].format(id=target_id, idioma=nuevo_idioma),
         reply_to_message_id=message.id
     )
     db._client.close()
