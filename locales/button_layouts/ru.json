@@ -73,7 +73,6 @@
       ],
       [
         {"text": "TR [🇹🇷]", "callback_data": "tr"},
-        {"text": "ID [🇮🇩]", "callback_data": "id"},
         {"text": "VI [🇻🇳]", "callback_data": "vi"},
         {"text": "ID [🇮🇩]", "callback_data": "id"},
         {"text": "xCloud [☁️]", "callback_data": "homevR"}
