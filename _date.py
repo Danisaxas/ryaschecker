@@ -171,7 +171,7 @@ def load_language_file(user_id):
         with open("locales/button_layouts/vi.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
     elif lang == "zh":
-        with open("locales/ch.json", "r", encoding="utf-8") as f:
+        with open("locales/zh.json", "r", encoding="utf-8") as f:
             data = json.load(f)
         with open("locales/button_layouts/zh.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
