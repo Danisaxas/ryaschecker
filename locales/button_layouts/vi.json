@@ -16,6 +16,13 @@
         {"text": "Tiếp theo", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "Trang chủ", "callback_data": "home"},
+    {"text": "Quay lại", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "Quay lại", "callback_data": "home"}

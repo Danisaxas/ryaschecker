@@ -16,6 +16,13 @@
         {"text": "Sonraki", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "Anasayfa", "callback_data": "home"},
+    {"text": "Geri", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "Geri", "callback_data": "home"}

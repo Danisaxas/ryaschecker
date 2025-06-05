@@ -16,6 +16,13 @@
         {"text": "Следующий", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "Главная", "callback_data": "home"},
+    {"text": "Назад", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "Назад", "callback_data": "home"}

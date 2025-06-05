@@ -16,6 +16,12 @@
         {"text": "Selanjutnya", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+    [
+      {"text": "Beranda", "callback_data": "home"},
+      {"text": "Kembali", "callback_data": "tools_1"}
+    ]
+  ],
     "back": [
       [
         {"text": "Kembali", "callback_data": "home"}

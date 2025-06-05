@@ -9,6 +9,8 @@
 
   "tools": "<b>\nRyasChk 工具 / 第1页\n━━━━━━━━━━━━\nBIN 生成器:\n格式: $gen 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\nSk 检查:\n格式: $sk sk_live\n状态: 离线 ❌\n━━━━━━━━━━━━\nBIN 查询:\n格式: $bin 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\n地址生成器:\n格式: $dir 国家代码\n状态: 离线 ❌\n━━━━━━━━━━━━\nIP 欺诈验证:\n格式: $ip 1.1.1.1\n状态: 离线 ❌\n━━━━━━━━━━━━\n</b>",
 
+  "tools_2": "<b>\nOnyx Tools / 第 2 页\n━━━━━━━━━━━━\n云工具 / 额外工具:\n格式: <code>$extra card</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n额外 V2:\n格式: <code>$tools card|month|year|cvv</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nOnyx Claim Key:\n格式: <code>$claim onyx-key-....</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n价格 BTC:\n格式: <code>$btc eur|usd</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nOnyx 翻译:\n格式: <code>$tr text</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n购买 Onyx:\n格式: <code>$buyonyx es|en</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nBraintree VBV:\n格式: <code>$vbv card|month|year|cvv</code>\n状态: 在线！✅\n━━━━━━━━━━━━</b>",
+
   "informacion_text": "<b>\nRyasChk 信息! 🌩\n━━━━━━━━━━━━\n最新更新: 04/04/25\n支持语言: 西班牙语，英语\n开发者: @Exzzex\n机器人创建日期: 10/10/2024\n</b>",
 
   "description_text": "<b>\nRyas 介绍! 🌩\n━━━━━━━━━━━━\n频道:\nOnyx 更新: @即将推出\nOnyx 推荐频道: @即将推出\nOnyx 免费用户: @即将推出\n━━━━━━━━━━━━━━━━━\nRyas 信息:\n━━━━━━━\n开发者: @Exzzex ✅ | [购买]\n开发者说明: 大家好，这是新的 onyx 版本，专注于速度和良好的检测体验！\n━━━━━━━\n卖家:\n@coming soon | coming soon ✅ | [购买]\n━━━━━━━━━━━━━━━━━\nOnyx 更新:\n版本: 1.3.0 [✅]\n更新: 即将上线 下午 (GMT-5) [✅]\n━━━━━━━━━━━━━━━━━\n问题反馈: @Exzzex\n</b>",

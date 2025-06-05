@@ -16,6 +16,13 @@
         {"text": "次へ", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "ホーム", "callback_data": "home"},
+    {"text": "戻る", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "戻る", "callback_data": "home"}

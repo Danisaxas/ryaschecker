@@ -16,6 +16,13 @@
         {"text": "下一个", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "首页", "callback_data": "home"},
+    {"text": "返回", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "返回", "callback_data": "home"}

@@ -16,6 +16,13 @@
         {"text": "التالي", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "الصفحة الرئيسية", "callback_data": "home"},
+    {"text": "رجوع", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "رجوع", "callback_data": "home"}

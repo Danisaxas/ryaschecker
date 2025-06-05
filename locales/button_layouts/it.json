@@ -16,6 +16,13 @@
         {"text": "Avanti", "callback_data": "next"}
       ]
     ],
+    "tools_back": [
+  [
+    {"text": "Home", "callback_data": "home"},
+    {"text": "Indietro", "callback_data": "tools_1"}
+  ]
+],
+
     "back": [
       [
         {"text": "Indietro", "callback_data": "home"}
