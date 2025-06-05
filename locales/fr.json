@@ -19,7 +19,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub : $msg id ou all !texte</b>",
 
-  "ryas_cloud": "<b>\n>_ $Commencer_ Ryas Cloud | Bienvenue @{username} - Cloud DB\n\n[🇫🇷] Bienvenue à la nouvelle souscription de Ryas Cloud, vos données partagées dans le cloud avec Ryas seront stockées ici, naviguez à travers les boutons pour découvrir les nouveautés :\n\n<code>Version Ryas Cloud : 0.0.1</code>  | Plan Ryas Cloud :  <code>Premium Cloud</code></b>",
+  "ryas_cloud": "<b>\n>_ $Commencer_ Ryas Cloud | Bienvenue @{username} - Cloud DB\n\n[{idioma_actual}] Bienvenue à la nouvelle souscription de Ryas Cloud, vos données partagées dans le cloud avec Ryas seront stockées ici, naviguez à travers les boutons pour découvrir les nouveautés :\n\n<code>Version Ryas Cloud : 0.0.1</code>  | Plan Ryas Cloud :  <code>Premium Cloud</code></b>",
 
   "registerx": "<b>あ » Interagissez avec le bot sans aucun problème, si vous souhaitez plus d'informations, utilisez les commandes suivantes.\n\n↯ » Tarifs : /pricings\n↯ » Plus d'informations : /data</b>",
 
@@ -52,7 +52,7 @@
   "lang_message": "\nBienvenue @{username} - Cloud DB | LANG [{idioma_actual}]\n\nVoici les données sur votre langue sauvegardée dans la base de données, souhaitez-vous changer ? Sélectionnez une nouvelle langue dans les boutons ci-dessous :",
 
   "lang_success": "Cloud DB | LANG [🇫🇷] \n\nSuccès! Votre langue sélectionnée est maintenant [Français]!",
-  
+
   "bin_not_found": "Aucune information trouvée pour le BIN {bin_number}.",
 
   "bin_usage": "Veuillez fournir un numéro BIN valide après la commande .bin",

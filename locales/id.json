@@ -19,7 +19,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id atau all !teks</b>",
 
-  "ryas_cloud": "<b>\n>_ $Mulai_ Ryas Cloud | Selamat datang @{username} - Cloud DB\n\n[🇮🇩] Selamat datang di langganan Ryas Cloud baru. Data yang kamu bagikan di cloud bersama Ryas akan tersimpan di sini. Gunakan tombol untuk mengecek fitur baru:\n\n<code>Versi Ryas Cloud:  0.0.1</code>  | Paket Ryas Cloud:  <code>Premium Cloud</code></b>",
+  "ryas_cloud": "<b>\n>_ $Mulai_ Ryas Cloud | Selamat datang @{username} - Cloud DB\n\n[{idioma_actual}] Selamat datang di langganan Ryas Cloud baru. Data yang kamu bagikan di cloud bersama Ryas akan tersimpan di sini. Gunakan tombol untuk mengecek fitur baru:\n\n<code>Versi Ryas Cloud:  0.0.1</code>  | Paket Ryas Cloud:  <code>Premium Cloud</code></b>",
 
   "registerx": "<b>あ » Gunakan bot tanpa hambatan, untuk info lebih lanjut gunakan perintah berikut.\n\n↯ » Harga: /pricings\n↯ » Info lainnya: /data</b>",
 

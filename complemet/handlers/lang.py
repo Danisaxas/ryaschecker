@@ -13,11 +13,14 @@ async def set_lang_en(client, callback_query):
     db.update_user_lang("en")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
-    
+
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
     await callback_query.answer()
 
@@ -32,8 +35,11 @@ async def set_lang_es(client, callback_query):
     db.update_user_lang("es")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -51,8 +57,11 @@ async def set_lang_pt(client, callback_query):
     db.update_user_lang("pt")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -70,8 +79,11 @@ async def set_lang_ru(client, callback_query):
     db.update_user_lang("ru")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -89,8 +101,11 @@ async def set_lang_zh(client, callback_query):
     db.update_user_lang("zh")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -108,8 +123,11 @@ async def set_lang_ko(client, callback_query):
     db.update_user_lang("ko")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -127,8 +145,11 @@ async def set_lang_mx(client, callback_query):
     db.update_user_lang("mx")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -146,8 +167,11 @@ async def set_lang_fr(client, callback_query):
     db.update_user_lang("fr")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -165,8 +189,11 @@ async def set_lang_de(client, callback_query):
     db.update_user_lang("de")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -184,8 +211,11 @@ async def set_lang_it(client, callback_query):
     db.update_user_lang("it")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -203,8 +233,11 @@ async def set_lang_ja(client, callback_query):
     db.update_user_lang("ja")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -222,8 +255,11 @@ async def set_lang_tr(client, callback_query):
     db.update_user_lang("tr")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -241,8 +277,11 @@ async def set_lang_vi(client, callback_query):
     db.update_user_lang("vi")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
@@ -260,10 +299,13 @@ async def set_lang_id(client, callback_query):
     db.update_user_lang("id")
 
     buttons_data = lang_data.get("back_lang", [])
+    if not buttons_data:
+        buttons_data = [{"text": "Regresar", "callback_data": "home"}]
+
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['back_lang']) for button in row]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
-    await callback_query.answer()
+    await callback_query.answer() 

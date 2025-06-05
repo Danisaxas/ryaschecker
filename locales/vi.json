@@ -19,7 +19,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] Trung tâm quản trị: $msg id hoặc all !văn bản</b>",
 
-  "ryas_cloud": "<b>\n>_ $Bắt đầu_ Ryas Cloud | Chào mừng @{username} - Cơ sở dữ liệu đám mây\n\n[🇻🇳] Chào mừng bạn đến với gói đăng ký Ryas Cloud mới, dữ liệu bạn chia sẻ với Ryas trên đám mây sẽ được lưu ở đây, hãy sử dụng các nút để khám phá các tính năng mới:\n\n<code>Phiên bản Ryas Cloud:  0.0.1</code>  | Gói Ryas Cloud:  <code>Premium Cloud</code></b>",
+  "ryas_cloud": "<b>\n>_ $Bắt đầu_ Ryas Cloud | Chào mừng @{username} - Cơ sở dữ liệu đám mây\n\n[{idioma_actual}] Chào mừng bạn đến với gói đăng ký Ryas Cloud mới, dữ liệu bạn chia sẻ với Ryas trên đám mây sẽ được lưu ở đây, hãy sử dụng các nút để khám phá các tính năng mới:\n\n<code>Phiên bản Ryas Cloud:  0.0.1</code>  | Gói Ryas Cloud:  <code>Premium Cloud</code></b>",
 
   "registerx": "<b>あ » Tương tác với bot dễ dàng, nếu muốn thêm thông tin, dùng các lệnh sau.\n\n↯ » Giá: /pricings\n↯ » Thông tin thêm: /data</b>",
 
@@ -52,7 +52,7 @@
   "lang_message": "\nChào mừng @{username} - Cơ sở dữ liệu đám mây | NGÔN NGỮ [{idioma_actual}]\n\nĐây là dữ liệu ngôn ngữ của bạn được lưu trong cơ sở dữ liệu, bạn có muốn đổi không? Chọn ngôn ngữ mới bằng các nút bên dưới:",
 
   "lang_success": "Cloud DB | LANG [🇻🇳] \n\nThành công! Ngôn ngữ bạn chọn bây giờ là [Tiếng Việt]!",
-  
+
   "bin_not_found": "Không tìm thấy thông tin cho BIN {bin_number}.",
 
   "bin_usage": "Vui lòng nhập số BIN hợp lệ sau lệnh .bin",

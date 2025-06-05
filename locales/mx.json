@@ -19,7 +19,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id o all !texto</b>",
 
-  "ryas_cloud": "<b>\n>_ $Arranca_ Ryas Cloud | Bienvenido @{username} - Cloud DB\n\n[🇲🇽] Bienvenido a la nueva suscripción Ryas Cloud, tus datos compartidos en la nube con Ryas se guardarán aquí. Explora los botones para descubrir las novedades:\n\n<code>Versión Ryas Cloud:  0.0.1</code>  | Plan Ryas Cloud:  <code>Premium Cloud</code></b>",
+  "ryas_cloud": "<b>\n>_ $Arranca_ Ryas Cloud | Bienvenido @{username} - Cloud DB\n\n[{idioma_actual}] Bienvenido a la nueva suscripción Ryas Cloud, tus datos compartidos en la nube con Ryas se guardarán aquí. Explora los botones para descubrir las novedades:\n\n<code>Versión Ryas Cloud:  0.0.1</code>  | Plan Ryas Cloud:  <code>Premium Cloud</code></b>",
 
   "registerx": "<b>あ » Chécate el bot sin broncas, si quieres más info usa estos comandos:\n\n↯ » Precios: /pricings\n↯ » Más info: /data</b>",
 
