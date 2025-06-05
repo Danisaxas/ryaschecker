@@ -170,10 +170,10 @@ def load_language_file(user_id):
             data = json.load(f)
         with open("locales/button_layouts/vi.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
-    elif lang == "ch":
+    elif lang == "zh":
         with open("locales/ch.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-        with open("locales/button_layouts/ch.json", "r", encoding="utf-8") as f:
+        with open("locales/button_layouts/zh.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
     elif lang == "ar":
         with open("locales/ar.json", "r", encoding="utf-8") as f:
@@ -201,7 +201,7 @@ def caracas_time(lang: str) -> str:
         "ja": ("Asia/Tokyo", "Tokyo, Japan"),
         "ko": ("Asia/Seoul", "Seoul, South Korea"),
         "id": ("Asia/Jakarta", "Jakarta, Indonesia"),
-        "ch": ("Asia/Shanghai", "Shanghai, China"),
+        "zh": ("Asia/Shanghai", "Shanghai, China"),
         "vi": ("Asia/Ho_Chi_Minh", "Ho Chi Minh City, Vietnam"),
         "tr": ("Europe/Istanbul", "Istanbul, Turkey"),
         "ar": ("Asia/Dubai", "Dubai, UAE")
