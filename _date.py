@@ -192,7 +192,7 @@ def caracas_time(lang: str) -> str:
     timezones = {
         "es": ("Europe/Madrid", "Madrid, España"),
         "mx": ("America/Mexico_City", "Ciudad de México, México"),
-        "en": ("Europe/London", "London, UK"),
+        "en": ("America/New_York", "Washington D. C., United States"),
         "fr": ("Europe/Paris", "Paris, France"),
         "de": ("Europe/Berlin", "Berlin, Germany"),
         "pt": ("Europe/Lisbon", "Lisbon, Portugal"),
@@ -207,10 +207,9 @@ def caracas_time(lang: str) -> str:
         "ar": ("Asia/Dubai", "Dubai, UAE")
     }
 
-    # Si el idioma no se encuentra, se asigna España por defecto
-    timezone, city_country = timezones.get(lang, ("Europe/Madrid", "Madrid, España"))
+    timezone, city = timezones.get(lang, ("America/Caracas", "Caracas, Venezuela"))
 
-    tz = pytz.timezone(timezone)
-    now = datetime.now(tz)
-    
-    return now.strftime(f"%Y-%m-%d {city_country} %I:%M %p")
+    timezone = pytz.timezone(timezone)
+    time_in_city = datetime.now(timezone).strftime("%Y-%m-%d %I:%M:%S %p")
+    return f"{time_in_city} {city}"
+
