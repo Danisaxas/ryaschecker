@@ -18,7 +18,7 @@ async def set_text(client, message: Message):
     user_id = message.from_user.id
     lang_data, buttons_data = load_language_file(user_id)
     
-    lang_files = ["es.json", "en.json", "fr.json", "de.json", "ru.json", "pt.json", "it.json", "ja.json", "ko.json", "mx.json", "pt.json", "tr.json", "vi.json", "ch.json"]
+    lang_files = ["es.json", "en.json", "fr.json", "de.json", "ru.json", "pt.json", "it.json", "ja.json", "ko.json", "mx.json", "pt.json", "tr.json", "vi.json", "zh.json"]
 
     for lang_file in lang_files:
         file_path = os.path.join("locales", lang_file)
