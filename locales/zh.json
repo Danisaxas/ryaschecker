@@ -7,7 +7,7 @@
 
   "startx": "<b>\n欢迎使用 Ryas dev Bot  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] 你好 @{username}，欢迎使用 Ryas Telegram 机器人，网关、工具和功能不断增加，了解不同命令请使用下面显示的按钮：\n━━━━━━━━━━━━━\n<code>API 机器人状态：在线 ✅ | Ryas API 已上线！！</code>\n</b>",
 
-  "tools": "<b>\nRyasChk 工具 / 第1页\n━━━━━━━━━━━━\nBIN 生成器:\n格式: $gen 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\nSk 检查:\n格式: $sk sk_live\n状态: 离线 ❌\n━━━━━━━━━━━━\nBIN 查询:\n格式: $bin 601120\n状态: 离线 ❌\n━━━━━━━━━━━━\n地址生成器:\n格式: $dir 国家代码\n状态: 离线 ❌\n━━━━━━━━━━━━\nIP 欺诈验证:\n格式: $ip 1.1.1.1\n状态: 离线 ❌\n━━━━━━━━━━━━\n</b>",
+  "tools": "<b>\nNova Chk 工具 / 第1页\n━━━━━━━━━━━━\nBIN 生成器:\n格式: <code>$gen 601120</code>\n状态: 未连接! ❌\n━━━━━━━━━━━━\nSk 检查:\n格式: <code>$sk sk_live</code>\n状态: 未连接! ❌\n━━━━━━━━━━━━\nBIN 查找:\n格式: <code>$bin 601120</code>\n状态: 未连接! ❌\n━━━━━━━━━━━━\n地址生成器:\n格式: <code>$dir 国家_代码</code>\n状态: 未连接! ❌\n━━━━━━━━━━━━\nIP 欺诈检查:\n格式: <code>$ip 1.1.1.1</code>\n状态: 未连接! ❌\n━━━━━━━━━━━━\n</b>",
 
   "tools_2": "<b>\nOnyx Tools / 第 2 页\n━━━━━━━━━━━━\n云工具 / 额外工具:\n格式: <code>$extra card</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n额外 V2:\n格式: <code>$tools card|month|year|cvv</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nOnyx Claim Key:\n格式: <code>$claim onyx-key-....</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n价格 BTC:\n格式: <code>$btc eur|usd</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nOnyx 翻译:\n格式: <code>$tr text</code>\n状态: 在线！✅\n━━━━━━━━━━━━\n购买 Onyx:\n格式: <code>$buyonyx es|en</code>\n状态: 在线！✅\n━━━━━━━━━━━━\nBraintree VBV:\n格式: <code>$vbv card|month|year|cvv</code>\n状态: 在线！✅\n━━━━━━━━━━━━</b>",
 

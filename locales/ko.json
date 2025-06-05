@@ -7,9 +7,9 @@
 
   "startx": "<b>\nRyas dev Bot에 오신 것을 환영합니다  |  <code>{caracas_time}</code>\n\n[{idioma_actual}] 안녕하세요 @{username} Ryas Telegram Bot에 오신 것을 환영합니다. 게이트웨이, 도구 및 기능이 지속적으로 추가되고 있습니다. 명령어를 확인하려면 아래 버튼을 사용하세요:\n━━━━━━━━━━━━━\n<code>API 봇 상태: 온라인 ✅ | Ryas API 온라인!!</code>\n</b>",
 
-  "tools": "<b>\nRyasChk 도구 / 1페이지\n━━━━━━━━━━━━\nBIN 생성기:\n형식: $gen 601120\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nSk 체크:\n형식: $sk sk_live\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nBIN 검색기:\n형식: $bin 601120\n상태: 오프라인 ❌\n━━━━━━━━━━━━\n주소 생성기:\n형식: $dir 국가 코드\n상태: 오프라인 ❌\n━━━━━━━━━━━━\nIP 사기 검증:\n형식: $ip 1.1.1.1\n상태: 오프라인 ❌\n━━━━━━━━━━━━\n</b>",
+  "tools": "<b>\nNova Chk 도구 / 페이지 1\n━━━━━━━━━━━━\nBIN 생성기:\n형식: <code>$gen 601120</code>\n상태: 연결 안 됨! ❌\n━━━━━━━━━━━━\nSk 확인:\n형식: <code>$sk sk_live</code>\n상태: 연결 안 됨! ❌\n━━━━━━━━━━━━\nBIN 찾기:\n형식: <code>$bin 601120</code>\n상태: 연결 안 됨! ❌\n━━━━━━━━━━━━\n주소 생성기:\n형식: <code>$dir 국가_코드</code>\n상태: 연결 안 됨! ❌\n━━━━━━━━━━━━\nIP 사기 확인:\n형식: <code>$ip 1.1.1.1</code>\n상태: 연결 안 됨! ❌\n━━━━━━━━━━━━\n</b>",
 
-  "tools_2": "<b>\nOnyx Tools / 페이지 2\n━━━━━━━━━━━━\nCloud Tools / 추가 도구:\n형식: <code>$extra card</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\n추가 V2:\n형식: <code>$tools card|month|year|cvv</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx Claim Key:\n형식: <code>$claim onyx-key-....</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nBTC 가격:\n형식: <code>$btc eur|usd</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx 번역:\n형식: <code>$tr text</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx 구매:\n형식: <code>$buyonyx es|en</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nBraintree VBV:\n형식: <code>$vbv card|month|year|cvv</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━</b>",
+  "tools_2": "<b>\nNova Chk 도구 / 페이지 2\n━━━━━━━━━━━━\nCloud Tools / 추가 도구:\n형식: <code>$extra card</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\n추가 V2:\n형식: <code>$tools card|month|year|cvv</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx Claim Key:\n형식: <code>$claim onyx-key-....</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nBTC 가격:\n형식: <code>$btc eur|usd</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx 번역:\n형식: <code>$tr text</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nOnyx 구매:\n형식: <code>$buyonyx es|en</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━\nBraintree VBV:\n형식: <code>$vbv card|month|year|cvv</code>\n상태: 온라인! ✅\n━━━━━━━━━━━━</b>",
 
   "informacion_text": "<b>\nRyasChk 정보! 🌩\n━━━━━━━━━━━━\n최신 업데이트: 04/04/25\n사용 가능 언어: 스페인어, 영어\n개발자: @Exzzex\n봇 생성일: 10/10/2024\n</b>",
 
