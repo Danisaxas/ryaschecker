@@ -72,14 +72,13 @@
       {"text": "JA [🇯🇵]", "callback_data": "ja"}
     ],
     [
-      {"text": "TR [🇹🇷]", "callback_data": "tr"},
-      {"text": "xCloud [☁️]", "callback_data": "homevR"}
+        {"text": "TR [🇹🇷]", "callback_data": "tr"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"},
+        {"text": "VI [🇻🇳]", "callback_data": "vi"},
+        {"text": "ID [🇮🇩]", "callback_data": "id"},
+        {"text": "xCloud [☁️]", "callback_data": "homevR"}
+      ]
     ],
-    [
-      {"text": "VI [🇻🇳]", "callback_data": "vi"},
-      {"text": "ID [🇮🇩]", "callback_data": "id"}
-    ]
-  ],
   "gatewaysx": [
     [
       {"text": "Auth", "callback_data": "Auth"},

@@ -88,6 +88,7 @@ LANGUAGES_FLAGS = {
     "vi": "🇻🇳",
     "ru": "🇷🇺",
     "tr": "🇹🇷",
+    "ar": "🇸🇦",
 }
 
 import json
