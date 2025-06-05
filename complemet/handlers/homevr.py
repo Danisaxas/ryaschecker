@@ -14,8 +14,10 @@ async def handle_homevR(client, callback_query):
     data, buttons_data = load_language_file(user_id)
 
     ryas_cloud_template = data.get("ryas_cloud", "")
+    idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')}"
     message = ryas_cloud_template.format(
-        username=user.username or user.first_name
+        username=user.username or user.first_name,
+        idioma_actual=idioma_actual
     )
 
     vryasx_buttons = [
