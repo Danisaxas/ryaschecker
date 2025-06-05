@@ -182,10 +182,11 @@ def load_language_file(user_id):
             data = json.load(f)
         with open("locales/button_layouts/es.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
-            elif lang == "ar":
-        with open("locales/ar.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
-        with open("locales/button_layouts/ar.json", "r", encoding="utf-8") as f:
+        elif lang == "ar":
+            with open("locales/ar.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            with open("locales/button_layouts/ar.json", "r", encoding="utf-8") as f:
+                buttons_data = json.load(f)
             buttons_data = json.load(f)
 
     return data, buttons_data
