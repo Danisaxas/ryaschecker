@@ -14,7 +14,7 @@ async def set_text(client, message: Message):
     key = args[1].strip('"')
     text = args[2]
 
-    # Obtener el archivo de idioma basado en el usuario
+    # Obtener el archivo de idioma
     user_id = message.from_user.id
     lang_data, buttons_data = load_language_file(user_id)
 
