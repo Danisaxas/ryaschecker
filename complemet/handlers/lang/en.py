@@ -12,13 +12,11 @@ async def set_lang_en(client, callback_query):
     db = MondB(idchat=user_id)
     db.update_user_lang("en")
 
-    buttons_data = [
-        {"text": "xCloud [☁️]", "callback_data": "homevR"},
-        {"text": "Languages", "callback_data": "lenguaje"}
-    ]
+    lang_data, buttons_data = load_language_file(user_id)
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data]
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
+        for row in buttons_data.get("back_lang", [])
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
