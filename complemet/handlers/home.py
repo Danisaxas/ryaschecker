@@ -17,7 +17,7 @@ async def handle_home(client, callback_query):
     startx_template = data.get("startx", "")
     message = startx_template.format(
         caracas_time=caracas_time(lang),
-        idioma_actual=LANGUAGES_FLAGS.get(lang, '🏳️‍🌈'),
+        idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')}",
         username=user.username or user.first_name
     )
 

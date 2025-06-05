@@ -14,7 +14,7 @@ async def handle_xcloud(client, callback_query):
     data, buttons_data = load_language_file(user_id)
 
     ryas_cloud_template = data.get("ryas_cloud", "")
-    idioma_actual=LANGUAGES_FLAGS.get(lang, '🏳️‍🌈'),
+    idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')}"
     message = ryas_cloud_template.format(
         username=user.username or user.first_name,
         idioma_actual=idioma_actual  # Pasar el idioma actual a la plantilla
