@@ -105,7 +105,6 @@ def load_language_file(user_id):
     lang = (user.get("lang") if user else "es") or "es"
     lang = lang.lower()
 
-    # Cargar los archivos directamente desde locales/
     if lang == "es":
         with open("locales/es.json", "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -176,17 +175,15 @@ def load_language_file(user_id):
             data = json.load(f)
         with open("locales/button_layouts/ch.json", "r", encoding="utf-8") as f:
             buttons_data = json.load(f)
+    elif lang == "ar":
+        with open("locales/ar.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with open("locales/button_layouts/ar.json", "r", encoding="utf-8") as f:
+            buttons_data = json.load(f)
     else:
-        # Si el idioma no está disponible, cargar español por defecto
         with open("locales/es.json", "r", encoding="utf-8") as f:
             data = json.load(f)
         with open("locales/button_layouts/es.json", "r", encoding="utf-8") as f:
-            buttons_data = json.load(f)
-        elif lang == "ar":
-            with open("locales/ar.json", "r", encoding="utf-8") as f:
-                data = json.load(f)
-            with open("locales/button_layouts/ar.json", "r", encoding="utf-8") as f:
-                buttons_data = json.load(f)
             buttons_data = json.load(f)
 
     return data, buttons_data
@@ -206,7 +203,8 @@ def caracas_time(lang: str) -> str:
         "id": ("Asia/Jakarta", "Jakarta, Indonesia"),
         "ch": ("Asia/Shanghai", "Shanghai, China"),
         "vi": ("Asia/Ho_Chi_Minh", "Ho Chi Minh City, Vietnam"),
-        "tr": ("Europe/Istanbul", "Istanbul, Turkey")
+        "tr": ("Europe/Istanbul", "Istanbul, Turkey"),
+        "ar": ("Asia/Dubai", "Dubai, UAE")
     }
 
     # Si el idioma no se encuentra, se asigna España por defecto
