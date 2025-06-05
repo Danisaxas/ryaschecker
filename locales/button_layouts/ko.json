@@ -24,7 +24,8 @@
     "back_lang": [
       [
         {"text": "xCloud [☁️]", "callback_data": "homevR"},
-        {"text": "언어", "callback_data": "lenguaje"}
+        {"text": "언어", "callback_data": "lenguaje"},
+        {"text": "뒤로", "callback_data": "home"}
       ]
     ],
     "backvR": [

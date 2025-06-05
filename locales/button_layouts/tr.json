@@ -24,7 +24,8 @@
     "back_lang": [
       [
         {"text": "xCloud [☁️]", "callback_data": "homevR"},
-        {"text": "Diller", "callback_data": "lenguaje"}
+        {"text": "Diller", "callback_data": "lenguaje"},
+        {"text": "Geri", "callback_data": "home"}
       ]
     ],
     "backvR": [
