@@ -2,7 +2,7 @@ from _date import *
 from classBot.MongoDB import MondB
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@AstroButton("^ch$")
+@AstroButton("^zh$")
 async def set_lang_zh(client, callback_query):
     user = callback_query.from_user
     user_id = user.id
