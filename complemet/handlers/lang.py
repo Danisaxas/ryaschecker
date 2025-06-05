@@ -17,8 +17,7 @@ async def set_lang_en(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -39,8 +38,7 @@ async def set_lang_es(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -61,8 +59,7 @@ async def set_lang_pt(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -83,8 +80,7 @@ async def set_lang_ru(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -105,8 +101,7 @@ async def set_lang_zh(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -127,8 +122,7 @@ async def set_lang_ko(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -149,8 +143,7 @@ async def set_lang_mx(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -171,8 +164,7 @@ async def set_lang_fr(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -193,8 +185,7 @@ async def set_lang_de(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -215,8 +206,7 @@ async def set_lang_it(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -237,8 +227,7 @@ async def set_lang_ja(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -259,8 +248,7 @@ async def set_lang_tr(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -281,8 +269,7 @@ async def set_lang_vi(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
@@ -303,9 +290,8 @@ async def set_lang_id(client, callback_query):
         buttons_data = [{"text": "Regresar", "callback_data": "home"}]
 
     back_lang_buttons = [
-        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
-        for row in buttons_data
+        [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in buttons_data[0]]
     ]
 
     await callback_query.message.edit_text(data, reply_markup=InlineKeyboardMarkup(back_lang_buttons))
-    await callback_query.answer() 
+    await callback_query.answer()
