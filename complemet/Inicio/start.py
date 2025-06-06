@@ -13,14 +13,6 @@ async def start(client, message):
 
     user_data = MondB(idchat=user_id).queryUser()
 
-    if not user_data:
-        data, buttons_data = load_language_file(user_id)
-        await message.reply_text(
-            data['register_not'],
-            reply_to_message_id=message.id
-        )
-        return
-
     lang = user_data.get("lang", "es").lower()
     data, buttons_data = load_language_file(user_id)
 
