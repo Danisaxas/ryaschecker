@@ -1,4 +1,3 @@
-from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from _date import *  # Importamos todo de _date
 from classBot.MongoDB import MondB  # Importamos tu clase de base de datos
