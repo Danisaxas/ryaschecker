@@ -21,7 +21,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] 管理中心: $msg id 或 all !文本</b>",
 
-  "ryas_cloud": "<b>\n>_ $开始_ Ryas Cloud | 欢迎 @{username} - 云数据库\n\n[{idioma_actual}] 欢迎使用新的 Ryas Cloud 订阅，您与 Ryas 云共享的数据将储存在此处，使用按钮探索新功能：\n\n<code>Ryas Cloud 版本:  0.0.1</code>  | Ryas Cloud 计划:  <code>高级云服务</code></b>",
+  "ryas_cloud": "<b>>_ $开始_ Ryas Cloud | 欢迎 @{username} - 云数据库\n\n[{idioma_actual}] 欢迎使用新的 Ryas Cloud 订阅，您与 Ryas 云共享的数据将储存在此处，使用按钮探索新功能：\n\n<code>Ryas Cloud 版本:  0.0.1</code>  | Ryas Cloud 计划:  <code>高级云服务</code></b>",
 
   "registerx": "<b>あ » 无障碍互动机器人，如需更多信息，请使用以下命令。\n\n↯ » 价格: /pricings\n↯ » 更多信息: /data</b>",
 
