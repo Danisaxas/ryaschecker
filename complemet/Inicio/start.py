@@ -14,7 +14,7 @@ async def start(client, message: Message):
 
     data, buttons_data = load_language_file(user_id)
 
-    if not user_data:
+    if not user_data or user_data.get('_id') != user_id:
         await message.reply_text(
             data['register_not'],
             reply_to_message_id=message.id
