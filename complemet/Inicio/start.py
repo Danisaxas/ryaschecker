@@ -11,20 +11,20 @@ async def start(client, message):
     user_id = message.chat.id
     username = message.from_user.username or "Usuario"
 
-    user = MondB(idchat=user_id).queryUser()
-    lang = (user.get("lang") if user else "es") or "es"
-    lang = lang.lower()
+    user_data = MondB(idchat=user_id).queryUser()
 
-    data, buttons_data = load_language_file(user_id)
-
-    if not user:
+    if not user_data:
+        data, buttons_data = load_language_file(user_id)
         await message.reply_text(
             data['register_not'],
             reply_to_message_id=message.id
         )
         return
 
-    status = user.get("status", "")
+    lang = user_data.get("lang", "es").lower()
+    data, buttons_data = load_language_file(user_id)
+
+    status = user_data.get("status", "")
     ban_status = "Sí" if status.lower() == "baneado" else "No"
 
     if status.lower() == "baneado":
