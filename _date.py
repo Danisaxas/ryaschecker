@@ -14,6 +14,7 @@ import os
 import json
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import pycountry
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
 
 def Astro(bit: str = None):

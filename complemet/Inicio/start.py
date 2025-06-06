@@ -4,17 +4,32 @@ from datetime import datetime
 import pytz
 
 @Astro("start")
-async def start(client, message):
+async def start(client, message: Message):
     user_id = message.chat.id
     username = message.from_user.username or "Usuario"
 
     user_data = MondB(idchat=user_id).queryUser()
-    lang = (user_data.get("lang") if user_data else "en") or "en"  # Default to English if no language is found
+    lang = (user_data.get("lang") if user_data else "es") or "es"
+    lang = lang.lower()
 
     data, buttons_data = load_language_file(user_id)
 
-    start_text = data.get("startx", "Welcome!")
+    if not user_data:
+        await message.reply_text(
+            data['register_not'],
+            reply_to_message_id=message.id
+        )
+        return
 
+    status = user_data.get("status", "")
+    if status.lower() == "baneado":
+        await message.reply_text(
+            data['block_message'].format(user_id=user_id),
+            reply_to_message_id=message.id
+        )
+        return
+
+    start_text = data.get("startx", "¡Bienvenido!")
     mainstart_buttons = [
         [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data.get("mainstart", [])
