@@ -8,19 +8,19 @@ async def start(client, message):
     user_id = message.chat.id
     username = message.from_user.username or "Usuario"
 
+    user_data = MondB(idchat=user_id).queryUser()
+    lang = (user_data.get("lang") if user_data else "en") or "en"  # Default to English if no language is found
+
     data, buttons_data = load_language_file(user_id)
 
-    start_text = data.get("startx", "¡Bienvenido!")
+    start_text = data.get("startx", "Welcome!")
 
     mainstart_buttons = [
         [InlineKeyboardButton(button['text'], callback_data=button['callback_data']) for button in row]
         for row in buttons_data.get("mainstart", [])
     ]
 
-    user_data = MondB(idchat=user_id).queryUser()
-    lang = (user_data.get("lang") if user_data else "es") or "es"
     idioma_actual = f"{LANGUAGES_FLAGS.get(lang, '🏳️‍🌈')}"
-
     caracas_time_value = caracas_time(lang)
 
     message_text = start_text.format(caracas_time=caracas_time_value, username=username, idioma_actual=idioma_actual)
