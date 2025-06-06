@@ -8,7 +8,8 @@ import json
 
 @Astro("start")
 async def start(client, message):
-    user_id = message.chat.id
+    # Obtener el ID del usuario según si es un chat privado o un grupo
+    user_id = message.from_user.id if message.chat.type == 'private' else message.chat.id
     username = message.from_user.username or "Usuario"
 
     user_data = MondB(idchat=user_id).queryUser()
