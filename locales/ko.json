@@ -21,7 +21,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] 관리자 허브: $msg id 또는 all !텍스트</b>",
 
-  "ryas_cloud": "<b>\n>_ $시작_ Ryas Cloud | 환영합니다 @{username} - 클라우드 DB\n\n[{idioma_actual}] 새로운 Ryas Cloud 구독에 오신 것을 환영합니다. Ryas 클라우드와 공유하는 데이터는 여기 저장됩니다. 버튼을 통해 새로운 기능을 확인하세요:\n\n<code>Ryas Cloud 버전:  0.0.1</code>  | Ryas Cloud 플랜:  <code>프리미엄 클라우드</code></b>",
+  "ryas_cloud": "<b>>_ $시작_ Ryas Cloud | 환영합니다 @{username} - 클라우드 DB\n\n[{idioma_actual}] 새로운 Ryas Cloud 구독에 오신 것을 환영합니다. Ryas 클라우드와 공유하는 데이터는 여기 저장됩니다. 버튼을 통해 새로운 기능을 확인하세요:\n\n<code>Ryas Cloud 버전:  0.0.1</code>  | Ryas Cloud 플랜:  <code>프리미엄 클라우드</code></b>",
 
   "registerx": "<b>あ » 문제없이 봇과 상호작용하세요. 더 많은 정보를 원하면 다음 명령어를 사용하세요.\n\n↯ » 가격: /pricings\n↯ » 추가 정보: /data</b>",
 
