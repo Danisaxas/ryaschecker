@@ -8,15 +8,27 @@ import json
 
 @Astro("start")
 async def start(client, message):
-    user_id = message.chat.id
-    username = message.from_user.username or "Usuario"
+    user_id = message.from_user.id
+    username = message.from_user.username or "NoUsername"
 
-    user_data = MondB(idchat=user_id).queryUser()
+    user = MondB(idchat=user_id).queryUser()
+    lang = (user.get("lang") if user else "es") or "es"
+    lang = lang.lower()
 
-    lang = user_data.get("lang", "es").lower()
     data, buttons_data = load_language_file(user_id)
 
-    status = user_data.get("status", "")
+    if not user:
+        await message.reply_text(
+            data['register_not'],
+            reply_to_message_id=message.id
+        )
+        return
+
+    rango = user.get("plan")
+    creditos = user.get("credits")
+    antispam = user.get("antispam")
+    expiration = user.get("expiracion")
+    status = user.get("status", "")
     ban_status = "Sí" if status.lower() == "baneado" else "No"
 
     if status.lower() == "baneado":
