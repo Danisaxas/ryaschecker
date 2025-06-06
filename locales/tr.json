@@ -21,7 +21,7 @@
 
   "msgformat": "<b>[<a href='t.me/ryascheckerbot'>⺢</a>] AdminHub: $msg id veya all !metin</b>",
 
-  "ryas_cloud": "<b>\n>_ $Başla_ Ryas Cloud | Hoş geldin @{username} - Cloud DB\n\n[{idioma_actual}] Yeni Ryas Cloud aboneliğine hoş geldin, Ryas ile bulutta paylaşılan verilerin burada saklanacaktır. Yenilikleri görmek için butonları kullan:\n\n<code>Ryas Cloud Sürümü:  0.0.1</code>  | Ryas Cloud Planı:  <code>Premium Cloud</code></b>",
+  "ryas_cloud": "<b>>_ $Başla_ Ryas Cloud | Hoş geldin @{username} - Cloud DB\n\n[{idioma_actual}] Yeni Ryas Cloud aboneliğine hoş geldin, Ryas ile bulutta paylaşılan verilerin burada saklanacaktır. Yenilikleri görmek için butonları kullan:\n\n<code>Ryas Cloud Sürümü:  0.0.1</code>  | Ryas Cloud Planı:  <code>Premium Cloud</code></b>",
 
   "registerx": "<b>あ » Bot ile sorunsuzca etkileşim kurabilirsin. Daha fazla bilgi için şu komutları kullan:\n\n↯ » Fiyatlar: /pricings\n↯ » Daha fazla bilgi: /data</b>",
 
