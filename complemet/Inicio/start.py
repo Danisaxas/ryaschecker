@@ -1,12 +1,13 @@
 from _date import *
 from classBot.MongoDB import MondB
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
 import pytz
 import os
 import json
 
 @Astro("start")
-async def start(client, message: Message):
+async def start(client, message):
     user_id = message.chat.id
     username = message.from_user.username or "Usuario"
 
@@ -16,7 +17,7 @@ async def start(client, message: Message):
 
     data, buttons_data = load_language_file(user_id)
 
-    if not user or user.get("_id") != user_id:
+    if not user:
         await message.reply_text(
             data['register_not'],
             reply_to_message_id=message.id
